@@ -1,0 +1,21 @@
+/.expo
+/node_modules
+*.log
+
+# Gradle files
+/android/.gradle/*
+/android/build/*
+/android/app/build/*
+*.apk
+.idea/
+/android/.gradle
+/android/app/build
+
+./android/.gradle/*
+./android/build/*
+./android/app/build/*
+./android/.idea/*
+
+./ios/build/*
+./ios/Pods/*
+*.ipa

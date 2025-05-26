@@ -1,0 +1,9 @@
+/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/armeabi-v7a/CMakeFiles/appmodules.dir
+/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/armeabi-v7a/safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir
+/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/armeabi-v7a/safeareacontext_autolinked_build/CMakeFiles/edit_cache.dir
+/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/armeabi-v7a/safeareacontext_autolinked_build/CMakeFiles/rebuild_cache.dir
+/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/armeabi-v7a/rnscreens_autolinked_build/CMakeFiles/react_codegen_rnscreens.dir
+/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/armeabi-v7a/rnscreens_autolinked_build/CMakeFiles/edit_cache.dir
+/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/armeabi-v7a/rnscreens_autolinked_build/CMakeFiles/rebuild_cache.dir
