@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux';
 const { height } = Dimensions.get('window');
 const SHEET_HEIGHT = 300;
 
-const BottomSheet = ({ visible, onClose, sheetHeight = SHEET_HEIGHT, children }: { visible: boolean, onClose: () => void, sheetHeight?: number, children: any }) => {
+const BottomSheet = ({ visible, onClose, sheetHeight = SHEET_HEIGHT, children, closeButton = true }: { visible: boolean, onClose: () => void, sheetHeight?: number, children: any, closeButton?: boolean }) => {
     const translateY = useRef(new Animated.Value(sheetHeight)).current;
     const device = useSelector((state: any) => state.device);
     useEffect(() => {
@@ -46,13 +46,13 @@ const BottomSheet = ({ visible, onClose, sheetHeight = SHEET_HEIGHT, children }:
                     },
                 ]}
             >
-                <View style={styles.sheetHeader}>
+                {closeButton && <View style={styles.sheetHeader}>
                     {/* <View style={styles.sheetHeaderBar}/> */}
                     {/* <Text style={styles.sheetHeaderTitle}>ReaderSettings</Text> */}
                     <TouchableOpacity onPress={onClose}>
                         <FontAwesome6 name="xmark" iconStyle="solid" color={AppColors.primaryDark} size={20} />
                     </TouchableOpacity>
-                </View>
+                </View>}
                 {children}
             </Animated.View>
         </View>
@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center',
+        padding: 16,
     },
     sheetHeaderTitle: {
         fontSize: 16,

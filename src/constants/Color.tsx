@@ -19,4 +19,6 @@ export const AppColors = {
     appTextYellow: "#FFFF00",
     tabTextGrey: "#33363F",
     iconGrey: "#7A7A7A",
+    grey: "#808080",
+    lightGrey: "#D3D3D3",
 }

@@ -9,7 +9,8 @@ import React, { useEffect } from 'react';
 import {
   SafeAreaView,
   StatusBar,
-  StyleSheet
+  StyleSheet,
+  View
 } from 'react-native';
 import { useSelector } from 'react-redux';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -45,7 +46,8 @@ function App(): React.JSX.Element {
   }, []);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    // <SafeAreaView style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
       <StatusBar
           backgroundColor={device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDark}
           barStyle={device.theme ? "dark-content" : "light-content"}
@@ -76,7 +78,8 @@ function App(): React.JSX.Element {
         </Stack.Navigator>
       </NavigationContainer>
       <CustomLoading visible={device.loading} />
-    </SafeAreaView>
+    </View>
+    // </SafeAreaView>
   );
 }
 
