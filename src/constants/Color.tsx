@@ -1,9 +1,15 @@
 export const AppColors = {
     primary: "#F01D2E",
+    primaryTint: "#F69697",
+    primaryDark: "#C40111",
+    primaryNior: "#82000B",
+    primaryBlack: "#4C0006",
     secondary: "#F01D2E",
     tertiary: "#F01D2E",
     quaternary: "#F01D2E",
     appBackgroundGrey: "#F9F8F9",
+    appBackgroundDark: "#121212",
+    appBackgroundDarkTint: "#1E1E1E",
     appTextGrey: "#808080",
     appTextBlack: "#000000",
     appTextWhite: "#FFFFFF",
@@ -11,4 +17,6 @@ export const AppColors = {
     appTextGreen: "#00FF00",
     appTextBlue: "#0000FF",
     appTextYellow: "#FFFF00",
+    tabTextGrey: "#33363F",
+    iconGrey: "#7A7A7A",
 }

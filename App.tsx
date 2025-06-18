@@ -5,107 +5,78 @@
  * @format
  */
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import React, { useEffect } from 'react';
 import {
-  ScrollView,
+  SafeAreaView,
   StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
+  StyleSheet
 } from 'react-native';
+import { useSelector } from 'react-redux';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+import ChangeLanguage from './src/pages/reader/ChangeLanguage';
+import { navigationRef } from './src/utils/RootNavigation';
+import CustomLoading from './src/components/CustomLoading';
+import { setLanguage, setTheme } from './src/store/slices/deviceSlice';
+import { AppColors } from './src/constants/Color';
+import Reader from './src/pages/reader/Reader';
+import { store } from './src/store/store';
+import SplashScreen from './Splash';
+import Main from './src/pages/Main';
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+  const device = useSelector((state: any) => state.device);
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  const Stack = createStackNavigator();
 
-  /*
-   * To keep the template simple and small we're adding padding to prevent view
-   * from rendering under the System UI.
-   * For bigger apps the recommendation is to use `react-native-safe-area-context`:
-   * https://github.com/AppAndFlow/react-native-safe-area-context
-   *
-   * You can read more about it here:
-   * https://github.com/react-native-community/discussions-and-proposals/discussions/827
-   */
-  const safePadding = '5%';
+  useEffect(() => {
+    AsyncStorage.getItem("ho-dlo-theme").then((value: any) => {
+      if (value) {
+        store.dispatch(setTheme(value == "true" ? true : false));
+      }
+    });
+    AsyncStorage.getItem("ho-dlo-language").then((value: any) => {
+      if (value) {
+        store.dispatch(setLanguage(value));
+      }
+    });
+  }, []);
 
   return (
-    <View style={backgroundStyle}>
+    <SafeAreaView style={{ flex: 1 }}>
       <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        style={backgroundStyle}>
-        <View style={{paddingRight: safePadding}}>
-          <Header/>
-        </View>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-            paddingHorizontal: safePadding,
-            paddingBottom: safePadding,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </View>
+          backgroundColor={device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDark}
+          barStyle={device.theme ? "dark-content" : "light-content"}
+          showHideTransition="fade" animated={true}
+        />
+      <NavigationContainer ref={navigationRef}>
+        <Stack.Navigator initialRouteName="Splash" screenOptions={{ gestureEnabled: false }}>
+          <Stack.Screen
+            name="Splash"
+            component={SplashScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Main"
+            component={Main}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Reader"
+            component={Reader}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ChangeLanguage"
+            component={ChangeLanguage}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+      <CustomLoading visible={device.loading} />
+    </SafeAreaView>
   );
 }
 

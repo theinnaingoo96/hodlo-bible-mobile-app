@@ -1,0 +1,11747 @@
+export const bibleVerses = [
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 1,
+    "text_hd": "Jacobnanh bei rweipungnang jhuckou Egypt nang vaarapu Israel naabouvey ba̲nan.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 2,
+    "text_hd": "Reuben, Simeon, Levi, judah,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 3,
+    "text_hd": "Issachar Issachar, Zebulun, Benjamin,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 4,
+    "text_hd": "Dan, Naptali, Gad, Asher,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 5,
+    "text_hd": "Jacob veynaang setrapu mih Ihen than gin, Josepnanh Egyptnang yei mou sashau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 6,
+    "text_hd": "Joseph ka bei chinabou, beivei theifen mou sheenou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 7,
+    "text_hd": "Israel veynaang setrapu theifen kayey reysa̲nye ba̲lih nanh ren chhāye leipāk mou phreydang rinou,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 8,
+    "text_hd": "Egyptnang divaang gathenpu tha ki raset dou, beinanh Josephnang gas hihchou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 9,
+    "text_hd": "Beinanh bei mih lhaa hwangu, zaangrou, Israel naabounanh alih manang ren gayey ga̲lengnei ngouyeo,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 10,
+    "text_hd": "Alihnanh losha̲n naang sanang ra rou, ba̲lihnanh yāngsa̲nye diraapucha ka̲ zwiklo alihcha gachhennei leipāk vey naang zenlen vāu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 11,
+    "text_hd": "Ba̲lih manang zaangrapu va̲ja sa̲nye, baa̲lih lhaa nākanapu ni ghaa ka̲ruebpu gafunye pharaohvey reera̲n lhavāpu keinung, Pi thom ka Raamses keinung sayenou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 12,
+    "text_hd": "Ba̲lihnang ghouphreyulee ba̲lihnanh galeng nei reysanye yāngkou lennei, doupura Israel naabou pāngnaang Egypt mihnanh ninyaa ka̲zwik lākrinnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 13,
+    "text_hd": "Ba̲lihnanh Israel naabounang sa̲klākra yei gasau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 14,
+    "text_hd": "Dilei nānye chāklun roye, dileivey yei ka̲saye, yei mounang sa̲klākra saye ba̲lihnanh nalākra non nongye ngo-u.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 15,
+    "text_hd": "Egypt vangpunanh Hebrew naa ganaabou (midwives) Shiphrah ka, Puah lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 16,
+    "text_hd": "Nasinanh Hebrew ni foubounang naa ganaanit ranang ngāk kei dang laabou tatou kashirou, ni",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 17,
+    "text_hd": "foubou tatou garanroura hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 18,
+    "text_hd": "Naa ganarapu khininanh shureenang jiye Egypt vangpunanh hwangrapu dlo locha laabou saloulee kashicha raangvapu saneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 19,
+    "text_hd": "Egypt vangpunanh naa kananit rapu khininang zaalo hwangu, nasinnanh laabounang kashicha chhou ra raangvapu saparou?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 20,
+    "text_hd": "Ba̲lihsinnanh hwangkhennou, Hebrew nifoubouku Egypt nifoubou lhenchau, ba̲lihnanh ren ngourāveynanh haasinnee vaapata naang naa salhā rinnnaleiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 21,
+    "text_hd": "Naa ganaa rapu khini lhaa shureenanh diveípu sani dimih galengsanye ren reysannou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 22,
+    "text_hd": "Naa ganaapu khininanh shureenang jiye ba̲lih rweypungnang zaangye saneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 23,
+    "text_hd": "Pharaoh nanh dimih mou lhaa kukkong neiu, Hebrew nifoubounanh salo rapu laabou mou Nile chwengnang vāsa̲nrou, nifoubounang sararou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 1,
+    "chapter_title": "Israel naabou nang ghou phrey rapoh",
+    "verse": 24,
+    "text_hd": "EXODUS 2",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 1,
+    "text_hd": "Levi rweypung mih labou thaki nanh Levi naa nifoubou thakinang yet dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 2,
+    "text_hd": "Doupu nifoubounanh ka̲ya̲kri zaangshi laabou thaki saloye lhachhuin thweyu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 3,
+    "text_hd": "Beinanh yoklākra thweyrā chinnei, naa ka̲yinpunang sa̲nlo chwen khuhnang reengaa rung yaanang vaathweyrinnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 4,
+    "text_hd": "Nanoobou nanh chhou set teirou rapu theivapu palonanaang zaangye ngou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 5,
+    "text_hd": "Pharaoh naa nifuwunanh bei rwei gararbou nifoubou thakinang jhuekou chwennang dirue praye ra rau, raonanh chwen khuhnang zet sheewuye vaaranaang reengaa yaanang naa kayinpu lotheiye, chhou ba̲ngku vaaloroura beivei raonang gasweyu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 6,
+    "text_hd": "Beinanh naanoobounang lhāngzang rareenang naanoobounanh gararye chwehbou, beinanh prinnei fenglo hey Hebrew bouvey naa ra hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 7,
+    "text_hd": "Bei deinanh pharaoh naa nifuwu lhaa hwangu, naanoobounang naarapu Hebrew ni foubounang neelha vanzanine?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 8,
+    "text_hd": "Pharaoh naa nifuwunah vanzaroura hwangye beinanh naanoobou yaa-nang vanzau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 9,
+    "text_hd": "Pharaoh naa nifuwunanh beil ha hwangu, naa hey fengkou vannaarou hananh neelhā naa ganaa chengniu. Nifoubounanh naa dou fengkou vannaau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 10,
+    "text_hd": "Naa dou deiye beinanh pharaoh naa nifuwu lhaa jhuekou vaninnou, nit tabou dou pharaoh naa nifuwu naa sanou, beinang hananh dirue veynaang loset doura nittabou nan dou Moses ra beinanh zaaneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 11,
+    "text_hd": "Moses nanh midiannang vaarapoh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 12,
+    "text_hd": "Mosesnanh dei koukaye thangy bei mihnanh fungrapu ghaa dou  vaazaangye rareenang Egypt mih thaki nanh bei mih Hebrew mih thakinang vunit rapu vaatheiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 13,
+    "text_hd": "Zaangaley chhitalee ngouchi rapu theiye beinanh Egypt mihnang sathetlo leinān naang dikhot shinrinnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 14,
+    "text_hd": "Khinipu naang vaalen naley Hebrew mih khini gavuye ngoualeiu, doupurā beinanh kayweipu mih lhaa hwangu, nang chhoura niphou branang vupārou?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 15,
+    "text_hd": "Neenang chhinanh haa manang zaangvapu mihpu sanrarou? Egypt mihnang sathetrā ba̲lengnei nang ananglee sathet ngunne? yei hey theiyetoura Mosesnanh jiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 16,
+    "text_hd": "Chenla dou pharaohnanh ya Mosesnang sathetteira phau. Beinanh pharaoh veynaang zenvaye Midian leipāknang vaazangye rueghong khuhnang vaashun ngou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 17,
+    "text_hd": "Doureenang Midian panmon naa nifoubou thangi zettaleiu, beipuhvey yao veibou lhaa dirue gasueyera dirue gasue vapu ghongnang phreydangra vaasoksa̲nnneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 18,
+    "text_hd": "Yao ngākbounanh yao rakhongkou lennou, beinanh thozaangye yao lhaa dirue soksa̲nchau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 19,
+    "text_hd": "Ba̲lihnanh vanra reenang sheelung chhoura kalhung naang vanyerou? ra beipuhnanh nau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 20,
+    "text_hd": "Egypt mih thakinanh yao ngākbou kuknaang loye dirue soklo yao veibou lhaa gasueu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 21,
+    "text_hd": "Beipuhnanh beinabou lhaa hwangu, dimih dou kounang ngourou? beinang chhoura venra vanrou, beinang vaazaalo ya nitrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 22,
+    "text_hd": "Mosenanh beicha maraye ngouye bei naa Zipporahnang gayet dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 23,
+    "text_hd": "Beinanh naa laabou thaki saloye bei nang Gershom ra zaaneiu, hananh leipak ka thenpunang rabra yiura beinanh zaarāveyud .",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 24,
+    "text_hd": "Baree yoklākra ngoura suenang Egypt vangpu sheenou. Israel cheh nanh doubou lha̲ngnang rao saye nari khanei garwey phaye ba̲rāye gararu, ba̲lih lha̲ngnang rao saye garar rapu shuree ngaa kakennou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 25,
+    "text_hd": "Ba̲lihnanh garar rapu dou shureenanh ya, Abraham, Isaac, Jacob, rabou lhaa karinnit rapu dou ba̲ninlo-u.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 26,
+    "text_hd": "Shureenanh Israel mihnang theiye ba̲lihvey gasā gafung lotheiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 2,
+    "chapter_title": "Moses nang sarapoh",
+    "verse": 27,
+    "text_hd": "EXODUS 3",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 1,
+    "text_hd": "Mosesnanh ba̲gi Midianvey pang mon Jethrovey yao veibou ngākkei zangna̲k zangpu shapa shureevey gafung Horeb ywengphānang yao vangākgou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 2,
+    "text_hd": "Shureevey raonanh beilha gatheiye lono choye meilhey shugnang meilhey settei choulee lono dou chorapu dou beinanh zaangaley chhoutalee  cho dimānchou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 3,
+    "text_hd": "Lono chochaley khutam kareipu gathei rapu hey ha vazaang  zangycora Mosesnanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 4,
+    "text_hd": "Mosesnanh vazaang rapu dou shuree nanh theiye, lono shungnaang shureenanh Moses ira zaye Mosesnanh ha heynang ngouyeora hwangkhennou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 5,
+    "text_hd": "Nangnanh chāngwokpu sa̲nkou heynang arānitrou, nang thozaang rapu phawn hey gathengpu phawn moura shureenanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 6,
+    "text_hd": "Hananh neepuhvey shuree, Abraham, Issac, Jacob, rabouvey shuree doura hwangye Mosesnanh shureenang zaangjiye zāk thweynou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 7,
+    "text_hd": "Egyptnang ngourapu amihvey nākanapu hananh theiyeo, ba̲lihvey vaja bounanh ghouphreyye karar rapu dou yau, ba̲lihvey nāka̲nāpu hananh theiyeo ra shureenanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 8,
+    "text_hd": "Doubounang Egypt leipāk Egypt mih kuknaanglosettei Canaan mih Hittite mih, Amorite mih, Perizzite mih, Hivite mih, Jebusite mih, ngourapu phawn diveipu ma̲si nittei rue ka lāngrue longrapu phawnnang sangou vapu hananh rayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 9,
+    "text_hd": "Atuelee Egypt mihnanh ghouphreyye Israel mihnanh ga̲rar rapu tha̲k angā kaye ngouyeo, ba̲lihnang Egypt mihnanh sa̲k lākra ghouphrey rapu hananh theiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 10,
+    "text_hd": "Rarou, amih Israel naabounang Egypt leipāk naang loset vapu, neenang hananh pharaoh ngaa gavayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 11,
+    "text_hd": "Mosesnanh hwangkhennou, hananh chhou mih toura pharaoh kuk naang Israel naa boounang Egypt leipāk naang valoset tharou?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 12,
+    "text_hd": "Hananh neecha      tasā  vaayeo, khutam hey neelha   pāngu, hananh neenang gavaye amihnang Egypt naang loset rareenang nangnanh heypu kafungnang shuree vey yei sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 13,
+    "text_hd": "Mosesnanh shuree lhaa hwang Israel naabou phawnnang hananh vatatou, napuhvey shureenanh nangaa anang kasweyrāyeo, ra hwangranang,bei",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 14,
+    "text_hd": "nang kararou? ra ba̲lihnanh angā naranang hananh ba̲lih lhaa chhou dlo hwangrou?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 15,
+    "text_hd": "Shureenanh Moses lhaa hwangu, hadou ha ngouyeo, Isreal naa bou lhaa hey vaahwang va̲pu hananh neenang ka̲sweyyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 16,
+    "text_hd": "Israel naabou lhaa hey vaahwangrou napuhvey shuree, Abraham, Isaac, Jacob, rabouvey shureenanh nangaa anang kasweyrayeo, anang hey kapehpu ngoucha mih dung changnang angouyanyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 17,
+    "text_hd": "Israel naabou tengbounang vaazaazwin mei doubou lhaa dlo hey hwangrou, neepuhvey shuree, Abraham, Issac, Jacob, rabou vey shureenanh alha gatheiye hwangu, Egypt leipāknang na manang sarapu yei dou hananh theiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 18,
+    "text_hd": "Egypt nang nāka̲nāpu veynaang nanang losettei Canaan mih, Amorite mih, Rittite mih, Perizaite mih, Hivite mih, Jebusite ngourapu phawn lāngrue ma̲si nittei rue longrapu phawnnang nanang sangouyera hananh karinzatou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 19,
+    "text_hd": "Doubounanh neetlo tla̲nye, nangnanh Israel naabou teibounang jhuekou, Egypt vangpu ngaa vaaye, Hebrew mihvey shuree nanh haachā garoktou haavei shureenang khorum vapu zangna̲k ka̲chhuin naang tareishong vaavapu kukong nitrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 20,
+    "text_hd": "Egypt vangpu lhaa ren karei pu gathei pātaku nanang diphritchā rapu hananh theiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 21,
+    "text_hd": "Akuk ka̲changye Egypt      leipāknang ba̲jung. gaphā rapu ren gatheiye tanti niu, dousuenangta Egypt vangpunanh nanang diphritteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 22,
+    "text_hd": "Egypt mih lhaa ninyaa veivapu hananh gatheini, nananh dounaang setra reenang ka̲tlanta vaachau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 23,
+    "text_hd": "22Nifoubou mounanh rweykhanābou ngaa, parā rangou rabou ngaa, shana taka, Jewel, seeree nanabou laabou nifoubou seeree sani,Egpyt mihvey reeran gasenloyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 3,
+    "chapter_title": "Shuree nanh Mosesnang zaalo rapoh",
+    "verse": 24,
+    "text_hd": "EXODUS 4",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 1,
+    "text_hd": "Ba̲linanh anang gaphrācha atlolee tla̲nchau, neelha shuree yo gatheichoura ba̲lihnanh hwangyeo ra Moses nanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 2,
+    "text_hd": "Neekuknang chhou logourou? ra shureenanh nau, beinanh gazei logouyco ra hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 3,
+    "text_hd": "Neezei lhalāng gavā lhāroura, hwangye beinanh gazei gavālhā rareenang gazei dou morue gungnou, Mosesnanh dounaang zenvanou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 4,
+    "text_hd": "Neekuk naang ghouloroura shureenanh hwangye beinanh morue meinaang ghouloaley beivei kazei bei kuknang gunglennou,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 5,
+    "text_hd": "Heyhrā satatou nafubouvey shuree, Abraham, Issac, Jacob, rabouvey shureenanh neelha gathei rapu dou doubounanh kaprayeo ra hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 6,
+    "text_hd": "Neekuk neechanhnang galānrou ra shureenanh hwanglennei beinanh bei kuk chanhnang galānaley beikuk dou dirān ba̲lengnei ngoopawnta rashinou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 7,
+    "text_hd": "Neekuk neechānhnang galānroura hwanglengnei beinanh kuk chānh nang galānzizi losettaley béikuk dou gakhwaavey pewnsuch gungnou,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 8,
+    "text_hd": "8Doubounanh neenang kaphrācha ka khuhpu khutamlee kaphrāchi tatou khi ni pu khutammang gaphrāyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 9,
+    "text_hd": "9Khutam khinilee gaphrācha neetlolee gaphrachi tatou, nangnanh Nilevey dirue yetlo dilei manang lunglha theirou, chwennang yetlo ravey dirue dou dilei manang diyi gungneiu;",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 10,
+    "text_hd": "Deimei shuree, hananh min ren ngouchou, kakhwaanaang ngouchou, deimeinah neevei rou lhaa hwangra reenanglee ngouchou, lhei    chhālakra gasweita hwangyeo ra Mosesnanh shuree Ihaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 11,
+    "text_hd": "Shureenanh hwangu, dimih min chhinanh sanitrou, dlo Iwenmakpu mih, reegong shārapu mih, na̲k theimakopu mih, na̲k theirapu midoubounang chhinanh sanitrou? ha shureenanh ka̲khruitne?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 12,
+    "text_hd": "Doupura vaarou, nee minang ha ngouyeo,nangnanh hwangye rapu dlo dou hananh neelha dwengtheiyco ra shureenanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 13,
+    "text_hd": "Deimei gathengpu mihnang gasweyrou ra hananh fingneryu ra Mosesnanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 14,
+    "text_hd": "Mosesnang Shureenanh lunhshi mei settei hwangu, Levi mih Aaron hey needei ka̲hruitne? beinanh dlo lwenthei rapu hananh theiyeo, beinanh neecha ra garokkeiu, beinanh neenang theira reenang bei ninyaanang kayey marayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 15,
+    "text_hd": "Nangnanh    beichā dlo Iwenmei, beinanh lwenvapu neiu, nee min ka bei minnang ha ngouye, nananh saye rapu yei dou hananh dwengtheiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 16,
+    "text_hd": "Beinanh neemin saye, neetlo saye nobou za̲kronnang beinanh hwang yeo. Nanglee beivei shuree ba̲lengnei sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 17,
+    "text_hd": "Nangnanh kuknaang logou rapu hey khutam satheirou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 18,
+    "text_hd": "Mosesnanh beigi Jethro ngaa ka̲lekkou vanye hwangu, Egyptnang ngourapu haa chehnanh kahrā ngourou rapu ha vaazaangyenanh alha ba̲ree kā ta nitroura fingnei, beigi Jethronanh yueyueta vazangroura hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 19,
+    "text_hd": "Shureenanh Moses Ihaa Midianang rahwangu, nangnanh Egypt  leipāknang ga letkou vaarou, neenang sathetteira pharapu mih kamang sheezatou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 20,
+    "text_hd": "Mosesnanh beiyet ka beina khininang sygong tungnang gashunngouye bei kuknaang shureevey gazei dou lokou Egypt leipāk nang vaau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 21,
+    "text_hd": "Shureenanh Moses lhaa hwangu, nangnanh Egyptnang vaazang rareenang hananh neelha ren ni ba̲jung kaphā rapu yei mou pharaoh sānang satheirou, hananh bei ren sachhāye Israel naabounang beinanh diphritchau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 22,
+    "text_hd": "Israel naabou hey hananh salo gakhuhpoura shureenanh hwangyeora nangnanh pharaoh lhaa hey vaahwangrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 23,
+    "text_hd": "Ana bounanh alha yei sanit vapu diphritrou, diphrit nitchara kazitatou neena ba̲zāpu kashiyeora vaahwangroura shureenanh Moses lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 24,
+    "text_hd": "Vaayuch rapu yānang shureenanh Mosesnang theiye beinang satheittei ra phau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 25,
+    "text_hd": "Zipporahnanh raaghata loye beina khini vin zetnit rasa Moses chāng vangtākkei hwangu, ba̲zih naang nang nanh diyi naang adeipuli sarāveyu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 26,
+    "text_hd": "Bei lhengta ngouye beiyetnanh hwangu, ba̲vin zetrapu yei hey nangnanh diyi naang adeipuh saraveyu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 27,
+    "text_hd": "Shureenanh Aaron lhaa hwangu,nangnanh Mosescha ywengphānang vaagarokrou, beinanh Mosescha shu reevey gafungnang vaa garokkei bein ang ba̲swetbou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 28,
+    "text_hd": "Beinang shureenanh ka̲sweyye khutam sathei vapu sa̲klākra hwangrapu dlo mou Aaron lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 29,
+    "text_hd": "Moses ka Aaronnanh Israel naabou theicha tasā runkou vaau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 30,
+    "text_hd": "Shureenanh Moses lhaa hwangrapu dlo dou Aaronnanh mou hwanmgye chābou za̲kronnang khutam lee satheiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 31,
+    "text_hd": "Shuree nanh Israel naabouvey nāka̲nāpu theiye beinanh razaang raveyu ra hwangrapu dlo dou chābounanh ya ba̲lihnanh ko chhuisanye khorum mou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 4,
+    "chapter_title": "Moses lhaa kuk tweng gathei rapoh",
+    "verse": 32,
+    "text_hd": "EXODUS 5",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 1,
+    "text_hd": "Pharaoh vangpunanh hwangu, hananh shuree dlo loye rapu dou chhou shureerou? Doupu shureenang ha theichou, Isreal naa bounanglee hananh diphrit chāra hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 2,
+    "text_hd": "Hebrewvey shuree dou haacha garoktoura ba̲lihnanh hwangu ywengphānang zangna̲k ka̲chhuin naangla̲n vaa sithāvapu ba̲ree nihrou pāyā ka raakhatavey tanti nitvara hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 3,
+    "text_hd": "Egypt vangpurianh hwangu, Aaron ka Moses nasinnanh chhoura naghaa fungvapu ba̲lihvey yei venra dimihnang jhuekou vaaye reeparou?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 4,
+    "text_hd": "leipāk mihnanh sheelung titheitau, Ba̲lihvey yei diphrit lhavapu nananh sapaýeo ra pharaohnanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 5,
+    "text_hd": "Chābou manang zaangye vaja sarabou Ihaa pharaohnanh doupu zangna̲k naang kukong neiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 6,
+    "text_hd": "Gakhwa ba̲lengnei heybou lhaa thaken anitnitrou, pananh pa sapha lorou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 7,
+    "text_hd": "Chaklun kakhwa ba̲lengnei bhraye gasārou, akachhuch nitlārou ba̲lihnanh thuehywei shiu, doupura alihnanhvaaye alihvey shureenang sithayenou ra ba̲rau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 8,
+    "text_hd": "Doupura doubou manang yeika̲sa̲kpu gasaye nitkalet dlo alonitrou sa̲klākra sarou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 9,
+    "text_hd": "Yei sabouvey vajananh hwangu, pharaohnanh nalhaa thaken nitchatou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 10,
+    "text_hd": "Pavey pavey thaken vaphalorou, yei kasaku heyra̲kkitalee ka̲chhuehehau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 11,
+    "text_hd": "Thaken lozwin vapu dimih kamangnanh Egypt  leipāk mounang bruk kadhāngye phavau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 12,
+    "text_hd": "Yei zaangrapu mihnanh hwangu, thaken garoktatou zangna̲k jang sara ba̲engnei zavapu yei sarou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 13,
+    "text_hd": "Pharaohvey yei zaang bounanh Isreal naabou manang zaangvapu phasan rapu lhaa hwangu,sheelung ka aya chāklun chhoura sazachirou? Ra naaye vunciu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 14,
+    "text_hd": "Doupura Isreal mih yei zaangra bounanh pharaoh lhaa ba̲rāye vanhwangu, chhoura neeraonang heyhrā sayerou?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 15,
+    "text_hd": "Deimeivey rao lhaa thaken lee nitchou, yei zaangra bounanh chāklun saroura haanang vuniu, zaangrou neemilinangta gaywei ngouyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 16,
+    "text_hd": "Beinanh hwangu, nananh thuehywei shiu, doupura alihnanh shuree lhaa vaasithayenoura nananh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 17,
+    "text_hd": "Atue vaaye yei sarou, thaken nitchau, chāklunku bhranit yanyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 18,
+    "text_hd": "Zangna̲k jang chāklun bhraye sara ba̲lengnei kachhuchcha saroura hwangrapu dou Israel naabou tla̲knang yei zaangrapunanh theiye alih manang galengnei sakkou rayetoura lothciu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 19,
+    "text_hd": "Pharaoh veynaang settei ba̲lihnang sarei ghongnang ngākpāpu Moses ka Aaroncha garokgou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 20,
+    "text_hd": "Moses nanh chwen jweng rapoh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 21,
+    "text_hd": "Shureenanh nasinmanang zaang yei bicheree sanitrou, rapu dou pharaoh ka yei sabounanh alihnang ninnei, alih nang sathet vapu nananh sāpāyaeo:",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 22,
+    "text_hd": "Mosesnanh shuree ngaapa galetkou vanye hwangu, deimei shuree, mih cheh heynang chhoura nangnanh yei sayerou? ananglee chhoura ka̲sweyyerou?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 23,
+    "text_hd": "pharaoh vangpu lhaa neetlo vaahwang rapu zangna̲k naang tholo heypu mih chehnang ka̲shihpunsaye ghouphreyyeo, deimei shureenanh nee mihnang gangnit chane? ra hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 5,
+    "chapter_title": "Dousuenang moses ka Aaronnanh pharaoh ngaa vaaye, Israel naabouvey shureenanh hwangyeo, amihnanh alhāpāng ywengphānang twei ngvapu diphrit nitroura hwang-u.",
+    "verse": 24,
+    "text_hd": "EXODUS 6",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 1,
+    "text_hd": "Shureenanh Moses lhaa hwangu, hananh pharaoh vangpunang chhou sarou rapu nangnanh theiyeo. Beinang ren kareipu theiye, amihnang diphritteiu. Ren kareipu theiye bei leipāk naang ka̲lweyyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 2,
+    "text_hd": "Hananh shuree doura Moses lhaa shureenanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 3,
+    "text_hd": "Hananh Abraham, Israac, Jacob, rabou lhaa ren kareipu shuree nang ha kalettei ba̲lih lhaa gathei chine?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 4,
+    "text_hd": "Nananh canaan leipāk nang brayee vapu nalhaa nira avei Karin rapu nalhaa Ihareeniu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 5,
+    "text_hd": "Isreal naabounanh Egypt mih lha̲ngnang rao saye karar rapu dou hananh galengnei yau, avei Karin rapu doulee ha nanh ba̲ninloye ngouyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 6,
+    "text_hd": "Israel naabou lhaa hwangrou, hananh shuree dou, hananh nanang Egypt mihnanh ghouphrey rapu shungnaang nanang losetteiu, hananh kuk ka̲changye bicheree saye ba̲lihvey rao sarapu naang hananh nanang losettei gangniu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 7,
+    "text_hd": "Amih savápu hananh nanang losetteiu, halee navey shuree sayeo, navey shuree dou rapu nananh theiyeo. Egypt mihvey ghoukaphrey shungnaang hananh losetteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 8,
+    "text_hd": "Abraham, Isaac, Jacob, rabou lhaa hanah nira Karin rapu leipāk nang nananh mihpu savapu hananh nanang losetteiu, hananh shuree dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 9,
+    "text_hd": "Isreal naabou lhaa Mosesnanh hwangu, ba̲lihnanh Mosesdlod tla̲nchinnou, chhourarou rapulee ba̲lihnanh shihlakrarao saye ninyaa veichinnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 10,
+    "text_hd": "Shureenanh Moses lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 11,
+    "text_hd": "Israel naabounang ba̲lihvey leipāk nang kazenroura Egypt vangpu pharaoh lhaa vaahwangrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 12,
+    "text_hd": "Mosesnanh shuree lhaa hwangu, Isreal naabounanh atlo tla̲nchau, pharaohnanh kahrā atlo tla̲nyerou? ba̲vin zetma̲kpu minnaang hwangrapu atlo kahrā tla̲nyerou?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 13,
+    "text_hd": "Israel naabounang Egypt naang loset vapu pharaoh ka Israel naabou Ihaa sa̲klākra hwangye saroura Moses ka Aaron lhaashureenanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 14,
+    "text_hd": "Isreal rweypungvey vangpu Isreal naa sa kakhuhpu Reuben naabou, Hanocha, Pallu, Hezron, Carmi, hey Reubenvey rweypung mih dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 15,
+    "text_hd": "Moses ka Aaron naabou",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 16,
+    "text_hd": "Simeon naabou, Jemuel, Jamin Ohad, Jachin, Zohar, Shaul, Simeon rweypung canaan mih nifoubounanh salo rapu mih dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 17,
+    "text_hd": "Hey Levi naabou  mihdungvey ba̲nanu, Gershon, Kohath, Merari, Levivey ba̲kung cha khinipu tharā sa thangi rangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 18,
+    "text_hd": "Gershon naabou, Libni, Shimei, ba̲lihvey rweypung mih.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 19,
+    "text_hd": "Kohath naabou, Amram, Izhar, Hebron, Uzziel, kohathveyba̲kung cha khinipu tharā sa ka̲chhuin rangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 20,
+    "text_hd": "Merari naabou, Mahli, Mushi, hey Lwvite rweypungvey dengchuin.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 21,
+    "text_hd": "Amramnanh beipuh zenwu Jochebednang yettei beinang Aaron ka Mosesnang salou. Amramvey ba̲kung chā khinipu tharā sa thagi raangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 22,
+    "text_hd": "Izhar naabou, Korah, Nepheg, Zichri.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 23,
+    "text_hd": "Uzziek naabou, Mishael, Elzaphan, Sithri.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 24,
+    "text_hd": "Nahshon zenwu, Aminadab naa nifuwu Elishenanang Aaronnanh yet dou, beinanh Nadab, Abihu, Eleazar, Ithamar, hey bounang salo-u.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 25,
+    "text_hd": "Korah naabou, Assir, Elkananh, Abiasaph, heybou hey Korah rweypung mih dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 26,
+    "text_hd": "Aaron naa Eleazarnanh putiel naa nifuwu thakinang yet dou, beinanh Phinahas nang salou, hey- bounanh Levi rweypungvey theifen bouvey divangbou",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 27,
+    "text_hd": "Isreal naabounang shipa vangpu boucha Egypt leipāk naang losetroura Aaron ka Moses rabou lhaa shureenanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 28,
+    "text_hd": "Isreal naabounang Egypt leipāk naang loset vapu pharaoh lhaa hwangrapu mih dou Aaron ka Moses.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 29,
+    "text_hd": "Egypt leipāk nang shureenanh moses lhaa dlo hwangrapu zangna̲k.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 30,
+    "text_hd": "Hananh shuree dou Egypt vangpu pharaoh lhaa hananh hwangrapu mou vaahwangrou- ra Moses lhaa shureenanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 31,
+    "text_hd": "Mosesnanh shuree lhaa hwangu, ha ba̲vin zetmakpuvey min raveynanh, Pharaohnanh kahrā atlo tla̲nyérou?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 6,
+    "chapter_title": "Moses nang zaaloraapoh",
+    "verse": 32,
+    "text_hd": "EXODUS 7",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 1,
+    "text_hd": "Hananh neelha hwangrapu mou nangnanh hwangyeo, Isreal naabounang naavey  leipāk nang kazenroura needei Aaronnanh pharaoh Ihaa hwangyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 2,
+    "text_hd": "Hroulee hananh pharaoh ninyaa sachhāyeo, Egypt leipāk nang avei ba̲sheh ba̲jung kaphārapu galengnei gatheiyco.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 3,
+    "text_hd": "Pharaohnanh nadlo tla̲nnitchau, Egypt leipāk nang akuk ga̲lānye kareipu yei saye bicheree saye dang Isreal naabou ka avei shipā vangpu Egypt tasā k naang losetteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 4,
+    "text_hd": "Egypt manang akuk ka̲changye Israel naabounang Ba̲lih tlaknang loset rareenang Egypt mihnanh ha shuree dou rapu lotheiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 5,
+    "text_hd": "Shureenanh Ba̲lih lhaa hwangrapu sue yuingmei Moses ka Aaronnanh sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 6,
+    "text_hd": "Atue Mosesvey ba̲kung lhenyet deitou, Aaronvey Ba̲kung lhenyet sa ka̲chhuinyetou, doureenang Ba̲ihsinnanh pharaoh lhaa dlo hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 7,
+    "text_hd": "Aaron vey ka̲zei",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 8,
+    "text_hd": "Shureenanh Moses ka Aaron lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 9,
+    "text_hd": "Pharaohnanh nalhaa hwangra reenang, nananh shakhi saye bajung kaphā rapu yei satheirou, nangnanh Aaron lhaa hwangye neevei gazei loye Pharaoh sānang gavā lhārou, gazei dou morue sakungtheirou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 10,
+    "text_hd": "Moses ka Aaronnanh pharaoh ngaa vaaye Shureenanh hwangrapu yei dou sau, Aaron nanh beivei gazei ka beivei raovey ga zei pharaoh sānang vālhāye morue gungnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 11,
+    "text_hd": "Egypt leipāk kvey loshan gashihbou ka gatli theirabou, dirāwuvey vajabounang pharaohnanh Ba̲lih Ihaalee morue gungvapu gasau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 12,
+    "text_hd": "Dimih jangvey gazei vālhāye morue gungnou, ba̲lihvey gazei morue gungrapunang dou Aaronvey gazei morue gungrapunanh  Ba̲ywey sang nou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 13,
+    "text_hd": "Shureenanh hwangrapu sue yuingmei pharaoh ninyaa chhārweiye Ba̲lihsin dlo tla̲nnitchou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 14,
+    "text_hd": "Diyirey rapoh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 15,
+    "text_hd": "Shureenanh moses lhaa hwangu, pharaoh ninyaa chhārweiye Isreal naabou nang diphritma gaziyeo-u.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 16,
+    "text_hd": "Pharaoh ngaa thamāngvaarou, beinanh ch wengnang tukkeiu, bei tukpāta morue gungrapu neevei ga̲zei lokou.chweng khuhnang beinang ngāksharou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 17,
+    "text_hd": "Hebrewvey shureenanh anang neengā gasweyraycora beilha nangnanh hwan- grou, amihnang avei savapu yweng phānang gavaroura hwangulee nang nanh sheelung naang ngaapā tla̲ncha ngouyeo-u.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 18,
+    "text_hd": "Shureenanh heyhrā hwangyeo, nangnanh ha shuree doura theilo vapu, zaangrou, akukvey ga̲zei naang Nile chwengnang ka̲shāk rareenang chwenvey dirue dou diyi gungneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 19,
+    "text_hd": "Chwengnang ba̲ngrapu dingunglee sheeneiu, diruelee nwengmeiu, Egypt mihnanh ninnei suechau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 20,
+    "text_hd": "Shureenanh Moses lhaa hwangu, neevei ka̲zei loye Egypt leipāk nang dirué ngourapu mou, chwen, rueghong, ka̲ra, ka̲yee, chhang ghong lunghong mou diyi gungvapu kuk ka̲changye dirue manang kashākroura Aaron lhaa hwangrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 21,
+    "text_hd": "Moses ka Aaronnanh shureenanh hwangrapu yei sau, Pharaoh za̲kronnang beivei rao za̲kronnang ka̲zeiloye Nile chwennang gashākgou,  Nile chwenvey dirue dou diyi gungnou,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 22,
+    "text_hd": "Nile chwenvey dingunglee sheenou, diruelee nwengnou, Egypt mihnanh Nile chwenvey dirue sue rā chinnou, Egypt leipāk  mou diyi gungnou,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 23,
+    "text_hd": "Egypt leipākvey losha̲n gashihbou ka dirawuvey yei sābounanh dou ba̲lengnei sau, shuree- nanh hwangrapu sue yuingmei Pharaoh ninyaa chhāye Ba̲lih dlo tla̲nnitchou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 24,
+    "text_hd": "Pharaohnanh bei rweinang ka̲letkou vanye bei ninyaanang ba̲nincha ngou nou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 25,
+    "text_hd": "Egypt mihnanh dirue dou suerā chinnei dirue phaye chwen khuhnang rueghong to-u.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 26,
+    "text_hd": "Shureenanh Nile chwennang ka̲shāknit rasuenang zangna̲k thangi naang zetrweikou lennou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 7,
+    "chapter_title": "Shureenanh Moses lhaa hwangu, zaangrou, pharaoh phawnnang hananh neenang shuree ba̲lengnei gasāyeo, Aaronnanh neevei prophet sayeo.",
+    "verse": 27,
+    "text_hd": "EXODUS 8",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 1,
+    "text_hd": "Shureenanh Moses lhaa hwangu, alhar yei savāpu aminang kavarou ra nangnanh pharaoh lhaa vaahwangrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 2,
+    "text_hd": "Nangnanh ka̲ziye ka̲va muktatou hananh diyhi naang neevei leipāk mou pāyā niu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 3,
+    "text_hd": "Nile chwennang diyhi gayey yangsanye, neerweinang, yuehpu kānang, Iwen manang, neevei rao rewynang, neemih manang, yakhāngpu rweynang, gatleng sāvapu ghong, mou manang kayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 4,
+    "text_hd": "Diyhi dou nee manang, neemih manang, neevei rao manang kayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 5,
+    "text_hd": "Shureenanh Moses ka Aaron lhaa hwangu, neekuk ka̲changye neezei naang chwennang, rueshanang, garanang diyhi reyvapu Egypt tasā knang diyhi reyvapu kashākrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 6,
+    "text_hd": "Doupura Aaronnanh kuk ka̲changye Egypt tasā kvey dirue manang ka̲shākrou, dounaang diyhi reykou raye Egypt tasā k mou diyhinah shinrinnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 7,
+    "text_hd": "Losha̲n gashih bounanh lhāk ka̲cha Egypt tasā knang diyhi lokou kau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 8,
+    "text_hd": "Pharaohnanh Moses ka Aaronnang zaalo liwangu, diyhi hey avei naang amih, veynaang lonitroura shuree lhaa hwangrou, shureenang khorum vapu hananh neemihnang diphritniu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 9,
+    "text_hd": "Mosesnanh Pharaoh lhaa hwangu, neelha pāng, neevei rao lhaapāng, neerwei lhaapāng, diyhi dou symānnit vapu ba̲ree alha hwangrou, Nile chwennangta sangouyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 10,
+    "text_hd": "Lhadang symānnit vapu fingnitroura pharaohnah hwangu, haavei shuree ba̲lengnei thatalee ngou choura nangnanh theilo vapu nangnanh hwangrapu dou sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 11,
+    "text_hd": "Diyhi dou naang, neevei rao veynaang neemih veynaang prākou lennei Niléchwennangta ngouyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 12,
+    "text_hd": "Moses ka Aaronnanh pharaoh veynaang vangye Pharaoh manang sarei rapu diyhi chuin, ba̲rāye shuree ngaa fingnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 13,
+    "text_hd": "Lonang dirweynang, karoknang, ngourapu diyhi dou Mosesnanh hwangrapu dlo loni shureenanh kasheenou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 14,
+    "text_hd": "Diyhi kashee dou wuzwin mei kayey yuinmei nwengmou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 15,
+    "text_hd": "Pharaohnanh divei rapu thei ye shureenanh hwang rapu sue yuingmei bei ninyaa chhālennei Ba̲lih dlo tla̲ncha ngounou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 16,
+    "text_hd": "Tasaalaa saarei rapoha",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 17,
+    "text_hd": "Shureenanh Moses lhaa hwangu, Aaron lhaa hwangrou, kuk ka̲changye ka̲zei naang dileinang ka̲shākkei Egypt leipāk mounang leikhu naang tasaalaa ka̲reirou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 18,
+    "text_hd": "Aaronnanh kuk kachangye ka̲zei naang leikhunang ka̲shākkei, Egypt leipāk mounang leikhu naang tasaalaa settei dimihnang kiye rey-u.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 19,
+    "text_hd": "Losha̲n gashih bounanh dou ba̲lengnei saulee sarā chinnou, tasaalaananh dimihnangkiu",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 20,
+    "text_hd": "Losha̲n gashih bounanh pharaoh lhaa hwangu hey shureevey rennaang sarāveyu, shureenanh hwangrapu sue yuingmei Pharaohnanh ninyaa chhāye ba̲lih dlo tlānnit chinnou",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 21,
+    "text_hd": "Khanata saa rei rapoh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 22,
+    "text_hd": "Shureenanh Moses lhaa hwangu, nangnanh thamāng naang thoye Pharaoh ngaa vaarou, beinanh dirue phawnnang lennalee Mosesnanh pharaohnang ngākkeingoushaye, beilha hwangu, shureenanh heyhrā hwangyeo, amihnanh alha yei savapu Ba̲lihnang ka̲zenroura hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 23,
+    "text_hd": "Amihnang diphritchi tatou neerwei, neenih mou rweynang Egypt mih mou rweynang, nananh thozaang rapu dileinang khanata gakipu sareiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 24,
+    "text_hd": "Dilei manang ha shuree doura nangnanh theilo vapu Goshen leipāk tleiye khanata gakipu gatukchau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 25,
+    "text_hd": "Lhadang amih ka neemih kaphrānye avei ba̲sheh gatheiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 26,
+    "text_hd": "Shureenanh saye pharaoh rweypung Egypt leipāk mou narig khanata kakipu gareiye leipāk symānnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 27,
+    "text_hd": "Pharaohnah Moses ka Aaronnang zaalo hwangu, nananh  leipāk shungnang navey shuree lhaa vaasithārou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 28,
+    "text_hd": "Mosesnanh hwangu, heyhrā sashiu, Egypt mihnanh kaninpu dou haavei shuree lhaa sithāyeo, Egypt mihvey kaninpu dou ba̲lih za̲kronnang sithātatou ba̲lihnanh haanang dilun naang gavāchane?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 29,
+    "text_hd": "Shureenanh hwangrapu yei dou haananh zangna̲k gachhuin naang ywengphānang vaaye haavei shuree lhaa sithāye khorum meiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 30,
+    "text_hd": "Pharaohnanh hwangu, navey shureenang ywengphānang vasithā vāpu hananh gavāyeo, hroulee yoklakra vaachi vapu alhapāng fingnitrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 31,
+    "text_hd": "Mose snanh hananh neevei vanye neevei, veynaang, neemih veynaang khanata gakipu lhadang khānvapu shuree ngaa, hanah fingniu, Israel naa bounang shureenang vasithā vapu khongye pharaohnanh kaywei asālennit rou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 32,
+    "text_hd": "Mose- snanh pharaoh veynaang vangye shuree ngaa fingnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 33,
+    "text_hd": "Mosesnanh fingra- pu dou shureenanh loni Pharaoh veynaang, beivei rao veynaang, beimih vey- naang thatalee ba̲ren sācha khanata gakipu dou ka̲zennou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 34,
+    "text_hd": "Pharaohnanh bei ninyaa chhālennei Israel naabounang khonlennou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 8,
+    "chapter_title": "Diyhi reyrapoh",
+    "verse": 35,
+    "text_hd": "EXODUS 9",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 1,
+    "text_hd": "Shureenanh Moses lhaa hwangu, nangnanh pharaoh ngā vaaye beil hāhwangrou, Hebrewvey shureenanh heyhrā hwangu, amihnang aveiyei savāpu ka̲zenrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 2,
+    "text_hd": "Gaziye Ka̲zencha ba̲lihnang khogtatou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 3,
+    "text_hd": "Zaangrou, shureevey kuk neevei kei, sygong, Ut, yao, dileinang ngourapu mou manang tlaye ka̲sakpu pāya setteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 4,
+    "text_hd": "Shureenanh Israel naabouvey kei ka Egypt mihvey kei gaphranni Israel naabouvey kei sheechau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 5,
+    "text_hd": "Shureenanh ba̲ree thaki lhani hwangu, leipāk shungnang lhadang shureenanh yei dou sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 6,
+    "text_hd": "lhadang shureenanh yei dou saye Egypt mihvey kei mou sheenou, Israel naabouvey kei thatalee sheechou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 7,
+    "text_hd": "Pharaohnanh dimihnang gasweyye Isreal naabouvey kei thatalee sheechou rapu theiulee beivei ninyaa chhāye Isreal naabounang ka̲va chou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 8,
+    "text_hd": "Gatung saa set rapoh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 9,
+    "text_hd": "shureenanh moses ka Aaron lhaa hwangu, mosesnanh meilumgvey lhavit kuk phreydangra phenglo. Pharaoh sānang zanga ba̲ruk kārou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 10,
+    "text_hd": "Egypt leipāk mounang lhavit dou diveipu settei, Egypt leipāk mouvey dimihnang suchnang katumg settei keiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 11,
+    "text_hd": "Ba̲lihnanh meilungnangvey lhavit dou loye pha raoh sanang Mosesnanh thozaangye zanga ba̲ruk kāye dimihnang suehnang kayey keirapu katung raset dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 12,
+    "text_hd": "Egypt mih ka losha̲n gashih bounang katung dou settei loshan gashih bounanh Moses sānang thozaangrā chinnou:",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 13,
+    "text_hd": "Shueenanh Moses lhaa hwangrapu sue yuingmei pharaoh ninyaa ka̲yey chhāye ba̲lihvey dlo tlānnitchou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 14,
+    "text_hd": "Ghalatei rweilhāk rapohiz",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 15,
+    "text_hd": "Shureenanh Moses Ihaa hwangu, thamang naang thoye dang Pharaoh sānang thozaangye beilha hwngrou-u, Hebrewvey shureenanh heyhrā hwangyeo, amihnang avei yei savāpu ga̲zenrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 16,
+    "text_hd": "Ba̲ree heynang neevei nin- yaanang, neevei rao manang, neemih manang avei pāyā garāyeo, leimaga̲bounang ha ba̲leng rapu thatālee ngouchou rapu nangnanh theiloyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 17,
+    "text_hd": "Akuk ka̲chang ye neenang, neemihnang pāyā garāyco, neenanglee dilei veynaang symānneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 18,
+    "text_hd": "Hey nangnanh ayeree tatou hananh neenang saranyeo, avei ren neelha gatheiyeo, ananlee leimagabounang kayāyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 19,
+    "text_hd": "Nang kalettei cheng dikettei amihcha gakhāye Balihnang gavacha-u.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 20,
+    "text_hd": "Zaangrou, lhadang heyree ywey nang Egypt leipāk nang garuehpu khalatei hananh galhākkeiu, kounaang talee dou pu rung theipaleiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 21,
+    "text_hd": "Doupurā lonang ngourapu mou kei konloma rou khalatei tlaye lonang ngourapu mou kei dimih manang tlaye sheeyeo, diraa lo vanrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 22,
+    "text_hd": "Shureevey dlo yuehra bounanh jiye Pharaohvey raonanh pavey keinang dirweypa kalwey vannou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 23,
+    "text_hd": "Shureevey dlonang ninsan ma̲kbounanh pavey rao pavey kei lo nang sangou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 24,
+    "text_hd": "Egypt leipāk mounang ngourapu theina rung, kei, dimih manang ghaalatei tlavapu neekuk zanga ka̲lānkāroura Moses lhaa shureenanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 25,
+    "text_hd": "Mosesnanh beivei ka̲zei zan ga galankāye shureenanh zang jhuing- mei kha̲latei karāye dileinang dimei, tlau. Egypt leipāk mounang shureenah ghaalatei karweiye galhākgou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 26,
+    "text_hd": "Egypt leipāk sa kakhuhpu naang tholo theipā leerapu kasakpu ghaalatei shurignang mei tlāngye ghaalatei tlau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 27,
+    "text_hd": "Egypt leipāk mounang ngourapu ka̲chhang rung, theina reena, dimih kei manāng ghaalatei tlau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 28,
+    "text_hd": "Israel naabou ngourapu Goshennangta ghaalatei tlachou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 29,
+    "text_hd": "Pharaohnanh dimihnang gasweyye Moses ka Aaronnang zalo hwangu, sheelung hananh diywen sanou, shu reenanh gadhungpou, ha ka amihnanh kayweipu yei sanou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 30,
+    "text_hd": "Zang jhuing rapu ka ghaalatei tlarapu heynanh thatou, khāngvapu shuree ngaa fingnitrou, ha nanh nanang yoklakra kangoucha hananh nanang diphrit zenneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 31,
+    "text_hd": "Moses nanh beilha hwangu hananh keinung naang settei hananh shuree ngaa kuk ka̲changye hwangyeo, shureenanh dilei mou naaye ngouyeo rapu nangnah theilo vapu zanglee jhuingcha ghalateilee tlachau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 32,
+    "text_hd": "Nang ka neevei rao mehnanh sheelung naang ngaapa shureenang jicha ngouyeo rapu hananh theiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 33,
+    "text_hd": "Barley, flax, theina rung dou kuppei mingnalee symannou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 34,
+    "text_hd": "Suikthā ka thā dou setpalee alee symānchou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 35,
+    "text_hd": "Mosesnah keinung naång settei shuree ngaa beikuk ka̲changye, hwangaley zang jhu ingcha ghalatei tlacha zang rweichinnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 36,
+    "text_hd": "Zang jhuingcha zang rweicha ghalatei tlachangourapu pharaohnanh theiye, bei ka beimih nanh ninyaa chhāye diywen salennou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 37,
+    "text_hd": "Shureenanh Moses lhaa dlo mou va hwangulee pharaohnah ninyaa chhāye Israel naabounang gavāchou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 9,
+    "chapter_title": "Suih chet paya sarārapoh",
+    "verse": 38,
+    "text_hd": "EXODUS 10",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 1,
+    "text_hd": "Shureenanh Moses lhaa hwan gu, nangnanh pharaohangaa vaarou, bei ka bei mihvey ninyaa hananh sachhāye avei ba̲sheh Ba̲lih lhaa hananh gatheiyeó.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 2,
+    "text_hd": "Ha shuree doura nangnanh theilo vapu, Egypt leipāk nang hananh sarapu yei ba̲sheh mou neenabou neetikbounanh yuehvapu nangnanh doubou lhaa hwangyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 3,
+    "text_hd": "Moses ka Aaronnanh Pharaoh lhaa vaahwangu, Hebrewvey shureenanh hwangyeo, Ba̲lihnanh alha yei sanityapu amihnang gazenrou, aza̲kronnang nangnanh chhoura heysenki kazipārou?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 4,
+    "text_hd": "Amihnang nangnanh diphritchih tatou, zaangrou, lhadang hananh nee leipāk nang prokhaa sareiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 5,
+    "text_hd": "Prokhaananh dilei mou shinrinnei nananh dilei theirachau, ghalateinanh symān garar aley lonang ngourapu theina reena mou prokhaananh shaneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 6,
+    "text_hd": "Neefu neepuh dungnaang tholo sheelung naang ngaapā theipāleerapu neerwei neemih rwey Egypt mih mou rwey phreydang rinneiu ra hwangra Mosesnanh pharaoh rweynaang vannou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 7,
+    "text_hd": "Pharaohvey raonanh beilha hwangu, heybounanh alih lhaa kouyākki nā kanapu nitpārou? Ba̲lihvey shureenang khorum vapu heybounang ka̲zenrou, Egypt leipāk symān rapu nang sheelungleetheipālee rweine?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 8,
+    "text_hd": "Moses ka Aaronnang pharaoh ngaa jhuekou vanye ba̲lihsin lhaa beinanh hwangu, navey shu- ree lhaa yeisanit vapu vaarou, aley vaaye rapu dou chhirou?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 9,
+    "text_hd": "Labou nifoubou, nittabou, teibou kei diwu mou vaaye shureenang khorum mei twei vaazangyeora Mosesnanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 10,
+    "text_hd": "Beinanh moses lhaa hwangu hananh nittabou naang ngaapā diphritnit tatou shureenanh nachā tasā runkou zetrou, aley na ninyaanang ka̲shihpu ba̲ninpayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 11,
+    "text_hd": "Dou sashiu labouta nananh sangunpu shureevey yei vaasaroura pharaohnanh bei phawn naang ka̲lweyzennou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 12,
+    "text_hd": "shureenanh moses lhaa hwangu, Egypt leipāk nang prokhaa sareiye gha lateinanh lo garar theina mou shavapu kuk ka̲changye prokhaa sareirou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 13,
+    "text_hd": "Mosesnanh Egypt leipāk nang beikuk ka̲changye zangna̲k gaket shapa naang shureenanh gasy funraye sheebewnma kalhong thamāng prokhaa sareiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 14,
+    "text_hd": "Prokhaa dou Egypt leipāk mounang reyye ngounou, heychhou pu hey sā palee setchou, khongmalee setchau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 15,
+    "text_hd": "Prokhaananh shin rinnei  leipāk mou yima nou, Egypt  leipāk nang ghalateinanh lo garar theina reena, chhangthei Iweythei mou shanei ba̲wā ga̲ltākpu thatalee the ichinnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 16,
+    "text_hd": "Pharaohnanh moses ka Aaronnang galho zaalo hwangu. Navey shureeka nanang hananh diywen sanou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 17,
+    "text_hd": "Nananh avei ka̲ywei zaangnitrou, ka̲sheevey tanti heynaang shureenaah gangnit vapu fingnitrourahwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 18,
+    "text_hd": "Mosesnanh pharaoh veynaang vanye shuree ngaa fingnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 19,
+    "text_hd": "Zangna̲k zangpu shapa naang shureenanh gasy    chhālakra kasiye Egypt tasā knang prokhaa thataleekangoucha Red sea sanyeenang bingkou kazennou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 20,
+    "text_hd": "Pharaoh ninyaa shureenanh chhāvapu sani Israel naabounang ka̲zen chinnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 21,
+    "text_hd": "Yima rapoh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 22,
+    "text_hd": "Moses lhaa shureenanh hwangu Egypt leipāk yima vapu zanga neekuk galāng kārou, yikamāgarāniu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 23,
+    "text_hd": "Moses- nanh zanga kuk galān kāye Egypt leipāk mou zangna̲k ka̲chhuin naang yimā vapu yikamā kareipu karaneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 24,
+    "text_hd": "Thakinanh thakinang theira chinnou. Zangna̲k ka̲chhuin naang pa phawn veynaang thorā chinnou, Israel naabou lhaaku vengneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 25,
+    "text_hd": "Pharaohnah Moses lhaa hwangu, nanaah nittabounang jhuekou shureenang vaakhorumrou aley kei diwuku khongkou vashiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 26,
+    "text_hd": "Haavei Shureenang khorum mei sithā vapu nangnanh nit ba̲lungyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 27,
+    "text_hd": "Haananh kei diwu mou khongkou vaayeo, shuree lhaa sithā vapu haananh mou veynaang yhengloyeo ba̲phawn dounang vāset pata kei koupunaang sithā varou rapu haananh theipaleiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 28,
+    "text_hd": "Israel naabounang ka̲żenchi vapu shureenanh Pharaoh ninyaa gachhā lennou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 29,
+    "text_hd": "Pharaohnanh beilha hwangu, aphawn naang nananh ayo theichi vapu zetdingrou, nananh ayo theilen rapu zangna̲k naang nasheeyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 30,
+    "text_hd": "Mosesnanh hwngu, nangnanh hwangra ba̲lengnei haananh neeyo theilenchatou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 10,
+    "chapter_title": "Prok khaa sarei rapoh",
+    "verse": 31,
+    "text_hd": "EXODUS 11",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 11,
+    "chapter_title": "Naa zapu mou sashi rapohsygnalopl",
+    "verse": 1,
+    "text_hd": "Shureenanh Moses lhaa hwangu, nanang diphritnit vapu Egypt mih ka pharaoh manang hananh payā thaki garāniu, dousuenang ba̲lihnanh nanang galweyyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 11,
+    "chapter_title": "Naa zapu mou sashi rapohsygnalopl",
+    "verse": 2,
+    "text_hd": "Israel naabou labounanh rwey khanā labou ngaa, aley nifou bounanh rwey khanā nifoubou ngaa shana taka jewel seeree seeraa nitvapu fingroura chābou lhaa sareng saye hwangrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 11,
+    "chapter_title": "Naa zapu mou sashi rapohsygnalopl",
+    "verse": 3,
+    "text_hd": "Israel naabou lhaa prinneis níh ngun vapu shureenanh Egypt mih ninyaanang sa̲nniu. Egypt leipāk nang pharaoh, beivei rao meh, beimih mou manang Mosesnanh kareipu Ba̲nan ngouyeо-u.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 11,
+    "chapter_title": "Naa zapu mou sashi rapohsygnalopl",
+    "verse": 4,
+    "text_hd": "Mosesnanh hwangu, shuree-nanh heyhrā hwangyeo, hananh sheebewnma chā yiyannang Egypt leipāk ba̲ran nang rayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 11,
+    "chapter_title": "Naa zapu mou sashi rapohsygnalopl",
+    "verse": 5,
+    "text_hd": "5Pharaoh naa ba̲zāpu, naangtholo tha direipunang thozaang rapu rao nifoubou naa ba̲zāpu. Egypt mih mou naa ba̲zāpu, kei naa ta ka̲khuhpu mou sheeyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 11,
+    "chapter_title": "Naa zapu mou sashi rapohsygnalopl",
+    "verse": 6,
+    "text_hd": "Egypt leipāk mou gayey chwehpeiu, heychhoupu rung sāpalee setchou suepalee setchau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 11,
+    "chapter_title": "Naa zapu mou sashi rapohsygnalopl",
+    "verse": 7,
+    "text_hd": "Egypt mih ka Israel naabounang shureenanh tlei saneiu ra dimih ka kei thatananglee diwunanh sanchau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 11,
+    "chapter_title": "Naa zapu mou sashi rapohsygnalopl",
+    "verse": 8,
+    "text_hd": "Neevei rao mehnanh angā raye chāngkhotluin mei hwangyeo, na thomengrou, nasue yuingmei rapu mih kamanglee thomengrou, dousuenang mei tlānye lunshih Pharaoh veynang haananh thonou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 11,
+    "chapter_title": "Naa zapu mou sashi rapohsygnalopl",
+    "verse": 9,
+    "text_hd": "Shurechnanh Moses lhaa hwangu, Egypt leipāk nang avei bajung gaphā rapu kayey gatheiyeo ra hwangrapu na dlo dou Pharaohnanh kaphrāchou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 11,
+    "chapter_title": "Naa zapu mou sashi rapohsygnalopl",
+    "verse": 10,
+    "text_hd": "Ba̲jung kaphā rapu yei dou Moses ka Aaronnanh pharaoh sānang mou satheiu, shureenanh pharaoh ninyaa chhāvapu sanei-u, beivei leipāk naang Israel naabounang diphrit zenngunchou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 11,
+    "chapter_title": "Naa zapu mou sashi rapohsygnalopl",
+    "verse": 11,
+    "text_hd": "EXODUS 12",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 1,
+    "text_hd": "Egypt leipāk shungnang Shuree nanh ka Aaron lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 2,
+    "text_hd": "Lhā hey nalhaapāng gakhuhpuāsayeo, lhā hey nalhaapāng ba̲kunvey gakhuhputhāsayéo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 3,
+    "text_hd": "Israel naabou cheh mou lhaa hwangrou, heypu  lhā zangna̲k dirapu naang papuh rweyvey ngāye rapu yaotata thatin rwey punjang nanh Loba̲lung yeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 4,
+    "text_hd": "Rweypun tweng tari yaotha ki yoracha ritaturwey khana boucha ka̲zwikpei dimih bhralo tharapu yao thaki lorou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 5,
+    "text_hd": "Nananh loye rapu yao dou dininnulet yaoulet gaywei ngou ma̲kpu kungki naa ba̲tita loyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 6,
+    "text_hd": "Heypu lhā zangna̲k tlilan naang ngaapa yao tata dou pha lhari sha yeo Israel naabou mou seng zwing ra naang yānh yao tata dou vuthetteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 7,
+    "text_hd": "Ba̲lihnanh zwikrapu yao yi dou loye ba̲lihnanh zwikrapu rweyvey reekhon ya̲ng sāk khini phānpheipunang diyi dou newnyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 8,
+    "text_hd": "Yao such dou diwalo dirih sa̲nma̲kpu ka̲tlengcha tasā khuhrapu diyhen dinacha tasā such dou sheebewnma zau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 9,
+    "text_hd": "Sueh dou garan naangulet dirue naang khāngye zwikshiu, ba̲ko ka pa̲hshung such pewn diwalota zau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 10,
+    "text_hd": "Thamāng lhaa such dou lhari shiu, lharee shaulee mou meinang ra̲kkingneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 11,
+    "text_hd": "Nananh such dou kahrā zarou rectatou, ronba̲sueye, chāngwokpu sanye, kuknaang kazei lokou, galho zau, hey shureevey Passover tweiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 12,
+    "text_hd": "Atueyang hananh Egypt leipāk zetrweikou settei Egypt mihvey naa ba̲zāpu ka such cheh ta gakhuhpu manang tanti niu, ba̲lihvey shureenanglee hananh bicheree sayeo, hananh shuree dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 13,
+    "text_hd": "Yao naavey diyi dou nalhaapāng ba̲sheh salhāniu, diyi dou zaanglo nanang hananh vā zwenkou vaaneiu, Egypt leipāk nang hananh tanti ni symān rarecnang pāyā dou nanang rashon- ketchau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 14,
+    "text_hd": "Zangna̲k heynalhaapāng ba̲ninlo vapu zangna̲kgou, tun jangnang ninnit rapu dou sayanyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 15,
+    "text_hd": "Gakhuhpu zangna̲k naang nananh dirih dou narwey naang ventou. Zangna̲k thangipu naang nananh dirih sa̲nma̲kpu ka̲tleng zau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 16,
+    "text_hd": "Gakhuhpu zangna̲k naang nananh gathengpu meeting sayeo, zangna̲k thangipu naanglee gathengpu meeting sayeo, sareng salhā rapu zangna̲k naang yei sachau, ya zwikchau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 17,
+    "text_hd": "Egypt leipāk naang navey shipā vangpunang hananh doupu zangna̲k naang losettei, nananh ninnit rapu dirih sa̲nma̲kpu ka̲tleng twei zangyānyeo, mihdung changnanh ninnit rapu zangnaa̲k dou ngākyānyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 18,
+    "text_hd": "Gakhuhpuzangna̲k tlilān punaang yānh nananh dirih sanmakpu ka̲tleng zau, doupu lhā zangna̲k ku sa thaki naang yānh  naang ngaapa dirih sanmakpu ka̲tleng zau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 19,
+    "text_hd": "Zangna̲k thangi shungnang narweynang ka̲tleng rih lhareeshiu, dirih sanrapu ka̲tleng zwikrapa mihnang dou, ka̲thenpu mih doulet leipāk mih toulet Israel naabou chābou veynaang ka̲lwey setteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 20,
+    "text_hd": "Nananh ngourapu phawn jangnang dirih sanrapu ka̲tleng zwikshiu, dirih sanmakpu ka̲tlengta zau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 21,
+    "text_hd": "Mosesnanh Israel naabou tengbounang zaazwinlo hwang-u, parweypung nanh thaarapu yao yhenglo Passover twei lhaapāng vuthetrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 22,
+    "text_hd": "Ghobi Hyssopwa ba̲hruin diveipu chhang lhenting loye ghong ka̲shukpu nangvey yao yinang swinglo reekhong yang ma̲pa ka reekhon sāk khininang newnrou, dounaang tholo zang vengpāta naang ngaapā reekhong zetrweikou chhitalee kashāng setshiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 23,
+    "text_hd": "Shureenanh tanti nitvapu Egypt leipāk nang setteiu, reekhon yang mapa ka reekhon mung khaninang newrapu diyi zaanglo shureenanh vā zwenkou vaaneiu, symānye rapu mihnanh doubounang kashong vanvapu ba̲ree nitchou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 24,
+    "text_hd": "Ninnit rapu hey nanaabou dungnanglee nananh ngākya̲nyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 25,
+    "text_hd": "Nalhaa shureenanh nihrapu leipāk nang nananh vaazang rareenang ninnit rapu yei hey nananh vaasāyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 26,
+    "text_hd": "Nanaa bounanh sarapu yei hey chhou rou? Ra natatou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 27,
+    "text_hd": "Shuree-nanh Egypt leipāk nang tanti nin, haanang saranye, Israel naabou rwey vāzwenkou lenrapu shureevey gathengpu Passover tweira nananh hwangye, chābounanh ko chhuinsanye khorum mou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 28,
+    "text_hd": "Naazāpu shee rapoh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 29,
+    "text_hd": "Israel naabounanh dou vansau,shureenanh ninnit rapu dou Moses ka Aaronah sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 30,
+    "text_hd": "Sheebewnma chāyiyannang shureenanh tantinin, pharaoh phawnnang kaye rapu beina ba̲zāpoh, badhungnang ngourabou naa ba̲zāpoh, Egypt mih mouvey naa ba̲zāpoh, such cheh ta kakhuhpu ba̲zāpoh, mou kashiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 31,
+    "text_hd": "Pharaohnanh sheebewnma thoaley beivei rao rweypung mih mou, Egypt mih mounanh gayey chwehrapu you, sheema̲kpu rweypung thatalee ngouchou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 32,
+    "text_hd": "Sheebewnma pharaohnanh Moses ka Aaronnang vaazaalo hwang-u nananh fingrapu navey shureevey yei dou vasāvapu Israel naabou mou amih veynaang thoye vaamengrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 33,
+    "text_hd": "Navey kei diwulee fungkou alhalee chengni nananh fingrapunang dou vaarou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 34,
+    "text_hd": "Egypt mihnanh haa mou sheevanang galho vaaroura Israel naabounang kasennei hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 35,
+    "text_hd": "Chābounanh dirih sanmakpu suk nānravey ka ka̲tleng sāpu ghong loye chhi naang rwenlo tap ranang ka̲lānye.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 36,
+    "text_hd": "Mosesnanh hwangra pu dou Israel naabounanh saye shana taka seeree chhiji Egypt mih ngaa fingnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 37,
+    "text_hd": "Egypt mihnanh ninyaa veivapu shureenanh sani, ba̲lihnanh fingrapu dou Egypt mihnanh neiu. Egypt mihvey sila doubalihnanh gasenlo-u.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 38,
+    "text_hd": "Israel naabounanh Rames snaang tholo succothnang dimih labou lāk, drok chāngnaang zettei nifoubou nittaboulee ba̲ngye māraa vau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 39,
+    "text_hd": "Ka̲dleipu cheh mihlee titheita nānkou ba̲lihvey kei veibou khongkou sue yuingkou rau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 40,
+    "text_hd": "Ba̲lihnanh Egypt naang suk lokou raravey dirih sanmakpu ka̲tleng sau. Dirih ba̲ngchou, chhourarou rapulee Egypt naangga̲lweyye ba̲lihnanh sareng sarāchinnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 41,
+    "text_hd": "Israel naabounanh Egypt leipāk nang ba̲kun chātli saa tharā non nonye ngou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 42,
+    "text_hd": "Ba̲kun chātli tharā zaranang, shureevey gathengbou mou Egypt naang setdingnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 43,
+    "text_hd": "Ba̲lihnang Egypt naang losettei shureenanh shee bewnma ngākneiu, Israel naabou mih dung mounang ngāknit rapu shureevey gayāng dou heypu gayāngu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 44,
+    "text_hd": "Gang nihrapu sheh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 45,
+    "text_hd": "Shureenanh Moses ka Aaronlhaa hwangu, ninnit rapu pssover tweinang leipāk ga̲thengpu mihnanh zwikchau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 46,
+    "text_hd": "Aley taka naang leiravey rao gamang nanh ba̲vin zetra suenangku zwikveiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 47,
+    "text_hd": "Ra brayi rapu mih ka cheng nitrapu mihnanh hey zwikshiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 48,
+    "text_hd": "Dirwey thakinangta pewnki mou zau, such lokou gashāng setshiu, ba̲rilee thatalee shākletshiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 49,
+    "text_hd": "Israel mih mounanh hey ngākkeiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 50,
+    "text_hd": "Nanang rabra yiye ngoura pu gathenpu mihnanh Passover twein- ang tukngun tatou, ba̲vin zetkhuhrou, dousata tasā k mih saye Passover tweinang tukveiyeo, ba̲vin zetma̲k bounanh Passover tweinang tukshiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 51,
+    "text_hd": "leipāk mih ka nanang rabra yirapu gathengpu mihvey ba̲ree thaki ngouyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 52,
+    "text_hd": "Shureenanh ninnit rapu dou Israel naabounanh sau, Moses ka Aaron nanhlee sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 53,
+    "text_hd": "Israel naabou ka Ba̲lihvey kareibounang shureenanh doupu zangna̲k naang Egypt leipāk naang losetdou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 12,
+    "chapter_title": "Gang nih rapu twei",
+    "verse": 54,
+    "text_hd": "EXODUS 13",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 1,
+    "text_hd": "Shureenanh Moses lhaa hwan gu,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 2,
+    "text_hd": "Israel naabou shungnang salo kakhuhpu ba̲zāpu mou dimihlet sue hlet alha satheng khuhrou, mou aveiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 3,
+    "text_hd": "Katleng nang diriksangmak pu twei",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 4,
+    "text_hd": "Mosesnanh chābou lhaa hwangu,shureenanh bei kuk ren kachhāpu naang rao saye ngourapu Egyptrapu ba̲dhung rewynaang nanang losettei dirih sanmakpu ka̲tleng zwikrapu zangna̲k dou ba̲ninyanrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 5,
+    "text_hd": "Nananh sheelunglee Abid lha zangnaa̲k vanyetou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 6,
+    "text_hd": "Nalhaa nitvapu nafubou lhaa shureenanh karinnit rapu  leipāk, Canaan mih, Hittite mih, Amorite mih, Hivite mih, Jebusite mih ngourapu ma̲si nittei rue ka lāngrue longrapu  leipāk nang vaazang ranang heypu lhānang nananh yei dou sarou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 7,
+    "text_hd": "Zangna̲k thangi shungnang nananh dirih sa̲nma̲kpu ka̲tleng zau, zangna̲k thangikenranang shuree lhaapāng nananh twei zangrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 8,
+    "text_hd": "Zangna̲k thangi shung nang dirih ka̲tleng nananh za, narweynanglet  leipāk mounanglet dirih sanrapu ka̲tleng lhareeshiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 9,
+    "text_hd": "Anang Egypt naang loset rareenang shu- reenanh alhapān sanitrapu ba̲yākrapu zangna̲kgou ra nanaabou lhaa hwangrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 10,
+    "text_hd": "Shureevey kuk ren kareipu naang nanang Egypt leipāk naang losettei, shureevey gadhungpu dlo nee minnang ngouye, neena̲k ka neekuk tlaknang ba̲ninlo vāpu sarou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 11,
+    "text_hd": "Kunjang ba̲reenang ninnit rapu dou nananh ngākyanrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 12,
+    "text_hd": "Naa teipoh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 13,
+    "text_hd": "Nalhaa ninra napuhbou lhaa garinnih rapu Canaan  leipāk nang nanang shureenanh jhuckou vaaye beinanh  leipāk dou nalhaa niu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 14,
+    "text_hd": "Nananh salo rapu naa ba̲zāpoh, navey kei tata ta gakhuhpoh ba̲ti mou dou shureeveyu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 15,
+    "text_hd": "Sygong tata ta gakhuhpu dou yao naang gachheiyeo, chheilo ngunchi tatou ba̲vanh taletteiu, dimih salo gakhuhpu moulee chheiloyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 16,
+    "text_hd": "Na naabou-nanh khonma hey chhou saraveyrou? ra natatou, Egyptvey leipāk nangrao sarapu shureenanh kuk ka̲changye haanang loset rapuvey galetset rapoura hwangrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 17,
+    "text_hd": "Pharaohnanh haanang gavama chhālakra khongra reenang shureenanh Egypt mih naa sa gakhuhpoh, kei tata ta gakhuhpoh, mou gashiu, doupura haananh salo naa ba̲zāpok, kei tata ta gakhuhpoh, ba̲ti mou shuree lhaa gathengpu saye dikettei dang naa ba̲zāpu dou chheiloyeo",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 18,
+    "text_hd": "Kuknang ka na̲k tlaknang ba̲sheh sani haanang Egypt leipāk naang shureevey rennaang losetdou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 19,
+    "text_hd": "Mei kha̲k gany bong vey dirung",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 20,
+    "text_hd": "Pharaohnanh Israel naabou nang diphrih rasuenang, shureenanh chābounang philistine shapa jhuekou vaachou, doungaapā shanaulee diraa garok rareenang chābounanh Egyptnang galet ngunye ninnyeyvāra shureenanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 21,
+    "text_hd": "Red sea sa̲nyee shapa ywengphānang shureenanh jhue sheewukou vaau. Israel mih chābounanh diraa ga̲tak rapu sueta yuingmei Egypt naang zetdou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 22,
+    "text_hd": "Josephnanh sāpa sareng saye hwangu, shureenanh nanang razaangyeo, doureenang nananh Ari fungkou ba̲phawn heynaang vaarou, saklakra hwangrapu sue yuingmei Mosesnanh Josephvey ba̲ri fungkou zetdou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 23,
+    "text_hd": "Ba̲lihnanh Succoth naang thoye ywengphā kahranang Ethanang yā vaasau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 24,
+    "text_hd": "Galhong shureenanh Ba̲lih sāpa ganybongvey dirung naang jhuekou zetdou, Sheebewnma dimei rungnaang gaveng gatheini, Ba̲lihnanh sheebewnma galhong sarei zet veiye māra vaau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 25,
+    "text_hd": "Galhong ganybong rungnaang jhuckou zetdou,sheebewnma  mei rungnaang jhuekou zettei ba̲lih sānang zetyingrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 13,
+    "chapter_title": "Naazāpu nang sithā rapoh",
+    "verse": 26,
+    "text_hd": "EXODUS 14",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 1,
+    "text_hd": "Shureenanh Moses lhaa hwang-u,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 2,
+    "text_hd": "Pihahiroth sāpa lengkou vanye yāsavapu Israel naabou lhaa hwangrou-u, Baa; zephon sāpā sanyee ka Migdol tlaknang sanyee kahrānang nananh yā sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 3,
+    "text_hd": "Israel naabounanh ka̲sa̲kpu ga̲fung shanang vaaye sarei khongratoura pharaohnanh hwangyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 4,
+    "text_hd": "Hananh pharaohvey ninyaa chhāvapu sani, beinanh nasue galweyyeo, pharaoh ka beivei shipā manang avei ren gathmeiyeo, Egypt mihnanh ha shuree dou rapu theiyeo, Ba̲lihnanh dou satou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 5,
+    "text_hd": "Israel naabou lātou rapu chenla pharaoh lhaa rahwangye, pharaoh ka beivei rao mehnanh chābou nin sayeyye,Israel naabounang alihvey yeigasācha chhourā gazenrou? ra ba̲lihnanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 6,
+    "text_hd": "Beinanh beivei kari sareng saye beivei shipānang zaazwinmou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 7,
+    "text_hd": "Kari chā drok yhengloye Egyptvey kari loye kareipu mih mehnang zalo-u.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 8,
+    "text_hd": "Egyptvey vangpu pharaoh ninyaa shureenanh sachhāni, beinanh Israel naabou sue galweyye, Israel naabounanh lunh ba̲nglakra zetteyu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 9,
+    "text_hd": "Egypt mih, pharaohvey sygong shipā kari shipā, beivei sygong mih, shipābounanh Baalzephon sāpa pihahiroth sanyee khuhnang yā sarpunang shanaye rau",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 10,
+    "text_hd": "Pharaoh ka Egypt mihnanh Ba̲lih suepa shanaye rarapu Israel naabounanh theiye ba̲lihnanh gayey jiye Ba̲lihnanh shureenang ba̲raye zau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 11,
+    "text_hd": "Egyptnanh sheegong sācha ywegphānang haanang gashiyera jhuekou zetteine? Nangnanh heyhrā sayera Egypt naang haanang jhuekou rarāveyne? ra Ba̲lihnanh Moses lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 12,
+    "text_hd": "Fgyptnang haanah hey thaapān hwangravey kahrou, Egyptnang haanang yeigasāye gangourou rāvey ka̲hruitne? Ywengphānang sheeye rapu lhaapangku Egyptnang yei nalakra saye ngourapunanh diveipou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 13,
+    "text_hd": "13Mosesnanh chābou lhaa hwangu, achinitrou, chhalakra thozaangrou, shureenanh sheelung nanang gangni sanit rapu yei dou zaangrou, sheelung Egypt manang saye rapu yei nananh theilenchau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 14,
+    "text_hd": "Nananh yueyueta ngourou, napān naang shureenanh gachhenniu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 15,
+    "text_hd": "Shureenanh Moses lhaa hwangu, nananh chhoura gararye anang zaayerou? Sāpa zetroura Israel naabou lhaa hwangrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 16,
+    "text_hd": "Neezei khānkāye sa̲ngyee manang neekuk ka̲changgrou, dirue kaye Israel naabounanh dilei divunaang sa̲nyee zetrweikou kayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 17,
+    "text_hd": "Hananh Egypt mihvey nin yaa sachhāye ba̲lihnanh nasue gal weyye, pharaoh ka beivei shipā, beivei kari, beivei sygong mih manang avei ren gatheiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 18,
+    "text_hd": "Pharaoh ka beivei sygong mih, beivei kari mihnanh avei ren theira reenang Egypt mihnanh ha shuree dou rapu lotheiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 19,
+    "text_hd": "Doureenang Israel naabou sāpa zetrapu zanga raonanh suepa zettei, sapa zetrapu ganybong rungnanh suepa vanzaang khonneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 20,
+    "text_hd": "Egypt shipā ka Israel shipā tlaknang zetdou. Egypt mih lhaa ganybongnah yima rinnei, Israel naabou lhaa gaveng vengneiu, thangyyānh thakinanh thakicha shanarāchou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 21,
+    "text_hd": "Mosesnanh sa̲nyee manang kuk ka̲changye, shureenanh sāpavey gasy    chhālakra gasiye sa̲nyee Sakaye dilei gasetdou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 22,
+    "text_hd": "Israel naabounanh sanyee ba̲rannang dilei divu rapu manang zetra reenang dirue dou khānpa feipa dhunglo lharinnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 23,
+    "text_hd": "Egypt mih, pharaoh sy gong shipā, beivei kari shipa, beiveim sygong mihnanh ba̲lih sue galweykou sa̲nyee ba̲rannang tukgou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 24,
+    "text_hd": "Zang vengrapu naang ngaapa shureevey meirung ka ganybong rungnanh Egypt shipā manang zaangye ngou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 25,
+    "text_hd": "Egyptvey kari chāngzyrinnei ba̲lihnanh peipungye hwangu, alihnanh zenneinou shu- reenanh ba̲lih pānnaang alihcha kachhen raveyu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 26,
+    "text_hd": "Egypt mih, ba̲lihvey kari, ba̲livey sygong mih manang dirue vanmen vapu dirue manang neekuk ka̲changroura shureenah Moses lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 27,
+    "text_hd": "Thamāng zang vengranang Mosesnanh sa̲nyee manang kuk ka̲changye Egypt mihnanh sa̲nyee ba̲rannang zentuk vapu shureenanh sarei sani dirue nanh gararye vanye.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 28,
+    "text_hd": "Pharoah ka beivei sygong mih, beivei kari, beivei shipā manang dirue vanmennei thatalee set- chou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 29,
+    "text_hd": "Israel naabounanh dilei divu naang sa̲nyeezetrweikou kaye diruenanh khānpa feipa dhungrinnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 30,
+    "text_hd": "Doupu zangna̲k naang shureenanh Israel naabounang Egypt mih kuknaang gangsetneiu, Egypt mihnanh sa̲nyee khuhnang sheerapu dou Israel naabounanhlotheiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 31,
+    "text_hd": "Shureenanh Egypt mihcha gachhenni yei saklakra sanit rapu dou Israel naabounanh theiye chābounanh shureenang jiye beivei rao Mosesnanglee gaphrāu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 14,
+    "chapter_title": "Rueyee gawapoh (Red Sea) zetrwei rapoh",
+    "verse": 32,
+    "text_hd": "EXODUS 15",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 1,
+    "text_hd": "Moses ka Israel naabou chābounanh shureenang chengnei lan saye hwangu,neevei rennaang yoye sygong ka sygongvey ramihnang sa̲nyee shungnang sabaaye doupura neenang chengnei lan sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 2,
+    "text_hd": "Shureenanh avei ren avei lan, beinanh anang gangni avei shuree dou, fupuh bouvey shureenang hananh chengdiketteyu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 3,
+    "text_hd": "Deimeinanh diraavey shipā thakeiu, beinanh shuree dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 4,
+    "text_hd": "Pharaohvey kari beivei shipānang beinanh sa̲nyee shung nang vāsa̲nnou, beivei yhenglo rapu kareipu chhueboulee Red sea sa̲nyeenang vāphwingnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 5,
+    "text_hd": "Ba̲lihnang diruenanh reyrennei dilun ba̲lengnei ba̲lihnanh shunpa tukkingnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 6,
+    "text_hd": "Deimei neekuk khānpa neevei rennou Deimei, neekuk khānpa naang diraapunang symānyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 7,
+    "text_hd": "Neevei kareipu ren nak gabangbou manang gavaye, thaken ba̲lengnei ba̲lihnang cho dimānnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 8,
+    "text_hd": "Neevei nehbongvey gasynanh dirue sengzwinmei, gashukpu sa̲nyee rue reyye lan saye thozaangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 9,
+    "text_hd": "Diraapunanh hwangu, hananh ba̲lihnang galweyloye ba̲lihvey rweyran gasenloye yengnei raa- khaata seuhlo ba̲lihnang symānyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 10,
+    "text_hd": "Deimeinanh gasy mitthoye sanyee ruenanh balih manang reyrennei dirue dirue ba̲lengnei sanyeenang tukkingnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 11,
+    "text_hd": "Shuree gamang tlaknang ba̲leng rapu chhi ngouyerou? Nang ba̲lengnei thengrapu ba- jung gaphā rapu yei sarapu chikajipu Deimei ba̲leng rapu chhi ngouyerou?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 12,
+    "text_hd": "Neekuk khānpa ka̲changye ba̲lihnang dileinanh ba̲ywey sannou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 13,
+    "text_hd": "Nangnanh dimihnang rachheiloye neevei lungalypu yeycha neevei rennaang sarei gatheini neevei gathengpunang sangou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 14,
+    "text_hd": "Mih chehnanh chenla ya ka̲dhengnou, Philistia leipāk mihnanh nākanapu garokgou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 15,
+    "text_hd": "Edomvey karei bounanh ninyaa ka̲zou, Moabvey karei bounanh gadhengnou, Canaannang ngoura bounanh kanou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 16,
+    "text_hd": "Deimeinanh yhenglo rapu mihnanh zetrwei rareenang, neevei chikajipu rennanh ba̲lih manang raye ba̲lihnanh dilun ba̲lengnei diletcha ngounou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 17,
+    "text_hd": "Nangnanh ba̲lihnang lovanye ba̲lihnang neevei gafungnang laangyeo, baphawn dou deimein- anh neevei ngouvapu sau, gathengpu phawn dou deimei kuknaang sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 18,
+    "text_hd": "Deimei nanh kapehpu ngoucha naayanyeo ra lan sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 19,
+    "text_hd": "Pharaohvey kari, beivei sygong, sygong mihnanh sanyeenang tukra reenang, deimeinanh ba̲lih manang dirue samenneiu, Israel naabounanh sa̲nyee ba̲rannang dilei divu manang zetdou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 20,
+    "text_hd": "Prophet nifuwu Miriam Aaron zenwunah Ma̲gaaye bei kuknaang thweh ga shāhkei nifoubou mounanh bei suenang ma̲gaaye yuingmou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 21,
+    "text_hd": "Miriamnanh shureenang chengnei lan saye deimei rennaang sygong ka sygong mihnang sanyee shungnang sabaanou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 22,
+    "text_hd": "Marah ka Elim vey dirue",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 23,
+    "text_hd": "Red sea naang Israel naabounang Mosesnanh jhuekou sāpa zettei shureevey ywengphānang ba̲lihnanh vaye, ba̲lihnanh dirue suecha zangna̲k gachhuin naang zetdou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 24,
+    "text_hd": "Ba̲lihnanh Marahnang vaara reenang, Marahvey dirue dou kha sueshinnou, doupura Marah ra zaaneiu",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 25,
+    "text_hd": "Haananh dirue chhou sucrou? Ra chabounanh Mose snang ba̲rāu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 26,
+    "text_hd": "Mosesnanh shuree ngaa naye, shureenanh chhangrung thaki gatheiye, gachhang dou diruenang dasanye dirue dou naangnou. Ba̲lih lhaapān shureenanh ninnit rapu shakhi thaki saneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 27,
+    "text_hd": "Nananh navey shureevey dlo tlanyanyeo, bei za̲kronnang gadhungpu yei sarou, beinanh ninnit rapu dou ngākkei sareng sarou, Egypt mihnang hananh payā nitra reenang na manang hananih payā nitchou, hananh navey payā symānnit rapul shuree dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 28,
+    "text_hd": "Ba̲lihnanh Elimnang vaaye dounang rueghong khinilan ngoualeiu aley neytei runglee then thangi ngoualeiu, ba̲lihnanh dirue kahrānang yā sau",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 15,
+    "chapter_title": "Moses ka miriam vey lan",
+    "verse": 29,
+    "text_hd": "EXODUS 16",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 1,
+    "text_hd": "Israel naabou mounanh Elim naang thoye, Egypt naang thora suenang lha khinipu zangna̲k ngalanpu naang Elim ka Sinai tlaknang Sin ywengphānang vaaset dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 2,
+    "text_hd": "Israel mounanh Moses ka Aaron manang ywengphanāng diyhen gakhau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 3,
+    "text_hd": "Nananh haanang ywengphanāng jhuekou raye mou sheeye rapu lhaapānku, Egypt leipāk nang diwon robou kahrānang shunngouye gatleng za shuree kuknang sheerapu diveipou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 4,
+    "text_hd": "Shureenanh Moses lhaa hwagu, zaang rou nalhaapān hananh zanga naang gatleng zang rweilhakniu, dimih nanh zangna̲k jang settei zwikthuéh rapu loyeo, Ba̲lihnanh avei ninnit rapu loni locharounrapu hananh ba̲lihnangzaangyeo,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 5,
+    "text_hd": "Ba̲lihnanh zangna̲k jang lora balengnei, zangna̲k drokpu naang Ba̲lihnanh sareng saye yen khini loyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 6,
+    "text_hd": "Moses ka Aaron nanh Israel naabou lhaa hwangu, nang Egypt leipāk naang losetrapu shureenang gaya̲ng nananh lotheiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 7,
+    "text_hd": "Nananh thamāng shureevey ren lotheiyeo, chhourarou rapulee nan anh shuree cha gakhāyeba̲ rārapu shuree nanh yuch zatou, nananh haacha gakhāye diyhenneine? Alih hey chhir ou?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 8,
+    "text_hd": "Shureenanh nalhaa kayang sueh zwikvapuniu, thamāng gatleng mou niu, nananh beicha diyhennei ba̲rā rapu dlo beinanh yuehzatou, alih hey chhi rou? nananh diyhennei ba̲rā rapu dou haacha gahrou, shureecha diyhenrā veyu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 9,
+    "text_hd": "Israel naabou mou lhaa hwanroura Mosesnanh Aaron lhaa hwangu, shuree sānang shanakou rarou, nananh ba̲rā rapu dou shureenanh yuehzatou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 10,
+    "text_hd": "Israel naabou mou lhaa Aaronnanh hwangu, ba̲lihnanh ywengphā shapa zaangasley ganybong shungnang shuree renlotheiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 11,
+    "text_hd": "Shureenanh Moses lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 12,
+    "text_hd": "Israel naabounanh, ba̲rā rapu hananh yuehtoura ba̲lih lhaa hwangrou, nanah gayāng such zau, thamāng gatlengnah pa̲h wāyeo hananh navey shuree dou rapu nanah lotheiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 13,
+    "text_hd": "Gayāng Dimuk futatanah yānang shinrinnou, thamāng yānang diving tlarā ba̲lengnei shininnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 14,
+    "text_hd": "Sha̲krue khānra suenang ywengphānang veilakra dirān pewn ririta dilei manang ngounou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 15,
+    "text_hd": "Isreal naa bounanh dou theiye hey chhouroura thakinah thaki ngaa nau, dou chhourou rapu ba̲lihnanh theichou, shureenanh nalhaapān zwikvapu gatleng nitrapu dou heyura mosesnah ba̲lih lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 16,
+    "text_hd": "Shureenanh ninnit rapu sue yuingmei pavey yānang ngourapu dimih bhralo wonrwen khini zwikthwei rapu lorou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 17,
+    "text_hd": "Israel naabounanh gayuchpu gatwengpu sue yuingmei lo-u.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 18,
+    "text_hd": "Omer naang katak ranang titheita lora boulee kalengchou, heyyākita lora boulee twengtarichou, pananh zwikthwei vāzak ra lo-u.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 19,
+    "text_hd": "Chhitalee thamāng lhaapān alhānitroura mosesnanh ba̲lih lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 20,
+    "text_hd": "Ba̲lihnanh moses dlo tlancha thamāng lhaapān lhara nwengmei Diga gungnou, mosesnanh Ba̲lihnang lunhshiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 21,
+    "text_hd": "Ba̲lihnanh thamāng chang pananh zwikthwei loyingrou, zangna̲k kettei chorareenang longnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 22,
+    "text_hd": "Zangna̲k drokpu naang dimik tha ki lhaa wonrwen Ba̲tlilo-u, doupu chuin dou pavey karei bounanh moses lhaa rahwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 23,
+    "text_hd": "Lhadang shuree vey gathengpu ngou kashwen rapu Sabbath zangna̲kgou, gatleng sangunpu nanh katleng sarou, khāngngunpunanh khāngrou, ba̲ren gasā thamāng lhaa lhareeroum.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 24,
+    "text_hd": "Mosesnanh hwangrapu sue yuingmei thamāng lhaa lharoulee nwengchou Diga gungchou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 25,
+    "text_hd": "Mose snanh hwangu, lharee rapu mou sheelung zwikrou, sheelung shureevey gathengpu ngou gashwen rapu Sabbath zangna̲kgou tarei shong karokchau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 26,
+    "text_hd": "Zangna̲k drok naang lorou, zangna̲k thangipu naang shureevey ngou gashwen rapu Sabbath zangna̲k naangta garokchau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 27,
+    "text_hd": "Zangna̲k thangipu naang shakhei bounanh vaphaulee garokchou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 28,
+    "text_hd": "Shureenanh Moses lhaa hwangu, nananh avei ninnit rapu dlo kousenki gazi yerou?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 29,
+    "text_hd": "Nalhaa ngou gashwen rapu Sabbath zangna̲k shureenanh nitrapu nananh theitou, zangna̲k drokpu naang gatleng yen khini nittou, dimih jang paphawn phawnnang ngourou, zangna̲k thangipu naang naphawn naang gathenpunang avanitrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 30,
+    "text_hd": "Chābounanh zangna̲k thangi punang ngou gashwenmou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 31,
+    "text_hd": "Israel erweýpungnanh doupu nan Manna ra zaaneiu, shihwā theitei ba̲lengnei ngoopawnta lāngrue ba̲lengnei din gungu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 32,
+    "text_hd": "Hananh Egypt naang losettei ywengphanang hananh nalhaa gazwik rapu yazwikpu dou nathei nafen lhaa gathei vapu omer thaki venreeroura shu- reenanh nin nit rapu dou Mosesnah Ba̲lih lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 33,
+    "text_hd": "Mosesnanh Aaron lhaa hwangu, omer thaki loye diwon thakinang manna salo Israel cheh mounanh shuree za̲kronnang Ihareerou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 34,
+    "text_hd": "Moses lhaa shureenanh ninnit rapusue yuingmei manna dou Aaronnanh shakhi sa̲nang lharou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 35,
+    "text_hd": "Israel naabounanh manna dou ba̲kung lhentli zou, Ba̲lih ngouye rapu  leipāk nang vaazang rapu naang ngaapa zou, Canaan  leipāk vey ywengree naang ngaapa zou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 36,
+    "text_hd": "Omer thaki dou ephah yen dirāvey yenkicha thatau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 16,
+    "chapter_title": "Manan ka dimuk",
+    "verse": 37,
+    "text_hd": "EXODUS 17",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 17,
+    "chapter_title": "Dilum naang seh rapoh",
+    "verse": 1,
+    "text_hd": "Shureenanh ninnit rapu sue yuing mei Israel naabounanh sin yweng phā naang thoye Rephidim phawnnang vaasettei dounang yā saye dounang suerapu dirue garokchou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 17,
+    "chapter_title": "Dilum naang seh rapoh",
+    "verse": 2,
+    "text_hd": "Chābounanh Moses ngaa haalha dirue nitrou ra fingnou, Mosesnanh hwangkhennou nananh avei gaywei chhou theirou? nananh shureenang chhoura dwengzangparou?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 17,
+    "chapter_title": "Dilum naang seh rapoh",
+    "verse": 3,
+    "text_hd": "Chābounanh tangye mosescha diyhennei ba̲rāye hwangu, haanang, haanaabounang, keinang, dirue suecha gashiyera chhoura Egypt naang haanang jhuekou rarou?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 17,
+    "chapter_title": "Dilum naang seh rapoh",
+    "verse": 4,
+    "text_hd": "Mosesnanh shuree lhaa ba̲rāye hwangu, hananh chabou lhaa chhou sanirou? Ba̲lihnanh Anang dilunnaang gavāyera ga̲takpāyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 17,
+    "chapter_title": "Dilum naang seh rapoh",
+    "verse": 5,
+    "text_hd": "Nangnanh chābou sānang vaaye Isreal naabou teibou-nang jhuek ou nile chwennang gashāk rapu neezei lokou vaarou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 17,
+    "chapter_title": "Dilum naang seh rapoh",
+    "verse": 6,
+    "text_hd": "Zaangrou, Horebvey dilun manang neesānang hananh thozaangyeo, nangnanh dilunnang, dou gashākkei dilunnaang dirue setteiu, dirue dou chābounanh sueyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 17,
+    "chapter_title": "Dilum naang seh rapoh",
+    "verse": 7,
+    "text_hd": "Isreal naa bou nanh diyhennei haacha shu reenanh      tavā zetni zetchiroura shu reenang dwengzang rapurā doupu phawnnang dou Massah, Meribah ra zaayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 17,
+    "chapter_title": "Dilum naang seh rapoh",
+    "verse": 8,
+    "text_hd": "Amalek mihnanh raye Isreal naabouncha Rephidimnang dira gach hen nou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 17,
+    "chapter_title": "Dilum naang seh rapoh",
+    "verse": 9,
+    "text_hd": "Mosesnanh Joshua lhaa hwangu, alih mih yhengrou, lhadang Amalek mihcha diraa gachhenrou, shureevey gazei dou akuk saye gafung gounang hananh nasānang thozaangyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 17,
+    "chapter_title": "Dilum naang seh rapoh",
+    "verse": 10,
+    "text_hd": "Joshuananh Mosesnanh hwangrapu yei dou saye amalek mihcha diraa kachhennou, Moses ka Aaron, Hurnanh gafung gou nang vau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 17,
+    "chapter_title": "Dilum naang seh rapoh",
+    "verse": 11,
+    "text_hd": "Moses kuk khankā ranang Israel naabounanh yo-u, aley Moses kuk galhāk ranang Amalek mihnanh yo-u.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 17,
+    "chapter_title": "Dilum naang seh rapoh",
+    "verse": 12,
+    "text_hd": "Moses kuk naaye dilun manang beinang kashunngouye Aaron ka Hurnanh pasāk kuk gukou ngouye zangna̲k zangpata naang ngaapa Mose snanh kuk galānra ngouyan u.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 17,
+    "chapter_title": "Dilum naang seh rapoh",
+    "verse": 13,
+    "text_hd": "Joshuananh Amalek ka bei mihnang rakhata naang sathet dingnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 17,
+    "chapter_title": "Dilum naang seh rapoh",
+    "verse": 14,
+    "text_hd": "Shureenanh Moses lhaa hwangu, yei hey ba̲ninlo vapu yāklhāra dang Joshua reegongnang yuehvapu ba̲rārou, zang shungnang Amalekvey ba̲ninlo vapu ba̲sheh hananh lovenneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 17,
+    "chapter_title": "Dilum naang seh rapoh",
+    "verse": 15,
+    "text_hd": "Mosesnanh gathengpu phawn thaki saye doupu nang shureenanh acha rweychaneiura zaaneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 17,
+    "chapter_title": "Dilum naang seh rapoh",
+    "verse": 16,
+    "text_hd": "Shuree-vey kuk hey acha rweycha rapou, doupura amalek mihcha tungjang ta diraa gachhen- yanyeora hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 17,
+    "chapter_title": "Dilum naang seh rapoh",
+    "verse": 17,
+    "text_hd": "EXODUS 18",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 1,
+    "text_hd": "Shureenanh Israel naabounang Egypt naang losettei Moses ka Israel naabou lhaa yei sanit rapu dou Midianvey Priest Moses bougi jethronanh you.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 2,
+    "text_hd": "Mosesnanh bei yetnang gaswey vang rasuenang beigi Jethronanh Moses yet zipporahnang jhuelou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 3,
+    "text_hd": "Beina labou khini-u, thaki nang gershom ra zayeo-u, hananh  leipāk gathenpunang ngouyeora beipuhnanh zaaneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 4,
+    "text_hd": "Thaki nang Elizer ra zayeo-u, fupuh bouvey shureenanh pharaoh raakhaata veynaang anang gang nei-u ra beinanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 5,
+    "text_hd": "Moses bougi jethronanh Moses yet ka bei na khininang jhuckou ywengphānang shureevey gafung Moses yānang vaau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 6,
+    "text_hd": "Neegi jethronanh neeyet ka neena khininang jhuekou neecha rayco ra dimih thakinanh Moses lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 7,
+    "text_hd": "Mosesnanh beigicha va karokkei gaba̲sweppei pewnsuih veirapu thakinanh thaki ngaa na garok kei gasāng shungnang jhuckou vannou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 8,
+    "text_hd": "Egypt mih ka pharaoh lhaa Isreal naabou lhaapān naang sanit rapu yei aley Ba̲lihnanh sareighonga nākanapu veynaang gangnit rapu dlo Mosesnanh beigi lhaa hwangtheiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 9,
+    "text_hd": "Isreal naabounang Egypt mih kuk naang gangsetni shureenanh yei mou sanit rapupān jethronanh gayey mara.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 10,
+    "text_hd": "Pharaoh ka Egypt mih kuknaang nanang gangsetnit rapu shureenanh hwā diveiroura jethronanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 11,
+    "text_hd": "Shuree gamangjinang beinanh karei pu shuree dou rapu hananh theiyeo, chhourārou rapulee Egypt mihnanh jo lākra ba̲ninpa rapu shungnaang Isreal naabounang beinanh gangsetneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 12,
+    "text_hd": "Moses bougi jethroananh shuree lhaa gathengpu saye sithāye, Aaronnanh Israel teng bounang jhuekou raye Moses bougi jethrocha tasa shuree zakronnang gatleng zou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 13,
+    "text_hd": "Bicher sarapoh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 14,
+    "text_hd": "Khinipu naang Mosesnanh shunngouye, chābounanh thozaangra zangna̲k kinaang mou bicheree sayingrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 15,
+    "text_hd": "Mosesnanh zangna̲k kinaang shung ngou ye chābounanh tho-zaangye yei sarapu dou moses bouginanh theiye hwangu, nang lhengta shunngouye chābounnang satho zaangye chhoura zangna̲k kinaang mou yei saparou?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 16,
+    "text_hd": "Mosesnanh beigi lhaa hwangu, chābounnanh shuree chuin ranaye hwangraveyu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 17,
+    "text_hd": "Ba̲lih tlaknang ka̲sakpu settatou hananh ghou karunniu, Shureevey ba̲sha ba̲lwey ba̲lihnanh theilo vapu hwangtheiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 18,
+    "text_hd": "Nangnanh sarapu yei veichoura moses bouginanh beilha hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 19,
+    "text_hd": "Chābou lhaa thatananh yei sarapu ruchri nang lhengta naaneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 20,
+    "text_hd": "Shuree nanh neecha tasā ngourou, atue hananh neelhā hwangye rapu dlo tlanrou, shuree za̲kronnang nang gadhungpu saye, ba̲lihvey picheree dou shuree lha gatheirou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 21,
+    "text_hd": "Shureevey nin nit rapu, ba̲lihnanh zettei rapu sarei, ba̲lihnanh sa ba̲lungye rapu yei dwength- eirou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 22,
+    "text_hd": "Chābou veynaang galeng nei satha rapu mih, shureenang jiye kaphra rapu mih, dipwet dipā ngunmakpu mih, lyshanvey mihpu, chāvey mih pu din wenvey mihpu, dirāvey mihpu, gutharapu mih yhengrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 23,
+    "text_hd": "Ba̲lih ka̲lettei galapu bicheree gasārou, Ba̲lihnanh sarā, ma̲kpu ka̲sakpu bicheree neelha fungk. ou garārou, heyhrā ba̲lihnah neecha tasā yei sareytatou nang layeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 24,
+    "text_hd": "Nangnanh shureevey kukkong naang yei satatou nangnanh chhāye sathau, chāboulee yueyoueta paphawnnang vanngouyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 25,
+    "text_hd": "Moses lhaa bei ginanh hwangrapu dlo dou sareng saye yei mou sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 26,
+    "text_hd": "Mosesnanh lyshanvey mihpu, chāvey mihpu, dinwenvey mihpu, dirāvey mihpu, satha fungtha rapu mihnang chābou naang yhengnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 27,
+    "text_hd": "Chābounang Ba̲lihnanh ba̲rce jangnang bicheree sau, ka̲sakpu bicheree Ba̲linanh Moses lhaa fungkou raneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 28,
+    "text_hd": "Mosesnanh bei ginang gazennei, beinanh bei  leipāk nang vannou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 18,
+    "chapter_title": "Jethronanh Moses vey naang zang rapoh",
+    "verse": 29,
+    "text_hd": "EXODUS 19",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 1,
+    "text_hd": "Isreal naabounanh Egypt leipāk naang thora suenang Tha chhuinpu zangna̲k gakhuhpu naang Sinai gafung ywengphānang vaaset dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 2,
+    "text_hd": "Rephidim naang thoye Sinai yweng phānang vasettei gafung sānang Isreal naabounanh yā sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 3,
+    "text_hd": "Mosesnanh shuree ngaa vaaye, Mosesnang shuree nanh gafungnang zaye Jacob cheh Isreal naabou lhaa heyhrā hwangroura hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 4,
+    "text_hd": "Hananh Egypt mihnang sarapu yei, ratong tapra naang nanang hananh jhuekou rarapu nananh theizatou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 5,
+    "text_hd": "Doupurā nananh atlo naye avei garinnit rapu dou ngaktatou, kathenpu cheh kathenpu leipāk nang ranye avei silavey mihpu sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 6,
+    "text_hd": "Nananh avei ba̲ngmon leipāk nang ngouyeo, nanang gathenpu cheh gasāyeora Isreal naabou lhaa hwangrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 7,
+    "text_hd": "Shureenanh beilha hwangrapu dlo dou Israel naabou tengbounang zaazwinlo Mosesnanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 8,
+    "text_hd": "Shureenanh hwangrapu yei mou haananh saycora chābounanh chāngkita saye hwangrapu dlo dou Mosesnanh shuree Ihaa vaahwangtheiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 9,
+    "text_hd": "Moses lhaa shu reenanh hwangu, hananh naphawnnang kanybong gathāpu naang rayeo, zaan- grou, hananh neelhā hwangrapu dlo Ba̲lihnanh yuch rareenang ba̲lihnanh neenang kaphrāyānyeo. Dousuenang Mosesnanh chābouvey dlo dou shuree Ihaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 10,
+    "text_hd": "Moses lhaa shureenanh hwangu, nangnah chābou ngaa vaaye hwangrou, sheelung kalhadang chhi sittei sathengrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 11,
+    "text_hd": "Gachhuinpu naang sareng saye ngousharou, chābou za̲kronnang shureenanh gachhuinpu naang Sinai kafungnang rayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 12,
+    "text_hd": "Nangnanh chābou lhaa sareng saye hwangrou, chhitalee gafungnang kashiu, gafung pangnanglee shonshiu, shonrapu mih dou shee balungyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 13,
+    "text_hd": "Doupu mihnang dou kuknaang Tākcha, dilun naang gavāyeo, gazei naang runyeo, dimih tou- let suehpoulet gashiyeo, dotuepu yoklakra ghongra reenang chābounanh gafungnang rayeora Moses lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 14,
+    "text_hd": "Mosesnanh gafung naang chābou ngaa vanye chābounang sathengnei chhi gasit dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 15,
+    "text_hd": "Ga̲chhuinpu naang sareng saye chhitalee nifouboucha ayueh nitroura Mosesnanh chābou lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 16,
+    "text_hd": "Gachhuinpu naang thamāng gafung gounang zang jhuingmei zang gavaye dotuepu kayey ghongra reenang chābounanh payānang ga̲dhengnei ngou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 17,
+    "text_hd": "Chābounang Mosesnanh jhuekou Shureecha garok vapu yānaang settei gafung pangnang ba̲lihnanh va thozaangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 18,
+    "text_hd": "Sinai gafungnang Shureenah mei naang tlaye gafung mou meikhaknanh rwenrinnou, gafungnang meikha̲k settei gafung dou kayey ga̲nukgou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 19,
+    "text_hd": "Dotuepu khong gayey chhāye ghong rareenang Mosesnanh shureenang zaaye Shureenanh zang gajhuing khonnaang hwangkhennou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 20,
+    "text_hd": "Sinai gafung gounang shureenanh tlaye, Mosesnang shureenanh gafung gounang zaaye Mosesnanh gafungnang kau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 21,
+    "text_hd": "Shureenanh Moses, lhaa hwangu, chābounanh yoklakra zaangye shuree ngaapa tukkei tithei syman vanang sareng saye vanhwangrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 22,
+    "text_hd": "Shureecha shana rabou ba̲ngmon boulee pa galettei thengrou, thengchitatou Ba̲lihlee mānyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 23,
+    "text_hd": "Chābounanh Sinai gafungnang karāchau, thengnei ga̲fung pangnang ngou honrou ra deimeinanh hwangrapu sue yuingmei chābou lhaa hwangratoura Mosesnanh shuree lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 24,
+    "text_hd": "Nangnanh Aaronnang vanzakou raroura shureenanh Moses lhaa hwangu, pangmon bou ka chābou kashiu, katatou ba̲lih mānyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 25,
+    "text_hd": "Mosesnanh chābou lhaa dlo dou vanhwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 19,
+    "chapter_title": "Sinai gafung nang ngou rapoh",
+    "verse": 26,
+    "text_hd": "EXODUS 20",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 1,
+    "text_hd": "Shureenanh dlo kamangji hey hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 2,
+    "text_hd": "Egypt leipāk vey badhung rweynaang nanang losetrapu hananh navey shuree dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 3,
+    "text_hd": "Ha ka̲hroualey gathenpu shureenang nananh kaphrāshiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 4,
+    "text_hd": "Zanga ngourapu, dilei manang, dirue shungnang ngourapu cheh chhou yotalee nalhaapāng sashiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 5,
+    "text_hd": "Doubounang nananh khorumshiu, yeilee sanitshiu, diywen ngouyeora galata naang theirapu hananh navey shuree dou, anang ngunmakpu mihvey dungchhuin dungtlinanglee beipuhvey diywen dou beina ma nang rueye rapu shuree dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 6,
+    "text_hd": "Anang lunlyye avei ninnit rapu ngākrapu mih chehnang lyshan dirā lunkalypu gathei rapu shuree dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 7,
+    "text_hd": "Navey shuree nang leivanta zanāu, shuree nang leivanta zarapu mih vey diy wen ngouchoura shureenanh beinang lorāchau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 8,
+    "text_hd": "Ngou gashwen rapu zangna̲k dou thengvapu ba̲ninyanrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 9,
+    "text_hd": "Zangna̲k droknaang navey yei mou sarou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 10,
+    "text_hd": "Zangna̲k thangipu naangnavey shuree vey ngou gashwen rapu zangna̲kgou, dounaang nang ka neeria labou ni foubou, rao laa bou raonih foubou kei, neena, rangou rapu dimā yei sashiul.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 11,
+    "text_hd": "Shureenanh zangna̲k droknaang zang ka dilei, dirue saye doupu shungnang ngou rabou mou saye, thangipu naang ngou gashwen mou. Doupurā ngou gash wen rapu zangna̲k naang chengni yu eyueta ngou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 12,
+    "text_hd": "Shureenanh nitrapu leipāk nananh, ba̲tun yoklakra raangvapu neeyaa neepuhnang rānreirou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 13,
+    "text_hd": "Dimih sathet.nāu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 14,
+    "text_hd": "Dimih yetnang sasheh nāu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 15,
+    "text_hd": "Chhit nāu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 16,
+    "text_hd": "Niphou nibravey gayweipu shapa shakhi sanāu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 17,
+    "text_hd": "Rwey khanābouvey dirwey, sila beiyet, beina, rao labou nifoubou, masi, sygong chhoutalee longun rapu ninyaa ngoushiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 18,
+    "text_hd": "Dimih nanh Jirapoh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 19,
+    "text_hd": "Zang jhuingmei, zang ka̲vaye, dotuepu kayey ghongye gafung gounangmeikha̲k setrapu theiye, ba̲lih nanh jiye palon anaang vaazaangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 20,
+    "text_hd": "Haa sheechi vapu shureenanh haalha ahwangnitrou, nangnanh haalha hwan grou haananh tlanyeora Moses lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 21,
+    "text_hd": "Diketrapu ba̲sheh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 22,
+    "text_hd": "Achinitrou, nananli shureenang jiye diywen sachi vapu, nananh kadhun gpu shakhi theilo vapu shureenanh raraveyu ra Mosesnanh chābou lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 23,
+    "text_hd": "Mosesnanh shureecha shana vapu garanpu yikamā gathāpunang sha nakou vaara reenang chābounah palon naang vaazaangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 24,
+    "text_hd": "Hananh zanga naang neelha hwangrapu nangnanh theirapu dou Israel naabou lhaa hwangroura shureenanh Moses lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 25,
+    "text_hd": "Anang kaphrā rapu amihnanh shana takavey shuree sashiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 26,
+    "text_hd": "Dileivey gathengpu phawn saye dounang navey ma̲si yao ra̲kkei alhapān sithāyeo, anan zaaye nananh sithāye khorum rapu phawn jangnang hananh raye nalhaa chengniu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 27,
+    "text_hd": "Nananh dilunvey gathengpu phawn satatou, ba̲ry naang phranye sashiu, nananh Doudou ba̲ry bang yesa rapu dou thengmakpu ngouyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 28,
+    "text_hd": "Gathengpu phawnnang nananh gatlanta chhi vagoucha gasweng naang kashiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 20,
+    "chapter_title": "Nin nih rapu dirā",
+    "verse": 29,
+    "text_hd": "EXODUS 21",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 1,
+    "text_hd": "Atue gasweyrapu hey nangnanh chābou za̲kronnang gatheiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 2,
+    "text_hd": "Hebrew cheh rao lhaa leitatou kung drok rao saye dang kung thangipu nang chhoutalee fingcha gazenneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 3,
+    "text_hd": "Thakita rao satatou thakita setteiu, yetdeipuh rao satatou yetdeipuh khiniji setteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 4,
+    "text_hd": "Rao lhaa mihpunah yet jhuesannit tatou, aley beinaboungoutatou, beiyet beinabou mihpunanh loneiu, beideipuh lhengta setteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 5,
+    "text_hd": "Raonanh beivei mihpu ka beina bounang lunlyye ha setchara thenglakra hwangtatou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 6,
+    "text_hd": "Raonang dou mihpunanh shuree lhaa jhuekou vanni, reekhong munnang gashunngouye mi hpunah reegong vitni bei tungnaang rao sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 7,
+    "text_hd": "Beipuhnanh beina nifuwunang rao lhaapān ywengtatou, labou rao ba̲lengnei settei rapu ngouchou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 8,
+    "text_hd": "Nifuwunang dou mihpunanh longunchi tatou sach heiloyeo, beinang kaphrācha ywengy wei raveynanh  leipāk gathenpu mili ba̲lengnei ywengshiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 9,
+    "text_hd": "Beina lāpu lhaa kayet nguntatou beinā ba̲lengnei naayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 10,
+    "text_hd": "Beinanh gathenpu yet thaki yetlen tatou beiyet gakhuhpuvey yazwikpu, chhijy, yetdeipuhvey yei gasā gachhuchchau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 11,
+    "text_hd": "Yei kachhuin dou bein anh sachitatou, nifuwunanh chhou men talee ruechoulee setteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 12,
+    "text_hd": "Sashih rapu ayanh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 13,
+    "text_hd": "Dimih thakinang sathet tatou bein anglee gashiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 14,
+    "text_hd": "Sathet teira banincha shureenanh bei manglhaa kuknang sannit tatou zenvapu phawnnang hananh gazenneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 15,
+    "text_hd": "Dimih thakinang sathet ngunye sathet tatou beinanh kathenpu phawnnang thweyulee beinang fenglo sathetteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 16,
+    "text_hd": "Yaapuh bounang sathet rapu mih nang dou sathet ba̲lungyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 17,
+    "text_hd": "Dimihnang chhitlo ywengzwik rapu mihnang dou sathet ba̲lungyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 18,
+    "text_hd": "Yaapuh bounang ba̲dhang rapu mihnang dou sathet ba̲lungyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 19,
+    "text_hd": "Dimih khini diyhennei thakinanh vuneiulet, kuknaang runneiulet, dilunnaang gavānciulet sheecha lwennang yonpa tatou,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 20,
+    "text_hd": "Beinanh thoye gazei shweikou gashāng set tatou, vunit rapu mihvey ka̲yweiku zaangneiulee ka̲zwik mānpata naang ngaapa dirih savapu takaniu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 21,
+    "text_hd": "Mihpunanh rao labou nifou bounang vuni bei kuknang sheetatou beilha tanti gasakpu niu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 22,
+    "text_hd": "Aley rao dou sheecha thangy khininang māntatou beivei taka naang leiraveynanh mihpu lhaa tanti nitchau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 23,
+    "text_hd": "Diyhen ranang naa geirapu nifoubounang shonkettei naa ruetatou, gayweng khen ngouchoulee, bei deipuhnanh ngunrapu sue yuingmeitanti niu, bicheree sanit rapu sue yuingmei takalee fungyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 24,
+    "text_hd": "Gayweng khen ngoutatou mang lhaa pān mang lhaa.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 25,
+    "text_hd": "Na̲k pān nak, gha pān gha, kuk pān kuk, chāng pān chān.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 26,
+    "text_hd": "Mei chorapu pān mei chorapoh, ba̲khen pān ba̲khen, gayweng khenpān gaywengkhentanti garokkeiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 27,
+    "text_hd": "Mihpunanh rao labou nifoubou na̲knang vuni shweitatouna̲kpān rao veynaang leivanta gazenneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 28,
+    "text_hd": "Mihpunanh rao labou nifoubou gha thaklo tatou ghapān leivanta gazenneiurgnu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 29,
+    "text_hd": "Zaang nih rabou veyyei rwen",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 30,
+    "text_hd": "Masinanh labou nifoubounangtluk ka̲la̲k tatou ma̲sinang dou dilunnaang vā kala̲kkeiu, ba̲suehlee zwikchau, mihpunanglee bicheree sachau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 31,
+    "text_hd": "Ma̲si sashi tlukkoulee mihpunah wokshincha gazānye labou nifoubou nang tluk kala̲k tatou masinang dou dilunnaang vā ka̲la̲kkeiu, mihpunanh chenla gayuehchi rapupān beinang sathetteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 32,
+    "text_hd": "Dou ka̲hruit tatou fungroura bicheree satatou bei manglhaa chheilo rapu ba̲men fungyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 33,
+    "text_hd": "Dimih naa labou ni foubounang tluknit tatou bicheree sanit rapu sue yuingmei fungyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 34,
+    "text_hd": "Ma̲sinah raolabou nifou-bounang tluknit tatou ma̲si mihpunanh rao mihpu lhaa taka tharā naang fungyeo, ma̲sinang dilunnaang vā galakkeiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 35,
+    "text_hd": "Dimih thakinanh leikou phetlo lhara shinchitatou, leikou dounang dimih vey masi sygong leikounang dou tukta tou,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 36,
+    "text_hd": "Leikou mihpunanh ba̲men fungye gashi ma̲n dou bei lozau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 37,
+    "text_hd": "Ma̲si thakinanh gathenpu ma̲si thakinang tluk ka̲la̲k tatou ma̲si mihpu khininanh rangrapu ma̲si dou ywenglo ba̲men barannaang yengneiu sheerāvey bama̲nglee kasākzau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 38,
+    "text_hd": "Mih punanh ma̲si sashih rapu theiulee zaangye wokshincha gazānye nobou masi tluk kala̲k tatou ma̲si pān ma̲si fungyeo, sheerapu ba̲manglee beinanh loyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 21,
+    "chapter_title": "Hebrew vey raomeh",
+    "verse": 39,
+    "text_hd": "EXODUS  22",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 1,
+    "text_hd": "Dimih thakinảnh ma̲si, yao, chhit lo yweng moulet, vuthet toulet, ma̲si thakipan ma̲si ba̲ngā naang fungyeo, yao thakipān yao ba̲tli naang fungyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 2,
+    "text_hd": "Gachhitpunanh dirwey zweiye ngoura reenang sathet toulee beinang sathet ruechau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 3,
+    "text_hd": "Hroulee zangna̲k ketranang tatou sathetshiu chhou kahruihrou rapu lee galetnihlen rapu ngou yeo-u chhih rapu naavey rweyran ngouchih tatou chhih rapu naa nang yweng mei-u.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 4,
+    "text_hd": "Kachhitpu mih kuknang chhítrapu, masi, yao, sygong, raangye ngoutatou ba̲men yen khini fungyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 5,
+    "text_hd": "Dimih thakinanh loyei saye drakha lo saye dirweng ka̲shihpunang beivei kei ngākra reenang nobou lo vashanit tatou, bei lonangvey diveipu theina naang rueyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 6,
+    "text_hd": "Mei laara reenang dirweng chokou vaaye lonang thā, theina vaachonit tatou chorapu men fungyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 7,
+    "text_hd": "Dimih thakivey shana taka, sila, rwey khanabou rweynang lharee sha ravey rachhitkou lennei gachhit bounang dou theitatou ba̲men yen khini fungeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 8,
+    "text_hd": "Gachhit bounang theichi tatou rweypung mihpunanh sila dou loni lochirou rapu shuree za̲kronnang kadhungpu sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 9,
+    "text_hd": "Dimih thakivey yao, masi, sila mān nei, mihpunanh theiye hey aveira hwangtatou, ba̲lihsinnee shuree zakronnang kadhung punang saye bicheree Phawnnnang kayweipunanh yen khini fungyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 10,
+    "text_hd": "Dimih thakivey sygong, ma̲si, yao, kei, lharee shaye, sheenoulee, Rakhongkou lennoulee, theiphet chintatou,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 11,
+    "text_hd": "Zaangnitsha rapu mihnanh aniphoupuvey sila hanah lochoura ba̲lihsinnee shuree za̲kronnang gadhungpu shakhi satatou sila mihpulee ayerau, sila menlee fungchau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 12,
+    "text_hd": "Dimihnanh rachhitkou lenravey tatou sila mihpu lhaa zaangnitshaarapu mihnanh fungyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 13,
+    "text_hd": "Suehnanh zwinnei zwin rapu ba̲mang gatheitatou ba̲men fungrapu ngouchou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 14,
+    "text_hd": "Niphou nibra thakivey sila thatha- ki loshaa ranang ywengmei sheeye sila mihpunanh theichi tatou ba̲men dou ka̲letniu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 15,
+    "text_hd": "Sila mihpunanh theiye losha- tatou sila men fungchau, difuk vapu nira karinree tatou ka rin rapu chengta loyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 16,
+    "text_hd": "Ba̲sheh vey tharma",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 17,
+    "text_hd": "Labou thakinanh reenaabou thakinang nareechoulee beinanh sweiye pewnsueh mentatounaa ganaa cheng nidang yet jhueye yetrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 18,
+    "text_hd": "Yaapuh bounanh gayet muktatou javapu naa ganaa cheng fingrapu mou nitrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 19,
+    "text_hd": "Dirā diri gurapu nifoubounang nananh garanshiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 20,
+    "text_hd": "Such cheh nang pewnsueh menrapu mihnang sathetlo venrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 21,
+    "text_hd": "Shuree gathenpu lhaa sithāye khorum rapu mihnang mou symānyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 22,
+    "text_hd": "Gathenpu leipāk mihnang ghouphrey shiu, nananh Egypt leipāk nang dimā vasā rapu theizatou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 23,
+    "text_hd": "Rata naabou ka gameibou lhaa ninyaa ka̲zwikpu sashiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 24,
+    "text_hd": "Nananh doubou lhaa nākanapu gatheiye ba̲lihnanh ba̲rā rapu thak dou hananh tlanyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 25,
+    "text_hd": "Hananh lunhshirakhata naang nanang sathettei nayetbou dou gameibou gungneiu, nanaa boulee rata naabou gungneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 26,
+    "text_hd": "Rangshih bounanh neevei taka difuktatou gadei lozwik rabou blengnei sachoulee gadei lalonitrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 27,
+    "text_hd": "Neerwei khanā bou nanh bei chhi naang karinnei difuktatou chhi dou zangna̲k zangpata kaletnitrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 28,
+    "text_hd": "Beinanh varapu chhỉ thatau, bei kahrā yuehpeirou? Beinanh karar rapu thak dou hananh tlanyeo, hananh prin rapu ninyaa ngouyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 29,
+    "text_hd": "Nananh shureenang ka̲shihpu asānitrou, nanang naarapu divangnang aba̲thangnitrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 30,
+    "text_hd": "Nananh thweychoulee thei gakhuhpu ka swinglo gakhuhpu ba̲rue alha diketrou. Neena salo gakhuhpu labou dou alha niu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 31,
+    "text_hd": "Dou ba̲lengnei yao tata ma̲si tatalee zangna̲k thangi naang ba̲chuecha gangou dang zang nak diyetpu naang alha diketteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 32,
+    "text_hd": "Alha pān labounanh theng ba̲l ungyeo, suehnanh zwinrāvey sueh zwikshiu, diwu lhaa gazwikrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 33,
+    "text_hd": "Ayanh ka ga dhung pu vey yei",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 22,
+    "chapter_title": "Ruirue rapoh",
+    "verse": 34,
+    "text_hd": "EXODUS 23",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 1,
+    "text_hd": "Ka̲shihpu yei savapu nobou sue ayuinnitrou, ka̲yuchpu sue yuingmei dhungvapu shakhi asānitrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 2,
+    "text_hd": "Raangshihbou sākpalee mihchang asānitrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 3,
+    "text_hd": "Neerāpuvey ma̲si, sygong sarei theicha zāndimān zetrapu theitatou beilha khongkou vannitrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 4,
+    "text_hd": "Neenang tingrapu mihvey sygong vasanye bei khaananh vārenra ngourapu theitatou rweychācha ingouveine? Rweychāye beinang fengtho ba̲lungyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 5,
+    "text_hd": "Neevei rangshih bouvey bicheree dou gadhungpu naang saywei nitchau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 6,
+    "text_hd": "Ka̲shihpu yei dou dikennei lharinrou, diywenngou ma̲kpu gadhungpu mihnang asāthet nitrou, gayweipu mihnang hananh diphritchau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 7,
+    "text_hd": "Nananh dipwet dipā alonitrou, dipwet dipānanh kareibou na̲k saprayeo, gadhung bouvey yei symānyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 8,
+    "text_hd": "Kathenpu leipāk mihnang ka̲shihpu asānitrou, nananh Egypt leipāk nang ngouye kathenpu  leipāk mihvey ninyaa theizatou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 9,
+    "text_hd": "Sabath veybashehy",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 10,
+    "text_hd": "Kung drok loyei saye theina recna loye yhetzwikrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 11,
+    "text_hd": "Kung thangipunang lo dou sacha gatla̲nta ngouyeo, hruit tatou raangshih boulee zwikveiyeo, ba̲lihnanh venravey/dou suchnahlet zwikveiyeo.Dou ba̲ lengnei drakha loka Olive lolee sacha sangou kashwen meiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 12,
+    "text_hd": "Zangna̲kidroknaang navey yei sayeo, zangna̲k thangipu naang ngou gashwen meiu, navey keimehlee sangou gashwen meiu, neenabou, raobou, dimā boulee ren kathenpu garokkeiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 13,
+    "text_hd": "Hananh nalhaa hwangrapuv dlo dou sareng sarou, kathenpu shuree nang akazwiksa̲n nitrou, yuchchi vapu nee minnaang ahwangnitrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 14,
+    "text_hd": "Ba̲shehvey twei",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 15,
+    "text_hd": "Alha pān kungkinang vok chhuin lak twei zangyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 16,
+    "text_hd": "Hananh nalhaa ninnit rapu sue yuingmei gatlengrih sanmakpu twei nananh zangrou, Egypt naang nananh setrapu ba̲ree Abib lhanang zangna̲k thangi naang nananh gatleng rih sanmakpu zwikrou. Asānang nananh kuk gatla̲nta rashiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 17,
+    "text_hd": "Nananh nalonang loyei saye ba̲chih thukkei theina thei gakhuhpu lozwik rapu twei zangrou.Nananh loyei saye lonangvey thei- na mou fungzwin rapu gapehpu twei zangrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 18,
+    "text_hd": "Kung kinang vok chhuin lāk shuree zakronnang labou yo gatheiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 19,
+    "text_hd": "Alha sithā rapu such yi ka gatlerig rih sanrapu ka nānye sithāshiu aleysithā rāvey such dhalee khinipu naang thamāng lhareeshiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 20,
+    "text_hd": "Na lonang thei gakhupu theinā dou nananh shuree rweynang fungkou ra ba̲lungyeo. Dinin tata ka ba̲chue nittei tasā khāngnānshiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 21,
+    "text_hd": "Israel naabou nang Jhuekou vaa rapu zanga rao",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 22,
+    "text_hd": "Zaangrou, sarei ghongnang nanang ngaknit vapu hananh gatak lhanit rapu phawnnang jhuckou vaavāpu neesānang hananh zanga rao gasweyrāyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 23,
+    "text_hd": "Beinang ranreiye bei tlo tlanrou, beicha āgazāh nihrou navey gay weipu beinanh lonitchau, anan beicha ngouyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 24,
+    "text_hd": "Nangnanh bei tlo loye avei ninnit rapu mou ngāktatou, nee rāpucha hananh diraa sayeo, neenang na̲k ba̲ngra bounang hananh na̲k ba̲ngyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 25,
+    "text_hd": "Avei zanga raonanh neesānang vaye Amorite, Hittite, Perizzite, Canaanite, Hivite, Jebusite, hey bounang hananh losettei nanang jhuekou doubou phawnnangsangou rareenang.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 26,
+    "text_hd": "Nananh doubouvey shureenang khorumchau balihvey tharma sue yuingchau, Ba̲lihvey yeilee sachau, balihvey bam- ang syphaaye ba̲manglee mou symānyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 27,
+    "text_hd": "Navey shuree lhaapāngta yei sayeo, navey yazwikpu ka diruenang hananh chengni, napewn suchvey payālee hananh lovenniu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 28,
+    "text_hd": "Nee leipāk nang naa tlarabou, sheeluin rabou sachau, neetungnang kayey sayāng sa̲nyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 29,
+    "text_hd": "Nee sānang avei chikajipu garāyeo, nang vaarapu phawn jangnang neechā gakhā rabounang hananh symānyeo, neerāpunanh neengāpa galetkou vanyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 30,
+    "text_hd": "Hananh neesānang diyhy gaswey rāye hivite mih, Canaan mih, Hittite mihnang kalwey zenneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 31,
+    "text_hd": "Kungki shungnang hananh ba̲lihnang neevei naang galweysetchau, dimih ngoucha suehchehnanh yāngrin vau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 32,
+    "text_hd": "Nananh reysanye leipāk mihpu sapata naang ngaapa ba̲lihnang hananh ka̲swei sweita naang galweyyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 33,
+    "text_hd": "Red sea naang tholo Euphrate ywengphā Philistine chwen naang ngaapa hananh nakuknang sa̲nniu, dounang ngou rapu mihnang nananh navey naang galweyzenneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 34,
+    "text_hd": "Ba̲lihcha Ba̲lihvey shureecha niphou nibra mābou sashiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 35,
+    "text_hd": "Doubounanh na leipāk nang ngoushiu, nanang diywen gasāvau, Ba̲lihvey shuree sue yuingvau, na mengvapu ba̲lihnanh shweicha gayen sanyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 23,
+    "chapter_title": "Gaywei bouvey chenla mou āh wangnitrou, gaywei boucha gazwikpei shakhi asānitrou.",
+    "verse": 36,
+    "text_hd": "EXODUS 24",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 24,
+    "chapter_title": "Dlo garin rapoh",
+    "verse": 1,
+    "text_hd": "Beinanh Moses lhaa hwangu, nang, Aron, Nabihu, Israel teng bou lhenthangi shuree ngaa kaye dikennei vakhorumrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 24,
+    "chapter_title": "Dlo garin rapoh",
+    "verse": 2,
+    "text_hd": "Gadleibou rashana choulee ngourou, chāboulee beicha tasā akanitrou Moses lhengta karou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 24,
+    "chapter_title": "Dlo garin rapoh",
+    "verse": 3,
+    "text_hd": "Mosesnanh chābou ngaa vanye shureevey ninnit rapu dlo mou vanhwangu, chāboulee chāngkita saye hwangu, shureenanh hwangrapu yei mou haananh sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 24,
+    "chapter_title": "Dlo garin rapoh",
+    "verse": 4,
+    "text_hd": "Mosesnanh shuree dlo mou yāklhārou, beinanh thamāng naang thoye gafung pangnang gathengpu phawn thaki sau, Israel cheh khin ilānvey dilun khinilānlee laangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 24,
+    "chapter_title": "Dlo garin rapoh",
+    "verse": 5,
+    "text_hd": "Beinanh Israel nitta bounang gasweyye ba̲lihnanh ma̲si meinang ra̲kkei shuree lhaa vaasithāu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 24,
+    "chapter_title": "Dlo garin rapoh",
+    "verse": 6,
+    "text_hd": "Mosesnanh diyi ba̲ra̲n naang loye kho yānhnang sanye, diyi dou ba̲ran naang gathengpu phawnnang ba̲ya̲kgou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 24,
+    "chapter_title": "Dlo garin rapoh",
+    "verse": 7,
+    "text_hd": "Beinanh ninnit rapu lei ra̲k loye bhrara reenang chābounanh ya, shureevey ninnit rapu sue yuingmei hananh sayeo, bei tlo loyeora hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 24,
+    "chapter_title": "Dlo garin rapoh",
+    "verse": 8,
+    "text_hd": "Mosesnanh diyi dou loye chābou manang ba̲ya̲kkei hwangu, zaangrou, diyi hey shureenanh nalhaa pāng ninnit rapu karinnit rapu dlo galangtou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 24,
+    "chapter_title": "Dlo garin rapoh",
+    "verse": 9,
+    "text_hd": "Dousuenang Moses, Aaron, Nadab, Abihu, Israel tengbou lhenthangi hey bounanhshuree ngaa vau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 24,
+    "chapter_title": "Dlo garin rapoh",
+    "verse": 10,
+    "text_hd": "Ba̲lihnanh Israelvey shureenang lotheiu, bei chāng lha̲ngnang sapphire dilun, zanga ba̲lengnei vengnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 24,
+    "chapter_title": "Dlo garin rapoh",
+    "verse": 11,
+    "text_hd": "Israel kareibou manang beikuk galānchou, ba̲lihnanh shureenang theiye ya zou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 24,
+    "chapter_title": "Dlo garin rapoh",
+    "verse": 12,
+    "text_hd": "Moses nanh sinai ka̲fung nang karapoh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 24,
+    "chapter_title": "Dlo garin rapoh",
+    "verse": 13,
+    "text_hd": "Shureenanh Moses lhaa hwangu, gafungnang acha kaye ngousharou, chābou lhaa gasensan vapu ninnit rapu dlo dilunnang hananh yāksanlo neekuknang sanniu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 24,
+    "chapter_title": "Dlo garin rapoh",
+    "verse": 14,
+    "text_hd": "Mosesnanh thoye beivei rao Joshuanang jhuekou shureevey gafungnang kau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 24,
+    "chapter_title": "Dlo garin rapoh",
+    "verse": 15,
+    "text_hd": "Beinanh tengbou lhaa hwangu, ha Vanpata naang ngaapa heynang ngākkei ngousharou, nacha Aaron ka Hunanh      tavā jhuengouyeo, chhou chhoutalee satatou Ba̲lih lhaa vaahwangroura hwangtheiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 24,
+    "chapter_title": "Dlo garin rapoh",
+    "verse": 16,
+    "text_hd": "Ganybougnanh rwenrapu gafung gounang Mosesnanh kau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 24,
+    "chapter_title": "Dlo garin rapoh",
+    "verse": 17,
+    "text_hd": "Shureevey ren dou Sinai gafung gafung gounang ngouye gafung dou zangna̲k drok naang ganybongnanh rwenrinnou, zangna̲k thangipu naang shureenanh ganybong shungnaang Mosesnang zau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 24,
+    "chapter_title": "Dlo garin rapoh",
+    "verse": 18,
+    "text_hd": "Shureevey ren dou gafung gounang mei ba̲leng choye kathei rapu dou Isreal naabounanh lotheiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 24,
+    "chapter_title": "Dlo garin rapoh",
+    "verse": 19,
+    "text_hd": "Mosesnanh gafungnang kaye ganybong shungnang tukgou, Mosesnanh gafungnang galhong lhentli sheebewn ma lhentli naang ngou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 24,
+    "chapter_title": "Dlo garin rapoh",
+    "verse": 20,
+    "text_hd": "EXODUS 25",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 1,
+    "text_hd": "Moses lhaa shureenanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 2,
+    "text_hd": "Isreal naabou lhaa hwangrou, dimih jangnanh ba̲lih ninyaanang ninyaa, divei naang alha diketrou, ba̲lihnaanh alha diket rapu dou nangnanh lorou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 3,
+    "text_hd": "Ba̲lihnanh diket rāvey shana, taka, tangsuch gangoopu dou nangnanh lorou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 4,
+    "text_hd": "Katlākpoh wadiyee rapoh, wa pa̲pran rapoh, ganwettapoh, suehwā, chhichch.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 5,
+    "text_hd": "Yaovin, dinin vin, Acacia chhang.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 6,
+    "text_hd": "Dhomei rue, newnrapu dho, ba̲hruin diveipoh.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 7,
+    "text_hd": "Onyx lun, chānh nang gaket rapu lun.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 8,
+    "text_hd": "Hananh Ba̲lihcha tasā ngouvapu Ba̲lih lhaa gathengpu phawn thaki gasārou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 9,
+    "text_hd": "Hananh nalhaa gatheirapu gasāng yo gasāng yuk mou nananh sarou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 10,
+    "text_hd": "Nin nitrapu kho phu",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 11,
+    "text_hd": "Ba̲lihnanh chhanggong thaki saye sāngsha kuk lhueh khini khekket, yāngsha kuk lhueh thaket khekket, māpa kuk lhuih thaket khekket joye acacia chhang naang sarou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 12,
+    "text_hd": "Mapa shana gatheng naang sarou,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 13,
+    "text_hd": "Shana phey saye chhanggong dikun Ba̲tli sāka khiniting gaketteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 14,
+    "text_hd": "Acacia chhang naang khenvāpu saye shana newnyeo,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 15,
+    "text_hd": "Khenvapu shana pheynang gajhuesanyeo,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 16,
+    "text_hd": "Khenvapu chhang dou shana pheynaang tharee yanyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 17,
+    "text_hd": "Hananh nitrapu shakhi savapu dou chhanggong shungnang sanrau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 18,
+    "text_hd": "Sangsha kuk lhuch khini khekket, yāngsha kuk lhuch thaki khekket chhanggong kashinlee sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 19,
+    "text_hd": "Shanavey cherubim khini salo chhanggong kashin manang salhayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 20,
+    "text_hd": "Cherubim khini dou chhanggong kashin manang sānsha thating kaketteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 21,
+    "text_hd": "Cherubim khini dou gaza̲k garokkei chhanggong kashinnang zaangsanye taprā lhengnei kayue sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 22,
+    "text_hd": "Chhanggong kashin dou mapa shinneiu, hananh nitrapu shakhi dou chhanggong shunpa sanrau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 23,
+    "text_hd": "Doupu phawnnang hananh neecha garokkei shakhi sarapu sangrapu chhanggong manang cherubim khini tlaknang neecha kuk gachhakkei, Israel naabou Ihaa hwangrapu mou hananh hwangyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 24,
+    "text_hd": "Teblevey chengnih rapu katleng",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 25,
+    "text_hd": "Sāngsha kuk lhueh khini, yāngsha kuk lhuch thaket, kajopu kuklhuch thaket khekket table acacia chhang naang sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 26,
+    "text_hd": "Māpa shana zih new nyeo, ba̲rānma shana naang sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 27,
+    "text_hd": "Sāngsha kukphā rukki shana naang sahongmeiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 28,
+    "text_hd": "Shana phey Ba̲tli salo table chāng ba̲tli dikunnang gaketteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 29,
+    "text_hd": "Shana phey dou dikunnang ngouye table khenvapu chhang ba̲kounang sanyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 30,
+    "text_hd": "Table khenvapu acacia chhang naang saye shana newnye dounaang khenneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 31,
+    "text_hd": "Tablevey sila, ghong gabrapoh,ghongzen, khon yān ghong, kalashibou dou shana zihnaang sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 32,
+    "text_hd": "Asānang table kahrānang nananh gatleng lhareeyanyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 33,
+    "text_hd": "Shanavey dhomei",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 34,
+    "text_hd": "Shana zihvey mei gazopu nananh sayeo. Mei gazopu rung, kalashi fafentei ba̲chānh ba̲nā sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 35,
+    "text_hd": "Mei gazopu rungnang ba̲chāng drok sayeo, ba̲chāng gachhuinting pasāk sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 36,
+    "text_hd": "Mei gazopuvey ba̲chāng ka̲chhuin ba̲chāng thatha kinang fafentei, chhangtheitei baleng rapu kalashi gachhuin sayeo, mei gazopu rungnang ba̲chāng drok ngouyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 37,
+    "text_hd": "Mei gazopu rungnang chhangtheitei ba̲leng rapu kalashi ba̲tli ka fafentei sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 38,
+    "text_hd": "Mei gazopu rungnang ba̲chanh drok ngouyeo, ba̲chāng jangvey ba̲pangnang vathei thating lhayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 39,
+    "text_hd": "Ba̲bungbou ba̲chānhbou meh dou mei gazopu rungcha samennei shana zihnaang sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 40,
+    "text_hd": "Dhomei thangilee sayeo, table vengvapu dhomei dou gazooyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 41,
+    "text_hd": "Mei chetvapu ka lānglo vapu ghonglee shana naang sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 42,
+    "text_hd": "Mei gazopu ka douvey sila dou shana joki naang sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 43,
+    "text_hd": "Hananh neelha gafungnang gathei rapu sue yuingmei sarou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 25,
+    "chapter_title": "Diket rapu yei",
+    "verse": 44,
+    "text_hd": "EXODUS 26",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 1,
+    "text_hd": "Chhi gatlākpoh wa diyeerapoh, kawapoh, cherubim yo saye chhidhāng chhi kangoopu dirā naang chhirwey sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 2,
+    "text_hd": "Chhidhāng dou sānsha kuk lhueh ku sa diyet, yāngsha kuklhueh ba̲tli ngouye, chhidhāng sāngsha yāngsha rarkitayeo",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 3,
+    "text_hd": "Chhidhāng dou chhi ba̲ngāting khokzwikpeiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 4,
+    "text_hd": "Chhidhāng ba̲sā khokzwik rareenang ba̲rue muk muchu naang sayeo, chhidhāng kathen pulee ba̲sā khokzwik rareenang dou ba̲lengnei sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 5,
+    "text_hd": "Chhidhāng thakinang ba̲rue dinwen, kathenpu chhidhāngnanglee ba̲rui din- wen ba̲rui rarkita garokvapu sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 6,
+    "text_hd": "Chhidhāng dou gazwik vapu shana Lwey saye kosiye dang chirwey thaki sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 7,
+    "text_hd": "Chhirwey shinvapu kathenpu chhidhāng chhỉ dirā dinin wānaang sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 8,
+    "text_hd": "Chhidhāng dou sānsha kukl huch tharā, yānsha kuklhuch ba̲tli ngouyeo,chhidhun chhi thalān sāngsha yāngsha rarkiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 9,
+    "text_hd": "Chhidhung chhi ba̲ngā khoswikpei, chhidhung drok lhuehlo chhirwey sānang lhayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 10,
+    "text_hd": "Chhi dhung khokzwik ranang ba̲rānma ba̲sā sāka ba̲rue dinwen ba̲sā sāka ba̲rui dinwen sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 11,
+    "text_hd": "Tangsuch kangoopu Iwey salo chhidhung khini kosivapu baruenang gajhuesanye gazwiklo chhirwey thaki sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 12,
+    "text_hd": "Chhidhung ba̲ren gasā sāka ba̲ra̲nnang chhirwey suepa dhāngsa̲n rinneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 13,
+    "text_hd": "Māpa chhidhung ba̲ren gasā sānsha kuklhuch khinivey chhirwey shinvapu sāka kuklhuch thating dhāngsanrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 14,
+    "text_hd": "Māpa shinvapu yaovin, dininvin naang shinneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 15,
+    "text_hd": "Ba̲rānma acacia chhangnaang dhungyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 16,
+    "text_hd": "Gava dou sānsha kuklhueh dirā, yānsha kuklhueh thaki t khekket sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 17,
+    "text_hd": "Gava gamang dou ba̲chāng khiniting kongkita sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 18,
+    "text_hd": "Gasāng dou lhangpu sākpa dhung vapu gava ku sayco.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 19,
+    "text_hd": "Gava ku dou gava thathaki lhangnang ba̲chāng khiniting sanvapu taka such lhentli sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 20,
+    "text_hd": "Gasāng māpa dhungvapu gava ku sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 21,
+    "text_hd": "Gavanang dou takasueh ba̲chāng lhentli gava thakinang bạchāng khiniting gaketteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 22,
+    "text_hd": "Gasāng suepa dhungvapu gava drok,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 23,
+    "text_hd": "Dikun dhungvapu gava khini sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 24,
+    "text_hd": "Māpa ka shunpavey ba̲ruenang ga jhuesanye dikun khini samenneiu,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 25,
+    "text_hd": "Gava diyet, takasuehvey bachāng droklan gava thakinang khini gaketteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 26,
+    "text_hd": "Gasāng dhungrapu gava jhuekhon vapu acacia chhang ba̲ngā ting sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 27,
+    "text_hd": "Suepa dhungrapu gava jhuekhon vāpu ba̲ngālee sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 28,
+    "text_hd": "Ba̲rannang jhuekhen vapu dikun khini vakennei sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 29,
+    "text_hd": "Gava dou shana rue newn meiu, chhangrwei sanvapu shana naang ba̲rui saye, chhangrwei dou shana rue newnmeiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 30,
+    "text_hd": "Gafung nang ba̲yuh ba̲ruk kathei rapu sue yuingmei sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 31,
+    "text_hd": "Chhi katlākpoh, wadiyce rapoh, gawāpoh, gangoopoh, chhisuch naang saye, cherubim yo sasa̲n rapu chhidhung thaki sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 32,
+    "text_hd": "Shana newnrapu acacia rung ba̲tlinang chhidhung dou dhāngyeo, dirungnang dou shana soo takasuch ba̲chāng ba̲tli gaketteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 33,
+    "text_hd": "Shakhi saravey sa̲nrapu chhanggong dou sanvapu chhidhung dou shana Iweynaang dirue khongmei, gathengpu phawnkathākkei galengnei phawn sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 34,
+    "text_hd": "Galengnei gathengpu phawnnang shakhi sarapu sangou rapu chhanggong manang kashin lhayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 35,
+    "text_hd": "Chhidhung ba̲rānma table lhayeo, chhirwey thangpu sākpamei gazopu tablecha gaza̲k garokkei lhayeo, table māpa lhayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 36,
+    "text_hd": "Chhirwey reekhongnang dhungyapu chhi, makmu ju, wadiyee rapu, kawapu, kangoopu, naang salo dhungyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 37,
+    "text_hd": "Chhi dhung acacia rung ba̲nga saye shana rue newnmeiu, wokzo vapu shana soo sayeo, tangsueh kangoopuvey ba̲chāng ba̲ngā sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 26,
+    "chapter_title": "Tabernacle ka̲sāng",
+    "verse": 38,
+    "text_hd": "EXODUS 27",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 1,
+    "text_hd": "Nananh gathengpu phawn acacia chhang naang sayeo, sāngsha yāngsha rarkita kuklhueh ba̲ngāting sayco, māpa kajopu kuklhuch gachhuin sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 2,
+    "text_hd": "Nananh dikun ba̲tlinang ba̲chih sasanrou, doupu ba̲chih ba̲tlinang dou tangsueh kangoopu rue newnrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 3,
+    "text_hd": "Lhavit lānglo vapu ghongcha tasā sokvapu, khonyān ghong, gashuh poh such chhāksangpoh, ghong kabrapoh, gathengpu phawnvey sila tangsueh gangoopu naang sayco.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 4,
+    "text_hd": "Tangsuch gangoopu pewn ba̲tli saye dikun ba̲tli nang tangsuch gangoopu phey ba̲tlilee sayco.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 5,
+    "text_hd": "Gathengpu phawn ba̲sā wokpu Thangnang lhayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 6,
+    "text_hd": "Gathengpu phawn khenvapu acacia chhang naang saye, tangsuch kangoopu rue newnmei,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 7,
+    "text_hd": "Gathengpu, phawn khenvapu ba̲rui khininaang kajhuesanyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 8,
+    "text_hd": "Gafunang gathei rapu sue yuingmei gathengpu phawn dou māpa shunpa gatlan ta gava naang sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 9,
+    "text_hd": "Chhi dhāng zaang lo rapoh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 10,
+    "text_hd": "Chhirwey kharen nananh sayeo, lhangpu sākpa chhi diveipu kuklhueh chanaang dhungyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 11,
+    "text_hd": "Chhi dhungvapu rung ku, tangsueh gangoopu naang dirungnang wokzo vapu taka soo sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 12,
+    "text_hd": "Māpu shāpa chhidhung vapu kuklhuch chānaang dhungye, taka soo zorapu tangsuch gangoopu dirung pang ku gaketteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 13,
+    "text_hd": "Suepa dhungvapu sānsha kuklhueh dinwen, dirung dirā dirung pang dirā sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 14,
+    "text_hd": "Sāpa kharenlee yāng sha kuklhuch dinwen sayco.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 15,
+    "text_hd": "Reekhon sāhting dhungvapu kuklhueh ngālān, dirung gachhuin sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 16,
+    "text_hd": "Kathenpu sākpa dhungvapu kuklhueh ngālan, dirung gachhuin ba̲chāng gachhuin sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 17,
+    "text_hd": "Karokvey tukvapu chhidhung kuk lhueh ku, chhi mukmaju, wadiyce rapu, gawapu, gangoopu naang saye, dirung Ba̲tli dirungpāng ba̲tli sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 18,
+    "text_hd": "Kareibou phawnvey dirung mou dou taka soo wokzo vapu kakettei dirungpānglee tang sueh gangoopu gaketteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 19,
+    "text_hd": "Karok dou sāng sha kuklhuch chā, yāngsha kuklhuch dinwen, kajopu kuklhueh ba̲ngā, dirung chāng tangsuch gangoopu naang saye, chhi gangoopu naang dhungyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 20,
+    "text_hd": "Chhirwey ka karok wokshin vapu shākyen vapu dou tangsueh gangoopu naang galāngta, sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 21,
+    "text_hd": "Dhomei men rapoh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 22,
+    "text_hd": "Mei gazolo lharee yingree vapu Israel chābounang olive theitei rue zih lokou raroura nananh Ba̲lih lhaa hwangrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 23,
+    "text_hd": "Chābou meeting savapu chhidhung shungnang shakhi sarapu lharapu sākpa, Aaron ka beinabounanh kayāng naang tholo thamang naang ngaapa shuree za̲kronnang doupuvey yei sayeo. Doubou Israel naabou mih dung jangnanh ngākkei rapuvey ninnit rapou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 27,
+    "chapter_title": "Rakei diket rapoh",
+    "verse": 24,
+    "text_hd": "EXODUS 28",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 1,
+    "text_hd": "Asānang ba̲ngmonvey yei savapu needei Aaron ka beinabou Nadah, Abihu, Eliazar, Ithamar rabounang Irael naabou veynaang yhenglo neelhannang sanrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 2,
+    "text_hd": "Needei Aaronvey ren theivapu divei vapu beilha chhi sathengnitrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 3,
+    "text_hd": "Aaronnanh avei ba̲ngmonvey yei saraveynanh beichhi thengvapu, losha̲nvey ren ngourabou lhaa chhi dou ra̲kvapu hwangrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 4,
+    "text_hd": "Ba̲lihnanh ra̲kkei rapuchhi dou, chānh shinpoh, ephod, thaket, chhi, coat chhikhrewy, ko rwenpoh, ronkhokpoh, avei ba̲ngmonvey yei savapu Aaronkabeinabou lhaa chhi gathengpu saniu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 5,
+    "text_hd": "Ba̲lihnanh shana garokkei, chhi mukmaju, wadiyee rapu, gawapu, gangoopu chhi diveipu garokkeiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 6,
+    "text_hd": "Chhi mukmuchu wadiyee rapu, gawapu, kangoopu ra̲kra bounanh shana naang ephod sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 7,
+    "text_hd": "Tapra khini manang ba̲rui thating saye naasanyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 8,
+    "text_hd": "Chhi ra̲kthei rapu chhuebounanh chhi ka mukmaju, wadiyeerapu, gawapu, gangoupu, hey bou manang ba̲sānang shana naang kaketteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 9,
+    "text_hd": "Nananh onyx lun khini loye chānh chhi manang Israel naabou nan yāksanyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 10,
+    "text_hd": "Dilun thaki manang ba̲nan drok yāksa̲nyeo, dilun thaki manang ba̲nan drok yāksa̲nyco.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 11,
+    "text_hd": "Nanah dilun khini manang Israel cheh nan sangrapu dilun manang dou kuksweinang ba̲yāk sa̲nra ba̲lengnei Jewel lun phranye shananang gaketteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 12,
+    "text_hd": "Tapra Iwey khini kaketrapu dilun khini manang Israel naabounang ba̲ninlo vapu Aaronnanh shuree za̲kronnang fungkou vayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 13,
+    "text_hd": "Nananh shana naang ba̲yāk sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 14,
+    "text_hd": "Ba̲lwey direirā ba̲lengnei nāsang vapu nananh shanalwey khini direiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 15,
+    "text_hd": "Chhi mukmuju, wadiyce rapu, gawapu, gangoopu naang chhi ra̲kthei rabounanh chānhvey ephod ka bicheree savapu nananh sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 16,
+    "text_hd": "Kong khini lhuchpei sāngsha khekket yāngsha khekket dikun ba̲tli sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 17,
+    "text_hd": "Nananh dilun pa̲ren Ba̲tli sayeo, gakhuhpu ba̲rennang sardius, topas, carunncle dilun naang sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 18,
+    "text_hd": "Pa̲ren khinipunang emerald, sapphire, diamond lunnaang sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 19,
+    "text_hd": "Pa̲ren gachhuinpunan jacinth, anagate, amethyst lunnaang sayco.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 20,
+    "text_hd": "Pa̲ren ba̲tlipunang beryl, onyz, jasper, heybou meh shana manang bayāk sanyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 21,
+    "text_hd": "Israel naabou khinilan nang nwensan rapu manang yāksanra balengnei, balih nan khinilān dou dilun manag thating sanrau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 22,
+    "text_hd": "Nananh chānhvey ba̲rui dou shana zih naag direiye sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 23,
+    "text_hd": "Chānh shinpu dikun khininang shanavey ba̲rui nanah sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 24,
+    "text_hd": "Nananh shana rui khininang dou shanalwey khi ni gaketeiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 25,
+    "text_hd": "Shanalwey khini dou taprasāpa ephod ba̲yāh sangrapu sānang wokzoyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 26,
+    "text_hd": "Ephod lhangpa shana rui khini nananh saye ba̲sā dou wokzoyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 27,
+    "text_hd": "Shana rue khini saye, chhi ra̲kthei rabou-nah sarapu ephod sāk khnini tapra pasāk ba̲lwey dou gaketteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 28,
+    "text_hd": "Chānh shinpu ephod ruenang dou chhiyāk santhei rabourianh sarapu ba̲lwey mukmujudou sa̲nyco, chānh shinpu ephod dou lolhacha lhareeyanyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 29,
+    "text_hd": "Bicheree savapu chānh shinpunang Israel naabouvey panang khinilān dou Aaronnanh chānhnang liye Israel naabounang baninlo vapu gathengpu phawn shuree sa̲nang varareenang lokou vaayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 30,
+    "text_hd": "Bichereevey chānhshinpunang urim ka Thum mim sanrou, doudou Aaronnah chānhnang likou shuree sānang vaye Israel naa bounang bicheree vaasāyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 31,
+    "text_hd": "Ephodvey chhikhrwey kayokpu mukmaju naangta sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 32,
+    "text_hd": "Vanh kou dou sysākchi vapu ra̲krapu chhinaang ba̲rā wooyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 33,
+    "text_hd": "Bachāngpa chhi sānang pomegranate chhangthei yāk mukma̲ju, wadiyee gawapu naang sasa̲nye batlaknang shana khrantei sasa̲nyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 34,
+    "text_hd": "Chhikhrwey kayokpu sānang pomegranate theitei ka shana khrantei yāk sa̲nhongmeiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 35,
+    "text_hd": "Aaronnah shureevey gathengpunang yei vaasā rareenang khrantei khon dou yau. Yuehchi tatou sheeyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 36,
+    "text_hd": "Shuree lhaa sathen vapu kukswei yāk sa̲ngrā ba̲lengnei shana ghong thaki nanh sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 37,
+    "text_hd": "Korwenpu sāpa ba̲lwey mukmaju kaletteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 38,
+    "text_hd": "Dou dou Aaron peinang khenkou Israelonaabou thengvapu gathenpu di ket rapu phawmnang, kayweipu thengvapu beinanh fungraye shuree ninyaa ayeree vapu bei peinang khenyanyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 39,
+    "text_hd": "Chhi kangoopu naang chhikhrwey ka ko rwenpu ra̲kkei, ronkhokpulee divei rapu sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 40,
+    "text_hd": "Aaron naabou lhaalee ren theivapu chhikhrwey ronkhokpu saniu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 41,
+    "text_hd": "Aaron ka beinabou lhaa dounanh seeree sani ba̲lihnanh asānang pang monvey yei savapu sathengnei dho newnni ordain nitron.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 42,
+    "text_hd": "Kaya̲k rapu shinvapu ronnaang tholo chāngti theitei tlakennei chhi ganwetpu naang khoknitrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 43,
+    "text_hd": "Ba̲lihnanh chhirwey meetingnang vakou vaavapu Aaron ka beina bou lhaa nananh gavaarou gathengpu phawn nang vaa ra reenang diywensaye sheechi vapu dou vayang ye, Aaron naang tholo theifen mou ngākkei rapu ninnit rapou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 28,
+    "chapter_title": "Bangmon vey siri",
+    "verse": 44,
+    "text_hd": "EXODUS 29",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 1,
+    "text_hd": "Diveipu suh tha khunaang dirih sa̲nma̲kpu gatleng, dirihsanmakpu dhonaang sarapu gatleng, dirih sa̲nma̲kpu dho newnrapu katleng, doubou lhaa nananh sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 2,
+    "text_hd": "Gatleng dou shipounang sankou ma̲si thakika yao khinicha tasa nananh lorayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 3,
+    "text_hd": "Aaron ka bei nanang chāboutwei meeting savapu chhirwey reekhong mun nang dirue saprayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 4,
+    "text_hd": "Aaron lhaa chhiji chhikhrwey kayokpoh, coat, savāye ephod chānh shinpulee saliyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 5,
+    "text_hd": "Beivei korwenpulee rwenni ko rwenpu manang gathengpu rakhāk gaketniu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 6,
+    "text_hd": "Dho loraye bei konang lunglukkei pewnnanglee newnniu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 7,
+    "text_hd": "Dousuenang nananh bei na nang jhuekou raye coat kavayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 8,
+    "text_hd": "Ronkhokpu sa̲nni rakhāk sawunye shureenanh ninnit rapu sue yuingmei ba̲lihsinnanh pangmonvey yei savapu Aaron ka beina lhaa ordain niu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 9,
+    "text_hd": "Nananh ma̲si dou meeting rwey sāpa khongkou rayeo, Aaron ka bei nabou kuk ma̲si konang dou galānyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 10,
+    "text_hd": "Meeting rweyza̲knang shuree za̲kron nang nananh ma̲si dou vuthetteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 11,
+    "text_hd": "Diyi loye dang gathengpu phawnvey ba̲chihnang kukna naang newnye dang ba̲ren gasā diyi dou gathengpu phawn bap angnang lunglhāyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 12,
+    "text_hd": "Ruephrin ba̲tha, ba̲chhinrue, ba̲kei khini ka bathā nananh loye gathengpu phawn manang meinaang ra̲kkeiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 13,
+    "text_hd": "Ma̲si such ba̲vin ba̲chānbou dou diywen thengvapu chhirwey ba̲rānma vaara̲kkingneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 14,
+    "text_hd": "Nananh ma̲si dou meeting rwey sāpa khongkou rayco, Aaron ka bei nabou kuk masi konang dou galānyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 15,
+    "text_hd": "Nananh yao dousathetei diyeeloye gathenpu phawnnang diyi ba̲yāk hongmeiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 16,
+    "text_hd": "Nananh yao such dou ka̲tlak gazwen mei pa̲kshung such bou ba̲chāngbou phraye ba̲kocha tasa lhayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 17,
+    "text_hd": "Gathengpu manang mou meinaang ra̲kkei shuree lhaa ba̲hruin diveipu ra̲kkei dikettein.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 18,
+    "text_hd": "Kathengpu yao lee loye nananh khongkou raye Aaron ka bei nabounanh yao konang kuk kalānyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 19,
+    "text_hd": "Nananh yao thaki doulee khonglo sathetttei diyi loye reegong, khānpa, kukangokchue khānpa, chāng ngokchue khānpa Aaron ka bei nabounang newnni dang diyi ba̲ren gasā dou gathengpu phawn nang ba̲yak hongmeiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 20,
+    "text_hd": "Gathengpu phawnvey diyi ka dho loye Aaron chhi Aaron pewn- nang newnni, beina bounanglee newnni beinabou chhi sathengneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 21,
+    "text_hd": "Yao tha, ba̲meivey ba̲tha, pa̲hshung suehvey pa̲tha, bāchhin ba̲rue ba̲kei khini ka ba̲tha, chāng tithei khānpa, nananh yao thaki hey ordainvey yei sarapou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 22,
+    "text_hd": "Dirih sa̲nmakpu katleng shipouvey thaket, dho newrapu gatleng packet, ka̲tleng kachhāpu shuree za̲k ronnang lhayao.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 23,
+    "text_hd": "Gatleng dou Aaron ka beinabou kuknang sanni kuknaang shu ree za̲kronnang lokettei sithā vapu sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 24,
+    "text_hd": "Doudou ba̲lih kuknaang loye gathenpu phawnnang mei ra̲kkei ba̲hru in diveipu theivapu shuree za̲kronnang sithā vapu sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 25,
+    "text_hd": "Aaron lhaa yei savapu lhanit rapu yao thuk dou loye shuree za̲kronnang māpa khānkettei dang ba̲thuk beiyen loyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 26,
+    "text_hd": "Yao thuk ka ba̲phei dou nananh loye sathennei shuree lhaa dikettei māpa lokettei sithā rapu dou Aaron ka bei nabou yennou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 27,
+    "text_hd": "Isreal naabou pāng shuree za̲kronnang sithāye ba̲ngmonvey yei sayingrapu hey Aaron ka bei naboulyennou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 28,
+    "text_hd": "Aaronvey gathengpu chiji dou suenang bei nabou lhaapānggu bei nabounanh ordain garok ranang dho newnni vayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 29,
+    "text_hd": "Bei phawnnang pang monvey yei sarapu bei nabounanh chhirweyvey gathengpu meetinnang yei sara reenang zangna̲k thangi lāk vayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 30,
+    "text_hd": "Yei savapu yao such dou gathenpu phawnnang khāngyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 31,
+    "text_hd": "Aaron ka bei nabounanh yao such ka shipouvey gatleng dou chirweyvey meeting reekhong munnang zau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 32,
+    "text_hd": "Diywen thengvapul sarapu hey ba̲lihnanh zau, sila doulee gathenpou, ba̲lihlée ordain loye gathengpou, dou pura baranma bounanh yazwikpu hey zwikshiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 33,
+    "text_hd": "Sithāye yei savapuvey such gatleng dou thamāng lhareesha tatou, gathengpu yei raveynanh zwikshiu, meinang ra̲kkingneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 34,
+    "text_hd": "Aaron ka bei nabou lhaa yei sanit vapu hananh ninnit rapu sue yuingmei nananh zangna̲k thangi naang ba̲lih lhaa ordain nitvapu yei sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 35,
+    "text_hd": "Diywen thengvapu nananh zangna̲k jang ma̲si thaki naang sithāya̲nyeo, kayweipu diywen lhaapāng gathengpu phawnnang sitha rareenang nananh dho newnmei thengneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 36,
+    "text_hd": "Nananh kayweipu phawn dou gayey thengraveynanh gathengpu phawnnang shonrapu sila doulee thengneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 37,
+    "text_hd": "Nananh gathengpu phawnnang sithā vapu yao kungki naa khini naang zangnak jang sithāyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 38,
+    "text_hd": "Nananh kakhuhpu yao naang sithāyeo, yao thaki naang kayang sithāyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 39,
+    "text_hd": "Nananh ka khuhpu yao naaang sithā rareenang dho naang nānravey suk diveipu jo dirā, Olive dha diwong thaket aley drakha rue bangye yaocha      tavā  sithāyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 40,
+    "text_hd": "Yao tha ki naang nananh ka̲ yang sithā rareenang theinavey suknang dho newnrapu gatleng, drakha rue ba̲ngye thamang sithā rapu naang dou shuree lhaa ba̲hr uin diveipumeinang ra̲kkei sithāyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 41,
+    "text_hd": "Navey theifen mounanh kapehpu ngoucha hananh nacha garokkei dlo Iwen rapu reekhong mung nang shuree lhaa sithā yanrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 42,
+    "text_hd": "Dounang hananh Israel naaboucha garokkei avei rennaang sathengneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 43,
+    "text_hd": "Hananh gathengpu phawn meeting rwey dou sathengneiu Aaronka bei naboulee thengnei avei pangmonvey sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 44,
+    "text_hd": "Hananh ba̲lih vey shuree saye Israel naaboucha tasā ngouyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 45,
+    "text_hd": "Hananh ba̲lihvey shuree dou rapu balihnanh theiyeo. Hananh ba̲lihnang Egypt leipāk naang lösettei ba̲li cha tasā ngourapu hananh ba̲lihvey shuree dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 29,
+    "chapter_title": "Ba̲lihnanh avei ba̲ngmonvey savapu yaoti khini ka ma̲si ba̲ti nota thaki naang ba̲lihnang thengvapu nananh sanitrou.",
+    "verse": 46,
+    "text_hd": "EXODUS 30",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 1,
+    "text_hd": "Acacia chhang naang nananh ba̲hruin rakvapu gathengpu phawn thaki sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 2,
+    "text_hd": "Sāngsha kuklhuch thaket, yāngsha kukihuch thaket, kajopu kuklhuch khini joye sāngsha yāngsha ratkita sayco, douvey ba̲chihlee sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 3,
+    "text_hd": "Māpa ba̲rānma mou shana zihnaang kalāngta newnhong meiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 4,
+    "text_hd": "Dounang shanavey ba̲rui khini sāpagathengpu phawn dou khenvapu sayco.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 5,
+    "text_hd": "Khenvapulee acacia chhang naang saye shana newnmeiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 6,
+    "text_hd": "Hananh nacha Karin rapu shakhi lharapu chhidhung sapa gathengpu phawn. nang dou kophu lhareerou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 7,
+    "text_hd": "Aaronnanh thama ngchang yaova̲ theteidoupu manang dou ba̲hruin diveipu ra̲kkei, thamang seeree sakoud homei kazoyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 8,
+    "text_hd": "Kayāngchang Aaron nanh dhomei men lo lhara reenang shureebo za̲kronnang neecheh mounanh ba̲hruin diveipu rakyanyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 9,
+    "text_hd": "Nananh doupu manang dou theng ma̲kpu asāni trou gayuinpu adiketnitrou gayuinpu drakha rue alungluhnitrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 10,
+    "text_hd": "Aaronnanh kungki nang thalak gathengpunangdiywen thengvapu sithāye ba̲chihnanglee diywen thengvapundiyinewnye sithāyeo gathengpu shuree lhaa neecheh mou nanh sithāyanyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 11,
+    "text_hd": "Phra nih vapu taka",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 12,
+    "text_hd": "Shureenanh moses lhaa hwangu,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 13,
+    "text_hd": "Nananhlsreal naabouvey ba̲nan loye dimih bhrara reenang ba̲lihnanh hwā ka̲shihpu garokchi vapu ba̲lihnang chheilo vapu ba̲men shuree lhaa Ba̲lih nanh nitrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 14,
+    "text_hd": "Dimih bhra ranang ba̲nan lorabou mehnanh shuree lhaa taka sāka niu. Taka dou gerah ku shuree lhaa diketteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 15,
+    "text_hd": "Dimih bhra rapu ba̲ngrabou ba̲kung ku naang mapa bounanh shu- ree lhaa diketteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 16,
+    "text_hd": "Navey ga̲ywei thengvapu chhāboulee galengchau, rangshih boulee ka̲chhuehcha taka sāka rarkita shuree lhaa diketteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 17,
+    "text_hd": "Gaywei thengvapu taka nananh lorapu dou navey ga ywei thengrapu dou shuree za̲kronnang chhei vapu lokou vaayeo. Israel naabouvey lorapu dou chhirwey meetingnang yei savayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 18,
+    "text_hd": "Khok yān ghong",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 19,
+    "text_hd": "Shureenanh Moses lhaa hwangu",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 20,
+    "text_hd": "Tangsueh gangoopu naang ba̲chāng sarapu kho yān ghon thaki kuk za̲kvapu lha yeo, dounang diruelo meeting savapu ka gathengpu phawn tlaknang nangnanh lharau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 21,
+    "text_hd": "Dounang Aaron ka bei nabouvey chāngkuk phrayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 22,
+    "text_hd": "Ba̲lihnanh meeting rweynang vaara reenang, gathengpu phawnnang shuree lhaa mei rakkei va sithā rareenang, sheechi vapu ba̲lihnanh chāngkuk phrayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 23,
+    "text_hd": "Ba̲lihnanh sheechi vapu chāngkuk phrayeo. Hey bei naang tholo beithei beifen mounanh ngākkei rapu ninnitrā veyu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 24,
+    "text_hd": "Shureenanh Moses lhaa galengnei hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 25,
+    "text_hd": "Newnnihra pu suih dha",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 26,
+    "text_hd": "Nangnanh ba̲hruin divei pu taka naang dhāngloye, myrrh rue taka dinwen men, ba̲hruin diveipu cinnamon chhangtheitei chachhuinpu dinwen men, ba̲hruin diveipu shatei cha chhuinpu dinwen men lorou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 27,
+    "text_hd": "Cassia ba̲hruin diveipu chang, olive dho hin thaket lorou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 28,
+    "text_hd": "Ralapu gathengpu ba̲hruin diveipu nānlo newnmei nananh sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 29,
+    "text_hd": "Meeting rwey ka ninnit rapu chhanggonang dou nananh newmeiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 30,
+    "text_hd": "Table ka tablevey silanang, mei ga̲zopu. ka mei gazopuvey silanang, gathengpu phawnvey silanang.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 31,
+    "text_hd": "Gathengpu phawnnang mei rak kei sithā vapu silanang, kho yānghon ka bachāngnang dho ba̲hruin diveipu newn meiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 32,
+    "text_hd": "Doudou galengnei thengvapu nananh sathengnei dounang shonket rapu silalee sathengneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 33,
+    "text_hd": "Aaron ka bei nabounanh avei ba̲ngmonvey yei savapu Ba̲lih lhaalee newnni sathen grou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 34,
+    "text_hd": "Israel cheh tungjangnanh avei gatheng dho hey newnroura nananh Israel naabou lhaahwangrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 35,
+    "text_hd": "Dimih dilweng mih pewnnang hey lung luhshiu, ka̲dleipu sara ba̲lengnei nanmei sashiu, hey nalhaapāng gathengpou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 36,
+    "text_hd": "Dho kadleipu sara ba̲lengnei sarapu mih, leivānbou lhaa dho hey newnnit rapu mihnang pacheh veynaang kalwey setteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 37,
+    "text_hd": "Shureenanh Moses lhaa hwangu, nangnanh kanangpu spices, stacte, onycha, galbanum, kanangpu spicescha tasa gathengpu frankincense rarkita kata̲klórou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 38,
+    "text_hd": "Pachi, gathengpu incense nanye sarou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 39,
+    "text_hd": "Nananh heyra̲k kita sa kaza̲kło hananh nacha garok rapu phawn shakhi saravey Iharapu meeting savapurweyin sanang Ihareerou, nalhaapāng galengnei gathengpou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 40,
+    "text_hd": "Ba̲hruin diveipu nānlo sara ba̲lengnei sarou, ba̲lha pāng asanitrou, nananh shuree lhaapāng thengneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 41,
+    "text_hd": "Bei lhapāng bahruin diveipu sarapu mihnang dou cheh veynaang galwey setteilu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 30,
+    "chapter_title": "Bahruin divei pu diket rapoh",
+    "verse": 42,
+    "text_hd": "EXODUS 31",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 31,
+    "chapter_title": "Bezatel ka Dholiab nang zaa rapoh",
+    "verse": 1,
+    "text_hd": "Shureenanh Moses lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 31,
+    "chapter_title": "Bezatel ka Dholiab nang zaa rapoh",
+    "verse": 2,
+    "text_hd": "Zaaigrou, judah cheh Hur naa lapu Uri haa Bezalel nang zaayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 31,
+    "chapter_title": "Bezatel ka Dholiab nang zaa rapoh",
+    "verse": 3,
+    "text_hd": "Shureevey manglhaa ren phrey dang ra ni, savapu gashih rapu ren beilha niu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 31,
+    "chapter_title": "Bezatel ka Dholiab nang zaa rapoh",
+    "verse": 4,
+    "text_hd": "Ba̲ninlo shāna taka tangsueh savapu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 31,
+    "chapter_title": "Bezatel ka Dholiab nang zaa rapoh",
+    "verse": 5,
+    "text_hd": "Kachhang dilun phranye yei savapu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 31,
+    "chapter_title": "Bezatel ka Dholiab nang zaa rapoh",
+    "verse": 6,
+    "text_hd": "Zaangrou, beicha tasa Dan cheh Ahisa mach naa Oholiab nanglee hananh san rau, dimih mounang yovapu ren hananh beilha neiu, hananh nalhaa ninnit rapu mou ba̲lihnanh.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 31,
+    "chapter_title": "Bezatel ka Dholiab nang zaa rapoh",
+    "verse": 7,
+    "text_hd": "Meeting savapu rwey. ninnit rapu chhanggong, doupu mavey gayapuphawn, chhirwey mounang dirih newnrapoh.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 31,
+    "chapter_title": "Bezatel ka Dholiab nang zaa rapoh",
+    "verse": 8,
+    "text_hd": "Table ka douvey sila, mei gazopu ka douvey sila, gathengpu phawnvey ba̲hruin diveipoh.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 31,
+    "chapter_title": "Bezatel ka Dholiab nang zaa rapoh",
+    "verse": 9,
+    "text_hd": "Gathengpu phawnnang mei rakkei sithā rapuvey sila mou, ghongvey ba̲chāng.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 31,
+    "chapter_title": "Bezatel ka Dholiab nang zaa rapoh",
+    "verse": 10,
+    "text_hd": "Aaron ka bei nabounanh pangmouvey yei saranang varapu gathengpu chhi diveipu sanit rapuvey yei.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 31,
+    "chapter_title": "Bezatel ka Dholiab nang zaa rapoh",
+    "verse": 11,
+    "text_hd": "Hananh nalhaa hwangrapu gathengpu phawnvey ba̲hruin diveipu frangrant incense, newn rapu dho,ba̲lihnanh sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 31,
+    "chapter_title": "Bezatel ka Dholiab nang zaa rapoh",
+    "verse": 12,
+    "text_hd": "Theilo vapu māk zangnak",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 31,
+    "chapter_title": "Bezatel ka Dholiab nang zaa rapoh",
+    "verse": 13,
+    "text_hd": "Shureenanh Moses lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 31,
+    "chapter_title": "Bezatel ka Dholiab nang zaa rapoh",
+    "verse": 14,
+    "text_hd": "Ha shureenanh nanang sathengneiu rapu theilo vapu avei ngougashwen rapu (Sabbath) hey ha ka na tlaknang lhanit rapu avei ba̲sheh tun jangnanh ngakvapu Isreal naabou lhaa hwangrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 31,
+    "chapter_title": "Bezatel ka Dholiab nang zaa rapoh",
+    "verse": 15,
+    "text_hd": "Ngou gashwen rapu zangna̲k nananh ngākrou, hey nalhaa pāng gathengpou, doupu zangna̲k karapu mih dou sheeyeo, doupu zangna̲k naang yei sarapu mihnang Ba̲ cheh veynang venneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 31,
+    "chapter_title": "Bezatel ka Dholiab nang zaa rapoh",
+    "verse": 16,
+    "text_hd": "Zangna̲k droknaang yei sarou, zangna̲k thangipu naang ngou gashwen rapu Sabbath shureevey gathengpu zangna̲kgou, doupu zangna̲k naang yei sarapu mih dou sheeyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 31,
+    "chapter_title": "Bezatel ka Dholiab nang zaa rapoh",
+    "verse": 17,
+    "text_hd": "Sabbath hey Isreal naabou tun jangnanh ngākya̲nye rapu ninnit rapou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 31,
+    "chapter_title": "Bezatel ka Dholiab nang zaa rapoh",
+    "verse": 18,
+    "text_hd": "Shureenanh zang dilei zangnak drok naang saye zangna̲k thangipu naang ngou ga shwen rapu aveiba̲sheh ha ka na tlaknang lhanit rapu zangna̲kgou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 31,
+    "chapter_title": "Bezatel ka Dholiab nang zaa rapoh",
+    "verse": 19,
+    "text_hd": "Sinai gafungnang shureenanh Moses lhaa dirā dilun manang kukna naang yākni, shureenanh Mosescha dlo lwen gakhougpou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 31,
+    "chapter_title": "Bezatel ka Dholiab nang zaa rapoh",
+    "verse": 20,
+    "text_hd": "EXODUS 32",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 1,
+    "text_hd": "Mosesnanh gafung naang vangchih rapu Isreal naabou chābounanh theiye ba̲lihnanh sengzwin mei Aaron lhaa hwangu, Mosesnanh Egypt naang haanang losettei haa san ang zetrapu Moses theichinnou, doupurā haa sānang zet vapu shuree sani trou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 2,
+    "text_hd": "Aaronnanh ba̲lih lhaa hwangu, navey, nayet bouvey nanaa bouvey, shana kukswei alha lokou ranitrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 3,
+    "text_hd": "Doupura Ba̲lihnanh kukswei, reegongvey shana mou lokou Aaron lhaa raneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 4,
+    "text_hd": "Beinanh Ba̲lih kukvey shana dou loye ma̲si tata yo sanei-u, Israel naabou Mehda nanang Egypt naang loset rapu navey shuree dou heyura ba̲lihnanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 5,
+    "text_hd": "Aaronanh dou theiye gathengpu phawn thaki saye, Aaronnanh ba̲rāye hwangu, lhadang Shureevey twei zangyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 6,
+    "text_hd": "Ba̲lihnanh khinipu naang thamāng naang thoye sithā vapu ra diketza rasuenang yueyueta shunngouye zwikjhiye dousuenang prayera tho-u.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 7,
+    "text_hd": "Shureenanh Moses lhaa hwangu, Egypt naang loset rapu nee mihcha vanatirou, Ba̲lihnanhninyeyye ngouyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 8,
+    "text_hd": "Ba̲lih lhaa hanaanh ninnit rapu veynaang Ba̲lihnanh ba̲rānma latou, ba̲lihnanh ma̲si tata yo salo dounang khorum mei sithāye, ngou yeo-u Egypt naang loset rapu navey shuree dou heyura hwangpayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 9,
+    "text_hd": "Shureenanh Moses lhaa hwangu, hananh theitou, heypu cheh hey vanh chhārapu cheh dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 10,
+    "text_hd": "Atue ha lhengta diphrit lhāra ba̲lih manang avei lunhshih choye Ba̲lihnang hananh symānyco, neenangku hananh cheh kareipu thaki saniu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 11,
+    "text_hd": "Mosesnanh beivei shuree ngaa sak lakra fingnei hwangu, deimei, nee kukvey ren kāreipu naang Ba̲lihnang Egypt naang loset rapu neemih manang chhoura lunhshi lunh choyerou?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 12,
+    "text_hd": "Egypt mihnanh shureevey ninyaa veicha ywengphānang sathettei dilei veynaang symān vapu jhuekou vaara veyura hwangvapu chhoura saprou? Gayey lunhshih rapu vennitrou, neemih lhaa tanti ninra ba̲nin rapu veynaang ninyey nitrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 13,
+    "text_hd": "Ba̲lih lhaa nang galettei hwangye karinnit rapu neevei rao Abraham, Israec, Jacob, rabounang ba̲ninnitrou, neethei neefen lhaa hananh chengni zangaveyprā yākki sayānsanye, neethei neefennanh fun zwikyanyeora karinneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 14,
+    "text_hd": "Bei mihnang ka̲shihpu sayera ba̲nin rapu veynaang shureenanh ninyeylennou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 15,
+    "text_hd": "Mosesnanh ninnit rapu dirā yāknit rapu lun gapāk khini bei kuknaang lokou kafung naang galetkou vanye.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 16,
+    "text_hd": "Lun gapāk khinilee shureenanh sanciu, leira̲k yāksannit rapu doulee shureenanh yāksa̲nneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 17,
+    "text_hd": "Ba̲lihnanh ba̲rā rapu thak dou Joshuananh ya Moses lhaa hwangu, yānang diraavey ba̲khon yau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 18,
+    "text_hd": "Yorapu khong gahrou, yo ma̲kpu khongu, lan sarapu khonlee hananh you.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 19,
+    "text_hd": "Galho yānang vangaley ma̲si yo aley maga parapu yo theiye mosesnanh gayey lunhshiu, ninnit rapuvey lungapāk dou mosesnanh gafung pangnang vālet dingnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 20,
+    "text_hd": "Ba̲lihnanh saravey ma̲si dou Mosesnanh loye meinang ra̲kkei ba̲mang diruenang sa̲nye Isreal naabou lhaa gasueu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 21,
+    "text_hd": "Mosesnanh Aaron lhaa hwangu, ba̲lih manang gaywei kareipu ravapu chhoura ba̲lih lhaa gasārou?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 22,
+    "text_hd": "Deimei, lunh ashihnitrou, heybouveyaninyaa ka̲shihpu nangnanh theizatou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 23,
+    "text_hd": "Alih-nang Egypt naang losettei alih sanang zetrapu moses theichinnou, doupura Alihnanh alih lhaapan shuree sanoura ba̲lihnanh alha rahwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 24,
+    "text_hd": "Hananh ba̲lih lhaa hwangu, navey shana lorarou ra hwangaley ba̲lihnanh alha shana lok- ou rani hananh shana dou loye mein ang sa̲ngnaley ma̲si tata yo setdou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 25,
+    "text_hd": "Chābounanh diraapu yānang Aaron chhiji saa kaletlha rapu dou mosesnanh lotheiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 26,
+    "text_hd": "Mosesnanh yāvey mihshanangthozaangye hwangu, shuree ngaapa ngourapu mih angapa rarou, Levi naabounanh Moses ngaapa rasen gzwin mou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 27,
+    "text_hd": "Israel naabouvey shu reenanh heyhrā hwangyeora beinanh ba̲lih lhaa hwangu, dimih jang pāvey raakhaata meikou yāvey mihsha mihshanang vaaye nadei nanaa, niphou nibra, rwey khanabounang vaasā thetrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 28,
+    "text_hd": "Moses nanh hwangrapu dlo loye levi naa-bounanh vasāye, doupu zangna̲k naang dimih lysha̲n ka̲chhuin sheeu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 29,
+    "text_hd": "Sheelung shureenanh chengnit vapu nananh nadei nanaanang shongkettei, sheelung nananh na ordain garoktou ra Moses nanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 30,
+    "text_hd": "Khinipu naang Mosesnanh chābou lhaa hwangu, nananh diywen kareipu sazatou, hananh shuree ngaa vaayeo, hananh navey gaywei thengvapu sanciulee zachau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 31,
+    "text_hd": "Mosesnanh shuree ngaa valennei hwangu, chābounanh di ywen kareipu saye sha navey shuree sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 32,
+    "text_hd": "Doubouvey diywen deimeinanh phranitrou, deimeinanh neevi leira̲knang yāksan rapu naang dou anang losetchi vapu hananh fingneyu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 33,
+    "text_hd": "Anang diywen sarapu mihnang dou avei leira̲k veynaang beinang losetteiu ra shureenanh Moses lhas hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 34,
+    "text_hd": "Atue nangnanh vanye hananh hwan grapu phawnnang ba̲lihnang jhuekou vaarou hananh neesānang avei rao garayeo, doupu zangna̲k naang hánánh ba̲lihvey diywen dou ba̲lih manang razaangyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 35,
+    "text_hd": "Aaron ka chābounanh ma̲si tata yo sarapu pān tanti ni, ba̲lihnang maplague paya shureenanh garāu",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 32,
+    "chapter_title": "Shana naang sarapu ma̲stata",
+    "verse": 36,
+    "text_hd": "EXODUS 33",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 1,
+    "text_hd": "Shureenanh Moses lhaa hwangu, neethei neefen lhaa hananh nira Abraham, Isaac, Jacob, rabou lhaa garinnit rapu leipāk nang, nangnanh Egypt naang jhuckou setrapu chābounang nangnanh jhuckou ba̲phawn heynaang prākou vamengrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 2,
+    "text_hd": "Hananh neesānang avei rao gasweyraye, Canaan mih, Amorit mih, Hittie mih, Perizzite mih, Jebusite mihnang hananh galwey zennei.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 3,
+    "text_hd": "Masi nittei rue ka lāngrue longrapu leipāk nang vaarou na vanh chharapu cheh dou sarei ghong nang hananh nacha sy mān chih vapu hananh nacha tasā rachau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 4,
+    "text_hd": "Chābounanh ka̲shihpu chenla ya chwehpei labou chhitalee chhiji seeree sacha ngounou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 5,
+    "text_hd": "Shureenanh Moses lhaa hwangu, nangnanh Irseal chabou lhaa heyhrā hwangrou, na vanh chhālak rapu mihcheh dou, hananh ratatou nanang symanyeo, hananh nanang shonketchi vapu navey seeree lharinrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 6,
+    "text_hd": "Doupura Irseal chābounanh horeb kafung sāpa ba̲lihvey seeree dou galet Iharinnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 7,
+    "text_hd": "Seng zwein rapu rwey",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 8,
+    "text_hd": "Mosesnanh chhirwey dou loye yānaang dikennei vasāu, beinanh chhir- weynang dou meeting rewyra zaneiu, shureenang phara bounanh ya pa̲rama chābou meeting savapu chhirweynang vau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 9,
+    "text_hd": "Mosesnanh gasāngnang vaara reenang chābounanh pavey gasāng mihshanang thozaangye, Mosesnanh gasāng gashong tukpata naang ngaapu zaangye ngou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 10,
+    "text_hd": "Mosesnanh gasāng gashong tukra reenang kanybong rung tlaye gasāng mihshanang thozaangrinnou, Shureenanh Mosescha dlo Iwen mou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 11,
+    "text_hd": "Ganybong rungnanh gasāng mihshanang thozaang rapu chābounanh yotheiu, dimih jangnanh pavey mihshanang thoye khroum mou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 12,
+    "text_hd": "Shureenanh Mosescha gazak garokkei dimihnanh niphou nibra chā dlo lwenra ba̲lengnei dlo Iwenmou, Mosesnanh gasāngnang galetkou van rareenang beivei rao theinabou Nun naa Joshunananh gasāngnaang setcha ngounou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 13,
+    "text_hd": "Mosesnanh shuree lhaa hwangu, zaangrou, chābounang jhuekou vaarou ra nangnanh alha hwangu, hroulee acha tasā vaye rapu mihnang nangnanh alha gatheichou, hananh neenang prin rapu nangnanh asānang theitoura nangnanh hwangrapu neenang naang hananh theitou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 14,
+    "text_hd": "Doupura nee za̲kronnang neevei gayapu hananh theiye hananh neenang chengneyu, nee zakrong nang neevei gaya pu theivapu alha neevei sarei gatheinih rou. Hey pu mihchet nanh neevei mih chehnang ngunyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 15,
+    "text_hd": "Avei pewn suih naang nacha tasā vaaye, nanang sangou kashwen meira beinanh hwangu,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 16,
+    "text_hd": "Neevei pewn suih naang haanang jhuekou vachitatou, heynaang haanang fungkou avanitroura beinanh shuree lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 17,
+    "text_hd": "Neeza̲k ronnang gayapu garok rapu dou ha ka nee mihnanh kahrā theilorou? Nangnanh haacha tasā ratatou dilei manang neemih ka ha ka tleiye theichane?",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 18,
+    "text_hd": "Shureenanh Moses lhaa hwangu, nangnanh hwangrapu yei mou hananh sayeo, nee nan naang hananh neenang theiye nangnanh aza̲k ronnang avej gayapu garokkeiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 19,
+    "text_hd": "Neevei ren alha gatheiroura hananh neenang cheng diketteyura Mosesnanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 20,
+    "text_hd": "Hananh diveipu yei mou neeza̲k ronnang saniu, shuree nan neeza̲k ronnang gayaniu, prin rapu mihnang hananh prinniu, ba̲ya rapu mihnang hananh payāусога beinanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 21,
+    "text_hd": "Nananh ayo theirachau,cayo theima̲kpu mih dou raangyeora shureenanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 22,
+    "text_hd": "Zaangrou, akahrānang, ba̲phawn thaki ngouyeoyo nananh dilun manang thozaangyeora shureenanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 23,
+    "text_hd": "Aren naang rara reenang hananh neenang lunhtla̲knang gatukkeiu, ha nanh rara reenang akuk naang shinniu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 24,
+    "text_hd": "Hananh akuk lora suenang nananh atung yotheiyeo, ayoku yotheichau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 33,
+    "chapter_title": "Zetvapu ka̲swey rapoh",
+    "verse": 25,
+    "text_hd": "EXODUS 34",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 1,
+    "text_hd": "Shureenanh Moses lhaa hwangu, gakhuhpu lun gapākcha rarkita lun gapāk khini gazarou, nangnanh vākha rapu lun gapāk khini manang yāksa̲n rapu dlocha rarkita hananh yāksa̲nniu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 2,
+    "text_hd": "Lha thamāng nangnanh sareng saye Sinai kafung gounang nee pewnsueh naang acha karou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 3,
+    "text_hd": "Chhitalee neecha tasā kashiu, chhitalee theirachau, gafung ba̲ngnang kei mou ya gashāshiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 4,
+    "text_hd": "Mosesnanh gakhwa-avey ba̲lengnei lun gapāk khini gasāu, shureenanh beilha ninnit rapu sue yuingmei Mosesnanh lun gapāk khini bei kuknaang lokou thamāng naang thoye Sinai gafungnang kau",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 5,
+    "text_hd": "Shureenanh ganybong naang tlaye dounang thozaangye, shuree nang ba̲rāye hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 6,
+    "text_hd": "Shureenanh Moses sānang vaye, deimei ra ba̲rāye, gayapu prinrapu, asweita lunhshih rapu, gaphra rapu ka lunlyyan rapunanh phrey dang rapu shuree dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 7,
+    "text_hd": "Lyshan lysha̲ng dirāvey gaywei ka̲yuin ga̲ta diywen phrani lunlyyanulee, ka̲shihpu vāzwen mei sarapu ba̲puhvey diywen dou beina manang, beinavey diywen beitik manang, dung khini dungchhunin tariti nitrapu shuree dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 8,
+    "text_hd": "Mosesnanh galho ko chhiunsa̲nye khorum mou,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 9,
+    "text_hd": "Atue haananh deimei za̲kronnang gayapu garoktatou deimeinanh haacha tasā rani troura hananh chwenjweng meyu, heypu mih chehnanh vanh chhārapu mih chehtoulee haavei diywen phrani neevei funzwikpu lhaapān haanang lonitrou ra Mosesnanh hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 10,
+    "text_hd": "Garin pu nih len rapohang",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 11,
+    "text_hd": "Zaangrou, neecheh za̲kronnang hananh ninnit rapu thaki saye, mih cheh lhaa dilei manang sāma̲kpu ba̲jung gaphā rapu yei saye, shureevey yei mih cheh mounanh theivapu chikajipu hananh satheiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 12,
+    "text_hd": "Sheelung hananh hwangyeo, zaangrou, hananh na za̲kronnang Amorite mih, Canaan mih, Hittite mih, Perzzite mih, Hivite mih, Jebusite mihnang hananh galwey zenneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 13,
+    "text_hd": "Nananh sareng sarou, nananh vaarapu phawnnang leipāk mihcha dlo akarinnitrou, nananh doubouvey gayennang mengvāu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 14,
+    "text_hd": "Nananhnidoubouvey gathengpu phawn syphri nitrou, ba̲lihvey dirunglee sykhanitrou, ba̲lihvey Asherim rung ruinphanitrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 15,
+    "text_hd": "Kathenpu shureenang akhorum nitrou, shuree nannang zaang muk rapunang dou zaangmuk rapu shuree dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 16,
+    "text_hd": "leipāk nang ngoura boucha dlo karinchi vapu, chharapu ni fouboucha praye ba̲lihvey shuree sue yuingchi vapu, ba̲lihvey shuree lhaa sithā ravey ya zwikroura zaaranang zwikchi vapu,",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 17,
+    "text_hd": "Doubou mih nifoubouriang neena lhaa gayetchi vapu, doubou naa nifoubounanh chhaye ba̲lihvey shu reenang gaywei saye, nanaa bounang chhara bou nifoubounarih gaywei rasāye ba̲lihvey shureenang gaywei sareyvāra jirapu ngouyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 18,
+    "text_hd": "Narignanh neelha pān kathenpu shuree asanitrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 19,
+    "text_hd": "Hananh ninnit rapu nananh Egypt naang setrapu Abib lha ba̲reenang zangnak thangi naang dirih sa̲nmakpu ka̲tleng za twei zangrou, dirih sa̲nrapu ka̲tleng zwikchi vapu sareng sarou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 20,
+    "text_hd": "Salo gakhuhpu naa labou dou aveiu, ma̲si yao talo gakhuhpulee aveiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 21,
+    "text_hd": "Sygong talo gakhuhpu dou yao naang chheilorou, chheilo ngunchitatou vanh direilet dingnitrou. Naa labou salo gakhuhpu mou nananh chheiloye chhitaleeaza̲k ronnang kuk katlanta rashiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 22,
+    "text_hd": "Zangna̲k droknaang yei saye dang thangipu naang ngou gashwenrou, lo voulet lo yhettoulet ngou gashwenrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 23,
+    "text_hd": "Zangna̲k thangivey twei, theina lozwik gamāngvey twei, bakun kennei theina mou konrapuvey twei zangrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 24,
+    "text_hd": "Kung kinang labou mou Israelvey shuree za̲kronnang vokchhuin lāk yo gatheiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 25,
+    "text_hd": "Kathenpu chehnang galwey zennei na ngouvapu phawn yāngvapu hananh saniu, kung kinang labou mou vokchhuin lāk shuree lhaa yo gathei rareenang chhinanh talee na leipāk va ngunchau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 26,
+    "text_hd": "Diyi ka yeerih nānye sithashiu, Passover tweinang sithā ravey ya dou khinipu naangngapa lhareeshiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 27,
+    "text_hd": "Nangnanh dileinang langsan rapu theina thei gakhuhu dou neevei shuree rweynang fungkou vakhau. Nananh dinin tata ka ba̲ya nitei khāngnanshiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 28,
+    "text_hd": "Shureenanh Moses lhaa hwangu, nang ka Isreal naaboncha garinnei ha nanh shakhi sarapu dlo mou yāklorou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 29,
+    "text_hd": "Mosesnanh shureecha galhong lhentli, sheebewnma lhentli naang tasā ngouye beinanh ka̲tleng zwikchou diruelee succhou, shureenanh lun gapāknang Karin rapu Dirā dlo yākneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 30,
+    "text_hd": "Moses nanh kafung naang tla rapoh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 31,
+    "text_hd": "Mosesnanh Sinai kafungnaang shakhi sarapu lun gapāk khini kuknaang lokou vanra reenang, Mosesnanh shu reecha dlo Iwenra veynanh beinanh beiza̲k vengrapu theichou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 32,
+    "text_hd": "Aaron ka Isreal chabou Moses yo theira reenang, Moses za̲kvin gayey vengnei ba̲lihnanh beicha shanaye vajinou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 33,
+    "text_hd": "Mosesnanh ba̲lihnang zaye Aaron ka chabou veynaang tengbounanh beicha vaa garokkei dlo Iwenmou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 34,
+    "text_hd": "Suepa Isreal chābounanh ra shanaye Sinai gafungnang shureenanh beicha dlo lwenmei nitrapu dirā (Ten commandment) dou beinanh Ba̲lih lhaa neiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 35,
+    "text_hd": "Mosesnah ba̲lihcha dlo lwen za rasuenang beiza̲k shinrinnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 36,
+    "text_hd": "Mosesnanh ba̲ree jangnang shuree sānang dlo Iwenra reenang za̲k shincha/lwenmei, shureenanh ninnit rapu dlo dou Isreal chabou lhaa vanhwang theiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 37,
+    "text_hd": "Isreal chābounanh Moses za̲kvin vengrapu dou yotheiu, beinanh ba̲lihcha dlo Iwenpata naang beizak dou shuree lennou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 34,
+    "chapter_title": "Lun gapākkhi ninpoh",
+    "verse": 38,
+    "text_hd": "EXODUS 35",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 1,
+    "text_hd": "Isreal chābou mounang Mosesnanh zaazwinlo Ba̲lihlhaa hwangu, shureenanh ninnit rapu nananh sayerapu yei dou heyu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 2,
+    "text_hd": "Zangna̲k drok naang yei sarou, thangipu naang gathengpu Sabbath zangna̲k naang shu reecha ngourou, doupu zangna̲k naang yei sarapu mihnang gashiyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 3,
+    "text_hd": "Na ngourapu phawnnang Sabbath zangna̲k naang mei sashira hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 4,
+    "text_hd": "Shureenanh ninnit rapu dou heyura Mosesnanh Isreal chābou lhaa hwangu",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 5,
+    "text_hd": "Shuree lhaa diket rapoh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 6,
+    "text_hd": "Na ninyaanang shuree lhaa diket ngunrapu sila shana taka tangsueh loraye diketrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 7,
+    "text_hd": "Chhi muk ma ju rapoh, kawapoh, gangoopoh, dinin wā.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 8,
+    "text_hd": "Kawapu rih newnrapu yaovin, dinin, vin, acacia chhang.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 9,
+    "text_hd": "Mei menvapu dho, newnrapu dho, ba̲hruin diveipu frangrant incense.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 10,
+    "text_hd": "Onyz lun, Chānh shinpu ephodnang gaket rapu dilun.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 11,
+    "text_hd": "Natlaknang sathuch rapu mih jangnanh raye shureenanh ninnit rapu mou chhirwey dou sarou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 12,
+    "text_hd": "Gasāngvey shinrapoh, wokzo vapoh, gava, jhuekhen vapoh, dirung chāng.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 13,
+    "text_hd": "Ninnit rapu chhanggong ka douvey dirung, gayapu phawn, chhidhung.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 14,
+    "text_hd": "Table ka douvey dirung, dou vey sila mou, sapavey ka̲tleng.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 15,
+    "text_hd": "Mei gazopoh, douvey sila, dhomei, mei menvapul dho.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 16,
+    "text_hd": "Gathengpu phawnvey ba̲hruin diveipoh, douvey dirung, newnrapu dho, ba̲hruin diveipu franggrant incense, reekhongvey chhidhung chhirweyvey ree khonnang.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 17,
+    "text_hd": "Gathengpu phawnnang ra̲kkei diketrapoh, tangsueh pewn, douvey sila, douvey dirung, dirung chāng, kukza̲kpoh.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 18,
+    "text_hd": "Karoknang dhungrapoh, douvey dirung, dirung chāng, karok mihshavey chhidhung.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 19,
+    "text_hd": "Chhirwey shalwey wokzopoh, chhirweyvey shalwey.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 20,
+    "text_hd": "Gatheng pu phawnnang yei savapu chhiji diveipoh, Aaron ka bei nabounanh ba̲ngmonvey yei savapu chhiji gathengpoh.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 21,
+    "text_hd": "Moses veynaang Isreal chabou mou prākou lennou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 22,
+    "text_hd": "Ninyaa chen thophrey rapu mih, manglhaananh theirapu mih, mounanl shuree lhaa di ket vapu sila chhiji gathengpu lokou meeting rweynang rau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 23,
+    "text_hd": "Nifou bou labou paninyaanang nitngunpu, reegongtei, kukrwey, kukswei shana cheh shuree thaa diket vapu mounanh lokou rau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 24,
+    "text_hd": "Dimih jangnanhthei rapu mukmaju rapu, kawapu, gangoopu, dinin wā, dirih newnravey yaovin, dinin vin, ba̲lihnanh lokou rau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 25,
+    "text_hd": "Pananh nitngun rapu taka tangsuch shuree lhaa diket dou, pananh garok rapu acacia chhang, lok ou rau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 26,
+    "text_hd": "Nifoubou chhi ra̲kthei rabounanh kuknaang ra̲kravey chhi mukma̲ju, wadiyee rapoh, kawapoh, gangoopoh, lokou rau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 27,
+    "text_hd": "Nifoubou ninyaa diveipu mihnanh dinin wāvey chhi ra̲kneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 28,
+    "text_hd": "Divaang mihnanh onyz lun chānh shinpu ephodnang gaket rapu dilun lokou rau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 29,
+    "text_hd": "Mei menvapudho, ba̲hruin diveipu frangrant incense lokou rau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 30,
+    "text_hd": "Isreal chābou nifoubou labou mou Mosesnanh ninnit rapu shureevey yei savapu sila mou shuree lhaa ra diket dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 31,
+    "text_hd": "Bezalel ka laho leinang zaa rapoh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 32,
+    "text_hd": "Isreal chābou lhaa Mosesnanh hwangu, zaangrou, Judah cheh Hur naa Uri naa Bezalel nang shureenanh zayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 33,
+    "text_hd": "Yei mou gashi theiye savapu ren, shureevey manglhaa ren phreydangra beinang ngouyeo-u.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 34,
+    "text_hd": "Shana taka tangsueh sathei rapu loshan.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 35,
+    "text_hd": "Beinanh dilun phranye gachhang phrangye rālapuyei gashih vāpu shureenanh ren nei-u.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 36,
+    "text_hd": "Bei ka dancheh oholiab naa, Ahisamachnang gashih vapu, losha̲ng nei-u ma̲ju wa diyee rapu kawapu, gangoopu, kabrewm naang khokrapu yei sathei rapu ba̲yāk sa̲nye seeree sarapu ralapu yei savapu ren beinang phreydangra ngouyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 35,
+    "chapter_title": "(Sabbath) māk vey basheh",
+    "verse": 37,
+    "text_hd": "EXODUS 36",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 1,
+    "text_hd": "Shureenanh kaswey rapu yei dou gathengpu bou yei savapu ralapu yei sathuch vapu loshan shureenanh ni, losha̲n gashih kamangjicha      tavā Bezalel ka Oholiab rabounanh yei dou sayera Isreal naabou lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 2,
+    "text_hd": "Dousuenang Bezalel, Oholiab, shureenanh losha̲n ni, yei satha rabou, ninyaa sanrabou kamangnang Mosesnanh zau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 3,
+    "text_hd": "Gathengpu phawnvey yei savapu, Isreal chābounanh ra diket rapu sila Moses kuknaang ba̲lihnanh lo-u, kaphrā rapu ninyaa ngoura bounanh thamān glee ra diket dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 4,
+    "text_hd": "Gathengpu phawnnang yei sarabou loshan gashih rabounanh ralapu yei sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 5,
+    "text_hd": "Shureenanh gaswey rapu yeita sacha, galengnei fungkou ratoura Moses lhaa rahwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 6,
+    "text_hd": "Gathengpu phawnnang diket rapu dou labou nifoubou mou galengnei sashira yā mounang Mosesnanh gayaneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 7,
+    "text_hd": "Garok rapu dou saye rapu yei sazaye ba̲ren sālennou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 8,
+    "text_hd": "Gatheng punang sarapoh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 9,
+    "text_hd": "Gathengpu phawnnang yei sarapu mihnanh chhi gangoopoh, mukmaju katlākpou, wādiyeerapoh, gawapoh, rakthei rabounanh chhi gangoopunang cherubim yosasa̲nye chhidhung dirā sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 10,
+    "text_hd": "Chhidhung dou sānsha kuklhueh ku, sa diyet, yānsha kuklhueh ba̲tli, chhidhung mou rarkitau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 11,
+    "text_hd": "Chhidhung dou chhi ba̲ngā jin thata saye khokzwikbou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 12,
+    "text_hd": "Gakhuhpu chhidhung ba̲sānang chhi mukmaju naang barue gaket dou, chhidhung khin- ipu ba̲sānanglee rarkita ba̲rue gaket dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 13,
+    "text_hd": "Chhidhung thakivey ba̲sānang wokzwik vapu ba̲rue dinewn gaketteiu, chhidhung kathenpunanglee ba̲rue dinewn gakettei ba̲rue kabarue garokza̲kra sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 14,
+    "text_hd": "Beinanh wokzo vapu shana soo dinewn saye chhidhung dou wokzwikpei chhirwey mou thata sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 15,
+    "text_hd": "Chhirwey shinvapu dinin wā chhi thalān ra̲kkeiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 16,
+    "text_hd": "Chhidhung dou sānsha kuklhuch tharā, yānsha kuklhueh ba̲tli, chhidhung thālan dou sānsha yānsha rarkitayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 17,
+    "text_hd": "Chhidhung ba̲ngā thaket khokzwikpeiu dirok thakikhoh zwik peiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 18,
+    "text_hd": "Chhi dhung thaki pa̲sanang ba̲rue dinwen, chhidhung thaki ba̲sānang parue dinwen saye kazwikbou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 19,
+    "text_hd": "Beinanh tangsuch pewn dinwen saye chhi rwey bakon gazwik pei thata sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 20,
+    "text_hd": "Chhirwey dou shinvapu beinanh dirih kawa pu newnrapu yaovin ka dinin vin sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 21,
+    "text_hd": "Chhirwey ba̲rānma acacia chhangvey gava naang dhungvapu beinanh sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 22,
+    "text_hd": "Gava dou sānsha kuklhueh dirā, yānsha kuklhueh thaket khekket.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 23,
+    "text_hd": "Chhirweyvey gava mou dou bachāng khiniting rarkita sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 24,
+    "text_hd": "Chhirwey lhangpu shapa dhungvapu gava ku sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 25,
+    "text_hd": "Gava kuvey bachāng khini khinin takavey sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 26,
+    "text_hd": "Mapu shapa dhungvapu gava kulee sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 27,
+    "text_hd": "Gava chāng lhentli takavey saye gava thakinang ba̲chāng khini gaketteiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 28,
+    "text_hd": "Suepa dhungvapu gava drok sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 29,
+    "text_hd": "Dikun dhun gvapu gava khinilee sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 30,
+    "text_hd": "Māpa shunpa ba̲rue kakettei dikun khini gamennou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 31,
+    "text_hd": "Gava diyet takavey ba̲chāng droklan, gava thakinang khini gaket dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 32,
+    "text_hd": "Chhirwey dhungrapu gava jhuethāk vapu acacia chhang naang sāka ba̲ngāting chhangrwei sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 33,
+    "text_hd": "Chhirwey suepa dhungrapu gava jhuethāk vapu chhangrwei bangā sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 34,
+    "text_hd": "Ba̲ran ba̲lanang jhuethāk vapu chhang rwei dikun sākting vakenneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 35,
+    "text_hd": "Gava dou shana rue newn meiu, chhang rwei ruelee shana naang saye chhangrweinanglee shana rue newn neiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 36,
+    "text_hd": "Chhi mukmajuwadiyce rapu gawapu, gangoopu naang saye cherubim yosasa̲nye beinnanh sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 37,
+    "text_hd": "Acaciavey dirung ba̲tli saye shana rue newn mei shana soo gakettei takavey ba̲chāng ba̲tli gakettei beinanh sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 38,
+    "text_hd": "Chhirwey reekhonnangvey chhidhung mukmaju, wadiyee rapu, kawapu, gangoopu naang beinanh sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 39,
+    "text_hd": "Dirung ba̲ngāvey kasoo, ba̲rannang shana newnye tangsuihvey ba̲chāng ba̲ngālee beinanh sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 36,
+    "chapter_title": "Kaleng nei diket rapohdinta",
+    "verse": 40,
+    "text_hd": "EXODUS 37",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 1,
+    "text_hd": "Bezalelnanh ninnit rapu chhang gong thaki acacia chhang naang sau sānsha kuklhueh khini khekket, yānsha kuklhueh thaket khekket, kajopu kuklhueh thaket khekket sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 2,
+    "text_hd": "Beinanh māpa shunpa shana newnmei mou shana newnhong mou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 3,
+    "text_hd": "Dikun ba̲tlinang shanavey ba̲rue gaket dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 4,
+    "text_hd": "Khenvapu chhang acacia naang saye shana newnmou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 5,
+    "text_hd": "Ninnit rapu chhanggong dou khenvapu chhangphei dou ba̲ruenang sanye.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 6,
+    "text_hd": "Shanavey gayapu phawn beinanh saye, sānsha kuklhueh khini khekket, yānsha kuklhueh thaket khekket, beinanh sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 7,
+    "text_hd": "Shanavey cherubim khini beinanh saye sānsha thating shana naang shākyennou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 8,
+    "text_hd": "Cherubim khini dou sāpa ba̲ranang thaket suepa ba̲rānang thaketra beinanh gaket dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 9,
+    "text_hd": "Cherubim khinivey tapra lhengnei gayapu phawnnang gayue saye cherubim khini dou gaza̲k garokkei gayapu phawnnang zaangsa̲nye beinanh gaket dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 10,
+    "text_hd": "Ka̲lanpu sarapohistibaren",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 11,
+    "text_hd": "Beinanh acacia naang table saye sānsha kuklhueh khini, yānsha kulhuch thaket, kajopu khekket sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 12,
+    "text_hd": "Beinanh shana zihnaang newnye mou newnhong mou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 13,
+    "text_hd": "Ba̲sā thweipu kukphā rukki dhunghon mei beinanh sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 14,
+    "text_hd": "Beinanh shanavey ba̲rue ba̲tli salo dikun ba̲tlinang gakettei ba̲chāng ba̲tlilee sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 15,
+    "text_hd": "Barue dou gavanang gakettei Table khenvapu chhangphei dou ba̲ruenang beinanh kajhuesanye sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 16,
+    "text_hd": "Table khenvapu chhangphei dou beinanh acacia naang saye shana newnmou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 17,
+    "text_hd": "Table manang lharee rapu sila dou beinanh shana naang sau ghong kabrapoh ghong ba̲hruin diveipu ghong ghongzen ghong kashukpoh lungluh vapu kalashi sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 18,
+    "text_hd": "Dimei ka̲zo poh sarapoh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 19,
+    "text_hd": "Shanavey mei gazopoh mei ka zopu dou bachānh banā shākyennei sayeo douvey baranpu fafentei babunglee sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 20,
+    "text_hd": "Douvey ba̲chānh drok kaketteiu sāka ba̲chānh ka̲chhuin sāka ba̲chānh ka̲chhuin ra gaket teiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 21,
+    "text_hd": "Ba̲bung ka̲chhuin almond chhang theitei ba̲leng sayeo ba̲chānh thaki barannang fafentei ba̲bung ka̲chhuin almond thejtei ba̲leng sayeo ba̲chānh thaki ba̲rannang fafentei mei kazopu rungnang ba̲chānh drok sa ket dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 22,
+    "text_hd": "Mei kazopu rung ba̲rannang almond theitei ba̲leng babung ba̲tli sayeo ba̲rannang fafentei sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 23,
+    "text_hd": "Dirung thakinang ba̲chānh ba̲nā drok gaketteiu vā thei tei thatin dhāng yeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 24,
+    "text_hd": "Dirung thakinnang ba̲chānh banā dou samen vapu shana zihnaang shākyenneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 25,
+    "text_hd": "Dhomei thangi khochehpoh ka lānglo vapulee shana zihnaang beinanh sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 26,
+    "text_hd": "Mei ka̲zopuvey sila mou dou beinanh shana zih joki naang sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 27,
+    "text_hd": "Bahruindi vei pu ra̲kva pu phawnsa rapoh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 28,
+    "text_hd": "Ba̲hruin diveipu ra̲kvapu gathenpu phawn dou beinanh acacia naang sau sānsha kuklhuch thaket yānsha kuklhuch thaket sānsha yānshararkitau kajopu kuklhuch khini ba̲chihlee gaket dou. Mapa ba̲rānma mou ba̲chih shana newnmei beinanh sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 29,
+    "text_hd": "Khenvapu paranma ba̲rue khini shanavey sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 30,
+    "text_hd": "Khenvapu chhangphei dou acacia naang saye shana newnmou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 31,
+    "text_hd": "Ba̲hruin diveipu frangrant incense, ralapu nanravey dho lee beinanh sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 37,
+    "chapter_title": "Ninnih rapu chhang gongsarapoh",
+    "verse": 32,
+    "text_hd": "EXODUS 38",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 1,
+    "text_hd": "Mei ra̲kkei diket rapu gathengpu phawn dou acacia naang sānsha kuklhueh bangā, sānsha yānsha rarkitau, kajopu kuklhueh kachhuin beinanh sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 2,
+    "text_hd": "Beinanh dikun ba̲tlinang ba̲chih ba̲tli sasanye ba̲chihnang dou tangsuih gangoopu newnmou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 3,
+    "text_hd": "Gathengpu phawnvey sila dou diwon, leisokpoh, ghong khoyānpoh, ghongzen theiprakpoh, ghong kabrapoh, mou beinanh tangsuih gangoopu naang sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 4,
+    "text_hd": "Tangsuih gangoopuvey gayāngpu ra̲klo barā dhungpu lhangnang ba̲rannang sa̲nyco.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 5,
+    "text_hd": "Dikun ba̲tlinang khenvapu ba̲rue ba̲tli sasa̲ngye khenvapu chhangpheilee sasa̲nyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 6,
+    "text_hd": "Khenvapu chhangphei dou acacia chhang naang saye tangsuch gangoopu newnmeiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 7,
+    "text_hd": "Gathengpu phawn dou khenvapu chhangphei dou ba̲ruenang gajhuesanye gatlanta beinanh sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 8,
+    "text_hd": "Khyangkong sarapoh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 9,
+    "text_hd": "Meeting rweyvey reekhong munnang yei sarapu nifoubouvey tangsuih loye beinanh kuk za̲kpu ka ba̲chāng sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 10,
+    "text_hd": "Beinanh lhangpa karok saye dou vey chhidhung kuklhuch chā chhidgangoopu naang sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 11,
+    "text_hd": "Douvey dirung ku ba̲chāng ku tangsuih gangoopu naang sau, douvey gasoo dou taka naang sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 12,
+    "text_hd": "Mapalee kuklhuch chā saye, douvey dirung chā ba̲chāng chā tangsuih naang sau, douvey gasoo dou tangsuih gangoopu naang sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 13,
+    "text_hd": "Suepalee kuklhuch dinewn naang dhung ye douvey dirung dirā, Meithei dirā, dirungvey gasoolee taka naang sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 14,
+    "text_hd": "Sāpalee kuklhuch dinewn ngouyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 15,
+    "text_hd": "Reekhon sau sāka kuklhuch ngā lan naang dhungyeo, dirung kachhuin ba̲chāng ka̲chhuin saua",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 16,
+    "text_hd": "Karokvey sāk sāka kuklhueh ngālan naang dhungye, dirung ka̲chhuin ba̲chāng kachhuin sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 17,
+    "text_hd": "Karokvey mou chhi kangoopu naang dhungu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 18,
+    "text_hd": "Dirung chāng tangsuih gangoopu naang saye, dirungvey kasoo dou taka naang saye, bara̲nnang taka rue newnye, karokvey dirung mou taka ruenaang mou newnmou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 19,
+    "text_hd": "Karokvey chhidhung dou katlākpu, wadiyee rapu, kawapu, gangoopu, kuklhueh ku, kajopu kuklhueh ba̲ngā, yānsha rarkita dhungu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 20,
+    "text_hd": "Douvey dirung ba̲tli, tangsuih gangoopuvey ba̲chāng batli, douvey kasoo taka naang sau ba̲rannang taka rue newnmou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 21,
+    "text_hd": "Chhirweyvey ba̲lwey wokzo vapu chhang dou tangsuih gangoopu galangtau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 22,
+    "text_hd": "Gatheng pu vey siree",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 23,
+    "text_hd": "Devi naabounanh chhirwey yei sarapu taka dou bangmon kareipu Aaron naa Ithamarnanh bhralo vapu Mose- snanh ninnin shakhi sanciu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 24,
+    "text_hd": "Shureenanh Moses lhaa ninnit rapu yei mou Judah cheh, Uri, Uri naa Bezalel nanh sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 25,
+    "text_hd": "Bezalelcha tasā Dan cheh Ahisa mach naa Oholiabnanh chhỉ katlākpu, wadiyee rapu, kawapu, gangoopu gashi.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 26,
+    "text_hd": "Gathengpu yei savapu shana, taka chā thangi tharā, jo ku sa dikou ra diket dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 27,
+    "text_hd": "Dimih bhralo rapu chabou veynaang garok rapu taka jo chā, taka lysha̲n thaket chathangi tharā sa ba̲ngā, gathengpu yei sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 28,
+    "text_hd": "Dimih ba̲kun kunaang mapa bhralo rabou dimih lysha̲n chā drok ka̲ chhiun chāngā dinewn, nanh taka sākating neiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 29,
+    "text_hd": "Ba̲chāngnang taka jo dirāting tukkei, chhirweynang takavey bachāng taka jo lysha̲n thaket, shunpavey chhidhung bachāngnang chā sasa̲nnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 30,
+    "text_hd": "Dirung, dirungvey kasoo, bara̲nnang newnrapoh, taka lyshan chā thangi thara sa pangā tukgou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 31,
+    "text_hd": "Diket rapu tangsuih gangoopu jo lhenthangi, taka lysha̲n khini chatliu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 32,
+    "text_hd": "Meeting savapu reekhon chang, Gathengpu phawnvey dirung chāng. Douvey sila savapunang tukrapu tang suih mou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 33,
+    "text_hd": "Karokvey dirung chāngnang sa̲nrapoh, karok reekhonvey dirung chāng, chhirwey shalwey wokshinpu chhang mou, karokvey shalwey wokshinpu chhang mou savau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 38,
+    "chapter_title": "Ra̲kkei diket rapurweysarapoh",
+    "verse": 34,
+    "text_hd": "EXODUS 39",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 1,
+    "text_hd": "Shureenanh Moses lhaa ninitrapu sue yuingmei Aaronnanh gatheng pu phawnnang vakou yei savapu, katlākpu, wadiyee rapu, kawapu, gangoopu ra̲kkei chhi gathengpu saneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 2,
+    "text_hd": "Chhi katlākpu, wadiyee rapu, kawapu, gangoopu ra̲kkei beinanh shanavey ephod sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 3,
+    "text_hd": "Chhi katlākpoh, wadiyee rapoh, kawapoh, gangoopu, chhi manang shanavey chhangwā sasa̲nneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 4,
+    "text_hd": "Chānh shinpu ba̲sānang tapralwey khini dou wokzoyee ba̲lih nanh sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 5,
+    "text_hd": "Shureerianh Moses lhaa ninnit rapu sue yuingmei, ba̲lihnanh chhi katlākpoh, wadiyee rapoh kawa-poh, gangoopu chhi ra̲kkei, shana sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 6,
+    "text_hd": "Kuksweinang ba̲yāk sasa̲nrā ba̲lengnei, onyx lun phranh ganakkei shananang ba̲yāk sasanye Israel naabou nan yāksanneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 7,
+    "text_hd": "Shureenanh Moses lhaa ninnit rapu sue yuingmei, Isreal naabounang ba̲ninlo vapu ephod Iwey manang dilun gaket dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 8,
+    "text_hd": "Chānh shinpu ephodvey yei dou shana,chhi katlākpu, wadiyee rapu, ka̲wapu, gangoopu naang sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 9,
+    "text_hd": "Chānh shinpu dou kong khini saye sānsha khekket, yānsha khekket rarkita sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 10,
+    "text_hd": "Dilun dou ba̲lihnanh ba̲ren patli gaket dou,gakhuhpu ba̲rennang sardius, topas, carbuncle.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 11,
+    "text_hd": "Ba̲ren khinipunang, emerald, sapphire, diamond.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 12,
+    "text_hd": "Paren kachhuinpunang jacinth, agate, amethyst.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 13,
+    "text_hd": "Ba̲ren ba̲tlipunang beryl, onyx; jasper, ba̲lihnanh shana naang bayāk sasa̲nneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 14,
+    "text_hd": "Kuksweinang ba̲yāk sasan ra ba̲lengnei, Isreal cheh khinilān nang dou dilun khinilān naang sasanneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 15,
+    "text_hd": "Ba̲lihnanh chānhshinpu Iwey dou shalwey direira ba̲lengnei shana zihnaang direilo gaketneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 16,
+    "text_hd": "Ba̲lihnanh bayāk sasan rapu shanavey ba̲rue khini saneiu, shanavey ba̲rue khini dou chānhshinpu dikun khininang gaket dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 17,
+    "text_hd": "Shanalwey khini dou chānhshinpu dikun khiņivey baruenang kaket dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 18,
+    "text_hd": "Ba̲yāk sasa̲n ravey shanalwey dou lha̲ngpa dikun ka tapra sākpa ephoh dikunnang kaket dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 19,
+    "text_hd": "Ba̲lihnanh shanavey parue khini saye chanhshinpu ephodvey sāka dikun khin inang ba̲rue khini dou kaket dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 20,
+    "text_hd": "Ba̲lihnanh shanavey ba̲rue khini salo chānh shinpu ephodvey, dikun lhangpa kaket dou, ephodvey dikun Ihangpu ka mapu dikunnang salo kaket do-u.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 21,
+    "text_hd": "Chānhshinpu ephodvey dikun barue nang kaket rapu shalwey dou katlākpu naang sayco, shureenanh Moses lhaa ninnit rapu sue yuingmei, chanh shinpu ephodvey baruenang kaket rapu shalwey dou chhenglocha lhareeyanyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 22,
+    "text_hd": "Chhi katlākpu naangta rāklo ephodcha vara pu chhikhrewy gayokpu beinanh sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 23,
+    "text_hd": "Chhikhrewy kayokpu vanhkou dou sysākchi vapu barā woye rakhāk ra balengnei sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 24,
+    "text_hd": "Chhi katlākpu, wadiyee rapu kawapu, gangoopu naang balihnanh pomegranate chhang theitei yo sasanneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 25,
+    "text_hd": "Chhi ba̲ranang shanavey khrantei salo pomegranate tlaknang Ba̲lihnanh gåket dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 26,
+    "text_hd": "Shureenanh Moses lhaa ninnit rapu sue yuingmei yei savapu chhikhrewy ba̲sānang shana khrantei ka pomegranate chhangtheitei khotlakkei gaket hongmou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 27,
+    "text_hd": "Aaron ka bei nabou lhaa yei savapu chhi gangoopu naang chhikhrewylee Ba̲lihnanh ra̲kkei saneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 28,
+    "text_hd": "Chhi gangoopu naang kourwenpoh,rakhāk, khanen saneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 29,
+    "text_hd": "Shureenanh Moses lhaa ninnit rapu sue yuing mei chhi katlakpoh, wadiyce rapoh, gangoopu naang kuknaang khokkei ronkhokpulee saneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 30,
+    "text_hd": "Ba̲lihnanh shanavey gathengpu rakhāk salo, kuksweinang yākrā ba̲lengnei rakhāk manang shuree gathengpoura yāksanneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 31,
+    "text_hd": "Shureenanh Moses lhaa ninnit rapu sue yuingmei ko rwenpu manang suezo vapu chhi katlākpu naang Ba̲lihnanh ba̲rue saneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 32,
+    "text_hd": "Chhirwey sara poh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 33,
+    "text_hd": "Shureenanh Moses lhaa ninnit rapu yei dou Israel naabounanh chā bou vey meeting rweyvey yei mou ba̲lihnanh sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 34,
+    "text_hd": "Ba̲lihnanh chhirwey, douvey sila, wokzo vapu gasoo, gava, chhangrwei, dirung, dirungchāng, Moses lhaa lokou raneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 35,
+    "text_hd": "Māpa shinvapu dirih newravey yaovin, dinin vin, reekhon chhidhung.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 36,
+    "text_hd": "Karin rapu shakhi sa̲nrapu ninnit rapu chhanggong ka khenvapu chhangphei.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 37,
+    "text_hd": "Table ka douvey sila, sāpavey katleng.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 38,
+    "text_hd": "Mei gazopu ka dhomei, douvey sila, mei menvapu dho.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 39,
+    "text_hd": "Shanavey gathengpuphawn, newnrapu dho, ba̲hruin diveipu fragrant incense, chhirwey reekhonvey chhidhung.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 40,
+    "text_hd": "Tangsuih gangoopuvey gathengpu phawn, tangsuihvey gayaangpoh, douvey sila, chhangphei, kuka za̲kpu ghong,dirungchāng.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 41,
+    "text_hd": "Karokvey dirung, dirungchāng, mihshavey  chhidhung, chhidhur douvey shalwey, shalwey wokzopu chhang, meetingvey chhirweynang yei savapusila.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 42,
+    "text_hd": "Aaron ka bei nabounanh gathengpu phawnnang yei savapuvey chhi gathengpoh.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 43,
+    "text_hd": "Shureenanh Moses lhaa ninnit rapu yei mou dou Israel chabounanh sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 44,
+    "text_hd": "Shureenanh gaswey rapu yei mou dou ba̲lihnanh sazaye dou Mosenanh vaazaangye ba̲lihnang chengnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 39,
+    "chapter_title": "Pang mon vey chhiji",
+    "verse": 45,
+    "text_hd": "EXODUS 40",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 1,
+    "text_hd": "Shureenanh Moses lhaa hwangu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 2,
+    "text_hd": "Meetingvey chhirwey dou kakhuhpu lhā,kakhuhpu zangna̲k naang sayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 3,
+    "text_hd": "Karin rapu shakhi sarapu ninnit rapu chhanggong dous chhirwey gashong tuklhāye nananh chhidhung dhungrinnciu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 4,
+    "text_hd": "Nananh table ka mei ka̲zopulee tuklhaye mei kazooyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 5,
+    "text_hd": "Ba̲hruin diveipu ra̲kvapu shanavey gathengpu phawn dou ninnit rapu chhanggong kahrānang tuklhāye chhidhungrinneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 6,
+    "text_hd": "Mei ra̲kkei sithā vapu shanavey gathengpuphawnlee meeting rweyvey reekhong munnang lharinneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 7,
+    "text_hd": "Kuk za̲kpu ghonglee dirue sanlo meeting kāpu rwey ka gathengpuphawn tlaknang lhayeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 8,
+    "text_hd": "Nananh karók lhahon mei karok mihsha chhidhung khongrinrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 9,
+    "text_hd": "Nananh newnrapu dholoye chhirwey ka doupu shungnang lharee rapu silanang newnye sathennei gathengpu sarou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 10,
+    "text_hd": "Mei rakkei sithā vapu phaw nanglee nananh dho newnrou, douvey silananglee newnmei gathengpu phawn thengvapu sarou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 11,
+    "text_hd": "Nananh kuk za̲kpu ka ba̲chāngnang newnmei sithengrou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 12,
+    "text_hd": "Aaron kabeinabounang meeting rwey reekhong munnang zakou vanye dirue saprarou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 13,
+    "text_hd": "Beinanh avei pangmovey yei savapu Aaron lhaa chhi gathengpu gavarou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 14,
+    "text_hd": "Aaron naabou lhaalee chhikhrewy gavārou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 15,
+    "text_hd": "Bei puh lhaa newnnitra ba̲lengnei bei nabou lhaalee dho newnni avei pangmonvey yei savapu ba̲lihnanglosa̲nye, ba̲lihvey batung jangnang pangmonvey yei sayanyeo.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 16,
+    "text_hd": "Shureenanh Moses lhaa ninnit rapu mou Mosesnanh sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 17,
+    "text_hd": "Kung khinipuolha gakhuhpuvey zangna̲k dogakhuhpu naang Mosesnanh chhirwey sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 18,
+    "text_hd": "Mosesnanh chhirweyvey dirung chāng laangye, gava dhungye, phān pheipu sanye, dirung langu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 19,
+    "text_hd": "Shureenanh Moses lhaa ninnit rapu sue yuingmei, Mosesnanh chhi rwey mapa shinnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 20,
+    "text_hd": "Karin rapu shakhi dou beinanh loye ninnit rapu chhanggongnang sa̲nye, chhangphei sa̲nye, ninnit rapu chhanggong manang gaya pu phawn kaket dou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 21,
+    "text_hd": "Ninnit rapu chhanggong dou beinanh chhirwey shungnang vanlhau, shureenanh Moses lhaa ninnit rapu sue yuingmei.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 22,
+    "text_hd": "Karin rapu shakhi sa̲nrapu chhanggong dou chhidhung naang dhungrinnou. Beinanh table dou meeting rweynang sanrinnou, māpa chhirwey chhidhung ba̲rānma lharinnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 23,
+    "text_hd": "Shureenanh Moses lhaa ninnit rapu sue yuingmei, shuree sānang katlenglee lhau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 24,
+    "text_hd": "Chhirwey lhangpa tablecha gaza̲k garokkei beinanh mei kazopu lee lhau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 25,
+    "text_hd": "Shureenanh Moses lhaa ninnit rapu sue yuingmei shuree sānang dhömeilee lhau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 26,
+    "text_hd": "Chhidhung sānang meetingrwey kashong shanavey gathengpú phawn beinanh lhau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 27,
+    "text_hd": "Shureenanh Moses lhaa ninnit rapu sue yuingmei ba̲hruin diveipu frangrants incense doupu manang meinaang ra̲kgou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 28,
+    "text_hd": "Chhirwey reekhonvey chhidhunglee beinanhdhung khonmou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 29,
+    "text_hd": "Shureenanh Moses lhaa ninnit rapu sue yuingmei, meeting rwey kashonga beinanh mẹi ra̲kkei sithā vapu gathengpu phawnlee Ihau doupu manang ba̲hruin diveipu ra̲kkei sithau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 30,
+    "text_hd": "Gathengpu phawn ka chhirwey tlāknang beinanh kuk za̲kvapu ghonglee dirue sa̲nlo lhaneiu.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 31,
+    "text_hd": "Mosescha      tavā Aaron ka bei nabounanh chāngkuk za̲kgou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 32,
+    "text_hd": "Ba̲lihnanh meeting rweynang vaara reenang, shureenanh Moses lhaa ninnit rapu sue yuingmei gathengpu phawnnang shana rareenang ba̲lihnanh chāngkuk phrau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 33,
+    "text_hd": "Mosesnanh chhirwey ka gathengpu phawnnang karok sahongmei, karok mihshavey chhidhung sa̲nye yei mou Mosesnanh sau.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 34,
+    "text_hd": "Chhi rwey nang gany bong bong ren rapoh",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 35,
+    "text_hd": "Chābou meeting rweynang ganybongnanh shinrinnou, shureevey ren lee chhirwey phreydang rinnou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 36,
+    "text_hd": "Mosesnanh chhirwey kashonga tukrā chinnou, māpa ganybong ngouye chhirwey phreydangra shureevey ren ra ngounou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 37,
+    "text_hd": "Israel naabounanh ywengphānang zetra reenang ganybongnanh māpa diken ranangta ba̲lihnanh sarei zetdou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 38,
+    "text_hd": "Ganybong dou dikennei kachi tatou zangna̲k kinaanglee vaacha tangou.",
+    "text_en": "",
+    "text_mm": ""
+  },
+  {
+    "book": "Exodus",
+    "chapter": 40,
+    "chapter_title": "Gathengpu chhi rwey diket rapoh",
+    "verse": 39,
+    "text_hd": "Israel naabounanh vaavan rapu jangnang galhong ganybongnanh jhuekou zetdou, sheebewnma meinanh jhuekou zetdou.",
+    "text_en": "",
+    "text_mm": ""
+  }
+]
+
+export const OLD_TESTAMENT_BOOKS = [
+  "Genesis",
+  "Exodus",
+  "Leviticus",
+  "Numbers",
+  "Deuteronomy",
+  "Joshua",
+  "Judges",
+  "Ruth",
+  "1 Samuel",
+  "2 Samuel",
+  "1 Kings",
+  "2 Kings",
+  "1 Chronicles",
+  "2 Chronicles",
+  "Ezra",
+  "Nehemiah",
+  "Esther",
+  "Job",
+  "Psalms",
+  "Proverbs",
+  "Ecclesiastes",
+  "Song of Solomon",
+  "Isaiah",
+  "Jeremiah",
+  "Lamentations",
+  "Ezekiel",
+  "Daniel",
+  "Hosea",
+  "Joel",
+  "Amos",
+  "Obadiah",
+  "Jonah",
+  "Micah",
+  "Nahum",
+  "Habakkuk",
+  "Zephaniah",
+  "Haggai",
+  "Zechariah",
+  "Malachi"
+]
+
+export const NEW_TESTAMENT_BOOKS = [
+  "Matthew",
+  "Mark",
+  "Luke",
+  "John",
+  "Acts",
+  "Romans",
+  "1 Corinthians",
+  "2 Corinthians",
+  "Galatians",
+  "Ephesians",
+  "Philippians",
+  "Colossians",
+  "1 Thessalonians",
+  "2 Thessalonians",
+  "1 Timothy",
+  "2 Timothy",
+  "Titus",
+  "Philemon",
+  "Hebrews",
+  "James",
+  "1 Peter",
+  "2 Peter",
+  "1 John",
+  "2 John",
+  "3 John",
+  "Jude",
+  "Revelation"
+];
