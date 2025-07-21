@@ -1,51 +1,70 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, FlatList, SafeAreaView } from 'react-native';
 
-import { getChaptersByBook, getVersesByBook } from '../../services/DatabaseService';
-import { NEW_TESTAMENT_BOOKS, OLD_TESTAMENT_BOOKS } from '../../assets/seeder/data';
+// import { getChaptersByBook, getVersesByBook } from '../../services/DatabaseService';
+// import { NEW_TESTAMENT_BOOKS, OLD_TESTAMENT_BOOKS } from '../../assets/seeder/data';
 import ChevonDownIcon from '../../components/icons/ChevonDownIcon';
 import ChevonUpIcon from '../../components/icons/ChevonUpIcon';
+import DatabaseService from '../../services/DataService';
 import { AppColors } from '../../constants/Color';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrent } from '../../store/slices/readerSlice';
+import { CurrentRead } from '../../types/reader';
 
 const Bible = ({ navigation }: any) => {
+    const dispatch = useDispatch();
     const device = useSelector((state: any) => state.device);
     const [activeTab, setActiveTab] = useState<'old' | 'new'>('old');
     const [verses, setVerses] = useState<any[]>([]);
     const [selectedBook, setSelectedBook] = useState('');
+    const [selectedBookObj, setSelectedBookObj] = useState<any>(null);
     const [selectedChapter, setSelectedChapter] = useState(1);
     const [bookList, setBookList] = useState<any[]>([]);
     const [chapterList, setChapterList] = useState<any[]>([]);
+    const [oldTestamentBooks, setOldTestamentBooks] = useState<any[]>([]);
+    const [newTestamentBooks, setNewTestamentBooks] = useState<any[]>([]);
 
     useEffect(() => {
-        // loadVerses(selectedBook);
+        loadBooks();
     }, []);
 
-    const loadVerses = async (book: string) => {
-        setSelectedBook(book);
-        console.log('loadVerses', book);
+    const loadBooks = async () => {
         try {
-            const result = await getVersesByBook(book);
-            setBookList(result || []);
-            setChapterList(result[0].chapters || []);
-            console.log('bookList', result);
-
+            DatabaseService.getInstance().getAllBooks().then((result: any) => {
+                setBookList(result || []);
+                setOldTestamentBooks(result.filter((book: any) => book.testament === 'OT'));
+                setNewTestamentBooks(result.filter((book: any) => book.testament === 'NT'));
+            });
         } catch (error) {
-            console.error('Error loading verses:', error);
+            console.error('Error loading books:', error);
         }
     };
 
-    const handleChapterPress = (book: string, chapter: any) => {
+    const handleChapterPress = (book: any, chapter: any) => {  
         console.log('handleChapterPress', book, chapter);
-        navigation.navigate('Reader', { book: book, chapter: chapter.chapter, verse: 1 });
+        const reader: CurrentRead = {
+            bookName: book.name,
+            bookId: book.id,
+            chapterId: chapter.id,
+            chapterNumber: chapter.number,
+            verseId: 1,
+            verseNumber: 1,
+            maxChapter: book.count,
+        };
+        console.log('handleChapterPress', reader);
+        dispatch(setCurrent(reader));
+        navigation.navigate('Reader', { book: book.name, chapter: chapter.number, chapterId: chapter.id, verse: 1 });
     };
 
-    const loadChapters = async (book: string, bookId: any) => {
-        setSelectedBook(book);
+    const loadChapters = async (book: any, bookId: any) => {
+        console.log('loadChapters', book, bookId);
+        setSelectedBook(book.name);
+        setSelectedBookObj(book);
         try {
-            const result = await getChaptersByBook(book);
-            console.log('result >', result);
-            setChapterList(result || []);
+            DatabaseService.getInstance().getChaptersByBookId(book.id).then((result: any) => {
+                console.log('result >', result);
+                setChapterList(result || []);
+            });
         } catch (error) {
             console.error('Error loading chapters:', error);
         }
@@ -73,69 +92,76 @@ const Bible = ({ navigation }: any) => {
     );
 
     return (
-        <View style={[styles.container, { backgroundColor: device.theme ? AppColors.appBackgroundGrey : AppColors.appBackgroundDarkTint }]}>
-            <View style={styles.tabContainer}>
-                <TouchableOpacity
-                    style={[styles.tab, activeTab === 'old' && styles.activeTab]}
-                    onPress={() => {
-                        setActiveTab('old');
-                        setSelectedBook('');
-                    }}
-                >
-                    <Text style={device.theme ? activeTab === 'old' ? styles.activeTabText : styles.tabText : activeTab === 'old' ? styles.activeTabTextDark : styles.tabTextDark}>
-                        Old Testament
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={[styles.tab, activeTab === 'new' && styles.activeTab]}
-                    onPress={() => {
-                        setActiveTab('new');
-                        setSelectedBook('');
-                    }}
-                >
-                    <Text style={device.theme ? activeTab === 'new' ? styles.activeTabText : styles.tabText : activeTab === 'new' ? styles.activeTabTextDark : styles.tabTextDark}>
-                        New Testament
-                    </Text>
-                </TouchableOpacity>
-            </View>
+        <SafeAreaView style={{ flex: 1 }}>
+            <View style={[styles.container, { backgroundColor: device.theme ? AppColors.appBackgroundGrey : AppColors.appBackgroundDarkTint }]}>
+                <View style={styles.tabContainer}>
+                    <TouchableOpacity
+                        style={[styles.tab, activeTab === 'old' && styles.activeTab]}
+                        onPress={() => {
+                            setActiveTab('old');
+                            setSelectedBook('');
+                            setSelectedBookObj(null);
+                        }}
+                    >
+                        <Text style={device.theme ? activeTab === 'old' ? styles.activeTabText : styles.tabText : activeTab === 'old' ? styles.activeTabTextDark : styles.tabTextDark}>
+                            Old Testament
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[styles.tab, activeTab === 'new' && styles.activeTab]}
+                        onPress={() => {
+                            setActiveTab('new');
+                            setSelectedBook('');
+                            setSelectedBookObj(null);
+                        }}
+                    >
+                        <Text style={device.theme ? activeTab === 'new' ? styles.activeTabText : styles.tabText : activeTab === 'new' ? styles.activeTabTextDark : styles.tabTextDark}>
+                            New Testament
+                        </Text>
+                    </TouchableOpacity>
+                </View>
 
-            <ScrollView horizontal={false} style={[styles.bookScrollView, { backgroundColor: device.theme ? AppColors.appBackgroundGrey : AppColors.appBackgroundDarkTint }]}>
-                {(activeTab === 'old' ? OLD_TESTAMENT_BOOKS : NEW_TESTAMENT_BOOKS).map((book, index) => (
-                    <View key={index + 'book'}>
-                        <TouchableOpacity
-                            style={[styles.bookButton, selectedBook === book && styles.selectedBookButton]}
-                            onPress={() => loadChapters(book, index)}
-                        >
-                            <Text style={[styles.bookText, selectedBook === book && styles.selectedBookText, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>
-                                {book}
-                            </Text>
-                            {
-                                selectedBook === book ? (
-                                    <ChevonUpIcon name="down" color={device.theme ? AppColors.tabTextGrey : AppColors.appTextWhite} style={styles.downIconStyle} />
-                                )
-                                    : (
-                                        <ChevonDownIcon name="up" color={device.theme ? AppColors.tabTextGrey : AppColors.appTextWhite} style={styles.downIconStyle} />
+                <ScrollView horizontal={false} style={[styles.bookScrollView, { backgroundColor: device.theme ? AppColors.appBackgroundGrey : AppColors.appBackgroundDarkTint }]}>
+                    {bookList && bookList.length > 0 && (activeTab === 'old' ? oldTestamentBooks : newTestamentBooks).map((book: any, index: number) => (
+                        <View key={index + 'book'}>
+                            <TouchableOpacity
+                                style={[styles.bookButton, selectedBook === book && styles.selectedBookButton]}
+                                onPress={() => loadChapters(book, index)}
+                            >
+                                <Text style={[styles.bookText, selectedBook === book && styles.selectedBookText, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>
+                                    {book.name}
+                                </Text>
+                                <Text style={[styles.countText, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>
+                                    {book.count}
+                                </Text>
+                                {
+                                    selectedBook === book.name ? (
+                                        <ChevonUpIcon name="down" color={device.theme ? AppColors.tabTextGrey : AppColors.appTextWhite} style={styles.downIconStyle} />
                                     )
+                                        : (
+                                            <ChevonDownIcon name="up" color={device.theme ? AppColors.tabTextGrey : AppColors.appTextWhite} style={styles.downIconStyle} />
+                                        )
+                                }
+                            </TouchableOpacity>
+                            {
+                                selectedBook === book.name && (
+                                    <View style={styles.chapterListContainer}>
+                                        {
+                                            chapterList.map((chp, index) => (
+                                                <TouchableOpacity key={index + 'chapter'} style={[styles.chpContainer, { backgroundColor: device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDark }]}
+                                                    onPress={() => handleChapterPress(book, chp)}>
+                                                    <Text style={[styles.chpTitle, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>{chp.number}</Text>
+                                                </TouchableOpacity>
+                                            ))
+                                        }
+                                    </View>
+                                )
                             }
-                        </TouchableOpacity>
-                        {
-                            selectedBook === book && (
-                                <View style={styles.chapterListContainer}>
-                                    {
-                                        chapterList.map((chp, index) => (
-                                            <TouchableOpacity key={index + 'chapter'} style={[styles.chpContainer, { backgroundColor: device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDark }]}
-                                                onPress={() => handleChapterPress(book, chp)}>
-                                                <Text style={[styles.chpTitle, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>{chp.chapter}</Text>
-                                            </TouchableOpacity>
-                                        ))
-                                    }
-                                </View>
-                            )
-                        }
-                    </View>
-                ))}
-            </ScrollView>
-        </View>
+                        </View>
+                    ))}
+                </ScrollView>
+            </View>
+        </SafeAreaView>
     );
 };
 
@@ -197,6 +223,15 @@ const styles = StyleSheet.create({
     bookText: {
         color: AppColors.appTextBlack,
         fontSize: 14,
+    },
+    countText: {
+        fontSize: 12,
+        color: AppColors.appTextBlack,
+        position: 'absolute',
+        right: 50,
+        bottom: 0,
+        height: "100%",
+        verticalAlign: 'middle',
     },
     selectedBookText: {
         color: AppColors.appBackgroundGrey,

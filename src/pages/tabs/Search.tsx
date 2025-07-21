@@ -1,40 +1,56 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { useFocusEffect } from '@react-navigation/native';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList, KeyboardAvoidingView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { useIsFocused } from '@react-navigation/native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList } from 'react-native';
 
-import { deleteSearchHistoryById, getSearchHistory, insertSearchHistory, searchVerses } from '../../services/DatabaseService';
+// import { deleteSearchHistoryById, getSearchHistory, insertSearchHistory, searchVerses } from '../../services/DatabaseService';
 import RecentIcon from '../../components/icons/setting/RecentIcon';
 import SearchSnippet from '../../components/SearchSnippet';
 import CloseIcon from '../../components/icons/CloseIcon';
 import { AppColors } from '../../constants/Color';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLoading } from '../../store/slices/deviceSlice';
+import DatabaseService from '../../services/DataService';
 
 const Search = ({ navigation }: any) => {
     const device = useSelector((state: any) => state.device);
+    const isFocused = useIsFocused();
+    const dispatch = useDispatch();
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [searchHistory, setSearchHistory] = useState([]);
 
     useEffect(() => {
-        getHistory();
-    }, []);
-
-    useFocusEffect(
-        useCallback(() => {
+        const unsubscribe = navigation.addListener("focus", async (e: any) => {
+            console.log('Search focused.........', e);
             getHistory();
-        }, [])
-    );
+        })
 
-    const getHistory = () => {
+        return () => unsubscribe();
+    }, [isFocused])
+
+    // useFocusEffect(
+    //     useCallback(() => {
+    //         getHistory();
+    //     }, [])
+    // );
+
+    const getHistory = async () => {
+        // dispatch(setLoading(true));
         setSearchQuery('');
         setSearchResults([]);
-        getSearchHistory().then((results: any) => {
+        DatabaseService.getInstance().getSearchHistory().then((results: any) => {
+            console.log('results Search History', results.length);
             setSearchHistory(results);
+            // dispatch(setLoading(false));
+        }).catch((error) => {
+            console.error('Error getting history:', error);
+            // dispatch(setLoading(false));
         });
+        // dispatch(setLoading(false));
     }
 
     const handleHistoryDelete = (id: number) => {
-        deleteSearchHistoryById(id).then(() => {
+        DatabaseService.getInstance().clearSearchHistoryById(id).then(() => {
             getHistory();
         });
     }
@@ -42,16 +58,19 @@ const Search = ({ navigation }: any) => {
     const handleSearchSubmit = async () => {
         console.log('Searching for:', searchQuery.length > 0);
         if (searchQuery !== null && searchQuery !== undefined && searchQuery !== '') {
-            searchVerses(searchQuery).then((results: any) => {
+            dispatch(setLoading(true));
+            DatabaseService.getInstance().getVersesByKeyword(searchQuery).then((results: any) => {
                 console.log('Search results:', results);
                 if (results.length > 0) {
                     setSearchResults(results);
                 } else {
                     setSearchResults([]);
                 }
+                dispatch(setLoading(false));
             }).catch((error) => {
+                dispatch(setLoading(false));
                 console.error('Error searching:', error);
-            });
+            })
         }
     };
     const handleHistoryPress = (item: any) => {
@@ -76,9 +95,13 @@ const Search = ({ navigation }: any) => {
     const handleSearchResultPress = (item: any) => {
         console.log('Search result pressed:', item);
         if (searchQuery !== '' && searchQuery !== null && searchQuery !== undefined) {
-            insertSearchHistory({ search_query: searchQuery, verse_id: item.verse_id });
+            DatabaseService.getInstance().addSearchHistory(searchQuery, item.verse_id).then(() => {
+                navigation.navigate('Reader', { book: item.book, chapter: item.chapter, chapterId: item.chapter, verse: item.verse_id });
+            }).catch((error) => {
+                console.error('Error inserting search history:', error);
+            });
         }
-        navigation.navigate('Reader', { verse: item });
+        // navigation.navigate('Reader', { verse: item });
     };
 
 

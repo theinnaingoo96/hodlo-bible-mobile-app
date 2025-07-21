@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, View, StyleSheet, ImageBackground, Text, Dimensions, ProgressBarAndroidComponent, Animated, ProgressBarAndroidBase, StatusBar } from "react-native";
+import { ActivityIndicator, View, StyleSheet, ImageBackground, Text, Dimensions, ProgressBarAndroidComponent, Animated, ProgressBarAndroidBase, StatusBar, Alert } from "react-native";
 // import { AppColors } from "./src/constants/AppColors";
 import DeviceInfo from "react-native-device-info";
 import { AppColors } from "./src/constants/Color";
 import { useDispatch } from 'react-redux';
 import { setDeviceId, setLoginTime } from './src/store/slices/deviceSlice';
-import { createTables, openDatabase, seedDatabase, seedDatabase2 } from "./src/services/DatabaseService";
+// import { createTables, seedDatabase } from "./src/services/DatabaseService";
+import DatabaseService from "./src/services/DataService";
 
 const SplashScreen = ({ navigation }: any) => {
     const [progress, setProgress] = useState(new Animated.Value(0));
@@ -23,8 +24,37 @@ const SplashScreen = ({ navigation }: any) => {
             }
         };
 
+        const initDB = async () => {
+            const db = DatabaseService.getInstance();
+            await db.init().then(() => {
+                navigation.reset({
+                    index: 0,
+                    routes: [{ name: 'Main' }],
+                });
+            }).catch((error) => {
+                Alert.alert('Error', 'Failed to initialize database');
+                console.log('db error', error);
+            });
+            // const verses = await db.getVersesByChapter(3).then((data) => {
+            //     console.log('verses', data);
+            //     if (data) {
+            //         navigation.reset({
+            //             index: 0,
+            //             routes: [{ name: 'Main' }],
+            //         });
+            //     } else {
+            //         console.log('verses not found');
+            //         // seedDatabase()
+            //     }       
+            // }).catch((error) => {
+            //     console.log('verses error', error);
+            // });
+            // console.log(verses);
+        };
+
+        initDB();
+
         initializeApp();
-        initDb();
 
         Animated.timing(progress, {
             toValue: 100,
@@ -40,20 +70,21 @@ const SplashScreen = ({ navigation }: any) => {
         // }, 2500);
     }, []);
 
-    const initDb = async () => {
-        await createTables();
-        // const isDbReady = await openDatabase();
-        // if (isDbReady) {
-        const res = await seedDatabase()
-        console.log('seedDatabase', res);
-        if (res) {
-            navigation.reset({
-                index: 0,
-                routes: [{ name: 'Main' }],
-            });
-        }
+    const initDb1 = async () => {
+        // await createTables().then(async (data) => {
+        //     console.log('createTables', data);
+        //     const res = await seedDatabase()
+        //     console.log('seedDatabase', res);
+        //     if (res) {
+        //         navigation.reset({
+        //             index: 0,
+        //             routes: [{ name: 'Main' }],
+        //         });
+        //     }
+        // }).catch((error) => {
+        //     console.log('createTables error', error);
+        // });
 
-        // }
     }
 
     return (

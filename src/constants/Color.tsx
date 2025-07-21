@@ -8,6 +8,7 @@ export const AppColors = {
     tertiary: "#F01D2E",
     quaternary: "#F01D2E",
     appBackgroundGrey: "#F9F8F9",
+    appBackgroundDarkGrey: "#404040",
     appBackgroundDark: "#121212",
     appBackgroundDarkTint: "#1E1E1E",
     appTextGrey: "#808080",
@@ -21,4 +22,5 @@ export const AppColors = {
     iconGrey: "#7A7A7A",
     grey: "#808080",
     lightGrey: "#D3D3D3",
+    lightGreyTint: "#E0E0E0",
 }

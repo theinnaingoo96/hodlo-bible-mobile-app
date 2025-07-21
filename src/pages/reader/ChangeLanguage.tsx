@@ -19,27 +19,27 @@ const ChangeLanguage = () => {
         setLanguageList(languages.map((language) => {
             return {
                 ...language,
-                selected: language.code === device.language || language.code === "hodlo"
+                selected: language.code === device.language || language.code === "hd"
             }
         }));
     }, []);
 
     const handleLanguagePress = (code: string) => {
         setToastVisible(true);
-        if (code === "hodlo") {
+        if (code === "hd") {
             setLanguageList(languages.map((language) => {
                 return {
                     ...language,
-                    selected: language.code === "hodlo" ? true : false
+                    selected: language.code === "hd" ? true : false
                 }
             }));
-            dispatch(setLanguage("hodlo"));
+            dispatch(setLanguage("hd"));
             return;
         } else {
             setLanguageList(languageList.map((lang: any) => {
                 return {
                     ...lang,
-                    selected: lang.code === "hodlo" ? true : lang.code === code ? true : false
+                    selected: lang.code === "hd" ? true : lang.code === code ? true : false
                 }
             }));
             dispatch(setLanguage(code));
@@ -75,6 +75,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'center',
+        // paddingTop: 55,
+        backgroundColor: 'white',
     },
     contentContainer: {
         flex: 1,

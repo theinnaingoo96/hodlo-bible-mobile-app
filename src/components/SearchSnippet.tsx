@@ -7,14 +7,11 @@ const SearchSnippet = ({ rawText = "", keyword = "", snippetRadius = 20, theme =
     const [parts, setParts] = useState<string[]>([]);
 
     useEffect(() => {
-        console.log('text', rawText);
-        console.log('keyword', keyword);
 
         // Normalize text
         const lowerText = rawText.toLowerCase();
         const lowerKeyword = keyword.toLowerCase();
         const index = lowerText.indexOf(lowerKeyword);
-        console.log('index', index);
         // If keyword not found, show full text truncated
         if (index === -1) {
             setParts([rawText]);

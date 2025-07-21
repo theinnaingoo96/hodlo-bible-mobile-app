@@ -1,12 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import { Toast } from '../../types/data';
+
 interface DeviceState {
   deviceId: string;
   theme: boolean;
   loginTime: string | null;
   loading: boolean;
   language: string;
+  toast: Toast;
 }
 
 const initialState: DeviceState = {
@@ -15,6 +18,12 @@ const initialState: DeviceState = {
   loginTime: null,
   loading: false,
   language: 'hodlo',
+  toast: {
+    show: false,
+    message: '',
+    type: 'success',
+    duration: 3000,
+  },
 };
 
 const deviceSlice = createSlice({
@@ -38,15 +47,25 @@ const deviceSlice = createSlice({
       state.loginTime = null;
       state.loading = false;
       state.language = 'hodlo';
+      state.toast = {
+        show: false,
+        message: '',
+        type: 'success',
+        duration: 3000,
+      };
     },
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
     },
     setLanguage: (state, action: PayloadAction<string>) => {
       state.language = action.payload;
+      AsyncStorage.setItem("ho-dlo-language", action.payload);
+    },
+    setToast: (state, action: PayloadAction<Toast>) => {
+      state.toast = action.payload;
     },
   },
 });
 
-export const { setDeviceId, setTheme, setLoginTime, clearDeviceInfo, setLoading, setLanguage } = deviceSlice.actions;
+export const { setDeviceId, setTheme, setLoginTime, clearDeviceInfo, setLoading, setLanguage, setToast } = deviceSlice.actions;
 export default deviceSlice.reducer; 

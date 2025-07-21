@@ -1,0 +1,800 @@
+// services/DatabaseService.ts
+import SQLite from 'react-native-sqlite-storage';
+import { bibleBooks, bibleVerses } from '../assets/seeder/data';
+
+SQLite.enablePromise(true);
+
+const DATABASE_NAME = 'ho_dlo_bible.db';
+const TABLE_BOOKS = 'books';
+const TABLE_CHAPTERS = 'chapters';
+const TABLE_VERSES = 'verses';
+const TABLE_SEARCH_HISTORY = 'search_history';
+const TABLE_BOOKMARKS = 'bookmarks';
+const TABLE_NOTIFICATIONS = 'notifications';
+
+export default class DatabaseService {
+    private static instance: DatabaseService;
+    private db: SQLite.SQLiteDatabase | null = null;
+
+    private constructor() { } // private constructor
+
+    public static getInstance(): DatabaseService {
+        if (!DatabaseService.instance) {
+            DatabaseService.instance = new DatabaseService();
+        }
+        return DatabaseService.instance;
+    }
+
+    public async init(): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (this.db) return;
+
+            try {
+                this.db = await SQLite.openDatabase({
+                    name: DATABASE_NAME,
+                    location: 'default',
+                });
+                console.log('[DB] Opened successfully');
+                await this.shouldCreateAndSeed().then((data) => {
+                    const shouldCreate = data
+                    console.log('[DB] shouldCreate', data);
+                    if (shouldCreate) {
+                        this.createTables().then(() => {
+                            console.log('[DB] Tables created');
+                            console.log('[DB] Seeding data...');
+                            this.seedData().then(() => {
+                                console.log('[DB] Data seeded');
+                                resolve(true);
+                            });
+                        });
+                    } else resolve(true);
+                }).catch((error) => {
+                    console.log('[DB] shouldCreate error', error);
+                });
+            } catch (error) {
+                console.error('[DB] Failed to open:', error);
+                reject(error);
+            }
+        })
+    }
+
+    public async createTables(): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+
+            const queries = [
+                `CREATE TABLE IF NOT EXISTS books (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        number INTEGER,
+        name TEXT
+      )`,
+                `CREATE TABLE IF NOT EXISTS chapters (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        book_id INTEGER,
+        number INTEGER
+      )`,
+                `CREATE TABLE IF NOT EXISTS verses (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        chapter_id INTEGER,
+        verse_number INTEGER,
+        text TEXT
+      )`,
+                `CREATE TABLE IF NOT EXISTS bookmarks (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        verse_id INTEGER,
+        created_at TEXT
+      )`,
+                `CREATE TABLE IF NOT EXISTS search_history (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        query TEXT,
+        searched_at TEXT
+      )`,
+            ];
+
+            try {
+                await this.db.executeSql(
+                    `CREATE TABLE IF NOT EXISTS ${TABLE_BOOKS} (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    number INTEGER,
+                    name TEXT UNIQUE,
+                    count INTEGER,
+                    testament TEXT
+                    );`
+                );
+                console.log(`Table "${TABLE_BOOKS}" created successfully or already exists.`);
+                await this.db.executeSql(
+                    `CREATE TABLE IF NOT EXISTS ${TABLE_CHAPTERS} (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    book_id INTEGER,
+                    number INTEGER,
+                    title_hd TEXT,
+                    title_en TEXT,
+                    title_mm TEXT,
+                    FOREIGN KEY(book_id) REFERENCES books(id)
+                    );`
+                );
+                console.log(`Table "${TABLE_CHAPTERS}" created successfully or already exists.`);
+                await this.db.executeSql(
+                    `CREATE TABLE IF NOT EXISTS ${TABLE_VERSES} (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    chapter_id INTEGER,
+                    number INTEGER,
+                    text_hd TEXT,
+                    text_en TEXT,
+                    text_mm TEXT,
+                    FOREIGN KEY(chapter_id) REFERENCES chapters(id)
+                    );`
+                );
+                console.log(`Table "${TABLE_VERSES}" created successfully or already exists.`);
+                await this.db.executeSql(
+                    `CREATE TABLE IF NOT EXISTS ${TABLE_SEARCH_HISTORY} (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    search_query TEXT,
+                    verse_id INTEGER NOT NULL UNIQUE,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY(verse_id) REFERENCES verses(id)
+                    );`
+                );
+                console.log(`Table "${TABLE_SEARCH_HISTORY}" created successfully or already exists.`);
+                await this.db.executeSql(
+                    `CREATE TABLE IF NOT EXISTS ${TABLE_BOOKMARKS} (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    verse_id INTEGER NOT NULL UNIQUE,
+                    color TEXT,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY(verse_id) REFERENCES verses(id)
+                    );`
+                );
+                console.log(`Table "${TABLE_BOOKMARKS}" created successfully or already exists.`);
+                await this.db.executeSql(
+                    `CREATE TABLE IF NOT EXISTS ${TABLE_NOTIFICATIONS} (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    verse_id INTEGER NOT NULL UNIQUE,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY(verse_id) REFERENCES verses(id)
+                    );`
+                );
+                console.log(`Table "${TABLE_NOTIFICATIONS}" created successfully or already exists.`);
+                console.log('[DB] Tables created');
+                resolve(true);
+
+            } catch (error) {
+                console.error('[DB] Table creation failed:', error);
+                reject(error);
+            }
+        })
+    }
+
+    private async shouldCreateAndSeed(): Promise<boolean> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('DB not ready');
+
+            try {
+                const [checkTable] = await this.db.executeSql(`
+            SELECT name FROM sqlite_master 
+            WHERE type='table' AND name='verses'
+          `);
+
+                const tableExists = checkTable.rows.length > 0;
+
+                if (!tableExists) {
+                    console.log('[DB] Table "verses" does not exist. Will create and seed.');
+                    resolve(true);
+                }
+
+                const [countResult] = await this.db.executeSql(`SELECT COUNT(*) as count FROM verses`);
+                const count = countResult.rows.item(0).count;
+
+                if (count === 0) {
+                    console.log('[DB] Table "verses" exists but is empty. Will seed.');
+                    resolve(true);
+                }
+
+                console.log('[DB] Table "verses" has data. No seeding needed.');
+                resolve(false);
+
+            } catch (err) {
+                console.error('[DB] Error checking table or data:', err);
+                reject(err);
+            }
+        })
+    }
+
+    private async seedData(): Promise<any> {
+
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('DB not ready');
+
+            try {
+                const [result] = await this.db.executeSql(`SELECT COUNT(*) as count FROM verses`);
+                const count = result.rows.item(0).count;
+
+                if (count > 0) {
+                    console.log('[DB] Already seeded');
+                    resolve(true);
+                }
+
+                console.log(`[DB] Seeding ${bibleVerses.length} verses...`);
+
+                console.log('[DB]Seeding database4...');
+
+                const bookMap = new Map();
+                const chapterMap = new Map();
+
+                console.log('[DB]Seeding database1...');
+                const verseData = bibleVerses;
+                const bookData = bibleBooks;
+                console.log('[DB]verseData', verseData.length);
+
+                for (const book of bookData) {
+                    const { id, name, number, count, testament } = book;
+                    await this.db.executeSql('INSERT INTO books (id, name, number, count, testament) VALUES (?, ?, ?, ?, ?)', [id, name, number, count, testament]);
+                    console.log('[DB]inserted book', id);
+                }
+
+                for (const row of verseData) {
+                    const { book_id, book_name, chapter_id, chapter_name, chapter_vid, text_hd, text_en, text_mm } = row;
+                    // if (!bookMap.has(book_name)) {
+                    //     const res = await this.db.executeSql('INSERT OR IGNORE INTO books (number, name) VALUES (?, ?)', [book_id, book_name]);
+                    //     const book_ids = res[0].insertId || (await this.db.executeSql('SELECT id FROM books WHERE name = ?', [book_name]))[0].rows.item(0).id;
+                    //     bookMap.set(book_name, book_ids);
+                    //     console.log('[DB]inserted book', book_ids);
+                    // }
+
+                    const bookId = '2';
+                    const chapterKey = `${bookId}_${chapter_id}`;
+
+                    if (!chapterMap.has(chapterKey)) {
+                        const res = await this.db.executeSql(
+                            'INSERT INTO chapters (book_id, number, title_hd) VALUES (?, ?, ?)',
+                            [bookId, chapter_id, chapter_name]
+                        );
+                        chapterMap.set(chapterKey, res[0].insertId);
+                        console.log('[DB]inserted chapter', res[0].insertId);
+                    }
+
+                    const chapter_ids = chapterMap.get(chapterKey);
+                    await this.db.executeSql(
+                        `INSERT INTO verses (chapter_id, number, text_hd, text_en, text_mm)
+                     VALUES (?, ?, ?, ?, ?)`,
+                        [chapter_ids, chapter_vid, text_hd, text_en, text_mm]
+                    );
+                    console.log('[DB]inserted verse', chapter_id);
+                }
+                const [chapterCount] = await this.db.executeSql(`
+                    SELECT book_id, COUNT(*) AS chapter_count
+                    FROM chapters
+                    GROUP BY book_id;`
+                );
+                const updates: { bookId: number, count: number }[] = [];
+                for (let i = 0; i < chapterCount.rows.length; i++) {
+                    const { book_id, chapter_count } = chapterCount.rows.item(i);
+                    updates.push({ bookId: book_id, count: chapter_count });
+                }
+                console.log('[DB]chapterCount', updates);
+                await this.db.transaction(async tx => {
+                    for (const { bookId, count } of updates) {
+                        await tx.executeSql(
+                            `UPDATE books SET count = ? WHERE id = ?`,
+                            [count, bookId]
+                        );
+                    }
+                });
+                console.log('[DB] Seeding complete');
+                resolve(true);
+            } catch (error) {
+                console.error('[DB] Seeding error:', error);
+                reject(error);
+            }
+        })
+    }
+
+    public async getAllData(): Promise<any> {
+        const tables = [TABLE_BOOKS, TABLE_CHAPTERS, TABLE_VERSES, TABLE_SEARCH_HISTORY, TABLE_BOOKMARKS, TABLE_NOTIFICATIONS];
+
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+
+            const dataByTable: any = {};
+            const columnsByTable: any = {};
+
+            for (const table of tables) {
+                try {
+                    const [schemaRes] = await this.db.executeSql(`PRAGMA table_info(${table});`);
+                    const [dataRes] = await this.db.executeSql(`SELECT * FROM ${table};`);
+
+                    const cols = [];
+                    for (let i = 0; i < schemaRes.rows.length; i++) {
+                        cols.push(schemaRes.rows.item(i).name);
+                    }
+
+                    const rows = [];
+                    for (let i = 0; i < dataRes.rows.length; i++) {
+                        rows.push(dataRes.rows.item(i));
+                    }
+
+                    columnsByTable[table] = cols;
+                    dataByTable[table] = rows;
+                } catch (err) {
+                    console.error(`Error loading table ${table}`, err);
+                }
+            }
+            resolve({ rows: dataByTable, columns: columnsByTable });
+        });
+    }
+
+    public async getVersesByKeyword(searchQuery: string): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+
+            try {
+                const [results] = await this.db.executeSql(`
+                    SELECT DISTINCT b.name as book, c.number as chapter, c.title_hd as chapter_title,
+                           v.number as verse, v.text_hd, v.text_en, v.text_mm, v.id as verse_id
+                    FROM ${TABLE_VERSES} v
+                    JOIN ${TABLE_CHAPTERS} c ON v.chapter_id = c.id
+                    JOIN ${TABLE_BOOKS} b ON c.book_id = b.id
+                    WHERE v.text_hd LIKE ? OR v.text_en LIKE ? OR v.text_mm LIKE ?
+                    ORDER BY b.name, c.number, v.number
+                    LIMIT 100;
+                `, [`%${searchQuery}%`, `%${searchQuery}%`, `%${searchQuery}%`]);
+                console.log('[DB]results', results.rows.length);
+                const verses = [];
+                for (let i = 0; i < results.rows.length; i++) {
+                    verses.push(results.rows.item(i));
+                }
+                console.log(`Retrieved ${verses.length} verses for search query: ${searchQuery}`);
+                resolve(verses);
+            } catch (error) {
+                console.error('[DB]Error searching verses:', error);
+                reject(error);
+            }
+        });
+    }
+
+    /**
+     * Functions for Verses TABLE
+     * @function getVersesByBook
+     * @function getVersesByChapter
+     * @function getVersesById
+    */
+
+    public async getVersesByBook(bookName: string): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+
+            if (!bookName || bookName === undefined) {
+                reject('Book name is required.');
+            }
+
+            try {
+                const result = await this.db.executeSql(
+                    `SELECT b.name as book, c.number as chapter, c.title as chapter_title,
+                            v.number as verse, v.text_hd, v.text_en, v.text_mm
+                    FROM ${TABLE_VERSES} v
+                    JOIN ${TABLE_CHAPTERS} c ON v.chapter_id = c.id
+                    JOIN ${TABLE_BOOKS} b ON c.book_id = b.id
+                    WHERE b.name = ?
+                    ORDER BY c.number, v.number`,
+                    [bookName]);
+                console.log('[DB]result', result);
+                const rows = result[0].rows;
+                const chapterMap: any = {};
+
+                for (let i = 0; i < rows.length; i++) {
+                    const row = rows.item(i);
+                    if (!chapterMap[row.chapter]) {
+                        chapterMap[row.chapter] = {
+                            chapter: row.chapter,
+                            chapter_title: row.chapter_title,
+                            verses: []
+                        };
+                    }
+
+                    chapterMap[row.chapter].verses.push({
+                        verse: row.verse,
+                        text_hd: row.text_hd,
+                        text_en: row.text_en,
+                        text_mm: row.text_mm
+                    });
+                }
+
+                resolve([{
+                    book: bookName,
+                    chapters: Object.values(chapterMap)
+                }]);
+            } catch (error) {
+                console.error('[DB] getVersesByBook error:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async getVersesByChapterId(chapterId: number): Promise<any[]> {
+        console.log('[DB]getVersesByChapter', chapterId);
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+
+            if (!chapterId || chapterId === undefined) {
+                reject('Chapter Id is required.');
+            }
+
+            try {
+                const [results] = await this.db.executeSql(
+                    'SELECT * FROM verses WHERE chapter_id = ?',
+                    
+                    [chapterId]
+                );
+                console.log('[DB]results getVersesByChapter', results.rows.length);
+                const verses = [];
+                for (let i = 0; i < results.rows.length; i++) {
+                    verses.push(results.rows.item(i));
+                }
+                resolve(verses);
+            } catch (error) {
+                console.error('[DB] getVersesByChapter error:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async getVersesById(verseId: number): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+
+            try {
+                const [results] = await this.db.executeSql(
+                    `SELECT 
+                    v.id AS verse_id,
+                    v.number AS verse_number,
+                    v.text_hd,
+                    v.text_en,
+                    v.text_mm,
+
+                    c.id AS chapter_id,
+                    c.number AS chapter_number,
+                    c.title_hd,
+                    c.title_en,
+                    c.title_mm,
+
+                    b.id AS book_id,
+                    b.number AS book_number,
+                    b.name AS book_name
+
+                    FROM verses v
+                    JOIN chapters c ON v.chapter_id = c.id
+                    JOIN books b ON c.book_id = b.id
+                    WHERE v.id = ?;`,
+                    [verseId]
+                );
+                if (results.rows.length > 0) {
+                    resolve(results.rows.item(0));
+                }
+                resolve(null);
+            } catch (error) {
+                console.error(`[DB] getVersesById error:`, error);
+                reject(error);
+            }
+        });
+    }
+
+    /**
+     * Functions for Chapters TABLE
+     * @function getChaptersByBook
+     * @function getChaptersByBookId
+     * @function getChapterIdByBookIdAndChapterNumber
+    */
+
+    public async getChapterIdByBookIdAndChapterNumber(bookId: number, chapterNumber: number): Promise<number | null> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+
+            if (!bookId || bookId === undefined) {
+                reject('Book ID is required.');
+            }
+
+            if (!chapterNumber || chapterNumber === undefined) {
+                reject('Chapter number is required.');
+            }
+
+            try {
+                const [results] = await this.db.executeSql(
+                    `SELECT id FROM ${TABLE_CHAPTERS} WHERE book_id = ? AND number = ?`,
+                    [bookId, chapterNumber]
+                );
+                
+                if (results.rows.length > 0) {
+                    resolve(results.rows.item(0).id);
+                } else {
+                    resolve(null);
+                }
+            } catch (error) {
+                console.error('[DB] getChapterIdByBookIdAndChapterNumber error:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async getChaptersByBook(bookName: string): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+
+            if (!bookName || bookName === undefined) {
+                reject('Book name is required.');
+            }
+
+            try {
+                const [results] = await this.db.executeSql(
+                    `SELECT DISTINCT c.number, c.title_hd
+                    FROM ${TABLE_CHAPTERS} c
+                    JOIN ${TABLE_BOOKS} b ON c.book_id = b.id
+                    WHERE b.name = ?
+                    ORDER BY c.number`,
+                    [bookName]
+                );
+                console.log('[DB]results', results.rows.length);
+                const chapters = [];
+                for (let i = 0; i < results.rows.length; i++) {
+                    chapters.push({
+                        chapter: results.rows.item(i).number,
+                        title: results.rows.item(i).title
+                    });
+                }
+                resolve(chapters);
+            } catch (error) {
+                console.error(`[DB] getChaptersByBook error:`, error);
+                reject(error);
+            }
+        });
+    }
+
+    public async getChaptersByBookId(bookId: number): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+
+            try {
+                const [results] = await this.db.executeSql(
+                    `SELECT * FROM chapters WHERE book_id = ?`,
+                    [bookId]
+                );
+                console.log('[DB]results', results.rows.length);
+                const chap = [];
+                for (let i = 0; i < results.rows.length; i++) {
+                    chap.push(results.rows.item(i));
+                }
+                resolve(chap);
+            } catch (error) {
+                console.error('[DB] getChaptersByBookId error:', error);
+                reject(error);
+            }
+        });
+    }
+
+
+    /**
+     * Functions for Books TABLE
+     * @function getAllBooks
+     * @function getBooksById
+     * @function getBooksByName
+     */
+
+    public async getAllBooks(): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+            try {
+                const [results] = await this.db.executeSql(`SELECT * FROM ${TABLE_BOOKS};`);
+                const books = [];
+                for (let i = 0; i < results.rows.length; i++) {
+                    books.push(results.rows.item(i));
+                }
+                resolve(books);
+            } catch (error) {
+                console.error('[DB] getBooks error:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async getBooksById(bookId: number): Promise<any> {
+        console.log('[DB]getBooksById', bookId);
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+
+            try {
+                const [results] = await this.db.executeSql(`SELECT * FROM ${TABLE_BOOKS} WHERE id = ?;`, [bookId]);
+                const books = [];
+                for (let i = 0; i < results.rows.length; i++) {
+                    books.push(results.rows.item(i));
+                }
+                resolve(books);
+            } catch (error) {
+                console.error('[DB] getBooksById error:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async getBooksByName(bookName: string): Promise<any> {
+        console.log('[DB]getBooksByName', bookName);
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+            try {
+                const [results] = await this.db.executeSql(`SELECT * FROM ${TABLE_BOOKS} WHERE name = ?;`, [bookName]);
+                console.log('[DB]results getBooksByName', results.rows.length);
+                resolve(results.rows.item(0));
+            } catch (error) {
+                console.error('[DB] getBooksByName error:', error);
+                reject(error);
+            }
+        });
+    }
+
+    /**
+     * Functions for Search History TABLE
+     * @function getSearchHistory
+     * @function addSearchHistory
+     * @function clearSearchHistoryById
+     * @function clearSearchHistoryAll
+     */
+
+    public async getSearchHistory(): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+
+            try {
+                const [results] = await this.db.executeSql(`
+                    SELECT 
+                        sh.id,
+                        sh.search_query,
+                        sh.created_at,
+                        b.name as book,
+                        c.number as chapter,
+                        v.number as verse,
+                        v.text_hd,
+                        v.text_en,
+                        v.text_mm,
+                        v.id as verse_id
+                    FROM ${TABLE_SEARCH_HISTORY} sh
+                    JOIN ${TABLE_VERSES} v ON sh.verse_id = v.id
+                    JOIN ${TABLE_CHAPTERS} c ON v.chapter_id = c.id
+                    JOIN ${TABLE_BOOKS} b ON c.book_id = b.id
+                    ORDER BY sh.created_at DESC;
+                `);
+                const verses = [];
+                for (let i = 0; i < results.rows.length; i++) {
+                    verses.push(results.rows.item(i));
+                }
+                resolve(verses);
+            } catch (error) {
+                console.error('[DB] Error getting search history:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async addSearchHistory(searchQuery: string, verseId: number): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+            try {
+                const [results] = await this.db.executeSql(`INSERT INTO ${TABLE_SEARCH_HISTORY} (search_query, verse_id) VALUES (?, ?);`, [searchQuery, verseId]);
+                console.log(`[DB] Search history inserted: ${searchQuery}, ID: ${results.insertId}`);
+                resolve(results);
+            } catch (error) {
+                console.error('[DB] Error inserting search history:', error);
+                reject(error);
+            }
+
+        });
+    }
+
+    public async clearSearchHistoryById(id: number): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+
+            try {
+                // this.db.executeSql(`DELETE FROM ${TABLE_SEARCH_HISTORY} WHERE id = ?;`, [id]).then((results: any) => {
+                //     resolve(results);
+                // });
+                const [results] = await this.db.executeSql(`DELETE FROM ${TABLE_SEARCH_HISTORY} WHERE id = ?;`, [id]);
+                console.log('[DB] Search history deleted:', results);
+                resolve(results);
+            } catch (error) {
+                console.error('[DB] Error deleting search history:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async clearSearchHistoryAll(): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+
+            try {
+                const [results] = await this.db.executeSql(`DELETE FROM ${TABLE_SEARCH_HISTORY};`);
+                resolve(results);
+            } catch (error) {
+                console.error('[DB]Error clearing search history:', error);
+                reject(error);
+            }
+        });
+    }
+
+    /**
+     * Functions for Bookmarks TABLE
+     * @function getBookmarks
+     * @function addBookmark
+     * @function clearBookmarkById
+     */
+
+    public async getBookmarks(): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+
+            try {
+                const [results] = await this.db.executeSql(`
+                    SELECT 
+                        bk.id,
+                        bk.color,
+                        bk.created_at,
+                        b.name as book,
+                        c.number as chapter,
+                        v.number as verse,
+                        v.text_hd,
+                        v.text_en,
+                        v.text_mm,
+                        v.id as verse_id
+                    FROM ${TABLE_BOOKMARKS} bk
+                    JOIN ${TABLE_VERSES} v ON bk.verse_id = v.id
+                    JOIN ${TABLE_CHAPTERS} c ON v.chapter_id = c.id
+                    JOIN ${TABLE_BOOKS} b ON c.book_id = b.id
+                    ORDER BY bk.created_at DESC;
+                `);
+                const verses = [];
+                for (let i = 0; i < results.rows.length; i++) {
+                    verses.push(results.rows.item(i));
+                }
+                resolve(verses);
+            } catch (error) {
+                console.error('[DB] Error getting Bookmarks:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async addBookmark(verseId: any, color: string): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+
+            try {
+                const [results] = await this.db.executeSql(`INSERT INTO ${TABLE_BOOKMARKS} (verse_id, color) VALUES (?, ?);`, [verseId, color]);
+                console.log(`[DB] Bookmark inserted: ${verseId}, ID: ${results.insertId}`);
+                resolve(results);
+            } catch (error) {
+                console.error('[DB] Error inserting Bookmark:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async clearBookmarkById(id: number): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+
+            try {
+                const [results] = await this.db.executeSql(`DELETE FROM ${TABLE_BOOKMARKS} WHERE id = ?;`, [id]);
+                resolve(results);
+            } catch (error) {
+                console.error('[DB] Error deleting Bookmark:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async close(): Promise<void> {
+        if (this.db) {
+            await this.db.close();
+            this.db = null;
+            console.log('[DB] Closed');
+        }
+    }
+}

@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Image, Dimensions, Text, ScrollView } from 'react-native';
 import { AppColors } from '../../constants/Color';
 import { useSelector } from 'react-redux';
+import DatabaseService from '../../services/DataService';
+import { setToast } from '../../store/slices/deviceSlice';
+import { store } from '../../store/store';
+import { constants } from '../../constants/Data';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -15,6 +19,16 @@ interface CarouselItem {
 const Home = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const device = useSelector((state: any) => state.device);
+
+    useEffect(() => {
+        const db = DatabaseService.getInstance();
+        db.getVersesById(100).then((data) => {
+            console.log('data', data);
+        });
+        db.getBooksById(2).then((b: any) => {
+            console.log('book from getBooksById', b);
+        })
+    }, []);
 
     const carouselItems: CarouselItem[] = [
         {

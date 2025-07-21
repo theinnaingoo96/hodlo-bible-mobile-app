@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
+import useKeyboardVisible from "../utils/hooks/useKeyboardVisible";
 import BookmarkIcon from "../components/icons/BookmarkIcon";
 import SettingIcon from "../components/icons/SettingIcon";
+import { useNavigation } from "@react-navigation/native";
 import SearchIcon from "../components/icons/SearchIcon";
 import BibleIcon from "../components/icons/BibleIcon";
 import HomeIcon from "../components/icons/HomeIcon";
@@ -30,6 +32,8 @@ interface CustomHeaderProps {
 
 const Main = () => {
     const device = useSelector((state: any) => state.device);
+    const isKeyboardVisible = useKeyboardVisible();
+
     return (
         <View style={styles.mainWrapper}>
             <Tab.Navigator
@@ -37,7 +41,7 @@ const Main = () => {
                     headerShown: true,
                     headerStyle: [styles.header, { backgroundColor: device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDark }],
                     headerTitleAlign: 'center',
-                    tabBarStyle: [styles.tabBar], //{ backgroundColor: device.theme ? AppColors.primary : AppColors.primaryNior }],
+                    tabBarStyle: [styles.tabBar, { display: isKeyboardVisible ? 'none' : 'flex' }], //{ backgroundColor: device.theme ? AppColors.primary : AppColors.primaryNior }],
                     tabBarActiveTintColor: AppColors.appTextWhite,
                     tabBarInactiveTintColor: AppColors.appTextBlack,
                     tabBarLabelStyle: {

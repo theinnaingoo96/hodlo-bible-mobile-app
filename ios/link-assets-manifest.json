@@ -1,0 +1,33 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/NotoSansMyanmar-Regular.ttf",
+      "sha1": "2121c4c9fc767d672e3b6543e0e35e7e865fad43"
+    },
+    {
+      "path": "src/assets/fonts/NotoSansMyanmar-SemiBold.ttf",
+      "sha1": "9e10f02a97b9ab8b6117da794714570d0a26d96f"
+    },
+    {
+      "path": "src/assets/fonts/Pretendard-Bold.otf",
+      "sha1": "6a04b4fbeb9a1a5d96a5b25b7e7cfbdd123fbcd0"
+    },
+    {
+      "path": "src/assets/fonts/Pretendard-Regular.otf",
+      "sha1": "49c62f4738334d812f4407dbdc27a2108c7c2756"
+    },
+    {
+      "path": "src/assets/fonts/Pretendard-SemiBold.otf",
+      "sha1": "9bab4642eae558c9c7f308c8d1be33f9f412a2d4"
+    },
+    {
+      "path": "src/assets/fonts/Pyidaungsu-Bold.ttf",
+      "sha1": "b1d2d763372e5b5c2a44c4531bed6c9f0d068efd"
+    },
+    {
+      "path": "src/assets/fonts/Pyidaungsu-Regular.ttf",
+      "sha1": "5565eac0936f7d0740dce154d4c4ae6d3fa3c2ad"
+    }
+  ]
+}
