@@ -11,7 +11,8 @@
     "build": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
     "restart": "npx react-native start --reset-cache",
     "build-android": "cd android && ./gradlew clean && rm -rf app/src/main/res/drawable-* && ./gradlew assembleRelease",
-    "assets": "npx react-native-asset"
+    "assets": "npx react-native-asset",
+    "icon": "npx react-native set-icon --path ./assets/icon.png --platform android"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.2.0",
@@ -29,6 +30,7 @@
     "react-native-device-info": "^14.0.4",
     "react-native-gesture-handler": "^2.26.0",
     "react-native-material-menu": "^2.0.0",
+    "react-native-push-notification": "^8.1.1",
     "react-native-reanimated": "^3.18.0",
     "react-native-reanimated-carousel": "^4.0.2",
     "react-native-safe-area-context": "^5.4.1",

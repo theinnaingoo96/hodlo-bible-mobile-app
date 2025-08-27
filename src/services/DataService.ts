@@ -62,34 +62,34 @@ export default class DatabaseService {
         return new Promise(async (resolve, reject) => {
             if (!this.db) throw new Error('Database not initialized');
 
-            const queries = [
-                `CREATE TABLE IF NOT EXISTS books (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        number INTEGER,
-        name TEXT
-      )`,
-                `CREATE TABLE IF NOT EXISTS chapters (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        book_id INTEGER,
-        number INTEGER
-      )`,
-                `CREATE TABLE IF NOT EXISTS verses (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        chapter_id INTEGER,
-        verse_number INTEGER,
-        text TEXT
-      )`,
-                `CREATE TABLE IF NOT EXISTS bookmarks (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        verse_id INTEGER,
-        created_at TEXT
-      )`,
-                `CREATE TABLE IF NOT EXISTS search_history (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        query TEXT,
-        searched_at TEXT
-      )`,
-            ];
+            //         const queries = [
+            //             `CREATE TABLE IF NOT EXISTS books (
+            //     id INTEGER PRIMARY KEY AUTOINCREMENT,
+            //     number INTEGER,
+            //     name TEXT
+            //   )`,
+            //             `CREATE TABLE IF NOT EXISTS chapters (
+            //     id INTEGER PRIMARY KEY AUTOINCREMENT,
+            //     book_id INTEGER,
+            //     number INTEGER
+            //   )`,
+            //             `CREATE TABLE IF NOT EXISTS verses (
+            //     id INTEGER PRIMARY KEY AUTOINCREMENT,
+            //     chapter_id INTEGER,
+            //     verse_number INTEGER,
+            //     text TEXT
+            //   )`,
+            //             `CREATE TABLE IF NOT EXISTS bookmarks (
+            //     id INTEGER PRIMARY KEY AUTOINCREMENT,
+            //     verse_id INTEGER,
+            //     created_at TEXT
+            //   )`,
+            //             `CREATE TABLE IF NOT EXISTS search_history (
+            //     id INTEGER PRIMARY KEY AUTOINCREMENT,
+            //     query TEXT,
+            //     searched_at TEXT
+            //   )`,
+            //         ];
 
             try {
                 await this.db.executeSql(
@@ -149,8 +149,10 @@ export default class DatabaseService {
                 await this.db.executeSql(
                     `CREATE TABLE IF NOT EXISTS ${TABLE_NOTIFICATIONS} (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    verse_id INTEGER NOT NULL UNIQUE,
+                    verse_id INTEGER NOT NULL,
+                    active INTEGER DEFAULT 0,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    planned_at TIMESTAMP NOT NULL UNIQUE,
                     FOREIGN KEY(verse_id) REFERENCES verses(id)
                     );`
                 );
@@ -357,6 +359,7 @@ export default class DatabaseService {
      * @function getVersesByBook
      * @function getVersesByChapter
      * @function getVersesById
+     * @function getRandomVerse
     */
 
     public async getVersesByBook(bookName: string): Promise<any> {
@@ -422,7 +425,7 @@ export default class DatabaseService {
             try {
                 const [results] = await this.db.executeSql(
                     'SELECT * FROM verses WHERE chapter_id = ?',
-                    
+
                     [chapterId]
                 );
                 console.log('[DB]results getVersesByChapter', results.rows.length);
@@ -478,6 +481,52 @@ export default class DatabaseService {
         });
     }
 
+    public async getRandomVerse(limit: number): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+
+            try {
+                // const [results] = await this.db.executeSql(`SELECT * FROM ${TABLE_VERSES} ORDER BY RANDOM() LIMIT ${limit};`);
+                const [results] = await this.db.executeSql(`
+                    SELECT 
+                    v.id AS verse_id,
+                    v.number AS verse_number,
+                    v.text_hd,
+                    v.text_en,
+                    v.text_mm,
+
+                    c.id AS chapter_id,
+                    c.number AS chapter_number,
+                    c.title_hd,
+                    c.title_en,
+                    c.title_mm,
+
+                    b.id AS book_id,
+                    b.number AS book_number,
+                    b.name AS book_name
+
+                    FROM ${TABLE_VERSES} v
+                    JOIN ${TABLE_CHAPTERS} c ON v.chapter_id = c.id
+                    JOIN ${TABLE_BOOKS} b ON c.book_id = b.id
+                    ORDER BY RANDOM()
+                    LIMIT ${limit};`);
+                console.log('[DB]results getRandomVerse', results.rows.length);
+                if (results.rows.length > 0) {
+                    const randomVerses = [];
+                    for (let i = 0; i < results.rows.length; i++) {
+                        randomVerses.push(results.rows.item(i));
+                    }
+                    resolve(randomVerses);
+                } else {
+                    resolve(null);
+                }
+            } catch (error) {
+                console.error('[DB] getRandomVerse error:', error);
+                reject(error);
+            }
+        });
+    }
+
     /**
      * Functions for Chapters TABLE
      * @function getChaptersByBook
@@ -502,7 +551,7 @@ export default class DatabaseService {
                     `SELECT id FROM ${TABLE_CHAPTERS} WHERE book_id = ? AND number = ?`,
                     [bookId, chapterNumber]
                 );
-                
+
                 if (results.rows.length > 0) {
                     resolve(results.rows.item(0).id);
                 } else {
@@ -785,6 +834,197 @@ export default class DatabaseService {
                 resolve(results);
             } catch (error) {
                 console.error('[DB] Error deleting Bookmark:', error);
+                reject(error);
+            }
+        });
+    }
+
+    /**
+     * Functions for Notifications TABLE
+     * @function getNotifications
+     * @function addNotification
+     * @function clearNotificationById
+     * @function clearNotificationAll
+     */
+
+    public async getNotifications(): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+            try {
+                const [results] = await this.db.executeSql(`
+                    SELECT 
+                    v.id AS verse_id,
+                    v.number AS verse_number,
+                    v.text_hd,
+                    v.text_en,
+                    v.text_mm,
+
+                    c.id AS chapter_id,
+                    c.number AS chapter_number,
+                    c.title_hd,
+                    c.title_en,
+                    c.title_mm,
+
+                    b.id AS book_id,
+                    b.number AS book_number,
+                    b.name AS book_name,
+
+                    n.planned_at AS date
+
+                    FROM ${TABLE_NOTIFICATIONS} n
+                    JOIN ${TABLE_VERSES} v ON n.verse_id = v.id
+                    JOIN ${TABLE_CHAPTERS} c ON v.chapter_id = c.id
+                    JOIN ${TABLE_BOOKS} b ON c.book_id = b.id
+                    ORDER BY n.planned_at DESC;
+                `);
+                console.log('[DB]results getNotifications', results.rows.length);
+                const notifications = [];
+                for (let i = 0; i < results.rows.length; i++) {
+                    notifications.push(results.rows.item(i));
+                }
+                resolve(notifications);
+            } catch (error) {
+                console.error('[DB] Error getting Notifications:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async getFutureNotifications(): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+            try {
+                const [results] = await this.db.executeSql(`SELECT * FROM ${TABLE_NOTIFICATIONS} WHERE planned_at > CURRENT_TIMESTAMP;`);
+                const notifications = [];
+                for (let i = 0; i < results.rows.length; i++) {
+                    notifications.push(results.rows.item(i));
+                }
+                resolve(notifications);
+            }
+            catch (error) {
+                console.error('[DB] Error getting Future Notifications:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async getTodayNotifications(): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+            const todayDate = new Date();
+            todayDate.setHours(6, 0, 0, 0);
+            const tomorrowDate = new Date();
+            tomorrowDate.setHours(6, 0, 0, 0);
+            tomorrowDate.setDate(tomorrowDate.getDate() + 1);
+            try {
+                const [results] = await this.db.executeSql(`
+                    SELECT 
+                    v.id AS verse_id,
+                    v.number AS verse_number,
+                    v.text_hd,
+                    v.text_en,
+                    v.text_mm,
+
+                    c.id AS chapter_id,
+                    c.number AS chapter_number,
+                    c.title_hd,
+                    c.title_en,
+                    c.title_mm,
+
+                    b.id AS book_id,
+                    b.number AS book_number,
+                    b.name AS book_name,
+
+                    n.planned_at AS date
+
+                    FROM ${TABLE_NOTIFICATIONS} n
+                    JOIN ${TABLE_VERSES} v ON n.verse_id = v.id
+                    JOIN ${TABLE_CHAPTERS} c ON v.chapter_id = c.id
+                    JOIN ${TABLE_BOOKS} b ON c.book_id = b.id
+                    WHERE planned_at BETWEEN ? AND ?;`, [todayDate.toISOString(), tomorrowDate.toISOString()]);
+                const notifications = [];
+                for (let i = 0; i < results.rows.length; i++) {
+                    notifications.push(results.rows.item(i));
+                }
+                resolve(notifications);
+            }
+            catch (error) {
+                console.error('[DB] Error getting Past Notifications:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async addNotification(verseId: any, triggerDate: any): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) {
+                try {
+                    this.db = await SQLite.openDatabase({
+                        name: DATABASE_NAME,
+                        location: 'default',
+                    });
+                } catch (error) {
+                    console.error('[DB] Error initializing database:', error);
+                    reject(error);
+                    return;
+                }
+            }
+
+            try {
+                const [results] = await this.db.executeSql(`INSERT INTO ${TABLE_NOTIFICATIONS} (verse_id, planned_at) VALUES (?, ?);`, [verseId, triggerDate]);
+                console.log(`[DB] Notification inserted: ${verseId}, ID: ${results.insertId}`);
+                resolve(results);
+            } catch (error) {
+                console.error('[DB] Error adding Notification:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async addNotificationBundle(verses: any): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) {
+                try {
+                    this.db = await SQLite.openDatabase({
+                        name: DATABASE_NAME,
+                        location: 'default',
+                    });
+                } catch (error) {
+                    console.error('[DB] Error initializing database:', error);
+                    reject(error);
+                    return;
+                }
+            }
+
+            try {
+                if (verses.length > 0) {
+                    const expected = verses.length;
+                    let inserted = 0;
+                    for (const verse of verses) {
+                        const [results] = await this.db.executeSql(`INSERT INTO ${TABLE_NOTIFICATIONS} (verse_id) VALUES (?);`, [verse.id]);
+                        console.log(`[DB] Notification inserted: ${verse.id}, ID: ${results.insertId}`);
+                        inserted++;
+                    }
+                    resolve(inserted === expected);
+                } else {
+                    resolve(false);
+                }
+            } catch (error) {
+                console.error('[DB] Error adding Notification:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async clearNotificationAll(): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+            try {
+                const [results] = await this.db.executeSql(`DELETE FROM ${TABLE_NOTIFICATIONS};`);
+                console.log('[DB] Notifications cleared:', results);
+                resolve(results);
+            } catch (error) {
+                console.error('[DB] Error clearing Notifications:', error);
                 reject(error);
             }
         });

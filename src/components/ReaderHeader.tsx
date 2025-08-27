@@ -5,16 +5,22 @@ import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
 
 import { AppColors } from "../constants/Color";
+import { constants } from "../constants/Data";
+import SplitVerticalIcon from "./icons/SplitVerticalIcon";
+import SplitHorizontalIcon from "./icons/SplitHorizontalIcon";
 
 interface ReaderHeaderProps {
     title: string;
     backButton: boolean;
+    dividerMode: string;
     onTitlePress: () => void;
     onSettingsPress: () => void;
+    setDividerMode: (mode: string) => void;
 }
 
-const ReaderHeader = ({ title, backButton, onTitlePress, onSettingsPress }: ReaderHeaderProps) => {
+const ReaderHeader = ({ title, backButton, dividerMode, onTitlePress, onSettingsPress, setDividerMode }: ReaderHeaderProps) => {
     const device = useSelector((state: any) => state.device);
+    const reader = useSelector((state: any) => state.reader);
     const navigation = useNavigation();
     const [isOpen, setIsOpen] = useState(false);
     const handleTitlePress = () => {
@@ -22,20 +28,26 @@ const ReaderHeader = ({ title, backButton, onTitlePress, onSettingsPress }: Read
     };
 
     return (
-        <View style={[styles.headerContainer, { backgroundColor: device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDark }]}>
+        <View style={[styles.headerContainer, { backgroundColor: constants.theme[reader.readerSetting.theme - 1].toolbarColor }]}>
             {backButton && <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-                <FontAwesome6 name="arrow-left" iconStyle="solid" color={device.theme ? AppColors.primaryDark : AppColors.appTextWhite} size={20} />
+                <FontAwesome6 name="arrow-left" iconStyle="solid" color={constants.theme[reader.readerSetting.theme - 1].buttonColor} size={20} />
             </TouchableOpacity>}
             <TouchableOpacity style={styles.headerTitleContainer} onPress={onTitlePress}>
-                <Text style={[styles.headerTitle, { color: device.theme ? AppColors.primaryDark : AppColors.appTextWhite }]}>{title}</Text>
-                <FontAwesome6 name="caret-down" iconStyle="solid" color={device.theme ? AppColors.primaryDark : AppColors.appTextWhite} size={20} />
+                <Text style={[styles.headerTitle, { color: constants.theme[reader.readerSetting.theme - 1].fontColor }]}>{title}</Text>
+                <FontAwesome6 name="caret-down" iconStyle="solid" color={constants.theme[reader.readerSetting.theme - 1].fontColor} size={20} />
             </TouchableOpacity>
             <View style={styles.optionsContainer}>
+                {
+                    device.language == 'en' || device.language == 'mm' ? (
+                        <TouchableOpacity style={styles.optionsButton} onPress={() => setDividerMode(dividerMode === 'horizontal' ? 'vertical' : 'horizontal')}>
+                            {dividerMode === 'horizontal' ? <SplitVerticalIcon color={constants.theme[reader.readerSetting.theme - 1].fontColor} size={20} /> : <SplitHorizontalIcon color={constants.theme[reader.readerSetting.theme - 1].fontColor} size={20} />}
+                        </TouchableOpacity>) : <></>
+                }
                 <TouchableOpacity style={styles.optionsButton} onPress={() => navigation.navigate('ChangeLanguage' as never)}>
-                    <FontAwesome6 name="globe" iconStyle="solid" color={device.theme ? AppColors.primaryDark : AppColors.appTextWhite} size={20} />
+                    <FontAwesome6 name="globe" iconStyle="solid" color={constants.theme[reader.readerSetting.theme - 1].fontColor} size={20} />
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.optionsButton, { marginRight: 6}]} onPress={onSettingsPress}>
-                    <FontAwesome6 name="ellipsis-vertical" iconStyle="solid" color={device.theme ? AppColors.primaryDark : AppColors.appTextWhite} size={20} />
+                <TouchableOpacity style={[styles.optionsButton, { marginRight: 6 }]} onPress={onSettingsPress}>
+                    <FontAwesome6 name="ellipsis-vertical" iconStyle="solid" color={constants.theme[reader.readerSetting.theme - 1].fontColor} size={20} />
                 </TouchableOpacity>
             </View>
         </View>

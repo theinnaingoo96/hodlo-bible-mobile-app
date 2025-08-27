@@ -42,17 +42,17 @@ const Bible = ({ navigation }: any) => {
 
     const handleChapterPress = (book: any, chapter: any) => {  
         console.log('handleChapterPress', book, chapter);
-        const reader: CurrentRead = {
-            bookName: book.name,
-            bookId: book.id,
-            chapterId: chapter.id,
-            chapterNumber: chapter.number,
-            verseId: 1,
-            verseNumber: 1,
-            maxChapter: book.count,
-        };
-        console.log('handleChapterPress', reader);
-        dispatch(setCurrent(reader));
+        // const reader: CurrentRead = {
+        //     bookName: book.name,
+        //     bookId: book.id,
+        //     chapterId: chapter.id,
+        //     chapterNumber: chapter.number,
+        //     verseId: 1,
+        //     verseNumber: 1,
+        //     maxChapter: book.count,
+        // };
+        // console.log('handleChapterPress', reader);
+        // dispatch(setCurrent(reader));
         navigation.navigate('Reader', { book: book.name, chapter: chapter.number, chapterId: chapter.id, verse: 1 });
     };
 

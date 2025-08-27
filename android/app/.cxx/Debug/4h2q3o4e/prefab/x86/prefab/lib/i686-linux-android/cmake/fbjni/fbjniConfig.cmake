@@ -1,8 +1,8 @@
 if(NOT TARGET fbjni::fbjni)
 add_library(fbjni::fbjni SHARED IMPORTED)
 set_target_properties(fbjni::fbjni PROPERTIES
-    IMPORTED_LOCATION "/Users/bluestone/.gradle/caches/8.13/transforms/72cde7dc85b5006383f56c98fcfedfa5/transformed/fbjni-0.7.0/prefab/modules/fbjni/libs/android.x86/libfbjni.so"
-    INTERFACE_INCLUDE_DIRECTORIES "/Users/bluestone/.gradle/caches/8.13/transforms/72cde7dc85b5006383f56c98fcfedfa5/transformed/fbjni-0.7.0/prefab/modules/fbjni/include"
+    IMPORTED_LOCATION "/Users/bluestone/.gradle/caches/8.13/transforms/490740573f38e6ed55cd7cd0f0ce2cff/transformed/jetified-fbjni-0.7.0/prefab/modules/fbjni/libs/android.x86/libfbjni.so"
+    INTERFACE_INCLUDE_DIRECTORIES "/Users/bluestone/.gradle/caches/8.13/transforms/490740573f38e6ed55cd7cd0f0ce2cff/transformed/jetified-fbjni-0.7.0/prefab/modules/fbjni/include"
     INTERFACE_LINK_LIBRARIES ""
 )
 endif()

@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { setDeviceId, setLoginTime } from './src/store/slices/deviceSlice';
 // import { createTables, seedDatabase } from "./src/services/DatabaseService";
 import DatabaseService from "./src/services/DataService";
+import { scheduleNotification } from "./src/services/DailyVerseService";
 
 const SplashScreen = ({ navigation }: any) => {
     const [progress, setProgress] = useState(new Animated.Value(0));
@@ -27,6 +28,13 @@ const SplashScreen = ({ navigation }: any) => {
         const initDB = async () => {
             const db = DatabaseService.getInstance();
             await db.init().then(() => {
+                db.getRandomVerse(10).then((data) => {
+                    console.log('random verse', data);
+                    // db.addNotificati`on(data[9].verse_id);
+                    scheduleNotification(data);
+                }).catch((error) => {
+                    console.log('random verse error', error);
+                });
                 navigation.reset({
                     index: 0,
                     routes: [{ name: 'Main' }],

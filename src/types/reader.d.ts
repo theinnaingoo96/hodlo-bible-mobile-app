@@ -8,3 +8,9 @@ export interface CurrentRead {
     verseNumber: number;
     maxChapter: number;
 }
+
+export interface ReaderSetting {
+    fontSize: number;
+    fontFamily: number;
+    theme: number;
+}

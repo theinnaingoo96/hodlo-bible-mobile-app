@@ -69,7 +69,8 @@ const Bookmark = () => {
                         showMenu(item);
                     }}>
                         <FontAwesome6 name="ellipsis-vertical" iconStyle="solid" color={device.theme ? AppColors.primaryDark : AppColors.appTextWhite} size={20} />
-                    </TouchableOpacity><Menu
+                    </TouchableOpacity>
+                    <Menu
                         visible={item.visible}
                         // anchor={<Text onPress={() => showMenu(index)}>Show menu</Text>}
                         onRequestClose={() => hideMenu(item)}
@@ -90,7 +91,7 @@ const Bookmark = () => {
             <FlatList
                 data={bookmarks}
                 renderItem={renderItem}
-                keyExtractor={(item) => item.id.toString()}
+                keyExtractor={(item) => "bookmark-" + item.id.toString()}
                 ListEmptyComponent={<Text style={{ color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }}>No bookmarks found</Text>}
                 showsVerticalScrollIndicator={false}
                 style={styles.listContainer}
@@ -101,7 +102,7 @@ const Bookmark = () => {
                 title="Delete Bookmark"
                 message="Are you sure you want to delete this bookmark?"
                 onClose={() => setIsAlertVisible(false)}
-                onConfirm={() => handleDeleteBookmark(selectedBookmark) }
+                onConfirm={() => handleDeleteBookmark(selectedBookmark)}
             />
         </View>
     );

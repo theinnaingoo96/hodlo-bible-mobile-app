@@ -86,7 +86,7 @@ const Setting = () => {
             <Text style={{ fontFamily: 'Pretendard-SemiBold', fontSize: 18 }}>ဘောဂဗေဒ Pretendard SemiBold</Text>
             <Text style={{ fontFamily: 'Pretendard-Bold', fontSize: 18 }}>ပထဝီ Pretendard Bold</Text>
             <Text style={{ fontFamily: 'Pretendard', fontSize: 18 }}>လူမှုဆက်ဆံရေး Pretendard ExtraBold</Text> */}
-            <Text style={[styles.versionStyle, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>version {DeviceInfo.getVersion()} | {device.theme ? 'light' : 'dark'}</Text>
+            <Text style={[styles.versionStyle, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>version {DeviceInfo.getVersion()}</Text>
             <CustomAlert
                 visible={isAlertVisible}
                 title="Clear Search History"

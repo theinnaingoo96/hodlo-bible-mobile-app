@@ -7,7 +7,6 @@ import AppHeader from '../../components/AppHeader';
 import { AppColors } from '../../constants/Color';
 import { languages } from '../../constants/Data';
 import { setLanguage } from '../../store/slices/deviceSlice';
-import CustomToast from '../../components/CustomToast';
 
 const ChangeLanguage = () => {
     const dispatch = useDispatch();

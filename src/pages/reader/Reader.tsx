@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Slider from '@react-native-community/slider';
-import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, StatusBar, Modal } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, StatusBar, Modal, Dimensions } from 'react-native';
 import { GestureDetector, Gesture } from 'react-native-gesture-handler';
 
 import ReaderHeader from '../../components/ReaderHeader';
@@ -16,6 +16,7 @@ import { setToast } from '../../store/slices/deviceSlice';
 import { constants } from '../../constants/Data';
 import { CurrentRead } from '../../types/reader';
 import { setCurrent } from '../../store/slices/readerSlice';
+import ReaderSetting from '../../components/ReaderSetting';
 
 const Reader = ({ navigation, route }: any) => {
     const device = useSelector((state: any) => state.device);
@@ -36,6 +37,7 @@ const Reader = ({ navigation, route }: any) => {
         text_hd: "",
         text_mm: ""
     })
+    const [dividerMode, setDividerMode] = useState('horizontal'); // horizontal or vertical
     const [selectedColor, setSelectedColor] = useState({ name: 'Red', hex: 'rgba(255, 59, 48, 0.7)', code: 'rgba(244, 67, 54, 0.2)' });
 
     useEffect(() => {
@@ -43,6 +45,13 @@ const Reader = ({ navigation, route }: any) => {
         if (route.params.chapter) {
             fetchVerses();
         }
+        Dimensions.addEventListener('change', ({ window: { width, height } }) => {
+            if (width < height) {
+                console.log("PORTRAIT")
+            } else {
+                console.log("LANDSCAPE")
+            }
+        })
     }, []);
 
 
@@ -198,20 +207,26 @@ const Reader = ({ navigation, route }: any) => {
         }
     }
 
+    const onChangeDividerMode = (mode: any) => {
+        console.log('onChangeDividerMode', mode);
+        setDividerMode(mode);
+    }
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <StatusBar
-                backgroundColor={device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDark}
-                barStyle={device.theme ? "dark-content" : "light-content"}
+                backgroundColor={constants.theme[reader.readerSetting.theme - 1].backgroundColor}
+                barStyle={constants.theme[reader.readerSetting.theme - 1].fontColor === '#000000' ? "dark-content" : "light-content"}
                 showHideTransition="fade" animated={true}
             />
-            <View style={[styles.container, { backgroundColor: device.theme ? AppColors.appBackgroundGrey : AppColors.appBackgroundDarkTint }]}>
-                <ReaderHeader title={params.book + " " + params.chapter} backButton={true} onTitlePress={() => { }} onSettingsPress={() => { setOptionSheetVisible(true) }} />
+            {/* device.theme ? AppColors.appBackgroundGrey : AppColors.appBackgroundDarkTint */}
+            <View style={[styles.container, { backgroundColor: constants.theme[reader.readerSetting.theme - 1].backgroundColor }]}>
+                <ReaderHeader title={params.book + " " + params.chapter} backButton={true} onTitlePress={() => { }} onSettingsPress={() => { setOptionSheetVisible(true) }} dividerMode={dividerMode} setDividerMode={onChangeDividerMode} />
 
                 <View style={[styles.contentContainer]}>
                     {
                         verses && <View style={{ flex: 1 }}>
-                            <SplitReaderView verses={verses} onStartBookmark={handleCreateBookmark} onNextChapter={handleNextChapter} onPreviousChapter={handlePreviousChapter} />
+                            <SplitReaderView verses={verses} onStartBookmark={handleCreateBookmark} onNextChapter={handleNextChapter} onPreviousChapter={handlePreviousChapter} dividerMode={dividerMode}/>
                         </View>
                     }
                 </View>
@@ -234,18 +249,7 @@ const Reader = ({ navigation, route }: any) => {
                     </View>
                 </BottomSheet>
                 <BottomSheet visible={bottomSheetVisible} onClose={() => { setBottomSheetVisible(false) }} sheetHeight={500}>
-                    <View>
-                        <Text style={{ fontSize: 16, fontWeight: 'bold', color: AppColors.primaryDark }}>Font Size</Text>
-                        <Slider
-                            style={{ width: "100%", height: 30 }}
-                            minimumValue={0}
-                            maximumValue={1}
-                            step={0.1}
-                            thumbTintColor={AppColors.primaryDark}
-                            minimumTrackTintColor={AppColors.primaryDark}
-                            maximumTrackTintColor={AppColors.primaryTint}
-                        />
-                    </View>
+                    <ReaderSetting />
                 </BottomSheet>
                 <Modal transparent visible={bookmarkModalVisible} animationType="fade">
                     <View style={styles.bookmarkModalContainer}>

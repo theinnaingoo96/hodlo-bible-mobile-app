@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import { StyleSheet, View, Dimensions, PanResponder, Animated, CursorValue, TouchableOpacity, Text, ScrollView, NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
 
@@ -7,19 +7,23 @@ import TermsIcon from '../../components/icons/setting/UpdateIcon';
 import CustomAlert from '../../components/CustomAlert';
 import { AppColors } from '../../constants/Color';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import { constants } from '../../constants/Data';
+import { setCurrentVerse } from '../../store/slices/readerSlice';
 
 interface SplitReaderViewProps {
     verses: any[];
     onStartBookmark: (verse: any) => void;
     onNextChapter: () => void;
     onPreviousChapter: () => void;
+    dividerMode: string;
 }
 
-const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookmark, onNextChapter, onPreviousChapter }) => {
+const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookmark, onNextChapter, onPreviousChapter, dividerMode }) => {
     const device = useSelector((state: any) => state.device);
     const deviceHeight = Dimensions.get('window').height;
     const deviceWidth = Dimensions.get('window').width;
-
+    const reader = useSelector((state: any) => state.reader);
+    const dispatch = useDispatch();
     const [offset, setOffset] = useState(0);
     const [topHeight, setTopHeight] = useState(40);
     const [bottomHeight, setBottomHeight] = useState(40);
@@ -27,7 +31,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
     const [rightWidth, setRightWidth] = useState(40);
     const [isDividerClicked, setIsDividerClicked] = useState(false);
     const [isViewChangeAlertVisible, setIsViewChangeAlertVisible] = useState(false);
-    const [dividerMode, setDividerMode] = useState('horizontal'); // horizontal or vertical
+    // const [dividerMode, setDividerMode] = useState('horizontal'); // horizontal or vertical
     const [localVerses, setLocalVerses] = useState<any[]>([]);
     const topRef = useRef<ScrollView>(null);
     const bottomRef = useRef<ScrollView>(null);
@@ -45,6 +49,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
     const fadeAnim = useRef(new Animated.Value(0)).current; // Opacity
     const translateY = useRef(new Animated.Value(20)).current; // Position
     const hideTimer = useRef<NodeJS.Timeout | null>(null);
+    const [itemLayouts, setItemLayouts] = useState({});
 
     useEffect(() => {
         showFAB();
@@ -52,6 +57,11 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
         setBottomHeight(deviceHeight / 2);
         setLeftWidth(deviceWidth / 2);
         setRightWidth(deviceWidth / 2);
+
+        const currentVerse = reader.currentRead.verseId;
+        const targetIndex = verses.findIndex((x)=> x.id === currentVerse)
+        console.log(reader.currentRead, targetIndex);
+        
     }, []);
 
     useEffect(() => {
@@ -112,7 +122,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
 
     const handleViewChange = () => {
         console.log('handleViewChange');
-        setDividerMode(dividerMode == "horizontal" ? "vertical" : "horizontal");
+        // setDividerMode(dividerMode == "horizontal" ? "vertical" : "horizontal");
         setIsViewChangeAlertVisible(false);
     }
 
@@ -122,6 +132,25 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
         if (fromScrollable <= 0 || toScrollable <= 0) return 0;
         return (scrollY / fromScrollable) * toScrollable;
     };
+
+    const handleLayout = (e: any, index: number) => {
+        const { y } = e.nativeEvent.layout;
+        setItemLayouts((prev) => ({ ...prev, [index]: y }));
+    }
+
+    const onSingleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+        const offsetY = event.nativeEvent.contentOffset.y;
+        let currentIndex = 0;
+
+        // find the last index whose offset <= current scroll position
+        for (let i = 0; i < verses.length; i++) {
+            if (itemLayouts[i] !== undefined && offsetY >= itemLayouts[i]) {
+                currentIndex = i + 2;
+            }
+        }
+        dispatch(setCurrentVerse({verseId: verses[currentIndex].id, verseNumber: verses[currentIndex].number}))
+        console.log("Current index:", currentIndex);
+    }
 
     const onTopScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
         // console.log('onTopScroll', e);
@@ -204,17 +233,21 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
     //     }, 300);
     // };
 
-    const VerseComponent = ({ verse, language }: any) => {
+    const VerseComponent = ({ verse, language, index }: any) => {
         return (
             <>
                 <TouchableOpacity style={styles.verseContainer}
                     activeOpacity={0.5}
                     onLongPress={() => onStartBookmark(verse)}
                     onPress={() => { }}
+                    onLayout={(e) => handleLayout(e, index)}
                 >
                     <Text style={[styles.verseNumber,]}>{verse.number}</Text>
                     <Text style={[styles.verseText, {
-                        color: device.theme ? AppColors.appTextBlack : AppColors.lightGrey,
+                        fontSize: reader.readerSetting.fontSize,
+                        fontFamily: constants.fontFamily[reader.readerSetting.fontFamily - 1].regular,
+                        lineHeight: constants.fontFamily[reader.readerSetting.fontFamily - 1].lineHeight,
+                        color: constants.theme[reader.readerSetting.theme - 1].fontColor,
                         backgroundColor: verse.bookmark ? verse.bookmark_color : 'transparent'
                     }]}>{verse['text_' + language]}</Text>
                 </TouchableOpacity>
@@ -227,19 +260,19 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
         );
     };
 
-    const swipeGesture = Gesture.Pan()
-        .onEnd((event) => {
-            if (event.translationX > 0) {
-                console.log('Swiped right!');
-            } else if (event.translationX < 0) {
-                console.log('Swiped left!');
-            }
-            if (event.translationY > 0) {
-                console.log('Swiped down!');
-            } else if (event.translationY < 0) {
-                console.log('Swiped up!');
-            }
-        });
+    // const swipeGesture = Gesture.Pan()
+    //     .onEnd((event) => {
+    //         if (event.translationX > 0) {
+    //             console.log('Swiped right!');
+    //         } else if (event.translationX < 0) {
+    //             console.log('Swiped left!');
+    //         }
+    //         if (event.translationY > 0) {
+    //             console.log('Swiped down!');
+    //         } else if (event.translationY < 0) {
+    //             console.log('Swiped up!');
+    //         }
+    //     });
 
     return (
         <View style={[styles.content, { flexDirection: dividerMode === "horizontal" ? "column" : "row" }]}>
@@ -248,10 +281,12 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
                     <ScrollView
                         onScrollBeginDrag={hideFAB}
                         onMomentumScrollEnd={showFAB}
+                        onScroll={onSingleScroll}
                         style={{ height: topHeight }}
+                        scrollEventThrottle={16}
                     >
                         {verses.map((item: any, index: number) => (
-                            <VerseComponent key={`single-view-${index}`} verse={item} language={'hd'} />
+                            <VerseComponent key={`single-view-${index}`} verse={item} language={'hd'} index={index} />
                         ))}
                     </ScrollView>
                 ) : (
@@ -276,17 +311,19 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
                                     onLayout={(e) => (topHeights.current.layout = e.nativeEvent.layout.height)}
                                 >
                                     {verses.map((item: any, index: number) => (
-                                        <VerseComponent key={`top-${index}`} verse={item} language={'hd'} />
+                                        <VerseComponent key={`top-${index}`} verse={item} language={'hd'} index={index} />
                                     ))}
                                 </ScrollView>
                             </Animated.View>
                             <View
-                                style={{
+                                style={[{
                                     height: 12,
                                     backgroundColor: '#aaa',
                                     justifyContent: 'center',
                                     alignItems: 'center',
-                                }}
+                                },
+                                isDividerClicked ? { backgroundColor: '#666' } : { backgroundColor: '#e2e2e2' }
+                                ]}
                                 // style={[
                                 //     styles.divider,
                                 //     isDividerClicked
@@ -295,12 +332,15 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
                                 // ]}
                                 {...verticalPanResponder.panHandlers}
                             >
-                                <TouchableOpacity style={styles.ellipsisButton} onPress={() => {
+                                {/* <TouchableOpacity style={styles.ellipsisButton} onPress={() => {
                                     console.log('onPress');
-                                    setIsViewChangeAlertVisible(true);
+                                    // setIsViewChangeAlertVisible(true);
                                 }} >
                                     <View style={styles.dragHandle} />
-                                </TouchableOpacity>
+                                </TouchableOpacity> */}
+                                <View style={styles.ellipsisButton}>
+                                    <View style={styles.dragHandle} />
+                                </View>
                             </View>
                             <Animated.View
                                 style={[
@@ -320,7 +360,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
                                     onLayout={(e) => (bottomHeights.current.layout = e.nativeEvent.layout.height)}
                                 >
                                     {verses.map((item: any, index: number) => (
-                                        <VerseComponent key={`bottom-${index}`} verse={item} language={device.language} />
+                                        <VerseComponent key={`bottom-${index}`} verse={item} language={device.language} index={index} />
                                     ))}
                                 </ScrollView>
                             </Animated.View>
@@ -345,7 +385,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
                                     onLayout={(e) => (leftHeights.current.layout = e.nativeEvent.layout.height)}
                                 >
                                     {verses.map((item: any, index: number) => (
-                                        <VerseComponent key={`left-${index}`} verse={item} language={'hd'} />
+                                        <VerseComponent key={`left-${index}`} verse={item} language={'hd'} index={index} />
                                     ))}
                                 </ScrollView>
                             </Animated.View>
@@ -358,12 +398,15 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
                                 ]}
                                 {...horizontalPanResponder.panHandlers}
                             >
-                                <TouchableOpacity style={styles.ellipsisButtonVertical} onPress={() => {
+                                {/* <TouchableOpacity style={styles.ellipsisButtonVertical} onPress={() => {
                                     setIsViewChangeAlertVisible(true);
                                 }} >
-                                    {/* <View style={styles.dragHandleVertical} /> */}
+                                    <View style={styles.dragHandleVertical} />
                                     <TermsIcon />
-                                </TouchableOpacity>
+                                </TouchableOpacity> */}
+                                <View style={styles.ellipsisButtonVertical}>
+                                    <View style={styles.dragHandleVertical} />
+                                </View>
                             </View>
                             <Animated.View
                                 style={[
@@ -383,7 +426,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
                                     onLayout={(e) => (rightHeights.current.layout = e.nativeEvent.layout.height)}
                                 >
                                     {verses.map((item: any, index: number) => (
-                                        <VerseComponent key={`right-${index}`} verse={item} language={device.language} />
+                                        <VerseComponent key={`right-${index}`} verse={item} language={device.language} index={index} />
                                     ))}
                                 </ScrollView>
                             </Animated.View>
@@ -411,13 +454,13 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
                     <FontAwesome6 name="angle-right" iconStyle="solid" color={device.theme ? AppColors.appTextWhite : AppColors.primaryDark} size={15} />
                 </TouchableOpacity>
             </Animated.View>
-            <CustomAlert
+            {/* <CustomAlert
                 visible={isViewChangeAlertVisible}
                 title="Change Split View"
                 message={"Are you sure you want change view to " + (dividerMode == "horizontal" ? "vertical?" : "horizontal?")}
                 onClose={() => setIsViewChangeAlertVisible(false)}
                 onConfirm={handleViewChange}
-            />
+            /> */}
         </View>
     );
 };
@@ -468,7 +511,7 @@ const styles = StyleSheet.create({
         marginTop: 2,
     },
     verseText: {
-        fontSize: 16,
+        // fontSize: 16,
         color: AppColors.appTextBlack,
         lineHeight: 27,
     },
@@ -480,16 +523,16 @@ const styles = StyleSheet.create({
         verticalAlign: 'middle',
     },
     ellipsisButtonVertical: {
-        width: 30,
-        height: 30,
-        position: 'absolute',
-        top: '50%',
-        transform: [{ translateY: '-50%' }],
+        // width: 30,
+        height: 80,
+        // position: 'absolute',
+        // top: '50%',
+        // transform: [{ translateY: '-50%' }],
         justifyContent: 'center',
         alignItems: 'center',
         verticalAlign: 'middle',
-        backgroundColor: AppColors.lightGrey,
-        borderRadius: '50%'
+        // backgroundColor: AppColors.lightGrey,
+        // borderRadius: '50%'
     },
     dragHandleVertical: {
         width: 4,

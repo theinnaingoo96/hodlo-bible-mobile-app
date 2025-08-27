@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Image, Dimensions, Text, ScrollView } from 'react-native';
+import { View, StyleSheet, Image, Dimensions, Text, ScrollView, TouchableOpacity, Alert, Share } from 'react-native';
 import { AppColors } from '../../constants/Color';
 import { useSelector } from 'react-redux';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
+import { useNavigation } from '@react-navigation/native';
+import { ReadingProgressCard, VerseOfTheDayCard } from '../../components/HomeComponent';
 import DatabaseService from '../../services/DataService';
-import { setToast } from '../../store/slices/deviceSlice';
-import { store } from '../../store/store';
-import { constants } from '../../constants/Data';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -18,17 +18,28 @@ interface CarouselItem {
 
 const Home = () => {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [todayVerse, setTodayVerse] = useState<any>(null);
     const device = useSelector((state: any) => state.device);
+    const reader = useSelector((state: any) => state.reader);
+    const navigation = useNavigation<any>();
+    // const [currentRead, setCurrentRead] = useState(reader.currentRead);
 
     useEffect(() => {
-        const db = DatabaseService.getInstance();
-        db.getVersesById(100).then((data) => {
-            console.log('data', data);
+        // const db = DatabaseService.getInstance();
+        // db.getVersesById(100).then((data) => {
+        //     console.log('data', data);
+        // });
+        // db.getBooksById(2).then((b: any) => {
+        //     console.log('book from getBooksById', b);
+        // })
+        DatabaseService.getInstance().getTodayNotifications().then((result: any) => {
+            console.log('getFutureNotifications', result);
+            if (result.length > 0) {
+                setTodayVerse(result[0]);
+            }
         });
-        db.getBooksById(2).then((b: any) => {
-            console.log('book from getBooksById', b);
-        })
-    }, []);
+        console.log('reader', reader.currentRead);
+    }, [reader]);
 
     const carouselItems: CarouselItem[] = [
         {
@@ -56,6 +67,27 @@ const Home = () => {
         const index = Math.round(contentOffset / screenWidth);
         setActiveIndex(index);
     };
+
+    const handleShare = async () => {
+        try {
+            const result = await Share.share({
+              title: 'Daily Verse',
+              message:
+                `${todayVerse?.text_hd || ''} \n\n ${todayVerse?.book_name + " " + todayVerse?.chapter_number + ":" + todayVerse?.verse_number}`,
+            });
+            if (result.action === Share.sharedAction) {
+              if (result.activityType) {
+                // shared with activity type of result.activityType
+              } else {
+                // shared
+              }
+            } else if (result.action === Share.dismissedAction) {
+              // dismissed
+            }
+          } catch (error: any) {
+            Alert.alert(error.message);
+          }
+    }
 
     return (
         <View style={[styles.container, { backgroundColor: device.theme ? AppColors.appBackgroundGrey : AppColors.appBackgroundDarkTint }]}>
@@ -92,6 +124,46 @@ const Home = () => {
                     />
                 ))}
             </View>
+            <View></View>
+            <View style={styles.currentReadContainer}>
+                {
+                    reader.currentRead.bookName && (
+                        <TouchableOpacity style={[styles.currentReadContent, { backgroundColor: device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDark }]}
+                            onPress={() => {
+                                console.log('reader.currentRead', reader.currentRead);
+                                navigation.navigate('Reader', { book: reader.currentRead.bookName, chapter: reader.currentRead.chapterNumber, chapterId: reader.currentRead.chapterId, verse: reader.currentRead.verseId });
+                            }}>
+                            <View style={styles.currentReadVerse}>
+                                <Image source={require('../../assets/images/continue.png')} style={styles.currentReadImage} />
+                                <Text style={[styles.currentReadTitle, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>Continue Reading</Text>
+                            </View>
+                            <View style={styles.currentReadVerse}>
+                                <Text style={[styles.currentReadVerseText, { color: AppColors.primaryDark }]}>{reader.currentRead.bookName + " " + reader.currentRead.chapterNumber + ":" + reader.currentRead.verseNumber}</Text>
+                                <FontAwesome6 name="arrow-right" iconStyle="solid" color={device.theme ? AppColors.primaryDark : AppColors.appTextWhite} size={20} />
+                            </View>
+                        </TouchableOpacity>
+                    )
+                }
+                {/* <View style={[styles.currentReadContent, { backgroundColor: device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDark }]}>
+                    <View style={styles.currentReadVerse}>
+                        <Image source={require('../../assets/images/continue.png')} style={styles.currentReadImage} />
+                        <Text style={[styles.currentReadTitle, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>Continue Reading</Text>
+                    </View>
+                    <View style={styles.currentReadVerse}>
+                        <Text style={[styles.currentReadVerseText, { color: AppColors.primaryDark }]}>{reader.currentRead.bookName + " " + reader.currentRead.chapterNumber + ":" + reader.currentRead.verseNumber}</Text>
+                        <FontAwesome6 name="arrow-right" iconStyle="solid" color={device.theme ? AppColors.primaryDark : AppColors.appTextWhite} size={20} />
+                    </View>
+                </View> */}
+                <View style={styles.homeContainer}>
+                    <VerseOfTheDayCard
+                        verse={todayVerse?.text_hd || ''}
+                        reference={todayVerse?.book_name + " " + todayVerse?.chapter_number + ":" + todayVerse?.verse_number}
+                        onShare={handleShare}
+                    />
+                    <View style={{ height: 16 }} />
+                    <ReadingProgressCard progress={0.4} />
+                </View>
+            </View>
         </View>
     );
 };
@@ -99,6 +171,7 @@ const Home = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        flexDirection: 'column'
         // backgroundColor: AppColors.appBackgroundGrey,
     },
     scrollView: {
@@ -141,7 +214,7 @@ const styles = StyleSheet.create({
         paddingVertical: 16,
         position: 'absolute',
         top: 165,
-        width: '100%',
+        width: '100%'
     },
     dot: {
         width: 8,
@@ -156,6 +229,66 @@ const styles = StyleSheet.create({
         height: 12,
         borderRadius: 6,
     },
+    currentReadContainer: {
+        flex: 2,
+        // backgroundColor: '#dac2c2',
+        
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1000,
+    },
+    currentReadImage: {
+        width: 40,
+        height: 40,
+        objectFit: 'cover',
+        marginLeft: 15,
+        marginVertical: 10,
+        marginRight: 10,
+        // margin: 20
+    },
+    currentReadTitle: {
+        fontSize: 15,
+        // margin: 20,
+    },
+    currentReadVerseText: {
+        fontSize: 12,
+        fontWeight: 'bold',
+        marginRight: 10
+    },
+    currentReadContent: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignContent: 'center',
+        justifyContent: 'space-between',
+        borderRadius: 10,
+        marginHorizontal: 16,
+        marginBottom: 16,
+        padding: 5,
+        shadowColor: AppColors.appTextBlack,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+        // position: 'absolute',
+        // top: -50,
+        // left: 0,
+        // right: 0,
+        // zIndex: 1000,
+    },
+    currentReadVerse: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginRight: 15
+    },
+    homeContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        marginHorizontal: 16,
+        marginBottom: 16,
+    }
 });
 
 export default Home; 

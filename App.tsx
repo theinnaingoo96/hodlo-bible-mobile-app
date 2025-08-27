@@ -1,10 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React, { useEffect } from 'react';
 import {
   SafeAreaView,
@@ -13,23 +6,25 @@ import {
   View
 } from 'react-native';
 import { useSelector } from 'react-redux';
+import PushNotification from 'react-native-push-notification';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { setLanguage, setTheme } from './src/store/slices/deviceSlice';
+import { setCurrent, setReaderSetting } from './src/store/slices/readerSlice';
 import ChangeLanguage from './src/pages/reader/ChangeLanguage';
 import { navigationRef } from './src/utils/RootNavigation';
 import CustomLoading from './src/components/CustomLoading';
+import { CustomToast } from './src/components/CustomToast';
 import DatabaseViewer from './src/pages/DatabaseViewer';
+import Notification from './src/pages/Notification';
+import { CurrentRead, ReaderSetting } from './src/types/reader';
 import { AppColors } from './src/constants/Color';
 import Reader from './src/pages/reader/Reader';
 import { store } from './src/store/store';
 import SplashScreen from './Splash';
 import Main from './src/pages/Main';
-import { CustomToast } from './src/components/CustomToast';
-
 function App(): React.JSX.Element {
   const device = useSelector((state: any) => state.device);
 
@@ -46,6 +41,45 @@ function App(): React.JSX.Element {
         store.dispatch(setLanguage(value));
       }
     });
+    AsyncStorage.getItem("ho-dlo-reader-setting").then((readerSetting: any) => {
+      console.log('reader setting', readerSetting);
+      if (readerSetting) {
+        const readerSettingData = JSON.parse(readerSetting);
+        store.dispatch(setReaderSetting(readerSettingData));
+      } else {
+        const readerSetting: ReaderSetting = {
+          fontSize: 16,
+          fontFamily: 1,
+          theme: 1,
+        }
+        store.dispatch(setReaderSetting(readerSetting));
+      }
+    });
+    AsyncStorage.getItem("ho-dlo-current-read").then((current: any) => {
+      if (current) {
+        const currentReading: CurrentRead = JSON.parse(current);
+        store.dispatch(setCurrent(currentReading))
+      } else {
+        const readerInitial: CurrentRead = {
+          bookName: "Exodus",
+          bookId: 1,
+          chapterId: 1,
+          chapterNumber: 1,
+          verseId: 1,
+          verseNumber: 1,
+          maxChapter: 0,
+        }
+        store.dispatch(setCurrent(readerInitial));
+      }
+    })
+    PushNotification.createChannel(
+      {
+        channelId: 'ho-dlo-channel',
+        channelName: 'Ho Dlo Notifications',
+        importance: 4,
+      },
+      (created) => console.log(`createChannel returned '${created}'`)
+    );
   }, []);
 
   return (
@@ -57,35 +91,40 @@ function App(): React.JSX.Element {
           showHideTransition="fade" animated={true}
         />
         {/* <GestureHandlerRootView style={{ flex: 1 }}> */}
-          <NavigationContainer ref={navigationRef}>
-            <Stack.Navigator initialRouteName="Splash" screenOptions={{ gestureEnabled: false }}>
-              <Stack.Screen
-                name="Splash"
-                component={SplashScreen}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="Main"
-                component={Main}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="Reader"
-                component={Reader}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="ChangeLanguage"
-                component={ChangeLanguage}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="DatabaseViewer"
-                component={DatabaseViewer}
-                options={{ headerShown: false }}
-              />
-            </Stack.Navigator>
-          </NavigationContainer>
+        <NavigationContainer ref={navigationRef}>
+          <Stack.Navigator initialRouteName="Splash" screenOptions={{ gestureEnabled: false }}>
+            <Stack.Screen
+              name="Splash"
+              component={SplashScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Main"
+              component={Main}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Reader"
+              component={Reader}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="ChangeLanguage"
+              component={ChangeLanguage}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Notification"
+              component={Notification}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="DatabaseViewer"
+              component={DatabaseViewer}
+              options={{ headerShown: false }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
         {/* </GestureHandlerRootView> */}
         <CustomLoading visible={device.loading} />
         <CustomToast visible={device.toast.show} message={device.toast.message} type={device.toast.type} duration={device.toast.duration} />
