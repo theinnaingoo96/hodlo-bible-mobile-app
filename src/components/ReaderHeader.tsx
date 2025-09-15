@@ -8,6 +8,7 @@ import { AppColors } from "../constants/Color";
 import { constants } from "../constants/Data";
 import SplitVerticalIcon from "./icons/SplitVerticalIcon";
 import SplitHorizontalIcon from "./icons/SplitHorizontalIcon";
+import { Menu, MenuItem } from "react-native-material-menu";
 
 interface ReaderHeaderProps {
     title: string;
@@ -15,16 +16,35 @@ interface ReaderHeaderProps {
     dividerMode: string;
     onTitlePress: () => void;
     onSettingsPress: () => void;
+    onAudioReaderPress: () => void;
     setDividerMode: (mode: string) => void;
 }
 
-const ReaderHeader = ({ title, backButton, dividerMode, onTitlePress, onSettingsPress, setDividerMode }: ReaderHeaderProps) => {
+const ReaderHeader = ({ title, backButton, dividerMode, onTitlePress, onSettingsPress, onAudioReaderPress, setDividerMode }: ReaderHeaderProps) => {
     const device = useSelector((state: any) => state.device);
     const reader = useSelector((state: any) => state.reader);
     const navigation = useNavigation();
     const [isOpen, setIsOpen] = useState(false);
     const handleTitlePress = () => {
         console.log('handleTitlePress');
+    };
+
+    const hideMenu = (type: number) => {
+        setIsOpen(false);
+        switch (type) {
+            case 1:
+                onSettingsPress();
+                break;
+            case 2:
+                onAudioReaderPress();
+                break;
+            default:
+                break;
+        }
+    };
+
+    const showMenu = () => {
+        setIsOpen(true);
     };
 
     return (
@@ -46,9 +66,18 @@ const ReaderHeader = ({ title, backButton, dividerMode, onTitlePress, onSettings
                 <TouchableOpacity style={styles.optionsButton} onPress={() => navigation.navigate('ChangeLanguage' as never)}>
                     <FontAwesome6 name="globe" iconStyle="solid" color={constants.theme[reader.readerSetting.theme - 1].fontColor} size={20} />
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.optionsButton, { marginRight: 6 }]} onPress={onSettingsPress}>
+                <TouchableOpacity style={[styles.optionsButton, { marginRight: 6 }]} onPress={showMenu}>
                     <FontAwesome6 name="ellipsis-vertical" iconStyle="solid" color={constants.theme[reader.readerSetting.theme - 1].fontColor} size={20} />
                 </TouchableOpacity>
+                <Menu
+                    visible={isOpen}
+                    // anchor={<Text onPress={() => showMenu(index)}>Show menu</Text>}
+                    onRequestClose={() => hideMenu(0)}
+                >
+                    <MenuItem onPress={() => hideMenu(1)}>Reader Setting</MenuItem>
+                    <MenuItem onPress={() => hideMenu(2)}>Audio Reader</MenuItem>
+                    {/* <MenuItem onPress={() => deleteBookmark(item)}>Delete</MenuItem> */}
+                </Menu>
             </View>
         </View>
     );

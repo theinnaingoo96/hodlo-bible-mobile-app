@@ -41,7 +41,7 @@ const Reader = ({ navigation, route }: any) => {
     const [selectedColor, setSelectedColor] = useState({ name: 'Red', hex: 'rgba(255, 59, 48, 0.7)', code: 'rgba(244, 67, 54, 0.2)' });
 
     useEffect(() => {
-        console.log('verses from Reader 1', params);
+        // console.log('verses from Reader 1', params);
         if (route.params.chapter) {
             fetchVerses();
         }
@@ -56,7 +56,7 @@ const Reader = ({ navigation, route }: any) => {
 
 
     useEffect(() => {
-        console.log('verses from Reader 2', verses, route.params.chapter);
+        // console.log('verses from Reader 2', verses, route.params.chapter);
         fetchVerses();
     }, []);
 
@@ -65,12 +65,12 @@ const Reader = ({ navigation, route }: any) => {
     // }, []);
 
     const fetchVerses = () => {
-        console.log('fetchVerses', route.params.chapter);
+        // console.log('fetchVerses', route.params.chapter);
         DatabaseService.getInstance().getVersesByChapterId(route.params.chapterId).then((v: any) => {
-            console.log('verses from fetchVerses', v.length);
+            // console.log('verses from fetchVerses', v.length);
             let temp_verses = v;
             DatabaseService.getInstance().getBookmarks().then(async (b: any) => {
-                console.log('bookmarks from fetchVerses', b);
+                // console.log('bookmarks from fetchVerses', b);
                 const temp_bookmarks = b;
                 await temp_bookmarks.forEach((bookmark: any) => {
                     const index = temp_verses.findIndex((v: any) => v.id === bookmark.verse_id);
@@ -82,13 +82,13 @@ const Reader = ({ navigation, route }: any) => {
                 if (temp_verses.length > 0) {
                     setVerses(temp_verses);
                 }
-                console.log('verses from fetchVerses after', temp_verses);
+                // console.log('verses from fetchVerses after', temp_verses);
             });
         });
     }
 
     const handleCreateBookmark = (verse: any) => {
-        console.log(verse);
+        // console.log(verse);
         setBookmarkModalVisible(true);
         setBookmarkedVerse({
             book_name: params.book,
@@ -161,11 +161,11 @@ const Reader = ({ navigation, route }: any) => {
 
     const handleNextChapter = () => {
         const currentReaderData = reader.currentRead;
-        console.log('handleNextChapter', currentReaderData);
+        // console.log('handleNextChapter', currentReaderData);
         if (currentReaderData.maxChapter > currentReaderData.chapterNumber) {
             store.dispatch(setToast({ show: true, message: 'Next Chapter - ' + currentReaderData.bookName + ' ' + (currentReaderData.chapterNumber + 1), type: 'change', duration: constants.toastDuration }));
             DatabaseService.getInstance().getChapterIdByBookIdAndChapterNumber(currentReaderData.bookId, currentReaderData.chapterNumber + 1).then((nextChapterId: any) => {
-                console.log('nextChapter', nextChapterId);
+                // console.log('nextChapter', nextChapterId);
                 const read: CurrentRead = {
                     bookName: currentReaderData.bookName,
                     bookId: currentReaderData.bookId,
@@ -185,13 +185,13 @@ const Reader = ({ navigation, route }: any) => {
 
     const handlePreviousChapter = () => {
         const currentReaderData = reader.currentRead;
-        console.log('handlePreviousChapter', currentReaderData);
-        console.log('navigation', navigation);
+        // console.log('handlePreviousChapter', currentReaderData);
+        // console.log('navigation', navigation);
 
         if (currentReaderData.chapterNumber > 1) {
             store.dispatch(setToast({ show: true, message: 'Previous Chapter - ' + currentReaderData.bookName + ' ' + (currentReaderData.chapterNumber - 1), type: 'change', duration: constants.toastDuration }));
             DatabaseService.getInstance().getChapterIdByBookIdAndChapterNumber(currentReaderData.bookId, currentReaderData.chapterNumber - 1).then((previousChapterId: any) => {
-                console.log('previousChapter', previousChapterId);
+                // console.log('previousChapter', previousChapterId);
                 const read: CurrentRead = {
                     bookName: currentReaderData.bookName,
                     bookId: currentReaderData.bookId,
@@ -208,7 +208,7 @@ const Reader = ({ navigation, route }: any) => {
     }
 
     const onChangeDividerMode = (mode: any) => {
-        console.log('onChangeDividerMode', mode);
+        // console.log('onChangeDividerMode', mode);
         setDividerMode(mode);
     }
 
@@ -221,7 +221,9 @@ const Reader = ({ navigation, route }: any) => {
             />
             {/* device.theme ? AppColors.appBackgroundGrey : AppColors.appBackgroundDarkTint */}
             <View style={[styles.container, { backgroundColor: constants.theme[reader.readerSetting.theme - 1].backgroundColor }]}>
-                <ReaderHeader title={params.book + " " + params.chapter} backButton={true} onTitlePress={() => { }} onSettingsPress={() => { setOptionSheetVisible(true) }} dividerMode={dividerMode} setDividerMode={onChangeDividerMode} />
+                <ReaderHeader title={params.book + " " + params.chapter} backButton={true} onTitlePress={() => { }} 
+                dividerMode={dividerMode} setDividerMode={onChangeDividerMode} onSettingsPress={() => { setBottomSheetVisible(true) }}
+                onAudioReaderPress={() => { setBottomSheetVisible(true) }}/>
 
                 <View style={[styles.contentContainer]}>
                     {

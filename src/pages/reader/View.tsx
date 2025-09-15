@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
-import { StyleSheet, View, Dimensions, PanResponder, Animated, CursorValue, TouchableOpacity, Text, ScrollView, NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
+import { StyleSheet, View, Dimensions, PanResponder, Animated, CursorValue, TouchableOpacity, Text, ScrollView, NativeSyntheticEvent, NativeScrollEvent, TouchableWithoutFeedback, Touchable } from 'react-native';
 
 import TermsIcon from '../../components/icons/setting/UpdateIcon';
 import CustomAlert from '../../components/CustomAlert';
@@ -37,6 +37,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
     const bottomRef = useRef<ScrollView>(null);
     const leftRef = useRef<ScrollView>(null);
     const rightRef = useRef<ScrollView>(null);
+    const singleRef = useRef<ScrollView>(null);
     const isSyncing = useRef(false);
 
     const topHeights = useRef({ content: 1, layout: 1 });
@@ -49,7 +50,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
     const fadeAnim = useRef(new Animated.Value(0)).current; // Opacity
     const translateY = useRef(new Animated.Value(20)).current; // Position
     const hideTimer = useRef<NodeJS.Timeout | null>(null);
-    const [itemLayouts, setItemLayouts] = useState({});
+    const [itemLayouts, setItemLayouts] = useState<any>({});
 
     useEffect(() => {
         showFAB();
@@ -59,13 +60,25 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
         setRightWidth(deviceWidth / 2);
 
         const currentVerse = reader.currentRead.verseId;
-        const targetIndex = verses.findIndex((x)=> x.id === currentVerse)
+        const targetIndex = verses.findIndex((x) => x.id === currentVerse)
         console.log(reader.currentRead, targetIndex);
-        
+
     }, []);
 
+    // Auto-scroll to target index when layouts are available
     useEffect(() => {
-        console.log('verses from View', verses);
+        if (Object.keys(itemLayouts).length === 0) return;
+        
+        const currentVerse = reader.currentRead.verseId;
+        const targetIndex = verses.findIndex((x) => x.id === currentVerse);
+        
+        if (targetIndex >= 0) {
+            scrollToIndex(targetIndex);
+        }
+    }, [itemLayouts, verses, reader.currentRead.verseId]);
+
+    useEffect(() => {
+        // console.log('verses from View', verses);
         setLocalVerses(verses);
     }, [verses]);
 
@@ -121,7 +134,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
     ).current;
 
     const handleViewChange = () => {
-        console.log('handleViewChange');
+        // console.log('handleViewChange');
         // setDividerMode(dividerMode == "horizontal" ? "vertical" : "horizontal");
         setIsViewChangeAlertVisible(false);
     }
@@ -135,7 +148,35 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
 
     const handleLayout = (e: any, index: number) => {
         const { y } = e.nativeEvent.layout;
-        setItemLayouts((prev) => ({ ...prev, [index]: y }));
+        setItemLayouts((prev: any) => ({ ...prev, [index]: y }));
+    }
+
+    const scrollToIndex = (index: number, animated: boolean = true) => {
+        if (index < 0 || index >= verses.length) return;
+        
+        const targetY = itemLayouts[index];
+        if (targetY === undefined) return;
+
+        // Add a small delay to ensure layout is complete
+        setTimeout(() => {
+            if (device.language !== 'en' && device.language !== 'mm') {
+                // Single view mode
+                singleRef.current?.scrollTo({ y: targetY, animated });
+            } else if (dividerMode === "horizontal") {
+                // Horizontal split view
+                topRef.current?.scrollTo({ y: targetY, animated });
+                bottomRef.current?.scrollTo({ y: targetY, animated });
+            } else {
+                // Vertical split view
+                leftRef.current?.scrollTo({ y: targetY, animated });
+                rightRef.current?.scrollTo({ y: targetY, animated });
+            }
+        }, 100);
+    }
+
+    // Public method to scroll to any verse by index
+    const scrollToVerseIndex = (index: number) => {
+        scrollToIndex(index, true);
     }
 
     const onSingleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -148,8 +189,8 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
                 currentIndex = i + 2;
             }
         }
-        dispatch(setCurrentVerse({verseId: verses[currentIndex].id, verseNumber: verses[currentIndex].number}))
-        console.log("Current index:", currentIndex);
+        dispatch(setCurrentVerse({ verseId: verses[currentIndex].id, verseNumber: verses[currentIndex].number }))
+        // console.log("Current index:", currentIndex);
     }
 
     const onTopScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -235,12 +276,13 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
 
     const VerseComponent = ({ verse, language, index }: any) => {
         return (
-            <>
+            <View style={{ flex: 1, zIndex: 100 }}>
                 <TouchableOpacity style={styles.verseContainer}
-                    activeOpacity={0.5}
-                    onLongPress={() => onStartBookmark(verse)}
-                    onPress={() => { }}
+                    // activeOpacity={0.5}
+                    onLongPress={() => !verse.bookmark && onStartBookmark(verse)}
+                    delayLongPress={500}
                     onLayout={(e) => handleLayout(e, index)}
+                    onPress={() => { verse.bookmark && console.log('onPress', verse) }}
                 >
                     <Text style={[styles.verseNumber,]}>{verse.number}</Text>
                     <Text style={[styles.verseText, {
@@ -256,7 +298,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
                         <View style={{ height: 3 }} />
                     )
                 }
-            </>
+            </View>
         );
     };
 
@@ -279,6 +321,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
             {
                 device.language !== 'en' && device.language !== 'mm' ? (
                     <ScrollView
+                        ref={singleRef}
                         onScrollBeginDrag={hideFAB}
                         onMomentumScrollEnd={showFAB}
                         onScroll={onSingleScroll}
@@ -317,7 +360,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
                             </Animated.View>
                             <View
                                 style={[{
-                                    height: 12,
+                                    height: 20,
                                     backgroundColor: '#aaa',
                                     justifyContent: 'center',
                                     alignItems: 'center',
@@ -472,7 +515,7 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     divider: {
-        height: 12,
+        height: 20,
         width: '100%',
         backgroundColor: '#aaa',
         justifyContent: 'center',
@@ -481,7 +524,7 @@ const styles = StyleSheet.create({
     },
     dividerVertical: {
         height: '100%',
-        width: 12,
+        width: 20,
         backgroundColor: '#aaa',
         justifyContent: 'center',
         alignItems: 'center',
@@ -499,10 +542,10 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 8,
         // borderBottomWidth: 1,
-        // borderColor: '#ccc',
         flexDirection: 'row',
         alignItems: 'flex-start',
         gap: 10,
+        zIndex: 1000,
     },
     verseNumber: {
         fontSize: 16,

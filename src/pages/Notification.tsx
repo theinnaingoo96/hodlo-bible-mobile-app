@@ -11,6 +11,20 @@ const Notification = () => {
     const [notifications, setNotifications] = useState<any[]>([]);
 
     useEffect(() => {
+        // const hd = require('../assets/seeder/19.json')
+        // const en = require('../assets/seeder/psalms.json')
+        // hd.map((item: any) => {
+        //     item.text_en = en.find((enItem: any) => Number(enItem.chapter_id) === item.chapter_id && Number(enItem.verse_number) === item.verse_number)?.text_en
+        //     item.chapter_en = en.find((enItem: any) => Number(enItem.chapter_id) === item.chapter_id)?.chapter_en
+        //     item.chapter_id = Number(item.chapter_id)
+        //     item.verse_number = Number(item.verse_number)
+        // })
+        // const hd = require('../assets/seeder/19_f.json')
+        // hd.map((item: any, index: number) => {
+        //     item.id = index + 1214
+        // })
+        // console.log('hd', JSON.stringify(hd))
+
         DatabaseService.getInstance().getNotifications().then((result: any) => {
             if (result) {
                 const notiList = result.map((item: any) => {
@@ -28,7 +42,7 @@ const Notification = () => {
         return <View style={[styles.itemContainer, { backgroundColor: device.theme ? '#fff' : '#000' }]}>
             <Text style={[styles.itemText, { color: device.theme ? '#000' : '#fff' }]}>{item.text_hd}</Text>
             <View style={styles.referenceContainer}>
-                <Text style={[styles.referenceText, { color: device.theme ? '#000' : '#fff' }]}>{item.date}</Text>
+                <Text style={[styles.datetimeText, { color: device.theme ? '#000' : '#fff' }]}>{item.date}</Text>
                 <Text style={[styles.referenceText, { color: device.theme ? '#000' : '#fff' }]}>{item.book_name + " " + item.chapter_number + ":" + item.verse_number}</Text>
             </View>
         </View>;
@@ -87,11 +101,18 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'flex-end',
     },
-    referenceText: {
+    datetimeText: {
         fontSize: 14,
         fontStyle: "italic",
         marginTop: 12,
         color: "#666",
+        textAlign: "right"
+    },
+    referenceText: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        marginTop: 12,
+        color: "#000",
         textAlign: "right"
     },
 });

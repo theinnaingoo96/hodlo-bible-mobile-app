@@ -235,7 +235,7 @@ export default class DatabaseService {
                 }
 
                 for (const row of verseData) {
-                    const { book_id, book_name, chapter_id, chapter_name, chapter_vid, text_hd, text_en, text_mm } = row;
+                    const { book_id, book_name, chapter_id, chapter_hd, chapter_en, chapter_mm, verse_number, text_hd, text_en, text_mm } = row;
                     // if (!bookMap.has(book_name)) {
                     //     const res = await this.db.executeSql('INSERT OR IGNORE INTO books (number, name) VALUES (?, ?)', [book_id, book_name]);
                     //     const book_ids = res[0].insertId || (await this.db.executeSql('SELECT id FROM books WHERE name = ?', [book_name]))[0].rows.item(0).id;
@@ -243,13 +243,13 @@ export default class DatabaseService {
                     //     console.log('[DB]inserted book', book_ids);
                     // }
 
-                    const bookId = '2';
-                    const chapterKey = `${bookId}_${chapter_id}`;
+                    // const bookId = '2';
+                    const chapterKey = `${book_id}_${chapter_id}`;
 
                     if (!chapterMap.has(chapterKey)) {
                         const res = await this.db.executeSql(
-                            'INSERT INTO chapters (book_id, number, title_hd) VALUES (?, ?, ?)',
-                            [bookId, chapter_id, chapter_name]
+                            'INSERT INTO chapters (book_id, number, title_hd, title_en, title_mm) VALUES (?, ?, ?, ?, ?)',
+                            [book_id, chapter_id, chapter_hd, chapter_en, chapter_mm]
                         );
                         chapterMap.set(chapterKey, res[0].insertId);
                         console.log('[DB]inserted chapter', res[0].insertId);
@@ -259,9 +259,9 @@ export default class DatabaseService {
                     await this.db.executeSql(
                         `INSERT INTO verses (chapter_id, number, text_hd, text_en, text_mm)
                      VALUES (?, ?, ?, ?, ?)`,
-                        [chapter_ids, chapter_vid, text_hd, text_en, text_mm]
+                        [chapter_ids, verse_number, text_hd, text_en, text_mm]
                     );
-                    console.log('[DB]inserted verse', chapter_id);
+                    console.log('[DB]inserted verse of', book_id, ' : ', chapter_id);
                 }
                 const [chapterCount] = await this.db.executeSql(`
                     SELECT book_id, COUNT(*) AS chapter_count
@@ -274,14 +274,16 @@ export default class DatabaseService {
                     updates.push({ bookId: book_id, count: chapter_count });
                 }
                 console.log('[DB]chapterCount', updates);
-                await this.db.transaction(async tx => {
+                // await this.db.transaction(async tx => {
                     for (const { bookId, count } of updates) {
-                        await tx.executeSql(
+                        await this.db.executeSql(
                             `UPDATE books SET count = ? WHERE id = ?`,
                             [count, bookId]
-                        );
+                        ).then(() => {
+                            console.log('[DB]updated book', bookId);
+                        });
                     }
-                });
+                // });
                 console.log('[DB] Seeding complete');
                 resolve(true);
             } catch (error) {

@@ -37,7 +37,8 @@ const CustomLoading = ({ visible = false }: { visible: boolean }) => {
                     <AnimatedView
                         style={[styles.image, animatedStyle]}
                     >
-                        <Logo color={AppColors.appTextWhite} size={24} />
+                        {/* <Logo color={AppColors.appTextWhite} size={24} /> */}
+                        <Image source={require('../assets/images/icon.png')} style={{ width: 24, height: 24 }} />
                         <Text style={styles.text}>Loading...</Text>
                     </AnimatedView>
                 </View>

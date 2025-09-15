@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image } from "react-native";
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import { AppColors } from "../constants/Color";
 import Logo from "./icons/Logo";
@@ -22,7 +22,8 @@ const TabHeader: React.FC<TabHeaderProps> = ({ title, icon: Icon }) => {
 
     return (
         <View style={styles.headerContainer}>
-            <Logo color={device.theme ? AppColors.primary : AppColors.appTextWhite} size={24} />
+            {/* <Logo color={device.theme ? AppColors.primary : AppColors.appTextWhite} size={24} /> */}
+            <Image source={require('../assets/images/icon.png')} style={{ width: 24, height: 24 }} />
             <Text style={[styles.headerTitle, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>{"Gathengpu Dlo"}</Text>
             <TouchableOpacity style={styles.notificationStyle} onPress={() => navigation.navigate('Notification' as never)}>
                 <FontAwesome6 name="bell" iconStyle="regular" color={device.theme ? AppColors.tabTextGrey : AppColors.appTextWhite} size={20} />
