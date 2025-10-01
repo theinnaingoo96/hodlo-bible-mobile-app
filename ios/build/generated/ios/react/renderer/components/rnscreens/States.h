@@ -14,6 +14,54 @@
 
 namespace facebook::react {
 
+class RNSBottomTabsScreenState {
+public:
+  RNSBottomTabsScreenState() = default;
+
+#ifdef ANDROID
+  RNSBottomTabsScreenState(RNSBottomTabsScreenState const &previousState, folly::dynamic data){};
+  folly::dynamic getDynamic() const {
+    return {};
+  };
+#endif
+};
+
+class RNSScreenStackHostState {
+public:
+  RNSScreenStackHostState() = default;
+
+#ifdef ANDROID
+  RNSScreenStackHostState(RNSScreenStackHostState const &previousState, folly::dynamic data){};
+  folly::dynamic getDynamic() const {
+    return {};
+  };
+#endif
+};
+
+class RNSSplitViewHostState {
+public:
+  RNSSplitViewHostState() = default;
+
+#ifdef ANDROID
+  RNSSplitViewHostState(RNSSplitViewHostState const &previousState, folly::dynamic data){};
+  folly::dynamic getDynamic() const {
+    return {};
+  };
+#endif
+};
+
+class RNSStackScreenState {
+public:
+  RNSStackScreenState() = default;
+
+#ifdef ANDROID
+  RNSStackScreenState(RNSStackScreenState const &previousState, folly::dynamic data){};
+  folly::dynamic getDynamic() const {
+    return {};
+  };
+#endif
+};
+
 class RNSScreenContainerState {
 public:
   RNSScreenContainerState() = default;

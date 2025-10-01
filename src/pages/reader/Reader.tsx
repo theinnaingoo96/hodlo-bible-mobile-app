@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react';
 import Slider from '@react-native-community/slider';
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, StatusBar, Modal, Dimensions } from 'react-native';
 import { GestureDetector, Gesture } from 'react-native-gesture-handler';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
+import { useAudioPlayer } from '../../hooks/useAudioPlayer';
+import { testAudioLoading } from '../../utils/audioDebug';
 
 import ReaderHeader from '../../components/ReaderHeader';
 import DatabaseService from '../../services/DataService';
@@ -24,8 +27,35 @@ const Reader = ({ navigation, route }: any) => {
     const params = route.params;
     const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
     const [optionSheetVisible, setOptionSheetVisible] = useState(false);
+    const [playerSheetVisible, setPlayerSheetVisible] = useState(false);
     const [fontSize, setFontSize] = useState(0.5);
     const [verses, setVerses] = useState();
+    
+    // Audio player hook
+    const {
+        isPlaying,
+        isPaused,
+        isStopped,
+        duration,
+        currentTime,
+        volume,
+        isLoading,
+        error,
+        play,
+        pause,
+        stop,
+        seekTo,
+        setVolume,
+        playPsalm101,
+        playPsalm102,
+        playPsalm103,
+        playPsalm104,
+        playPsalm105,
+        playPsalm106,
+        progress,
+        formattedTime,
+        formattedDuration,
+    } = useAudioPlayer();
     const [bookmarkModalVisible, setBookmarkModalVisible] = useState(false);
     const [bookmarkedVerse, setBookmarkedVerse] = useState({
         book_name: "",
@@ -212,6 +242,77 @@ const Reader = ({ navigation, route }: any) => {
         setDividerMode(mode);
     }
 
+    // Test audio loading
+    const testAudio = async () => {
+        console.log('Testing audio loading...');
+        const result = await testAudioLoading();
+        console.log('Audio test result:', result);
+    };
+
+    // Audio control functions
+    const playAudio = async () => {
+        try {
+            // Check if audio player is available
+            if (error && error.includes('not available')) {
+                console.log('[AUDIO] Audio player not available, skipping audio playback');
+                return;
+            }
+            await playPsalm101();
+
+            // First test audio loading
+            // await testAudio();
+
+            // Determine which Psalm to play based on current chapter
+            // const chapterNumber = params.chapter;
+            // switch (chapterNumber) {
+            //     case 101:
+            //         await playPsalm101();
+            //         break;
+            //     case 102:
+            //         await playPsalm102();
+            //         break;
+            //     case 103:
+            //         await playPsalm103();
+            //         break;
+            //     case 104:
+            //         await playPsalm104();
+            //         break;
+            //     case 105:
+            //         await playPsalm105();
+            //         break;
+            //     case 106:
+            //         await playPsalm106();
+            //         break;
+            //     default:
+            //         // Default to Psalm 101 if chapter doesn't match
+            //         await playPsalm101();
+            // }
+        } catch (error) {
+            console.error('Error playing audio:', error);
+        }
+    };
+
+    const handlePlayPause = async () => {
+        if (isPlaying) {
+            pause();
+        } else {
+            await playAudio();
+        }
+    };
+
+    const handleStop = () => {
+        stop();
+    };
+
+    const handleSeek = (value: number) => {
+        const newTime = value * duration;
+        seekTo(newTime);
+    };
+
+    const handleVolumeChange = (value: number) => {
+        setVolume(value);
+    };
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <StatusBar
@@ -223,7 +324,7 @@ const Reader = ({ navigation, route }: any) => {
             <View style={[styles.container, { backgroundColor: constants.theme[reader.readerSetting.theme - 1].backgroundColor }]}>
                 <ReaderHeader title={params.book + " " + params.chapter} backButton={true} onTitlePress={() => { }} 
                 dividerMode={dividerMode} setDividerMode={onChangeDividerMode} onSettingsPress={() => { setBottomSheetVisible(true) }}
-                onAudioReaderPress={() => { setBottomSheetVisible(true) }}/>
+                onAudioReaderPress={() => { setPlayerSheetVisible(true) }}/>
 
                 <View style={[styles.contentContainer]}>
                     {
@@ -248,6 +349,77 @@ const Reader = ({ navigation, route }: any) => {
                         <TouchableOpacity style={styles.optionContainer} onPress={() => { setBottomSheetVisible(true) }}>
                             <Text style={styles.optionTitle}>Audio Reader</Text>
                         </TouchableOpacity>
+                    </View>
+                </BottomSheet>
+                <BottomSheet visible={playerSheetVisible}
+                    onClose={() => { setPlayerSheetVisible(false) }}
+                    sheetHeight={180}
+                    closeButton={false}
+                >
+                    <View>
+                        <View style={styles.playerContainer}>
+                            <View style={styles.playerControls}>
+                                <TouchableOpacity style={styles.controlButton} onPress={handleStop}>
+                                    <FontAwesome6 name="stop" iconStyle="solid" color={AppColors.appTextWhite} size={18} />
+                                </TouchableOpacity>
+                                <TouchableOpacity 
+                                    style={[styles.playButton, isPlaying && styles.playingButton]} 
+                                    onPress={handlePlayPause}
+                                    disabled={isLoading}
+                                >
+                                    {isLoading ? (
+                                        <FontAwesome6 name="spinner" iconStyle="solid" color={AppColors.appTextWhite} size={18} />
+                                    ) : (
+                                        <FontAwesome6 
+                                            name={isPlaying ? "pause" : "play"} 
+                                            iconStyle="solid" 
+                                            color={AppColors.appTextWhite} 
+                                            size={18} 
+                                        />
+                                    )}
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.controlButton} onPress={handleStop}>
+                                    <FontAwesome6 name="stop" iconStyle="solid" color={AppColors.appTextWhite} size={18} />
+                                </TouchableOpacity>
+                            </View>
+
+                            <View style={styles.progressContainer}>
+                                <Text style={styles.timeText}>{formattedTime}</Text>
+                                <Slider
+                                    style={styles.progressBar}
+                                    minimumValue={0}
+                                    maximumValue={1}
+                                    value={progress}
+                                    onValueChange={handleSeek}
+                                    minimumTrackTintColor={AppColors.primary}
+                                    maximumTrackTintColor={AppColors.appTextGrey}
+                                    thumbTintColor={AppColors.primary}
+                                />
+                                <Text style={styles.timeText}>{formattedDuration}</Text>
+                            </View>
+
+                            {error && (
+                                <Text style={styles.errorText}>
+                                    {error.includes('not available') 
+                                        ? 'Audio player not available' 
+                                        : `Audio Error: ${error}`
+                                    }
+                                </Text>
+                            )}
+
+                            {/* <View style={styles.volumeContainer}>
+                                <Text style={styles.volumeLabel}>Volume</Text>
+                                <Slider
+                                    style={styles.volumeSlider}
+                                    minimumValue={0}
+                                    maximumValue={1}
+                                    value={0.5}
+                                    minimumTrackTintColor="#000"
+                                    maximumTrackTintColor="#ddd"
+                                    thumbTintColor="#000"
+                                />
+                            </View> */}
+                        </View>
                     </View>
                 </BottomSheet>
                 <BottomSheet visible={bottomSheetVisible} onClose={() => { setBottomSheetVisible(false) }} sheetHeight={500}>
@@ -422,6 +594,74 @@ const styles = StyleSheet.create({
     },
     colorPicker: {
         marginBottom: 25
+    }
+    ,
+    playerContainer: {
+        padding: 16
+    },
+    playerControls: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 20
+    },
+    controlButton: {
+        padding: 10,
+        backgroundColor: AppColors.lightGrey,
+        borderRadius: 5
+    },
+    controlButtonText: {
+        color: AppColors.appTextBlack,
+        fontSize: 14
+    },
+    playButton: {
+        // padding: 15,
+        backgroundColor: AppColors.primaryDark,
+        borderRadius: 30,
+        width: 50,
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    playingButton: {
+        backgroundColor: AppColors.primary,
+    },
+    playButtonText: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    errorText: {
+        color: '#ff4444',
+        fontSize: 12,
+        textAlign: 'center',
+        marginTop: 8,
+        fontFamily: 'Pretendard-Regular',
+    },
+    progressContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 20
+    },
+    progressBar: {
+        flex: 1,
+        marginHorizontal: 10
+    },
+    timeText: {
+        color: AppColors.appTextBlack,
+        fontSize: 12
+    },
+    volumeContainer: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    volumeLabel: {
+        color: AppColors.appTextBlack,
+        fontSize: 14,
+        width: 60
+    },
+    volumeSlider: {
+        flex: 1
     }
 });
 

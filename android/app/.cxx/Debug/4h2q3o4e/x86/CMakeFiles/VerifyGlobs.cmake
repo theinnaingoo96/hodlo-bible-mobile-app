@@ -182,7 +182,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/x86/CMakeFiles/cmake.verify_globs")
 endif()
 
-# LIB_CUSTOM_SRCS at /Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-safe-area-context/android/src/main/jni/CMakeLists.txt:22 (file)
+# LIB_CUSTOM_SRCS at /Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-safe-area-context/android/src/main/jni/CMakeLists.txt:12 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-safe-area-context/android/src/main/jni/*.cpp")
 set(OLD_GLOB
   )
@@ -191,7 +191,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/x86/CMakeFiles/cmake.verify_globs")
 endif()
 
-# LIB_CUSTOM_SRCS at /Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-safe-area-context/android/src/main/jni/CMakeLists.txt:22 (file)
+# LIB_CUSTOM_SRCS at /Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-safe-area-context/android/src/main/jni/CMakeLists.txt:12 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-safe-area-context/android/src/main/jni/../../../../common/cpp/react/renderer/components/safeareacontext/*.cpp")
 set(OLD_GLOB
   "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-safe-area-context/android/src/main/jni/../../../../common/cpp/react/renderer/components/safeareacontext/RNCSafeAreaViewShadowNode.cpp"
@@ -202,7 +202,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/x86/CMakeFiles/cmake.verify_globs")
 endif()
 
-# LIB_CODEGEN_SRCS at /Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-safe-area-context/android/src/main/jni/CMakeLists.txt:23 (file)
+# LIB_CODEGEN_SRCS at /Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-safe-area-context/android/src/main/jni/CMakeLists.txt:13 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-safe-area-context/android/src/main/jni/../../../build/generated/source/codegen/jni/*.cpp")
 set(OLD_GLOB
   "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-safe-area-context/android/src/main/jni/../../../build/generated/source/codegen/jni/safeareacontext-generated.cpp"
@@ -212,7 +212,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/x86/CMakeFiles/cmake.verify_globs")
 endif()
 
-# LIB_CODEGEN_SRCS at /Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-safe-area-context/android/src/main/jni/CMakeLists.txt:23 (file)
+# LIB_CODEGEN_SRCS at /Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-safe-area-context/android/src/main/jni/CMakeLists.txt:13 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-safe-area-context/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/safeareacontext/*.cpp")
 set(OLD_GLOB
   "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-safe-area-context/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/safeareacontext/ComponentDescriptors.cpp"
@@ -240,6 +240,8 @@ endif()
 # LIB_CUSTOM_SRCS at /Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-screens/android/src/main/jni/CMakeLists.txt:23 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/*.cpp")
 set(OLD_GLOB
+  "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSBottomTabsShadowNode.cpp"
+  "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSBottomTabsState.cpp"
   "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSFullWindowOverlayShadowNode.cpp"
   "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSModalScreenShadowNode.cpp"
   "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSScreenShadowNode.cpp"
@@ -248,6 +250,7 @@ set(OLD_GLOB
   "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSScreenStackHeaderSubviewShadowNode.cpp"
   "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSScreenStackHeaderSubviewState.cpp"
   "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSScreenState.cpp"
+  "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSSplitViewScreenShadowNode.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
@@ -278,7 +281,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/x86/CMakeFiles/cmake.verify_globs")
 endif()
 
-# rnsvg_SRCS at /Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-svg/android/src/main/jni/CMakeLists.txt:25 (file)
+# rnsvg_SRCS at /Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-svg/android/src/main/jni/CMakeLists.txt:10 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-svg/android/src/main/jni/*.cpp")
 set(OLD_GLOB
   "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-svg/android/src/main/jni/rnsvg.cpp"
@@ -288,7 +291,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/x86/CMakeFiles/cmake.verify_globs")
 endif()
 
-# rnsvg_SRCS at /Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-svg/android/src/main/jni/CMakeLists.txt:25 (file)
+# rnsvg_SRCS at /Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-svg/android/src/main/jni/CMakeLists.txt:10 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-svg/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnsvg/*.cpp")
 set(OLD_GLOB
   "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-svg/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnsvg/RNSVGImageShadowNode.cpp"
@@ -301,7 +304,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/x86/CMakeFiles/cmake.verify_globs")
 endif()
 
-# rnsvg_codegen_SRCS at /Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-svg/android/src/main/jni/CMakeLists.txt:26 (file)
+# rnsvg_codegen_SRCS at /Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-svg/android/src/main/jni/CMakeLists.txt:11 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-svg/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/rnsvg/*cpp")
 set(OLD_GLOB
   "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-svg/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/rnsvg/ComponentDescriptors.cpp"

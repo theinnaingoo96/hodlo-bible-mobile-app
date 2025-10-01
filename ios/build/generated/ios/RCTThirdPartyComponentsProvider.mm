@@ -24,6 +24,10 @@
 			@"RNGestureHandlerButton": NSClassFromString(@"RNGestureHandlerButtonComponentView"), // react-native-gesture-handler
 			@"RNCSafeAreaProvider": NSClassFromString(@"RNCSafeAreaProviderComponentView"), // react-native-safe-area-context
 			@"RNCSafeAreaView": NSClassFromString(@"RNCSafeAreaViewComponentView"), // react-native-safe-area-context
+			@"RNSStackScreen": NSClassFromString(@"RNSStackScreenComponentView"), // react-native-screens
+			@"RNSScreenStackHost": NSClassFromString(@"RNSScreenStackHostComponentView"), // react-native-screens
+			@"RNSBottomTabsScreen": NSClassFromString(@"RNSBottomTabsScreenComponentView"), // react-native-screens
+			@"RNSBottomTabs": NSClassFromString(@"RNSBottomTabsHostComponentView"), // react-native-screens
 			@"RNSFullWindowOverlay": NSClassFromString(@"RNSFullWindowOverlay"), // react-native-screens
 			@"RNSModalScreen": NSClassFromString(@"RNSModalScreen"), // react-native-screens
 			@"RNSScreenContainer": NSClassFromString(@"RNSScreenContainerView"), // react-native-screens
@@ -35,6 +39,8 @@
 			@"RNSScreenStackHeaderSubview": NSClassFromString(@"RNSScreenStackHeaderSubview"), // react-native-screens
 			@"RNSScreenStack": NSClassFromString(@"RNSScreenStackView"), // react-native-screens
 			@"RNSSearchBar": NSClassFromString(@"RNSSearchBar"), // react-native-screens
+			@"RNSSplitViewHost": NSClassFromString(@"RNSSplitViewHostComponentView"), // react-native-screens
+			@"RNSSplitViewScreen": NSClassFromString(@"RNSSplitViewScreenComponentView"), // react-native-screens
 			@"RNSVGCircle": NSClassFromString(@"RNSVGCircle"), // react-native-svg
 			@"RNSVGClipPath": NSClassFromString(@"RNSVGClipPath"), // react-native-svg
 			@"RNSVGDefs": NSClassFromString(@"RNSVGDefs"), // react-native-svg

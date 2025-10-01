@@ -5,4 +5,21 @@ module.exports = {
         android: {}
     },
     assets: [ './src/assets/fonts/' ],
+    dependencies: {
+        '@react-navigation/bottom-tabs': {
+            platforms: {
+                android: null, // disable Android platform auto linking
+            },
+        },
+        '@react-navigation/native': {
+            platforms: {
+                android: null, // disable Android platform auto linking
+            },
+        },
+        '@react-navigation/stack': {
+            platforms: {
+                android: null, // disable Android platform auto linking
+            },
+        },
+    },
 }

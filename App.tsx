@@ -23,8 +23,9 @@ import { CurrentRead, ReaderSetting } from './src/types/reader';
 import { AppColors } from './src/constants/Color';
 import Reader from './src/pages/reader/Reader';
 import { store } from './src/store/store';
-import SplashScreen from './Splash';
+import SplashScreen from './SplashAni';
 import Main from './src/pages/Main';
+import PsalmAudioExample from './src/components/PsalmAudioExample';
 function App(): React.JSX.Element {
   const device = useSelector((state: any) => state.device);
 
@@ -122,6 +123,11 @@ function App(): React.JSX.Element {
               name="DatabaseViewer"
               component={DatabaseViewer}
               options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="AudioPlayer"
+              component={PsalmAudioExample}
+              options={{ title: 'Psalm Audio' }}
             />
           </Stack.Navigator>
         </NavigationContainer>

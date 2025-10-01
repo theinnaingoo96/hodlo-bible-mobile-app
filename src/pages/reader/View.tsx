@@ -148,6 +148,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
 
     const handleLayout = (e: any, index: number) => {
         const { y } = e.nativeEvent.layout;
+        // console.log("handleLayout", index, e.nativeEvent);
         setItemLayouts((prev: any) => ({ ...prev, [index]: y }));
     }
 
@@ -189,8 +190,9 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
                 currentIndex = i + 2;
             }
         }
-        dispatch(setCurrentVerse({ verseId: verses[currentIndex].id, verseNumber: verses[currentIndex].number }))
-        // console.log("Current index:", currentIndex);
+        // dispatch(setCurrentVerse({ verseId: verses[currentIndex-1].id, verseNumber: verses[currentIndex].number }))
+        console.log("Current index:", currentIndex, verses[currentIndex-1]);
+        console.log(itemLayouts);
     }
 
     const onTopScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {

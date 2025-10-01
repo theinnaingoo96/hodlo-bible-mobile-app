@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, View, StyleSheet, ImageBackground, Text, Dimensions, ProgressBarAndroidComponent, Animated, ProgressBarAndroidBase, StatusBar, Alert } from "react-native";
+import { ActivityIndicator, View, StyleSheet, ImageBackground, Text, Dimensions, ProgressBarAndroidComponent, Animated, ProgressBarAndroidBase, StatusBar, Alert, Image } from "react-native";
 // import { AppColors } from "./src/constants/AppColors";
 import DeviceInfo from "react-native-device-info";
 import { AppColors } from "./src/constants/Color";
@@ -8,6 +8,7 @@ import { setDeviceId, setLoginTime } from './src/store/slices/deviceSlice';
 // import { createTables, seedDatabase } from "./src/services/DatabaseService";
 import DatabaseService from "./src/services/DataService";
 import { scheduleNotification } from "./src/services/DailyVerseService";
+import AnimatedSplashScreen from "./AnimatedSplash";
 
 const SplashScreen = ({ navigation }: any) => {
     const [progress, setProgress] = useState(new Animated.Value(0));
@@ -35,10 +36,10 @@ const SplashScreen = ({ navigation }: any) => {
                 }).catch((error) => {
                     console.log('random verse error', error);
                 });
-                navigation.reset({
-                    index: 0,
-                    routes: [{ name: 'Main' }],
-                });
+                // navigation.reset({
+                //     index: 0,
+                //     routes: [{ name: 'Main' }],
+                // });
             }).catch((error) => {
                 Alert.alert('Error', 'Failed to initialize database');
                 console.log('db error', error);
@@ -98,7 +99,12 @@ const SplashScreen = ({ navigation }: any) => {
     return (
         <View style={SplashScreenStyle.mainWrapper}>
             <StatusBar translucent backgroundColor="transparent" />
-            <ImageBackground source={require('./src/assets/images/splash1.png')} resizeMode="cover" style={SplashScreenStyle.image}></ImageBackground>
+            {/* <ImageBackground source={require('./src/assets/images/splash1.png')} resizeMode="cover" style={SplashScreenStyle.image}></ImageBackground> */}
+            <AnimatedSplashScreen />
+            <View style={SplashScreenStyle.iconContainer}>
+                <Image source={require('./src/assets/images/icon.png')} style={SplashScreenStyle.icon} resizeMode="contain" />
+                {/* <Text style={SplashScreenStyle.nameText}>GATHANGPU DLO</Text> */}
+            </View>
             <View style={SplashScreenStyle.bottomView}>
                 <Text style={SplashScreenStyle.text}>v.{DeviceInfo.getVersion()}</Text>
                 <View style={{ width: 100 }}>
@@ -114,6 +120,7 @@ const SplashScreenStyle = StyleSheet.create({
     mainWrapper: {
         flex: 1,
         justifyContent: "center",
+        backgroundColor: 'white',
     },
     image: {
         flex: 1,
@@ -145,6 +152,23 @@ const SplashScreenStyle = StyleSheet.create({
         backgroundColor: AppColors.appTextGrey,
         borderRadius: 10,
         width: 100,
-    }
+    },
+    iconContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 12,
+    },
+    icon: {
+        width: 96,
+        height: 96,
+    },
+    nameText: {
+        fontSize: 22,
+        fontWeight: '700',
+        letterSpacing: 0.3,
+        color: '#111',
+        // marginTop: 12,
+    },
 });
 export default SplashScreen;
