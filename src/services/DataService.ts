@@ -110,6 +110,7 @@ export default class DatabaseService {
                     title_hd TEXT,
                     title_en TEXT,
                     title_mm TEXT,
+                    audio_path TEXT,
                     FOREIGN KEY(book_id) REFERENCES books(id)
                     );`
                 );
@@ -122,6 +123,8 @@ export default class DatabaseService {
                     text_hd TEXT,
                     text_en TEXT,
                     text_mm TEXT,
+                    audio_from TEXT,
+                    audio_to TEXT,
                     FOREIGN KEY(chapter_id) REFERENCES chapters(id)
                     );`
                 );
@@ -274,17 +277,84 @@ export default class DatabaseService {
                     updates.push({ bookId: book_id, count: chapter_count });
                 }
                 console.log('[DB]chapterCount', updates);
-                // await this.db.transaction(async tx => {
-                    for (const { bookId, count } of updates) {
-                        await this.db.executeSql(
-                            `UPDATE books SET count = ? WHERE id = ?`,
-                            [count, bookId]
-                        ).then(() => {
-                            console.log('[DB]updated book', bookId);
-                        });
-                    }
-                // });
-                console.log('[DB] Seeding complete');
+                for (const { bookId, count } of updates) {
+                    await this.db.executeSql(
+                        `UPDATE books SET count = ? WHERE id = ?`,
+                        [count, bookId]
+                    ).then(() => {
+                        console.log('[DB]updated book', bookId);
+                    });
+                }
+
+                // update chapters table with audio_path and audio_milestone
+                // const audio23 = ['00:04', '00:12', '00:23', '00:36', '00:47', '00:58'];
+                // // Update audio info for Psalm 23
+                // const [psalmChapterId] = await this.db.executeSql(
+                //     `SELECT * FROM chapters WHERE book_id = ? AND number = ?`,
+                //     [19, 23]
+                // );
+                // console.log('[DB] psalmChapterId', psalmChapterId);
+                // if (psalmChapterId.rows.length > 0) {
+                //     const psalmId = psalmChapterId.rows.item(0).id;
+                //     console.log('[DB] psalmBookId', psalmId);
+                //     // Update chapter audio path
+                //     await this.db.executeSql(
+                //         `UPDATE chapters 
+                //          SET audio_path = ? 
+                //          WHERE id = ?`,
+                //         ['psalms2300.wav', psalmId]
+                //     );
+                //     console.log('[DB] Updated Psalm 23 chapter audio path', psalmId, 23);
+
+                //     // Get chapter id for Psalm 23
+                //     const [psalmChapter] = await this.db.executeSql(
+                //         `SELECT * FROM verses 
+                //          WHERE chapter_id = ?`,
+                //         [psalmId]
+                //     );
+                //     const audioVerses = [];
+                //     for (let i = 0; i < psalmChapter.rows.length; i++) {
+                //         audioVerses.push(psalmChapter.rows.item(i));
+                //     }
+                //     console.log('[DB] psalmChapter', audioVerses);
+                //     let pindex = 0;
+                //     if (audioVerses.length > 0) {
+                //         for (const verse of audioVerses) {
+                //             const { id, number, text_hd, text_en, text_mm } = verse;
+                //             const audio_milestone = audio23[pindex];
+                //             pindex++;
+                //             const res = await this.db.executeSql(
+                //                 `UPDATE verses 
+                //                  SET audio_milestone = ?
+                //                  WHERE id = ?`,
+                //                 [audio_milestone, id]
+                //             );
+                //             console.log('[DB] seed audio', pindex, id, res);
+                //         }
+                //         // for (const verse of chapterId) {
+                //         //     // const { id, number, text_hd, text_en, text_mm } = verse;
+                //         //     const audio_milestone = audio23[pindex];
+                //         //     pindex++;
+                //         //     await this.db.executeSql(
+                //         //         `UPDATE verses 
+                //         //          SET audio_milestone = ?
+                //         //          WHERE id = ?`,
+                //         //         [audio_milestone, id]
+                //         //     );
+                //         // }
+                //         // const chapterId = psalmChapter.rows.item(0).id;
+
+                //         // // Update verse audio milestones
+                //         // await this.db.executeSql(
+                //         //     `UPDATE verses 
+                //         //      SET audio_milestone = ?
+                //         //      WHERE chapter_id = ?`,
+                //         //     ['00:20', chapterId]
+                //         // );
+                //         console.log('[DB] Updated Psalm 23 verse audio milestones');
+                //     }
+                // }
+                console.log('[DB] SEEDING COMPLETED...');
                 resolve(true);
             } catch (error) {
                 console.error('[DB] Seeding error:', error);
@@ -435,6 +505,7 @@ export default class DatabaseService {
                 for (let i = 0; i < results.rows.length; i++) {
                     verses.push(results.rows.item(i));
                 }
+                console.log('[DB]verses getVersesByChapter', verses);
                 resolve(verses);
             } catch (error) {
                 console.error('[DB] getVersesByChapter error:', error);
@@ -1027,6 +1098,89 @@ export default class DatabaseService {
                 resolve(results);
             } catch (error) {
                 console.error('[DB] Error clearing Notifications:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async seedAudioMilestone(): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+            try {
+                // update chapters table with audio_path and audio_milestone
+                // const audio23 = ['00:04', '00:12', '00:23', '00:36', '00:47', '00:58'];
+                // const audio23 = [
+                //     { from: '00:00', to: '00:05' }, // Verse 1
+                //     { from: '00:05', to: '00:13' }, // Verse 2
+                //     { from: '00:13', to: '00:24' }, // Verse 3
+                //     { from: '00:24', to: '00:37' }, // Verse 4
+                //     { from: '00:37', to: '00:48' }, // Verse 5
+                //     { from: '00:48', to: '00:58' }  // Verse 6
+                // ];
+                const audio23 = [
+                    { from: '00:00', to: '00:11' }, // Verse 1
+                    { from: '00:11', to: '00:21' }, // Verse 2
+                    { from: '00:21', to: '00:30' }, // Verse 3
+                    { from: '00:30', to: '00:38' }, // Verse 4
+                    { from: '00:38', to: '00:50' }, // Verse 5
+                    { from: '00:50', to: '00:57' }, // Verse 6
+                    { from: '00:57', to: '01:07' }, // Verse 7
+                    { from: '01:07', to: '01:17' }, // Verse 8
+                    { from: '01:18', to: '01:26' }, // Verse 9
+                    { from: '01:27', to: '01:33' }  // Verse 10
+                ];
+                // Update audio info for Psalm 23
+                const [psalmChapterId] = await this.db.executeSql(
+                    `SELECT * FROM chapters WHERE book_id = ? AND number = ?`,
+                    [19, 24]
+                );
+                console.log('[DB] psalmChapterId', psalmChapterId);
+                if (psalmChapterId.rows.length > 0) {
+                    const psalmId = psalmChapterId.rows.item(0).id;
+                    console.log('[DB] psalmBookId', psalmId);
+                    // Update chapter audio path
+                    await this.db.executeSql(
+                        `UPDATE chapters 
+                         SET audio_path = ? 
+                         WHERE id = ?`,
+                        ['psalms2400.mp3', psalmId]
+                    );
+                    console.log('[DB] Updated Psalm 23 chapter audio path', psalmId, 23);
+
+                    // Get chapter id for Psalm 23
+                    const [psalmChapter] = await this.db.executeSql(
+                        `SELECT * FROM verses 
+                         WHERE chapter_id = ?`,
+                        [psalmId]
+                    );
+                    const audioVerses = [];
+                    for (let i = 0; i < psalmChapter.rows.length; i++) {
+                        audioVerses.push(psalmChapter.rows.item(i));
+                    }
+                    console.log('[DB] psalmChapter', audioVerses);
+                    let pindex = 0;
+                    if (audioVerses.length > 0) {
+                        for (const verse of audioVerses) {
+                            const { id, number, text_hd, text_en, text_mm } = verse;
+                            const audio_from = audio23[pindex].from;
+                            const audio_to = audio23[pindex].to;
+                            pindex++;
+                            const res = await this.db.executeSql(
+                                `UPDATE verses 
+                                 SET audio_from = ?, audio_to = ?
+                                 WHERE id = ?`,
+                                [audio_from, audio_to, id]
+                            );
+                            console.log('[DB] seed audio', pindex, id, res);
+                        }
+                        console.log('[DB] Updated Psalm 23 verse audio milestones');
+                    }
+                    resolve(true);
+                } else {
+                    resolve(false);
+                }
+            } catch (error) {
+                console.error('[DB] Error seeding Audio Milestone:', error);
                 reject(error);
             }
         });

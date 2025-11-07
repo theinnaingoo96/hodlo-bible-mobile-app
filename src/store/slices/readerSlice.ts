@@ -35,7 +35,7 @@ const readerSlice = createSlice({
       AsyncStorage.setItem("ho-dlo-current-read", JSON.stringify(state.currentRead));
     },
     setCurrentVerse: (state, action: PayloadAction<any>) => {
-      console.log('current reading set current verse => ', action.payload);
+      // console.log('current reading set current verse => ', action.payload);
       
       state.currentRead.verseId = action.payload.verseId;
       state.currentRead.verseNumber = action.payload.verseNumber

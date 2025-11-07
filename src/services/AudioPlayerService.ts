@@ -274,6 +274,23 @@ class AudioPlayerService {
     }
   }
 
+  public resume(): void {
+    if (!this.currentAudioPath) return;
+
+    try {
+      SoundPlayer.resume();
+      this.setState({ 
+        isPlaying: true, 
+        isPaused: false, 
+        isStopped: false 
+      });
+      this.callbacks.onPlay?.();
+      this.startProgressTracking();
+    } catch (error) {
+      console.error('Error pausing audio:', error);
+    }
+  }
+
   public stop(): void {
     if (!this.currentAudioPath) return;
 
@@ -338,7 +355,7 @@ class AudioPlayerService {
     this.progressInterval = setInterval(async () => {
       if (this.currentAudioPath && this.state.isPlaying) {
         try {
-          const currentTime = await this.getCurrentTime();
+          const currentTime = await this.getCurrentTime();          
           this.setState({ currentTime });
           this.callbacks.onProgress?.(currentTime, this.state.duration);
         } catch (error) {
@@ -382,11 +399,45 @@ class AudioPlayerService {
     }
   }
 
+  public async playAudioWithPath(path: string): Promise<void> {
+    try {
+      console.log('=== Playing Audio with Path ===');
+      // const _path = '../assets/audio/' + path
+      // const audioPath = require(_path);
+      await this.loadAudioWithFallback(path, 'Psalm 23');
+    } catch (error) {
+      console.error('Error playing Psalm 23:', error);
+      this.callbacks.onError?.('Failed to play Psalm 23');
+    }
+  }
+
+  public async playPsalm23(): Promise<void> {
+    try {
+      console.log('=== Playing Psalm 23 ===');
+      const audioPath = require('../assets/audio/psalms2300.wav');
+      await this.loadAudioWithFallback(audioPath, 'Psalm 23');
+    } catch (error) {
+      console.error('Error playing Psalm 23:', error);
+      this.callbacks.onError?.('Failed to play Psalm 23');
+    }
+  }
+
+  public async playPsalm24(): Promise<void> {
+    try {
+      console.log('=== Playing Psalm 24 ===');
+      const audioPath = require('../assets/audio/psalms2400.mp3');
+      await this.loadAudioWithFallback(audioPath, 'Psalm 24');
+    } catch (error) {
+      console.error('Error playing Psalm 24:', error);
+      this.callbacks.onError?.('Failed to play Psalm 24');
+    }
+  }
+
   // Convenience methods for specific Psalm audio
   public async playPsalm101(): Promise<void> {
     try {
-      console.log('=== Playing Psalm 101 ===');
-      const audioPath = this.psalmResources[101];
+      console.log('=== Playing Psalm 23 ===');
+      const audioPath = require('../assets/audio/Psalm-00101.m4a');
       await this.loadAudioWithFallback(audioPath, 'Psalm 101');
     } catch (error) {
       console.error('Error playing Psalm 101:', error);
@@ -472,10 +523,12 @@ try {
     setCallbacks: () => {},
     play: async () => { throw new Error('Audio player not available'); },
     pause: () => {},
+    resume: () => {},
     stop: () => {},
     seekTo: () => {},
     setVolume: () => {},
     loadAudio: async () => { throw new Error('Audio player not available'); },
+    playPsalm23: async () => { throw new Error('Audio player not available'); },
     playPsalm101: async () => { throw new Error('Audio player not available'); },
     playPsalm102: async () => { throw new Error('Audio player not available'); },
     playPsalm103: async () => { throw new Error('Audio player not available'); },

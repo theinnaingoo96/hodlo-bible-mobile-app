@@ -11,23 +11,27 @@ export interface UseAudioPlayerReturn {
   volume: number;
   isLoading: boolean;
   error: string | null;
-  
+
   // Actions
   play: () => Promise<void>;
   pause: () => void;
   stop: () => void;
+  resume: () => void;
   seekTo: (time: number) => void;
   setVolume: (volume: number) => void;
   loadAudio: (audioPath: string) => Promise<void>;
-  
+
   // Convenience methods for Psalms
+  // playAudioWithPath: (path: string) => Promise<void>;
+  playPsalm23: () => Promise<void>;
+  // playPsalm24: () => Promise<void>;
   playPsalm101: () => Promise<void>;
   playPsalm102: () => Promise<void>;
   playPsalm103: () => Promise<void>;
   playPsalm104: () => Promise<void>;
   playPsalm105: () => Promise<void>;
   playPsalm106: () => Promise<void>;
-  
+
   // Progress helpers
   progress: number; // 0-1
   formattedTime: string;
@@ -61,7 +65,7 @@ export function useAudioPlayer(): UseAudioPlayerReturn {
       };
     }
   });
-  
+
   const callbacksRef = useRef<AudioPlayerCallbacks>({});
 
   // Update state when audio player state changes
@@ -74,22 +78,42 @@ export function useAudioPlayer(): UseAudioPlayerReturn {
     const updateState = () => {
       try {
         if (audioPlayer) {
-          setState(audioPlayer.getState());
+          const newState = audioPlayer.getState();
+          setState(newState);
         }
       } catch (error) {
         console.error('Error updating audio player state:', error);
       }
     };
 
-    // Set up callbacks
+    // Set up callbacks with explicit setState calls to ensure React updates
     callbacksRef.current = {
-      onPlay: updateState,
-      onPause: updateState,
-      onStop: updateState,
-      onLoad: updateState,
-      onProgress: updateState,
-      onEnd: updateState,
-      onError: updateState,
+      onPlay: () => {
+        updateState();
+      },
+      onPause: () => {
+        updateState();
+      },
+      onStop: () => {
+        updateState();
+      },
+      onLoad: (duration: number) => {
+        updateState();
+      },
+      onProgress: (currentTime: number, duration: number) => {
+        // Force state update with explicit currentTime and duration
+        setState(prevState => ({
+          ...prevState,
+          currentTime,
+          duration,
+        }));
+      },
+      onEnd: () => {
+        updateState();
+      },
+      onError: (error: string) => {
+        updateState();
+      },
     };
 
     try {
@@ -139,6 +163,18 @@ export function useAudioPlayer(): UseAudioPlayerReturn {
     }
   }, []);
 
+  const resume = useCallback(() => {
+    if (!audioPlayer) {
+      console.error('AudioPlayer is not available');
+      return;
+    }
+    try {
+      audioPlayer.resume();
+    } catch (error) {
+      console.error('Error resuming audio:', error);
+    }
+  }, [])
+
   const stop = useCallback(() => {
     if (!audioPlayer) {
       console.error('AudioPlayer is not available');
@@ -158,6 +194,7 @@ export function useAudioPlayer(): UseAudioPlayerReturn {
     }
     try {
       audioPlayer.seekTo(time);
+      audioPlayer.play();
     } catch (error) {
       console.error('Error seeking audio:', error);
     }
@@ -184,6 +221,34 @@ export function useAudioPlayer(): UseAudioPlayerReturn {
       await audioPlayer.loadAudio(audioPath);
     } catch (error) {
       console.error('Error loading audio:', error);
+    }
+  }, []);
+
+  const playAudioWithPath = useCallback(async (path: string) => {
+    if (!audioPlayer) {
+      console.error('AudioPlayer is not available');
+      return;
+    }
+    try {
+      if (path == '23') {
+        await audioPlayer.playPsalm23();
+      } else {
+        await audioPlayer.playPsalm24();
+      }
+    } catch (error) {
+      console.error('Error playing audio with path:', error);
+    }
+  }, []);
+
+  const playPsalm23 = useCallback(async () => {
+    if (!audioPlayer) {
+      console.error('AudioPlayer is not available');
+      return;
+    }
+    try {
+      await audioPlayer.playPsalm23();
+    } catch (error) {
+      console.error('Error playing Psalm 23:', error);
     }
   }, []);
 
@@ -282,23 +347,26 @@ export function useAudioPlayer(): UseAudioPlayerReturn {
     volume: state.volume,
     isLoading: state.isLoading,
     error: state.error,
-    
+
     // Actions
     play,
     pause,
+    resume,
     stop,
     seekTo,
     setVolume,
     loadAudio,
-    
+    // playAudioWithPath,
+    // playPsalm24,
     // Convenience methods
+    playPsalm23,
     playPsalm101,
     playPsalm102,
     playPsalm103,
     playPsalm104,
     playPsalm105,
     playPsalm106,
-    
+
     // Helpers
     progress,
     formattedTime,

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { AppColors } from '../constants/Color';
 import { useSelector } from 'react-redux';
 import SoundPlayer from 'react-native-sound-player';
+import { getBooks } from '../services/ApiService';
 
 const Notification = () => {
 
@@ -40,6 +41,12 @@ const Notification = () => {
         setNotifications(notiList);
       }
     });
+    getBooks().then((data) => {
+      console.log(data)
+    })
+    DatabaseService.getInstance().seedAudioMilestone().then((result: any) => {
+      console.log(result)
+    })
     // const onFinished = () => setIsPlaying(false);
     // const onFinishedLoading = ({ duration }: { duration: number }) => {
     //     setDuration(duration);
@@ -134,7 +141,7 @@ const Notification = () => {
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: device.theme ? AppColors.appBackgroundGrey : AppColors.appBackgroundDarkTint }]}>
       <NormalHeader title="Notification" backButton={true} />
-      {/* <View style={styles.contentContainer}> */}
+      {/* <View style={styles.contentContainer}>
       <TouchableOpacity onPress={play}>
         <Text>Play</Text>
       </TouchableOpacity>
@@ -149,6 +156,7 @@ const Notification = () => {
       </TouchableOpacity>
       <Text>{currentTime}</Text>
       <Text>{duration}</Text>
+       */}
       <FlatList
         data={notifications}
         renderItem={renderItem}
