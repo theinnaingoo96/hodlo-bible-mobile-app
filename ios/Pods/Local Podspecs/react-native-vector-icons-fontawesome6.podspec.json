@@ -1,6 +1,6 @@
 {
   "name": "react-native-vector-icons-fontawesome6",
-  "version": "12.2.0",
+  "version": "12.0.0",
   "summary": "Fontawesome6 font for react native vector icons",
   "homepage": "https://github.com/oblador/react-native-vector-icons",
   "license": "MIT",
@@ -15,7 +15,7 @@
   },
   "source": {
     "git": "https://github.com/oblador/react-native-vector-icons.git",
-    "tag": "v12.2.0"
+    "tag": "v12.0.0"
   },
   "resources": "fonts/*.ttf"
 }

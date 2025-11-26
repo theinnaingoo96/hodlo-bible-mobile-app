@@ -38,6 +38,13 @@ const Home = () => {
                 setTodayVerse(result[0]);
             }
         });
+        // DatabaseService.getInstance().seedAudioMilestone23().then((result: any) => {
+        //     console.log('seedAudioMilestone23', result)
+        // })
+
+        // DatabaseService.getInstance().seedAudioMilestone24().then((result: any) => {
+        //     console.log('seedAudioMilestone24', result)
+        // })
         console.log('reader', reader.currentRead);
     }, [reader]);
 
@@ -71,22 +78,22 @@ const Home = () => {
     const handleShare = async () => {
         try {
             const result = await Share.share({
-              title: 'Daily Verse',
-              message:
-                `${todayVerse?.text_hd || ''} \n\n ${todayVerse?.book_name + " " + todayVerse?.chapter_number + ":" + todayVerse?.verse_number}`,
+                title: 'Daily Verse',
+                message:
+                    `${todayVerse?.text_hd || ''} \n\n ${todayVerse?.book_name + " " + todayVerse?.chapter_number + ":" + todayVerse?.verse_number}`,
             });
             if (result.action === Share.sharedAction) {
-              if (result.activityType) {
-                // shared with activity type of result.activityType
-              } else {
-                // shared
-              }
+                if (result.activityType) {
+                    // shared with activity type of result.activityType
+                } else {
+                    // shared
+                }
             } else if (result.action === Share.dismissedAction) {
-              // dismissed
+                // dismissed
             }
-          } catch (error: any) {
+        } catch (error: any) {
             Alert.alert(error.message);
-          }
+        }
     }
 
     return (
@@ -232,7 +239,7 @@ const styles = StyleSheet.create({
     currentReadContainer: {
         flex: 2,
         // backgroundColor: '#dac2c2',
-        
+
         position: 'absolute',
         bottom: 0,
         left: 0,

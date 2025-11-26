@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { ActivityIndicator, View, StyleSheet, ImageBackground, Text, Dimensions, ProgressBarAndroidComponent, Animated, ProgressBarAndroidBase, StatusBar, Alert, Image } from "react-native";
 // import { AppColors } from "./src/constants/AppColors";
 import DeviceInfo from "react-native-device-info";
@@ -9,18 +9,29 @@ import { setDeviceId, setLoginTime } from './src/store/slices/deviceSlice';
 import DatabaseService from "./src/services/DataService";
 import { scheduleNotification } from "./src/services/DailyVerseService";
 import AnimatedSplashScreen from "./AnimatedSplash";
+import { fileDownloadService } from "./src/services/FileDownloadService";
+import { AppUrls } from "./src/constants/Urls";
 
 const SplashScreen = ({ navigation }: any) => {
-    const [progress, setProgress] = useState(new Animated.Value(0));
+    const progress = useRef(new Animated.Value(0)).current;
     const currentYear = new Date().getFullYear();
     const dispatch = useDispatch();
 
     useEffect(() => {
+        const animateProgress = (value: number) => {
+            Animated.timing(progress, {
+                toValue: value,
+                duration: 250,
+                useNativeDriver: false,
+            }).start();
+        };
+
         const initializeApp = async () => {
             try {
                 const deviceId = await DeviceInfo.getUniqueId();
                 dispatch(setDeviceId(deviceId));
                 dispatch(setLoginTime(new Date().toISOString()));
+                animateProgress(20);
             } catch (error) {
                 console.error('Error getting device info:', error);
             }
@@ -28,48 +39,57 @@ const SplashScreen = ({ navigation }: any) => {
 
         const initDB = async () => {
             const db = DatabaseService.getInstance();
-            await db.init().then(() => {
-                db.getRandomVerse(10).then((data) => {
+            try {
+                await db.init().then((result: any) => {
+                    console.log('db init result', result);
+                }).catch((error: any) => {
+                    console.log('db init error', error);
+                });
+                animateProgress(40);
+
+                try {
+                    const data = await db.getRandomVerse(10);
                     console.log('random verse', data);
                     // db.addNotificati`on(data[9].verse_id);
                     scheduleNotification(data);
-                }).catch((error) => {
+                } catch (error) {
                     console.log('random verse error', error);
-                });
+                }
                 // navigation.reset({
                 //     index: 0,
                 //     routes: [{ name: 'Main' }],
                 // });
-            }).catch((error) => {
+            } catch (error) {
                 Alert.alert('Error', 'Failed to initialize database');
                 console.log('db error', error);
-            });
-            // const verses = await db.getVersesByChapter(3).then((data) => {
-            //     console.log('verses', data);
-            //     if (data) {
-            //         navigation.reset({
-            //             index: 0,
-            //             routes: [{ name: 'Main' }],
-            //         });
-            //     } else {
-            //         console.log('verses not found');
-            //         // seedDatabase()
-            //     }       
-            // }).catch((error) => {
-            //     console.log('verses error', error);
-            // });
-            // console.log(verses);
+            }
         };
 
-        initDB();
+        const downloadAssets = async () => {
+            try {
+                const result = await fileDownloadService.downloadFile(
+                    AppUrls.audioUrl,
+                    undefined,
+                    ({ progress: downloadProgress }) => {
+                        const pct = 40 + downloadProgress * 55;
+                        animateProgress(Math.min(95, pct));
+                    },
+                );
+                console.log('Splash download result:', result);
+                animateProgress(100);
+            } catch (error) {
+                console.error('Failed to download initial assets:', error);
+            }
+        };
 
-        initializeApp();
+        const bootstrap = async () => {
+            animateProgress(5);
+            await initializeApp();
+            await initDB();
+            await downloadAssets();
+        };
 
-        Animated.timing(progress, {
-            toValue: 100,
-            duration: 2000,
-            useNativeDriver: false
-        }).start();
+        bootstrap();
 
         // setTimeout(() => {
         //     navigation.reset({
@@ -77,7 +97,7 @@ const SplashScreen = ({ navigation }: any) => {
         //         routes: [{ name: 'Main' }],
         //     });
         // }, 2500);
-    }, []);
+    }, [dispatch, progress]);
 
     const initDb1 = async () => {
         // await createTables().then(async (data) => {

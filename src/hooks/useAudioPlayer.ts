@@ -24,7 +24,7 @@ export interface UseAudioPlayerReturn {
   // Convenience methods for Psalms
   // playAudioWithPath: (path: string) => Promise<void>;
   playPsalm23: () => Promise<void>;
-  // playPsalm24: () => Promise<void>;
+  playPsalm24: () => Promise<void>;
   playPsalm101: () => Promise<void>;
   playPsalm102: () => Promise<void>;
   playPsalm103: () => Promise<void>;
@@ -252,6 +252,18 @@ export function useAudioPlayer(): UseAudioPlayerReturn {
     }
   }, []);
 
+  const playPsalm24 = useCallback(async () => {
+    if (!audioPlayer) {
+      console.error('AudioPlayer is not available');
+      return;
+    }
+    try {
+      await audioPlayer.playPsalm24();
+    } catch (error) {
+      console.error('Error playing Psalm 23:', error);
+    }
+  }, [])
+
   // Convenience methods for Psalms
   const playPsalm101 = useCallback(async () => {
     if (!audioPlayer) {
@@ -360,6 +372,7 @@ export function useAudioPlayer(): UseAudioPlayerReturn {
     // playPsalm24,
     // Convenience methods
     playPsalm23,
+    playPsalm24,
     playPsalm101,
     playPsalm102,
     playPsalm103,

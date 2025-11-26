@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
+  AppState,
+  Platform,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -28,7 +30,7 @@ import Main from './src/pages/Main';
 import PsalmAudioExample from './src/components/PsalmAudioExample';
 function App(): React.JSX.Element {
   const device = useSelector((state: any) => state.device);
-
+  const appState = useRef(AppState.currentState);
   const Stack = createStackNavigator();
 
   useEffect(() => {
@@ -81,6 +83,57 @@ function App(): React.JSX.Element {
       },
       (created) => console.log(`createChannel returned '${created}'`)
     );
+  }, []);
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener("change", (nextAppState) => {
+      console.log('App state changed ... ', nextAppState);
+      
+      if (
+        appState.current.match(/inactive|background/) &&
+        nextAppState === "active"
+      ) {
+        if (Platform.OS === "ios") {
+          // setAppStateVisible(false);
+        }
+
+        const currentTime = Date.now();
+
+        // if (
+        //   lastBackgroundTime.current &&
+        //   currentTime - lastBackgroundTime.current > backgroundTimer
+        // ) {
+        //   // setActive(false);
+        // } else {
+        //   // setActive(true);
+        // }
+        // lastBackgroundTime.current = null;
+      }
+
+      if (
+        appState.current === "active" &&
+        nextAppState.match(/inactive|background/)
+      ) {
+        if (Platform.OS === "ios") {
+          // setAppStateVisible(true);
+        }
+
+        console.log("App has come to the foreground!");
+        // navigationRef.navigate("FaceScan")
+        // lastBackgroundTime.current = Date.now();
+
+        // }, 10 * 60 * 1000);
+      }
+
+      appState.current = nextAppState;
+
+      console.log("AppState", appState.current);
+    });
+
+    return () => {
+      subscription.remove();
+      // };
+    };
   }, []);
 
   return (

@@ -44,9 +44,9 @@ const Notification = () => {
     getBooks().then((data) => {
       console.log(data)
     })
-    DatabaseService.getInstance().seedAudioMilestone().then((result: any) => {
-      console.log(result)
-    })
+    // DatabaseService.getInstance().seedAudioMilestone23().then((result: any) => {
+    //   console.log(result)
+    // })
     // const onFinished = () => setIsPlaying(false);
     // const onFinishedLoading = ({ duration }: { duration: number }) => {
     //     setDuration(duration);

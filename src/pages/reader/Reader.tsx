@@ -49,6 +49,7 @@ const Reader = ({ navigation, route }: any) => {
         seekTo,
         setVolume,
         playPsalm23,
+        playPsalm24,
         playPsalm101,
         playPsalm102,
         playPsalm103,
@@ -82,7 +83,6 @@ const Reader = ({ navigation, route }: any) => {
     // }, [currentTime, formattedTime]);
 
     useEffect(() => {
-        // console.log('verses from Reader 1', params);
         if (route.params.chapter) {
             fetchVerses();
         }
@@ -108,9 +108,9 @@ const Reader = ({ navigation, route }: any) => {
         });
     }, []);
 
-    // useEffect(() => {
-    //     console.log('After verses has data', verses);
-    // }, []);
+    useEffect(() => {
+        console.log('progress', progress);
+    }, [progress]);
 
     const fetchVerses = () => {
         // console.log('fetchVerses', route.params.chapter);
@@ -311,19 +311,44 @@ const Reader = ({ navigation, route }: any) => {
         }
     };
 
-    const playPsalm23Audio = async () => {
-        try {
-            if (error && error.includes('not available')) {
-                console.log('[AUDIO] Audio player not available, skipping audio playback');
-                return;
+    const playPsalmAudio = async () => {
+        console.log('playPsalmAudio', params.book);
+        
+        if (params.book == 'Psalms' && (params.chapter == 23 || params.chapter == 24)) {
+
+            setPlayerSheetVisible(true);
+            try {
+                if (error && error.includes('not available')) {
+                    console.log(' [AUDIO] Audio player not available, skipping audio playback');
+                    return;
+                }
+                if (params.chapter == 23) {
+                    await playPsalm23();
+                } else {
+                    await playPsalm24();
+                }
+
+            } catch (error) {
+                console.error('Error playing audio:', error);
             }
-
-            await playPsalm23();
-
-        } catch (error) {
-            console.error('Error playing audio:', error);
+        } else {
+            store.dispatch(setToast({ show: true, message: 'Audio Reader is not available for this book', type: 'change', duration: constants.toastDuration }));
         }
     };
+
+    // const playPsalm24Audio = async () => {
+    //     try {
+    //         if (error && error.includes('not available')) {
+    //             console.log('[AUDIO] Audio player not available, skipping audio playback');
+    //             return;
+    //         }
+
+    //         await playPsalm24();
+
+    //     } catch (error) {
+    //         console.error('Error playing audio:', error);
+    //     }
+    // };
 
     const handlePlayPause = async () => {
         if (isPlaying) {
@@ -346,7 +371,7 @@ const Reader = ({ navigation, route }: any) => {
     };
 
     const handleSeek = (value: number) => {
-        console.log('handleSeek', value , duration);
+        console.log('handleSeek', value, duration);
         const newTime = value * duration;
         seekTo(newTime);
     };
@@ -356,15 +381,17 @@ const Reader = ({ navigation, route }: any) => {
     };
 
     const handleVerseClick = (verse: any) => {
-        pause();
+        // pause();
         console.log('handleVerseClick', playerSheetVisible);
         if (playerSheetVisible) {
             // Use the handleSeek function and convert audio_from to number of seconds if necessary
             let seekValue = verse.audio_from;
+            console.log('audio from', seekValue, typeof seekValue);
             if (typeof seekValue === 'string') {
                 const [min, sec] = seekValue.split(':').map(Number);
                 seekValue = min * 60 + sec;
             }
+            console.log('res', seekValue, duration)
             // handleSeek expects 0-1 normalized value, so divide by duration (guard against division by zero)
             if (duration > 0) {
                 const normalizedValue = seekValue / duration;
@@ -438,7 +465,9 @@ const Reader = ({ navigation, route }: any) => {
             <View style={[styles.container, { backgroundColor: constants.theme[reader.readerSetting.theme - 1].backgroundColor }]}>
                 <ReaderHeader title={params.book + " " + params.chapter} backButton={true} onTitlePress={() => { }}
                     dividerMode={dividerMode} setDividerMode={onChangeDividerMode} onSettingsPress={() => { setBottomSheetVisible(true) }}
-                    onAudioReaderPress={() => { setPlayerSheetVisible(true); playPsalm23Audio() }} />
+                    onAudioReaderPress={() => {
+                        playPsalmAudio()
+                    }} />
 
                 <View style={[styles.contentContainer]}>
                     {
@@ -458,62 +487,62 @@ const Reader = ({ navigation, route }: any) => {
                         <View style={styles.playerSheetContainer} pointerEvents="box-none">
                             <View style={styles.playerSheetContent} pointerEvents="auto">
                                 <View style={styles.bookmarkModalHeader}>
-                                    <TouchableOpacity onPress={() => {setPlayerSheetVisible(false); handleStop()}}>
+                                    <TouchableOpacity onPress={() => { setPlayerSheetVisible(false); handleStop() }}>
                                         <CloseIcon name="cross" color={AppColors.appTextBlack} />
                                     </TouchableOpacity>
                                 </View>
                                 <AudioVerseComponent verses={verses} />
                                 <View style={styles.playerContainer}>
-                                <View style={styles.playerControls}>
-                                    <TouchableOpacity style={styles.controlButton} onPress={handleStop}>
-                                        <FontAwesome6 name="backward-step" iconStyle="solid" color={AppColors.appTextWhite} size={18} />
-                                    </TouchableOpacity>
-                                    <TouchableOpacity
-                                        style={[styles.playButton, isPlaying && styles.playingButton]}
-                                        onPress={handlePlayPause}
-                                        disabled={isLoading}
-                                    >
-                                        {isLoading ? (
-                                            <FontAwesome6 name="spinner" iconStyle="solid" color={AppColors.appTextWhite} size={18} />
-                                        ) : (
-                                            <FontAwesome6
-                                                name={isPlaying ? "pause" : "play"}
-                                                iconStyle="solid"
-                                                color={AppColors.appTextWhite}
-                                                size={18}
-                                            />
-                                        )}
-                                    </TouchableOpacity>
-                                    <TouchableOpacity style={styles.controlButton} onPress={handleStop}>
-                                        <FontAwesome6 name="forward-step" iconStyle="solid" color={AppColors.appTextWhite} size={18} />
-                                    </TouchableOpacity>
-                                </View>
+                                    <View style={styles.playerControls}>
+                                        <TouchableOpacity style={styles.controlButton} onPress={handleStop}>
+                                            <FontAwesome6 name="backward-step" iconStyle="solid" color={AppColors.appTextWhite} size={18} />
+                                        </TouchableOpacity>
+                                        <TouchableOpacity
+                                            style={[styles.playButton, isPlaying && styles.playingButton]}
+                                            onPress={handlePlayPause}
+                                            disabled={isLoading}
+                                        >
+                                            {isLoading ? (
+                                                <FontAwesome6 name="spinner" iconStyle="solid" color={AppColors.appTextWhite} size={18} />
+                                            ) : (
+                                                <FontAwesome6
+                                                    name={isPlaying ? "pause" : "play"}
+                                                    iconStyle="solid"
+                                                    color={AppColors.appTextWhite}
+                                                    size={18}
+                                                />
+                                            )}
+                                        </TouchableOpacity>
+                                        <TouchableOpacity style={styles.controlButton} onPress={handleStop}>
+                                            <FontAwesome6 name="forward-step" iconStyle="solid" color={AppColors.appTextWhite} size={18} />
+                                        </TouchableOpacity>
+                                    </View>
 
-                                <View style={styles.progressContainer}>
-                                    <Text style={styles.timeText}>{formattedTime}</Text>
-                                    <Slider
-                                        style={styles.progressBar}
-                                        minimumValue={0}
-                                        maximumValue={1}
-                                        value={progress}
-                                        onValueChange={handleSeek}
-                                        minimumTrackTintColor={AppColors.primary}
-                                        maximumTrackTintColor={AppColors.appTextGrey}
-                                        thumbTintColor={AppColors.primary}
-                                    />
-                                    <Text style={styles.timeText}>{formattedDuration}</Text>
-                                </View>
+                                    <View style={styles.progressContainer}>
+                                        <Text style={styles.timeText}>{formattedTime}</Text>
+                                        <Slider
+                                            style={styles.progressBar}
+                                            minimumValue={0}
+                                            maximumValue={1}
+                                            value={progress}
+                                            onValueChange={handleSeek}
+                                            minimumTrackTintColor={AppColors.primary}
+                                            maximumTrackTintColor={AppColors.appTextGrey}
+                                            thumbTintColor={AppColors.primary}
+                                        />
+                                        <Text style={styles.timeText}>{formattedDuration}</Text>
+                                    </View>
 
-                                {error && (
-                                    <Text style={styles.errorText}>
-                                        {error.includes('not available')
-                                            ? 'Audio player not available'
-                                            : `Audio Error: ${error}`
-                                        }
-                                    </Text>
-                                )}
+                                    {error && (
+                                        <Text style={styles.errorText}>
+                                            {error.includes('not available')
+                                                ? 'Audio player not available'
+                                                : `Audio Error: ${error}`
+                                            }
+                                        </Text>
+                                    )}
 
-                                {/* <View style={styles.volumeContainer}>
+                                    {/* <View style={styles.volumeContainer}>
                                 <Text style={styles.volumeLabel}>Volume</Text>
                                 <Slider
                                     style={styles.volumeSlider}
