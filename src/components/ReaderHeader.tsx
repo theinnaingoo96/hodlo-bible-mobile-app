@@ -9,6 +9,7 @@ import { constants } from "../constants/Data";
 import SplitVerticalIcon from "./icons/SplitVerticalIcon";
 import SplitHorizontalIcon from "./icons/SplitHorizontalIcon";
 import { Menu, MenuItem } from "react-native-material-menu";
+import { useAudioPlayer } from "../hooks/useAudioPlayer";
 
 interface ReaderHeaderProps {
     title: string;
@@ -25,6 +26,7 @@ const ReaderHeader = ({ title, backButton, dividerMode, onTitlePress, onSettings
     const reader = useSelector((state: any) => state.reader);
     const navigation = useNavigation();
     const [isOpen, setIsOpen] = useState(false);
+    const { stop } = useAudioPlayer()
     const handleTitlePress = () => {
         console.log('handleTitlePress');
     };
@@ -49,7 +51,10 @@ const ReaderHeader = ({ title, backButton, dividerMode, onTitlePress, onSettings
 
     return (
         <View style={[styles.headerContainer, { backgroundColor: constants.theme[reader.readerSetting.theme - 1].toolbarColor }]}>
-            {backButton && <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+            {backButton && <TouchableOpacity style={styles.backButton} onPress={() => {
+                navigation.goBack()
+                stop()
+            }}>
                 <FontAwesome6 name="arrow-left" iconStyle="solid" color={constants.theme[reader.readerSetting.theme - 1].buttonColor} size={20} />
             </TouchableOpacity>}
             <TouchableOpacity style={styles.headerTitleContainer} onPress={onTitlePress}>

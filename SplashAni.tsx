@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Animated, StyleSheet, View, Text } from 'react-native';
 import DeviceInfo from "react-native-device-info";
 import { AppColors } from "./src/constants/Color";
-import { useDispatch } from 'react-redux';
-import { setDeviceId, setLoginTime } from './src/store/slices/deviceSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { setDeviceId, setDownloaded, setLoginTime } from './src/store/slices/deviceSlice';
 import DatabaseService from "./src/services/DataService";
 import { scheduleNotification } from "./src/services/DailyVerseService";
 import { Alert } from 'react-native';
@@ -14,6 +14,20 @@ const SplashScreen = ({ navigation }: any) => {
     const iconTranslateX = useRef(new Animated.Value(0)).current;
     const textTranslateX = useRef(new Animated.Value(100)).current;
     const textOpacity = useRef(new Animated.Value(0)).current;
+    const device = useSelector((state: any) => state.device);
+    const [finish, setFinish] = useState(false);
+
+    useEffect(() => {
+        console.log('downloaded in splash screen...', device.downloaded);
+        if (device.downloaded && finish) {
+            // setTimeout(() => {
+            navigation.reset({
+                index: 0,
+                routes: [{ name: 'Main' }],
+            });
+            // }, 2500)
+        }
+    }, [device.downloaded, finish]);
 
     useEffect(() => {
         // Wait for 1 second before starting the transition
@@ -40,10 +54,12 @@ const SplashScreen = ({ navigation }: any) => {
                 }),
             ]).start()
             setTimeout(() => {
-                navigation.reset({
-                    index: 0,
-                    routes: [{ name: 'Main' }],
-                });
+                //     navigation.reset({
+                //         index: 0,
+                //         routes: [{ name: 'Main' }],
+                //     });
+
+                setFinish(true)
             }, 1000);
         }, 1000); // Initial 1-second delay
 
@@ -71,12 +87,14 @@ const SplashScreen = ({ navigation }: any) => {
                     console.log('random verse', data);
                     // db.addNotificati`on(data[9].verse_id);
                     scheduleNotification(data);
+
+                    dispatch(setDownloaded(true));
                 }).catch((error) => {
                     console.log('random verse error', error);
                 });
                 // navigation.reset({
                 //     index: 0,
-                //     routes: [{ name: 'Main' }],
+                //     routes: [{ name: 'M ain' }],
                 // });
             }).catch((error) => {
                 Alert.alert('Error', 'Failed to initialize database');
@@ -87,7 +105,7 @@ const SplashScreen = ({ navigation }: any) => {
             //     if (data) {
             //         navigation.reset({
             //             index: 0,
-            //             routes: [{ name: 'Main' }],
+            //             routes: [{ name: 'M ain' }],
             //         });
             //     } else {
             //         console.log('verses not found');

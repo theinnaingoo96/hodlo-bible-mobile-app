@@ -10,6 +10,7 @@ interface DeviceState {
   loading: boolean;
   language: string;
   toast: Toast;
+  downloaded: boolean;
 }
 
 const initialState: DeviceState = {
@@ -24,6 +25,7 @@ const initialState: DeviceState = {
     type: 'success',
     duration: 3000,
   },
+  downloaded: false
 };
 
 const deviceSlice = createSlice({
@@ -53,6 +55,7 @@ const deviceSlice = createSlice({
         type: 'success',
         duration: 3000,
       };
+      state.downloaded = false;
     },
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
@@ -64,8 +67,11 @@ const deviceSlice = createSlice({
     setToast: (state, action: PayloadAction<Toast>) => {
       state.toast = action.payload;
     },
+    setDownloaded: (state, action: PayloadAction<boolean>) => {
+      state.downloaded = action.payload;
+    },
   },
 });
 
-export const { setDeviceId, setTheme, setLoginTime, clearDeviceInfo, setLoading, setLanguage, setToast } = deviceSlice.actions;
+export const { setDeviceId, setTheme, setLoginTime, clearDeviceInfo, setLoading, setLanguage, setToast, setDownloaded } = deviceSlice.actions;
 export default deviceSlice.reducer; 

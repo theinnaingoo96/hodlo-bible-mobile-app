@@ -13,7 +13,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { setLanguage, setTheme } from './src/store/slices/deviceSlice';
+import { setDownloaded, setLanguage, setTheme } from './src/store/slices/deviceSlice';
 import { setCurrent, setReaderSetting } from './src/store/slices/readerSlice';
 import ChangeLanguage from './src/pages/reader/ChangeLanguage';
 import { navigationRef } from './src/utils/RootNavigation';
@@ -28,12 +28,15 @@ import { store } from './src/store/store';
 import SplashScreen from './SplashAni';
 import Main from './src/pages/Main';
 import PsalmAudioExample from './src/components/PsalmAudioExample';
+import { useAudioPlayer } from './src/hooks/useAudioPlayer';
 function App(): React.JSX.Element {
   const device = useSelector((state: any) => state.device);
   const appState = useRef(AppState.currentState);
   const Stack = createStackNavigator();
+  const { stop } = useAudioPlayer();
 
   useEffect(() => {
+    store.dispatch(setDownloaded(false));
     AsyncStorage.getItem("ho-dlo-theme").then((value: any) => {
       if (value) {
         store.dispatch(setTheme(value == "true" ? true : false));
@@ -119,6 +122,7 @@ function App(): React.JSX.Element {
         }
 
         console.log("App has come to the foreground!");
+        stop();
         // navigationRef.navigate("FaceScan")
         // lastBackgroundTime.current = Date.now();
 
