@@ -93,12 +93,12 @@ const Reader = ({ navigation, route }: any) => {
                 console.log("LANDSCAPE")
             }
         })
-    }, []);
+    }, [route.params]);
 
 
     useEffect(() => {
         console.log('verses from Reader 2', verses, route.params);
-        fetchVerses();
+        // fetchVerses();
         SoundPlayer.addEventListener('FinishedPlaying', (data) => {
             console.log('FinishedPlaying', data);
             setCurrentVerse(currentVerse + 1);
@@ -355,7 +355,8 @@ const Reader = ({ navigation, route }: any) => {
             pause();
         } else {
             if (currentTime == 0) {
-                await playPsalm23();
+                // await playPsalm23();
+                await playPsalmAudio();
             } else {
                 resume()
             }
