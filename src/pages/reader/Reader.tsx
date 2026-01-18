@@ -4,23 +4,23 @@ import Slider from '@react-native-community/slider';
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, StatusBar, Modal, Dimensions } from 'react-native';
 import { GestureDetector, Gesture } from 'react-native-gesture-handler';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
-import { useAudioPlayer } from '../../hooks/useAudioPlayer';
-import { testAudioLoading } from '../../utils/audioDebug';
 import SoundPlayer from 'react-native-sound-player';
 
+import { setCurrent } from '../../store/slices/readerSlice';
+import { useAudioPlayer } from '../../hooks/useAudioPlayer';
+import ReaderSetting from '../../components/ReaderSetting';
+import { testAudioLoading } from '../../utils/audioDebug';
+import { setToast } from '../../store/slices/deviceSlice';
 import ReaderHeader from '../../components/ReaderHeader';
 import DatabaseService from '../../services/DataService';
 import CloseIcon from '../../components/icons/CloseIcon';
 import BottomSheet from '../../components/BottomSheet';
 import ColorPicker from '../../components/ColorPicker';
 import { AppColors } from '../../constants/Color';
-import SplitReaderView from './View';
-import { store } from '../../store/store';
-import { setToast } from '../../store/slices/deviceSlice';
 import { constants } from '../../constants/Data';
 import { CurrentRead } from '../../types/reader';
-import { setCurrent } from '../../store/slices/readerSlice';
-import ReaderSetting from '../../components/ReaderSetting';
+import { store } from '../../store/store';
+import SplitReaderView from './View';
 
 const Reader = ({ navigation, route }: any) => {
     const device = useSelector((state: any) => state.device);
@@ -32,7 +32,8 @@ const Reader = ({ navigation, route }: any) => {
     const [fontSize, setFontSize] = useState(0.5);
     const [verses, setVerses] = useState();
 
-    // Audio player hook
+    // Audio player state from Redux
+    const audioPlayerState = reader.audioPlayer;
     const {
         isPlaying,
         isPaused,
@@ -42,6 +43,10 @@ const Reader = ({ navigation, route }: any) => {
         volume,
         isLoading,
         error,
+    } = audioPlayerState;
+
+    // Audio player actions from hook (still needed for play, pause, etc.)
+    const {
         play,
         pause,
         resume,
@@ -56,10 +61,19 @@ const Reader = ({ navigation, route }: any) => {
         playPsalm104,
         playPsalm105,
         playPsalm106,
-        progress,
-        formattedTime,
-        formattedDuration,
     } = useAudioPlayer();
+
+    // Helper functions for computed values
+    const progress = duration > 0 ? currentTime / duration : 0;
+    
+    const formatTime = (seconds: number): string => {
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs.toString().padStart(2, '0')}`;
+    };
+    
+    const formattedTime = formatTime(currentTime);
+    const formattedDuration = formatTime(duration);
     const [bookmarkModalVisible, setBookmarkModalVisible] = useState(false);
     const [bookmarkedVerse, setBookmarkedVerse] = useState({
         book_name: "",
@@ -93,7 +107,7 @@ const Reader = ({ navigation, route }: any) => {
                 console.log("LANDSCAPE")
             }
         })
-    }, [route.params]);
+    }, [route.params, bookmarkModalVisible]);
 
 
     useEffect(() => {
@@ -110,7 +124,7 @@ const Reader = ({ navigation, route }: any) => {
 
     useEffect(() => {
         console.log('progress', progress);
-    }, [progress]);
+    }, [currentTime, duration]);
 
     const fetchVerses = () => {
         // console.log('fetchVerses', route.params.chapter);
@@ -222,6 +236,7 @@ const Reader = ({ navigation, route }: any) => {
                     verseId: 1,
                     verseNumber: 1,
                     maxChapter: currentReaderData.maxChapter,
+                    progress: currentReaderData.progress
                 };
                 store.dispatch(setCurrent(read));
                 navigation.replace('Reader', { book: reader.currentRead.bookName, chapter: currentReaderData.chapterNumber + 1, chapterId: nextChapterId, verse: 1 });
@@ -248,6 +263,7 @@ const Reader = ({ navigation, route }: any) => {
                     verseId: 1,
                     verseNumber: 1,
                     maxChapter: currentReaderData.maxChapter,
+                    progress: currentReaderData.progress
                 };
                 store.dispatch(setCurrent(read));
                 navigation.replace('Reader', { book: reader.currentRead.bookName, chapter: currentReaderData.chapterNumber - 1, chapterId: previousChapterId, verse: 1 });
@@ -318,7 +334,7 @@ const Reader = ({ navigation, route }: any) => {
 
             setPlayerSheetVisible(true);
             try {
-                if (error && error.includes('not available')) {
+                if (reader.audioPlayer.error && reader.audioPlayer.error.includes('not available')) {
                     console.log(' [AUDIO] Audio player not available, skipping audio playback');
                     return;
                 }
@@ -383,8 +399,9 @@ const Reader = ({ navigation, route }: any) => {
 
     const handleVerseClick = (verse: any) => {
         // pause();
-        console.log('handleVerseClick', playerSheetVisible);
-        if (playerSheetVisible) {
+        console.log('handleVerseClick', playerSheetVisible, isPlaying, verse);
+        // Always allow verse clicks - if audio is playing, seek to that verse's time
+        if (isPlaying && duration > 0 && verse.audio_from) {
             // Use the handleSeek function and convert audio_from to number of seconds if necessary
             let seekValue = verse.audio_from;
             console.log('audio from', seekValue, typeof seekValue);
@@ -394,6 +411,17 @@ const Reader = ({ navigation, route }: any) => {
             }
             console.log('res', seekValue, duration)
             // handleSeek expects 0-1 normalized value, so divide by duration (guard against division by zero)
+            if (duration > 0) {
+                const normalizedValue = seekValue / duration;
+                handleSeek(normalizedValue);
+            }
+        } else if (playerSheetVisible && duration > 0 && verse.audio_from) {
+            // Also handle when player sheet is visible
+            let seekValue = verse.audio_from;
+            if (typeof seekValue === 'string') {
+                const [min, sec] = seekValue.split(':').map(Number);
+                seekValue = min * 60 + sec;
+            }
             if (duration > 0) {
                 const normalizedValue = seekValue / duration;
                 handleSeek(normalizedValue);
@@ -415,7 +443,7 @@ const Reader = ({ navigation, route }: any) => {
 
         // Convert time string (MM:SS) to seconds
         const timeToSeconds = (timeStr: string): number => {
-            const [minutes, seconds] = timeStr.split(':').map(Number);
+            const [minutes, seconds] = timeStr ? timeStr.split(':').map(Number) : [0, 0];
             return minutes * 60 + seconds;
         };
 
@@ -472,7 +500,7 @@ const Reader = ({ navigation, route }: any) => {
 
                 <View style={[styles.contentContainer]}>
                     {
-                        verses && <View style={{ flex: 1 }}>
+                        verses && <View style={{ flex: 1, zIndex: 1 }}>
                             <SplitReaderView verses={verses} onStartBookmark={handleCreateBookmark} onNextChapter={handleNextChapter} onPreviousChapter={handlePreviousChapter} dividerMode={dividerMode} onVerseClick={handleVerseClick} />
                         </View>
                     }
@@ -486,14 +514,16 @@ const Reader = ({ navigation, route }: any) => {
                         // closeButton={false}
 
                         <View style={styles.playerSheetContainer} pointerEvents="box-none">
-                            <View style={styles.playerSheetContent} pointerEvents="auto">
-                                <View style={styles.bookmarkModalHeader}>
+                            <View style={styles.playerSheetContent} pointerEvents="box-none">
+                                <View style={styles.bookmarkModalHeader} pointerEvents="auto">
                                     <TouchableOpacity onPress={() => { setPlayerSheetVisible(false); handleStop() }}>
                                         <CloseIcon name="cross" color={AppColors.appTextBlack} />
                                     </TouchableOpacity>
                                 </View>
-                                <AudioVerseComponent verses={verses} />
-                                <View style={styles.playerContainer}>
+                                <View pointerEvents="box-none">
+                                    <AudioVerseComponent verses={verses} />
+                                </View>
+                                <View style={styles.playerContainer} pointerEvents="auto">
                                     <View style={styles.playerControls}>
                                         <TouchableOpacity style={styles.controlButton} onPress={handleStop}>
                                             <FontAwesome6 name="backward-step" iconStyle="solid" color={AppColors.appTextWhite} size={18} />
@@ -633,6 +663,7 @@ const styles = StyleSheet.create({
         flex: 1,
         // backgroundColor: 'blue',
         width: '100%',
+        zIndex: 1,
         // height: '100%',
         // paddingVertical: 16,
         alignItems: 'center',
@@ -849,11 +880,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     playerSheetContainer: {
-        // position: 'absolute',
-        // bottom: 0,
-        // left: 0,
-        // right: 0,
-        // zIndex: 1000,
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        maxHeight: 320,
+        zIndex: 1000,
+        pointerEvents: 'box-none',
     },
     playerSheetContent: {
         backgroundColor: 'white',

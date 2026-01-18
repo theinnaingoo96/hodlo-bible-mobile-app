@@ -6,7 +6,22 @@ export const getBooks = async () => {
   return response.data;
 };
 
-export const createUser = async (payload: any) => {
-  const response = await api.post("/users", payload);
+export const getChapters = async (bookId: number) => {
+  const response = await api.get(`/books/${bookId}/chapters`);
+  return response.data;
+};
+
+export const getVerses = async (chapterId: number) => {
+  const response = await api.get(`/chapters/${chapterId}/verses`);
+  return response.data;
+};
+
+export const createUser = async (deviceId: any, deviceName: any, deviceType: any) => {
+  const body: any = {
+    "deviceId": deviceId,
+    "deviceName": deviceName,
+    "deviceType": deviceType,
+  };
+  const response = await api.post("/users/new", body);
   return response.data;
 };

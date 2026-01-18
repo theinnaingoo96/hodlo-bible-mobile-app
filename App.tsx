@@ -5,7 +5,8 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
-  View
+  View, PermissionsAndroid,
+  Alert
 } from 'react-native';
 import { useSelector } from 'react-redux';
 import PushNotification from 'react-native-push-notification';
@@ -15,20 +16,21 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { setDownloaded, setLanguage, setTheme } from './src/store/slices/deviceSlice';
 import { setCurrent, setReaderSetting } from './src/store/slices/readerSlice';
+import PsalmAudioExample from './src/components/PsalmAudioExample';
+import { CurrentRead, ReaderSetting } from './src/types/reader';
 import ChangeLanguage from './src/pages/reader/ChangeLanguage';
+import { useAudioPlayer } from './src/hooks/useAudioPlayer';
 import { navigationRef } from './src/utils/RootNavigation';
 import CustomLoading from './src/components/CustomLoading';
 import { CustomToast } from './src/components/CustomToast';
 import DatabaseViewer from './src/pages/DatabaseViewer';
 import Notification from './src/pages/Notification';
-import { CurrentRead, ReaderSetting } from './src/types/reader';
 import { AppColors } from './src/constants/Color';
 import Reader from './src/pages/reader/Reader';
 import { store } from './src/store/store';
 import SplashScreen from './SplashAni';
 import Main from './src/pages/Main';
-import PsalmAudioExample from './src/components/PsalmAudioExample';
-import { useAudioPlayer } from './src/hooks/useAudioPlayer';
+
 function App(): React.JSX.Element {
   const device = useSelector((state: any) => state.device);
   const appState = useRef(AppState.currentState);
@@ -74,24 +76,46 @@ function App(): React.JSX.Element {
           verseId: 1,
           verseNumber: 1,
           maxChapter: 0,
+          progress: 0
         }
         store.dispatch(setCurrent(readerInitial));
       }
     })
-    PushNotification.createChannel(
-      {
-        channelId: 'ho-dlo-channel',
-        channelName: 'Ho Dlo Notifications',
-        importance: 4,
-      },
-      (created) => console.log(`createChannel returned '${created}'`)
-    );
+    notificationSetup()
   }, []);
+
+  const notificationSetup = async () => {
+    const notiGranted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS
+    );
+    // const alarmGranted = await PermissionsAndroid.request(
+    //   PermissionsAndroid.PERMISSIONS.SCHEDULE_EXACT_ALARMS
+    // );
+    const audioGranted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.READ_MEDIA_AUDIO
+    );
+    if (notiGranted === PermissionsAndroid.RESULTS.GRANTED && audioGranted === PermissionsAndroid.RESULTS.GRANTED) {
+      PushNotification.createChannel(
+        {
+          channelId: 'ho-dlo-channel',
+          channelName: 'Ho Dlo Notifications',
+          importance: 4,
+        },
+        (created) => console.log(`createChannel returned '${created}'`)
+      );
+    }
+    if (notiGranted !== PermissionsAndroid.RESULTS.GRANTED) {
+      Alert.alert('Error', 'Notification permission is required to receive daily verses and reminders.');
+    }
+    if (audioGranted !== PermissionsAndroid.RESULTS.GRANTED) {
+      Alert.alert('Error', 'Audio permission is required to play audio files.');
+    }
+  }
 
   useEffect(() => {
     const subscription = AppState.addEventListener("change", (nextAppState) => {
       console.log('App state changed ... ', nextAppState);
-      
+
       if (
         appState.current.match(/inactive|background/) &&
         nextAppState === "active"

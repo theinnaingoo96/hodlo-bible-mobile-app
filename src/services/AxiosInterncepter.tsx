@@ -2,7 +2,8 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
 const api: AxiosInstance = axios.create({
-  baseURL: "https://api.gathengpudlo.com/api", // change to your API base URL
+  // baseURL: "https://api.gathengpudlo.com/api", // change to your API base URL
+  baseURL: "http://163.44.197.76:8080/api",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
@@ -25,19 +26,20 @@ const api: AxiosInstance = axios.create({
 api.interceptors.response.use(
   (response: AxiosResponse) => response,
   (error: AxiosError) => {
+    console.log("[API] error", error);
     if (error.response) {
       switch (error.response.status) {
         case 401:
-          console.warn("Unauthorized");
+          console.warn("[API] Unauthorized");
           break;
         case 500:
-          console.error("Server error:", error.response.data);
+          console.error("[API] Server error:", error.response.data);
           break;
       }
     } else if (error.request) {
-      console.error("No response received:", error.request);
+      console.error("[API] No response received:", error.request);
     } else {
-      console.error("Request error:", error.message);
+      console.error("[API] Request error:", error.message);
     }
     return Promise.reject(error);
   }

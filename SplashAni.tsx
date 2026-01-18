@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Animated, StyleSheet, View, Text } from 'react-native';
+import { Animated, StyleSheet, View, Text, Platform, PermissionsAndroid, Linking } from 'react-native';
 import DeviceInfo from "react-native-device-info";
 import { AppColors } from "./src/constants/Color";
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,6 +7,8 @@ import { setDeviceId, setDownloaded, setLoginTime } from './src/store/slices/dev
 import DatabaseService from "./src/services/DataService";
 import { scheduleNotification } from "./src/services/DailyVerseService";
 import { Alert } from 'react-native';
+import permissionService from './src/services/PermissionService';
+import { createUser } from './src/services/ApiService';
 
 const SplashScreen = ({ navigation }: any) => {
     // Animated values for the icon's horizontal position and the text's properties
@@ -54,11 +56,6 @@ const SplashScreen = ({ navigation }: any) => {
                 }),
             ]).start()
             setTimeout(() => {
-                //     navigation.reset({
-                //         index: 0,
-                //         routes: [{ name: 'Main' }],
-                //     });
-
                 setFinish(true)
             }, 1000);
         }, 1000); // Initial 1-second delay
@@ -80,17 +77,71 @@ const SplashScreen = ({ navigation }: any) => {
             }
         };
 
+        const requestPermissions = async () => {
+            return new Promise(async (resolve, reject) => {
+                try {
+                    // Check permissions first
+                    const notificationsGranted = await permissionService.checkPermission('notifications');
+                    const mediaAudioGranted = await permissionService.checkPermission('media_audio');
+
+                    console.log('Permission status - Notifications:', notificationsGranted, 'Audio:', mediaAudioGranted);
+
+                    // Request essential permissions if not granted
+                    if (!notificationsGranted ) {
+                        const results = await permissionService.requestEssentialPermissions();
+
+                        // Log permission results
+                        Object.entries(results).forEach(([permission, result]) => {
+                            if (!result.granted) {
+                                console.warn(`Permission ${permission} was not granted:`, result.message);
+                            } else {
+                                console.log(`Permission ${permission} granted`);
+                            }
+                        });
+
+                        // If critical permissions are denied, log warning
+                        if (!results.notifications.granted) {
+                            console.warn('Notification permission is required for daily verses');
+                        }
+                        if (!results.media_audio.granted) {
+                            console.warn('Audio permission is required for audio playback');
+                        }
+                        resolve(false);
+                    } else {
+                        console.log('All essential permissions already granted');
+                        resolve(true);
+                    }
+                } catch (error) {
+                    console.error('Error requesting permissions:', error);
+                    reject(error);
+                }
+            });
+        };
+
         const initDB = async () => {
             const db = DatabaseService.getInstance();
             await db.init().then(() => {
-                db.getRandomVerse(10).then((data) => {
+                db.getRandomVerse(10).then(async (data) => {
                     console.log('random verse', data);
                     // db.addNotificati`on(data[9].verse_id);
-                    scheduleNotification(data);
+                    // if (Platform.OS === "android" && Platform.Version >= 31) {
+                    //     await Linking.openSettings();
+                    // }
+                    const notificationsGranted = await permissionService.checkPermission('notifications');
+                    if (notificationsGranted) {
+                        scheduleNotification(data);
+                    }
+                    const deviceId = await DeviceInfo.getUniqueId();
+                    const deviceName = await DeviceInfo.getDeviceName();
+                    const deviceType = Platform.OS;
+                    console.log('[Splash] deviceId', deviceId, 'deviceName', deviceName, 'deviceType', deviceType);
+                    
+                    const result = await createUser(deviceId, deviceName, deviceType);
+                    console.log('[Splash] create user result', result);
 
                     dispatch(setDownloaded(true));
                 }).catch((error) => {
-                    console.log('random verse error', error);
+                    console.log('[Splash] random verse error', error);
                 });
                 // navigation.reset({
                 //     index: 0,
@@ -98,7 +149,7 @@ const SplashScreen = ({ navigation }: any) => {
                 // });
             }).catch((error) => {
                 Alert.alert('Error', 'Failed to initialize database');
-                console.log('db error', error);
+                console.log('[Splash] db error', error);
             });
             // const verses = await db.getVersesByChapter(3).then((data) => {
             //     console.log('verses', data);
@@ -117,22 +168,17 @@ const SplashScreen = ({ navigation }: any) => {
             // console.log(verses);
         };
 
-        initDB();
-
-        initializeApp();
+        // Request permissions first, then initialize app
+        // requestPermissions().then(() => {
+            initDB();
+            initializeApp();
+        // });
 
         Animated.timing(progress, {
             toValue: 100,
             duration: 2000,
             useNativeDriver: false
         }).start();
-
-        // setTimeout(() => {
-        //     navigation.reset({
-        //         index: 0,
-        //         routes: [{ name: 'Main' }],
-        //     });
-        // }, 2500);
     }, []);
 
     return (
@@ -155,12 +201,12 @@ const SplashScreen = ({ navigation }: any) => {
                         },
                     ]}
                 >
-                    GATHANGPU DLO
+                    GATHENGPU DLO
                 </Animated.Text>
             </View>
             <View style={styles.footer}>
                 <Text style={styles.version}>v.1.0</Text>
-                <Text style={styles.copyright}>Copyright © 2025 Gathanpu Dlo. All rights reserved.</Text>
+                <Text style={styles.copyright}>Copyright © 2025 Gathengpu Dlo. All rights reserved.</Text>
             </View>
         </View>
     );

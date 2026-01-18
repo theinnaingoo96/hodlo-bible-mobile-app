@@ -1,6 +1,19 @@
 import SoundPlayer from 'react-native-sound-player';
 import { AppColors } from '../constants/Color';
 import { debugAudioPath } from '../utils/audioDebug';
+import { store } from '../store/store';
+import {
+  setAudioPlayerState,
+  setAudioPlayerPlaying,
+  setAudioPlayerPaused,
+  setAudioPlayerStopped,
+  setAudioPlayerDuration,
+  setAudioPlayerCurrentTime,
+  setAudioPlayerVolume,
+  setAudioPlayerLoading,
+  setAudioPlayerError,
+  resetAudioPlayer,
+} from '../store/slices/readerSlice';
 
 export interface AudioPlayerState {
   isPlaying: boolean;
@@ -24,16 +37,6 @@ export interface AudioPlayerCallbacks {
 }
 
 class AudioPlayerService {
-  private state: AudioPlayerState = {
-    isPlaying: false,
-    isPaused: false,
-    isStopped: true,
-    duration: 0,
-    currentTime: 0,
-    volume: 1.0,
-    isLoading: false,
-    error: null,
-  };
   private callbacks: AudioPlayerCallbacks = {};
   private progressInterval: NodeJS.Timeout | null = null;
   private currentAudioPath: string | null = null;
@@ -53,10 +56,10 @@ class AudioPlayerService {
       this.initializeSoundPlayer();
     } catch (error) {
       console.error('Error initializing AudioPlayerService:', error);
-      this.setState({ 
+      store.dispatch(setAudioPlayerState({ 
         error: 'Failed to initialize audio player', 
         isLoading: false 
-      });
+      }));
     }
   }
 
@@ -64,57 +67,50 @@ class AudioPlayerService {
     try {
       // Set up event listeners for react-native-sound-player
       this.setupEventListeners();
-      this.setState({ 
+      store.dispatch(setAudioPlayerState({ 
         isLoading: false,
         error: null 
-      });
+      }));
     } catch (error) {
       console.error('Error in initializeSoundPlayer:', error);
-      this.setState({ 
+      store.dispatch(setAudioPlayerState({ 
         error: 'Failed to initialize sound player', 
         isLoading: false 
-      });
+      }));
     }
   }
 
   private setupEventListeners() {
     // Listen for finished playing
     SoundPlayer.addEventListener('FinishedPlaying', (data) => {
-      this.setState({ 
-        isPlaying: false, 
-        isPaused: false, 
-        isStopped: true,
-        currentTime: 0 
-      });
+      store.dispatch(setAudioPlayerStopped(true));
+      store.dispatch(setAudioPlayerCurrentTime(0));
       this.callbacks.onEnd?.();
       this.stopProgressTracking();
     });
 
     // Listen for finished loading
     SoundPlayer.addEventListener('FinishedLoading', (data) => {
-      this.setState({ 
+      const state = store.getState().reader.audioPlayer;
+      store.dispatch(setAudioPlayerState({ 
         isLoading: false,
         error: null 
-      });
-      this.callbacks.onLoad?.(this.state.duration);
+      }));
+      this.callbacks.onLoad?.(state.duration);
     });
 
     // Listen for setup errors
     SoundPlayer.addEventListener('OnSetupError', (data) => {
-      this.setState({ 
+      store.dispatch(setAudioPlayerState({ 
         error: 'Setup error occurred', 
         isLoading: false 
-      });
+      }));
       this.callbacks.onError?.('Setup error occurred');
     });
   }
 
-  private setState(newState: Partial<AudioPlayerState>) {
-    this.state = { ...this.state, ...newState };
-  }
-
   public getState(): AudioPlayerState {
-    return { ...this.state };
+    return store.getState().reader.audioPlayer;
   }
 
   public setCallbacks(callbacks: AudioPlayerCallbacks) {
@@ -123,7 +119,7 @@ class AudioPlayerService {
 
   public async loadAudio(audioPath: any): Promise<void> {
     return new Promise(async (resolve, reject) => {
-      this.setState({ isLoading: true, error: null });
+      store.dispatch(setAudioPlayerState({ isLoading: true, error: null }));
       
       try {
         // Enhanced debugging for audio path
@@ -197,37 +193,37 @@ class AudioPlayerService {
           // Get duration after loading
           try {
             const info = await SoundPlayer.getInfo();
-            this.setState({ 
-              duration: info.duration,
+            store.dispatch(setAudioPlayerDuration(info.duration));
+            store.dispatch(setAudioPlayerState({ 
               isLoading: false,
               error: null 
-            });
+            }));
             this.callbacks.onLoad?.(info.duration);
             resolve();
           } catch (infoError) {
             console.log('Could not get audio info, but audio may still be loaded');
-            this.setState({ 
+            store.dispatch(setAudioPlayerState({ 
               isLoading: false,
               error: null 
-            });
+            }));
             this.callbacks.onLoad?.(0);
             resolve();
           }
         } catch (soundError: any) {
           console.error('Error loading audio:', soundError);
-          this.setState({ 
+          store.dispatch(setAudioPlayerState({ 
             error: `Failed to load audio: ${soundError.message}`, 
             isLoading: false 
-          });
+          }));
           this.callbacks.onError?.(`Failed to load audio: ${soundError.message}`);
           reject(soundError);
         }
       } catch (error: any) {
         console.error('Error in loadAudio:', error);
-        this.setState({ 
+        store.dispatch(setAudioPlayerState({ 
           error: `Failed to load audio: ${error.message}`, 
           isLoading: false 
-        });
+        }));
         this.callbacks.onError?.(`Failed to load audio: ${error.message}`);
         reject(error);
       }
@@ -242,16 +238,12 @@ class AudioPlayerService {
 
     try {
       SoundPlayer.play();
-      this.setState({ 
-        isPlaying: true, 
-        isPaused: false, 
-        isStopped: false 
-      });
+      store.dispatch(setAudioPlayerPlaying(true));
       this.callbacks.onPlay?.();
       this.startProgressTracking();
     } catch (error: any) {
       const errorMessage = 'Playback failed';
-      this.setState({ error: errorMessage });
+      store.dispatch(setAudioPlayerError(errorMessage));
       this.callbacks.onError?.(errorMessage);
       throw new Error(errorMessage);
     }
@@ -262,11 +254,7 @@ class AudioPlayerService {
 
     try {
       SoundPlayer.pause();
-      this.setState({ 
-        isPlaying: false, 
-        isPaused: true, 
-        isStopped: false 
-      });
+      store.dispatch(setAudioPlayerPaused(true));
       this.callbacks.onPause?.();
       this.stopProgressTracking();
     } catch (error) {
@@ -279,15 +267,11 @@ class AudioPlayerService {
 
     try {
       SoundPlayer.resume();
-      this.setState({ 
-        isPlaying: true, 
-        isPaused: false, 
-        isStopped: false 
-      });
+      store.dispatch(setAudioPlayerPlaying(true));
       this.callbacks.onPlay?.();
       this.startProgressTracking();
     } catch (error) {
-      console.error('Error pausing audio:', error);
+      console.error('Error resuming audio:', error);
     }
   }
 
@@ -296,12 +280,8 @@ class AudioPlayerService {
 
     try {
       SoundPlayer.stop();
-      this.setState({ 
-        isPlaying: false, 
-        isPaused: false, 
-        isStopped: true,
-        currentTime: 0 
-      });
+      store.dispatch(setAudioPlayerStopped(true));
+      store.dispatch(setAudioPlayerCurrentTime(0));
       this.callbacks.onStop?.();
       this.stopProgressTracking();
     } catch (error) {
@@ -314,7 +294,7 @@ class AudioPlayerService {
 
     try {
       SoundPlayer.seek(time);
-      this.setState({ currentTime: time });
+      store.dispatch(setAudioPlayerCurrentTime(time));
     } catch (error) {
       console.error('Error seeking audio:', error);
     }
@@ -322,7 +302,7 @@ class AudioPlayerService {
 
   public setVolume(volume: number): void {
     const clampedVolume = Math.max(0, Math.min(1, volume));
-    this.setState({ volume: clampedVolume });
+    store.dispatch(setAudioPlayerVolume(clampedVolume));
     try {
       SoundPlayer.setVolume(clampedVolume);
     } catch (error) {
@@ -353,11 +333,12 @@ class AudioPlayerService {
   private startProgressTracking(): void {
     this.stopProgressTracking();
     this.progressInterval = setInterval(async () => {
-      if (this.currentAudioPath && this.state.isPlaying) {
+      const state = store.getState().reader.audioPlayer;
+      if (this.currentAudioPath && state.isPlaying) {
         try {
           const currentTime = await this.getCurrentTime();          
-          this.setState({ currentTime });
-          this.callbacks.onProgress?.(currentTime, this.state.duration);
+          store.dispatch(setAudioPlayerCurrentTime(currentTime));
+          this.callbacks.onProgress?.(currentTime, state.duration);
         } catch (error) {
           console.error('Error tracking progress:', error);
         }
@@ -376,14 +357,7 @@ class AudioPlayerService {
     this.stop();
     this.stopProgressTracking();
     this.currentAudioPath = null;
-    this.setState({
-      isPlaying: false,
-      isPaused: false,
-      isStopped: true,
-      duration: 0,
-      currentTime: 0,
-      error: null,
-    });
+    store.dispatch(resetAudioPlayer());
   }
 
   // Helper method to load audio with fallback
@@ -510,7 +484,11 @@ try {
   console.error('Failed to create AudioPlayerService:', error);
   // Create a fallback instance that handles errors gracefully
   audioPlayerInstance = {
-    getState: () => ({
+    getState: () => {
+      try {
+        return store.getState().reader.audioPlayer;
+      } catch (error) {
+        return {
       isPlaying: false,
       isPaused: false,
       isStopped: true,
@@ -519,7 +497,9 @@ try {
       volume: 1.0,
       isLoading: false,
       error: 'Audio player not available',
-    }),
+        };
+      }
+    },
     setCallbacks: () => {},
     play: async () => { throw new Error('Audio player not available'); },
     pause: () => {},

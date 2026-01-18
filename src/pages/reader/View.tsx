@@ -1,15 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
-import { StyleSheet, View, Dimensions, PanResponder, Animated, CursorValue, TouchableOpacity, Text, FlatList, NativeSyntheticEvent, NativeScrollEvent, TouchableWithoutFeedback, Touchable, Button } from 'react-native';
+import { StyleSheet, View, Dimensions, PanResponder, Animated, CursorValue, TouchableOpacity, Text, FlatList, NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
 
 import TermsIcon from '../../components/icons/setting/UpdateIcon';
 import CustomAlert from '../../components/CustomAlert';
 import { AppColors } from '../../constants/Color';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { constants } from '../../constants/Data';
-import { setCurrentVerse } from '../../store/slices/readerSlice';
+import { setCurrentVerse, setReadingProgress } from '../../store/slices/readerSlice';
 import { useAudioPlayer } from '../../hooks/useAudioPlayer';
+import DatabaseService from '../../services/DataService';
 
 interface SplitReaderViewProps {
     verses: any[];
@@ -202,15 +203,15 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
                 currentIndex = i + 2;
             }
         }
-        
+
         // Ensure we don't go out of bounds
         currentIndex = Math.max(0, Math.min(currentIndex, verses.length - 1));
-        
+
         // Check if verse exists before accessing its properties
         if (verses[currentIndex]) {
-            dispatch(setCurrentVerse({ 
-                verseId: verses[currentIndex].id, 
-                verseNumber: verses[currentIndex].number 
+            dispatch(setCurrentVerse({
+                verseId: verses[currentIndex].id,
+                verseNumber: verses[currentIndex].number
             }))
             // console.log("Current index:", currentIndex, verses[currentIndex]);
         }
@@ -290,6 +291,18 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
         ]).start();
     };
 
+    const onCompleteChapter = () => {
+        DatabaseService.getInstance().updateChapterCompletedAt(reader.currentRead.chapterId).then((result: any) => {
+            console.log('completeChapter', result);
+            if (result) {
+                DatabaseService.getInstance().calcReadingProgress().then((progress: any) => {
+                    console.log('Reading Progress:', progress);
+                    dispatch(setReadingProgress(progress));
+                });
+            }
+        });
+    }
+
     // const handleScroll = () => {
     //     hideFAB();
     //     if (hideTimer.current) clearTimeout(hideTimer.current);
@@ -301,8 +314,8 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
     const VerseComponent = ({ verse, language, index }: any) => {
         return (
             <View style={{ flex: 1 }}
-                // onLayout={(e) => handleLayout(e, index)}
-                >
+            // onLayout={(e) => handleLayout(e, index)}
+            >
                 <TouchableOpacity style={styles.verseContainer}
                     // activeOpacity={0.5}
                     onLongPress={() => !verse.bookmark && onStartBookmark(verse)}
@@ -360,11 +373,12 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
                         onScroll={onSingleScroll}
                         style={{ height: topHeight }}
                         scrollEventThrottle={16}
-                        // ListFooterComponent={
-                        //     <Button title="Test" onPress={() => {
-                        //         console.log('onPress on Button');
-                        //     }} />
-                        // }
+                        onEndReached={onCompleteChapter}
+                    // ListFooterComponent={
+                    //     <Button title="Test" onPress={() => {
+                    //         console.log('onPress on Button');
+                    //     }} />
+                    // }
                     />
                 ) : (
 
@@ -391,6 +405,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
                                     showsVerticalScrollIndicator={false}
                                     onContentSizeChange={(w, h) => (topHeights.current.content = h)}
                                     onLayout={(e) => (topHeights.current.layout = e.nativeEvent.layout.height)}
+                                    onEndReached={onCompleteChapter}
                                 />
                             </Animated.View>
                             <View
@@ -467,6 +482,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
                                     showsVerticalScrollIndicator={false}
                                     onContentSizeChange={(w, h) => (leftHeights.current.content = h)}
                                     onLayout={(e) => (leftHeights.current.layout = e.nativeEvent.layout.height)}
+                                    onEndReached={onCompleteChapter}
                                 />
                             </Animated.View>
                             <View

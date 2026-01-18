@@ -7,6 +7,7 @@ export interface CurrentRead {
     verseId: number;
     verseNumber: number;
     maxChapter: number;
+    progress: number;
 }
 
 export interface ReaderSetting {

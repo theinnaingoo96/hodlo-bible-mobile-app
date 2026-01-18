@@ -9,16 +9,16 @@ const SearchSnippet = ({ rawText = "", keyword = "", snippetRadius = 20, theme =
     useEffect(() => {
 
         // Normalize text
-        const lowerText = rawText.toLowerCase();
-        const lowerKeyword = keyword.toLowerCase();
-        const index = lowerText.indexOf(lowerKeyword);
+        const lowerText = rawText && rawText.toLowerCase();
+        const lowerKeyword = keyword && keyword.toLowerCase();
+        const index = lowerText && lowerText.indexOf(lowerKeyword);
         // If keyword not found, show full text truncated
         if (index === -1) {
             setParts([rawText]);
             return;
         }
-        const keywordLength = keyword.length;
-        const textLength = rawText.length;
+        const keywordLength = keyword && keyword.length;
+        const textLength = rawText && rawText.length;
 
         // Balanced middle-case: divide radius before/after keyword
         const halfRadius = Math.floor(snippetRadius / 2);
@@ -41,20 +41,20 @@ const SearchSnippet = ({ rawText = "", keyword = "", snippetRadius = 20, theme =
             end = afterKeyword;
         }
 
-        let snippet = rawText.substring(start, end);
+        let snippet = rawText && rawText.substring(start, end);
 
         // Add ellipses if sliced
         if (start > 0) snippet = '...' + snippet;
         if (end < textLength) snippet = snippet + '...';
 
         // Highlight keyword
-        const parts = snippet.split(new RegExp(`(${keyword})`, 'ig'));
+        const parts = snippet && snippet.split(new RegExp(`(${keyword})`, 'ig'));
         setParts(parts);
     }, []);
 
     return (
         <Text numberOfLines={1} ellipsizeMode="tail">
-            {parts.map((part: any, idx: number) =>
+            {parts && parts.map((part: any, idx: number) =>
                 part.toLowerCase() === keyword.toLowerCase() ? (
                     <Text key={idx} style={[styles.highlightedText, { color: theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>{part}</Text>
                 ) : (

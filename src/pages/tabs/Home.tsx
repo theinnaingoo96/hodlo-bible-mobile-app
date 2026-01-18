@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Image, Dimensions, Text, ScrollView, TouchableOpacity, Alert, Share } from 'react-native';
-import { AppColors } from '../../constants/Color';
 import { useSelector } from 'react-redux';
-import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import { useNavigation } from '@react-navigation/native';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
+import { View, StyleSheet, Image, Dimensions, Text, ScrollView, TouchableOpacity, Alert, Share } from 'react-native';
+
 import { ReadingProgressCard, VerseOfTheDayCard } from '../../components/HomeComponent';
 import DatabaseService from '../../services/DataService';
+import { AppColors } from '../../constants/Color';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -45,8 +46,8 @@ const Home = () => {
         // DatabaseService.getInstance().seedAudioMilestone24().then((result: any) => {
         //     console.log('seedAudioMilestone24', result)
         // })
-        console.log('reader', reader.currentRead);
-    }, [reader]);
+        console.log('[HOME]reader', reader.currentRead);
+    }, []);
 
     const carouselItems: CarouselItem[] = [
         {
@@ -168,7 +169,7 @@ const Home = () => {
                         onShare={handleShare}
                     />
                     <View style={{ height: 16 }} />
-                    <ReadingProgressCard progress={0.4} />
+                    <ReadingProgressCard progress={reader.currentRead.progress || 0} />
                 </View>
             </View>
         </View>

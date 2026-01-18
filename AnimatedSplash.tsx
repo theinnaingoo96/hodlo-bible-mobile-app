@@ -24,7 +24,7 @@ interface AnimatedSplashScreenProps {
 
 export default function AnimatedSplashScreen({
   iconSource = require('./src/assets/images/icon.png'),
-  appName = "GATHANGPU DLO",
+  appName = "GATHENGPU DLO",
   holdTime = 1500, // 🕒 hold icon for 1.5s
   duration = 800,
   onFinish = () => {},
@@ -127,7 +127,7 @@ export default function AnimatedSplashScreen({
         </View>
         {showCopyright && (
           <Text style={styles.copyrightText}>
-            {`Copyrightⓒ ${currentYear} Gathanpu Dlo. All rights reserved.`}
+            {`Copyrightⓒ ${currentYear} Gathengpu Dlo. All rights reserved.`}
           </Text>
         )}
       </View>

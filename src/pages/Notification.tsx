@@ -1,11 +1,11 @@
-import { View, Text, StyleSheet, SafeAreaView, FlatList, Alert, TouchableOpacity } from 'react-native';
-import NormalHeader from '../components/NormalHeader';
-import DatabaseService from '../services/DataService';
 import { useEffect, useState } from 'react';
-import { AppColors } from '../constants/Color';
 import { useSelector } from 'react-redux';
 import SoundPlayer from 'react-native-sound-player';
-import { getBooks } from '../services/ApiService';
+import { View, Text, StyleSheet, SafeAreaView, FlatList, Alert, TouchableOpacity } from 'react-native';
+
+import NormalHeader from '../components/NormalHeader';
+import DatabaseService from '../services/DataService';
+import { AppColors } from '../constants/Color';
 
 const Notification = () => {
 
@@ -41,11 +41,11 @@ const Notification = () => {
         setNotifications(notiList);
       }
     });
-    getBooks().then((data) => {
-      console.log(data)
-    })
-    // DatabaseService.getInstance().seedAudioMilestone23().then((result: any) => {
-    //   console.log(result)
+    // getBooks().then((data) => {
+    //   console.log(data)
+    // })
+    // DatabaseService.getInstance().calcReadingProgress().then((result: any) => {
+    //   console.log('[Notification] Reading Progress:', result);
     // })
     // const onFinished = () => setIsPlaying(false);
     // const onFinishedLoading = ({ duration }: { duration: number }) => {

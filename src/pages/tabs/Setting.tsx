@@ -13,9 +13,9 @@ import TermsIcon from '../../components/icons/setting/TermsIcon';
 import MoonIcon from '../../components/icons/setting/MoonIcon';
 import InfoIcon from '../../components/icons/setting/InfoIcon';
 import SunIcon from '../../components/icons/setting/SunIcon';
+import DatabaseService from '../../services/DataService';
 import CustomAlert from '../../components/CustomAlert';
 import { AppColors } from '../../constants/Color';
-import DatabaseService from '../../services/DataService';
 
 const Setting = () => {
     const device = useSelector((state: any) => state.device);
@@ -73,10 +73,10 @@ const Setting = () => {
                     <UpdateIcon name="update" color={device.theme ? AppColors.primary : AppColors.appTextWhite} />
                     <Text style={[styles.settingText, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>Check for updates</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.settingContainer} onPress={() => navigation.navigate('DatabaseViewer' as never)}>
+                {/* <TouchableOpacity style={styles.settingContainer} onPress={() => navigation.navigate('DatabaseViewer' as never)}>
                     <FontAwesome6 iconStyle="solid" name="database" size={18} style={{ paddingHorizontal: 5 }} color={device.theme ? AppColors.primary : AppColors.appTextWhite} />
                     <Text style={[styles.settingText, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>Database Viewer</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
             {/* <Text style={{ fontFamily: 'Pyidaungsu-Regular', fontSize: 18 }}>ပြည်ထောင်စုဖောင့် Pyidaungsu Regular</Text>
             <Text style={{ fontFamily: 'Pyidaungsu-Bold', fontSize: 18 }}>ပြည်ထောင်စုဖောင့် Pyidaungsu Bold</Text>

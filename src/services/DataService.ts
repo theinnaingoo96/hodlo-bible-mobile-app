@@ -1,6 +1,10 @@
 // services/DatabaseService.ts
+import { Platform } from 'react-native';
 import SQLite from 'react-native-sqlite-storage';
-import { bibleBooks, bibleVerses } from '../assets/seeder/data';
+import DeviceInfo from "react-native-device-info";
+
+import { createUser, getBooks, getChapters, getVerses } from './ApiService';
+import { constants } from '../constants/Data';
 
 SQLite.enablePromise(true);
 
@@ -16,7 +20,7 @@ export default class DatabaseService {
     private static instance: DatabaseService;
     private db: SQLite.SQLiteDatabase | null = null;
 
-    private constructor() { } // private constructor
+    private constructor() { }
 
     public static getInstance(): DatabaseService {
         if (!DatabaseService.instance) {
@@ -42,14 +46,20 @@ export default class DatabaseService {
                         this.createTables().then(() => {
                             console.log('[DB] Tables created');
                             console.log('[DB] Seeding data...');
-                            this.seedData().then(() => {
+                            this.seedData().then(async () => {
                                 console.log('[DB] Data seeded');
-                                this.seedAudioMilestone23().then(() => {
-                                    console.log('[DB] Audio milestone 23 seeded');
-                                });
-                                this.seedAudioMilestone24().then(() => {
-                                    console.log('[DB] Audio milestone 24 seeded');
-                                });
+
+                                const deviceId = await DeviceInfo.getUniqueId();
+                                const deviceName = await DeviceInfo.getDeviceName();
+                                const deviceType = Platform.OS;
+                                const result = await createUser(deviceId, deviceName, deviceType);
+                                console.log('[DB] create user result', result);
+                                // this.seedAudioMilestone23().then(() => {
+                                //     console.log('[DB] Audio milestone 23 seeded');
+                                // });
+                                // this.seedAudioMilestone24().then(() => {
+                                //     console.log('[DB] Audio milestone 24 seeded');
+                                // });
                                 resolve(true);
                             });
                         });
@@ -98,11 +108,22 @@ export default class DatabaseService {
             //         ];
 
             try {
+                // await this.db.executeSql(
+                //     `CREATE TABLE IF NOT EXISTS ${TABLE_BOOKS} (
+                //     id INTEGER PRIMARY KEY AUTOINCREMENT,
+                //     number INTEGER,
+                //     name TEXT UNIQUE,
+                //     count INTEGER,
+                //     testament TEXT
+                //     );`
+                // );
                 await this.db.executeSql(
                     `CREATE TABLE IF NOT EXISTS ${TABLE_BOOKS} (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     number INTEGER,
-                    name TEXT UNIQUE,
+                    name TEXT,
+                    nameMy TEXT,
+                    nameHd TEXT,
                     count INTEGER,
                     testament TEXT
                     );`
@@ -117,6 +138,8 @@ export default class DatabaseService {
                     title_en TEXT,
                     title_mm TEXT,
                     audio_path TEXT,
+                    is_completed INTEGER DEFAULT 0,
+                    completed_at TIMESTAMP,
                     FOREIGN KEY(book_id) REFERENCES books(id)
                     );`
                 );
@@ -225,73 +248,108 @@ export default class DatabaseService {
                     resolve(true);
                 }
 
-                console.log(`[DB] Seeding ${bibleVerses.length} verses...`);
-
-                console.log('[DB]Seeding database4...');
-
-                const bookMap = new Map();
-                const chapterMap = new Map();
-
                 console.log('[DB]Seeding database1...');
-                const verseData = bibleVerses;
-                const bookData = bibleBooks;
-                console.log('[DB]verseData', verseData.length);
+                console.log('[DB] Start Downloading ...');
+
+                const bookData = await getBooks();
 
                 for (const book of bookData) {
-                    const { id, name, number, count, testament } = book;
-                    await this.db.executeSql('INSERT INTO books (id, name, number, count, testament) VALUES (?, ?, ?, ?, ?)', [id, name, number, count, testament]);
+                    const { id, textEn, textMy, textHd, orderNumber } = book;
+                    const testament = book.testament == 'Old' ? 'OT' : 'NT';
+                    const chapterCount = 0;
+                    await this.db.executeSql('INSERT INTO books (id, name, nameMy, nameHd, number, count, testament) VALUES (?, ?, ?, ?, ?, ?, ?)', [id, textEn, textMy, textHd, orderNumber, chapterCount, testament]);
                     console.log('[DB]inserted book', id);
-                }
 
-                for (const row of verseData) {
-                    const { book_id, book_name, chapter_id, chapter_hd, chapter_en, chapter_mm, verse_number, text_hd, text_en, text_mm } = row;
-                    // if (!bookMap.has(book_name)) {
-                    //     const res = await this.db.executeSql('INSERT OR IGNORE INTO books (number, name) VALUES (?, ?)', [book_id, book_name]);
-                    //     const book_ids = res[0].insertId || (await this.db.executeSql('SELECT id FROM books WHERE name = ?', [book_name]))[0].rows.item(0).id;
-                    //     bookMap.set(book_name, book_ids);
-                    //     console.log('[DB]inserted book', book_ids);
-                    // }
+                    const bookId = id;
+                    const chapterData = await getChapters(id);
+                    console.log('[DB]chapterData', chapterData.length);
 
-                    // const bookId = '2';
-                    const chapterKey = `${book_id}_${chapter_id}`;
-
-                    if (!chapterMap.has(chapterKey)) {
-                        const res = await this.db.executeSql(
+                    for (const chapter of chapterData) {
+                        const { id, bookId, number, textHd, textEn, textMy } = chapter;
+                        const result: any = await this.db.executeSql(
                             'INSERT INTO chapters (book_id, number, title_hd, title_en, title_mm) VALUES (?, ?, ?, ?, ?)',
-                            [book_id, chapter_id, chapter_hd, chapter_en, chapter_mm]
+                            [bookId, number, textHd, textEn, textMy]
                         );
-                        chapterMap.set(chapterKey, res[0].insertId);
-                        console.log('[DB]inserted chapter', res[0].insertId);
-                    }
+                        console.log('[DB]inserted chapter', id, result);
 
-                    const chapter_ids = chapterMap.get(chapterKey);
-                    await this.db.executeSql(
-                        `INSERT INTO verses (chapter_id, number, text_hd, text_en, text_mm)
-                     VALUES (?, ?, ?, ?, ?)`,
-                        [chapter_ids, verse_number, text_hd, text_en, text_mm]
-                    );
-                    console.log('[DB]inserted verse of', book_id, ' : ', chapter_id);
-                }
-                const [chapterCount] = await this.db.executeSql(`
-                    SELECT book_id, COUNT(*) AS chapter_count
-                    FROM chapters
-                    GROUP BY book_id;`
-                );
-                const updates: { bookId: number, count: number }[] = [];
-                for (let i = 0; i < chapterCount.rows.length; i++) {
-                    const { book_id, chapter_count } = chapterCount.rows.item(i);
-                    updates.push({ bookId: book_id, count: chapter_count });
-                }
-                console.log('[DB]chapterCount', updates);
-                for (const { bookId, count } of updates) {
+                        const chapterId = id;
+                        const verseData = await getVerses(id);
+                        for (const verse of verseData) {
+                            const { id, number, textHd, textEn, textMy } = verse;
+                            await this.db.executeSql(
+                                `INSERT INTO verses (chapter_id, number, text_hd, text_en, text_mm, audio_from, audio_to)
+                                VALUES (?, ?, ?, ?, ?, ?, ?)`,
+                                [chapterId, number, textHd, textEn, textMy, "", ""]
+                            );
+                            console.log('[DB]inserted verse', id);
+                        }
+                    }
                     await this.db.executeSql(
                         `UPDATE books SET count = ? WHERE id = ?`,
-                        [count, bookId]
-                    ).then(() => {
-                        console.log('[DB]updated book', bookId);
-                    });
+                        [chapterData.length, bookId]
+                    )
+                    console.log('[DB]updated book count', bookId, chapterData.length);
                 }
+                // 
+                // for (const book of bookData) {
+                //     const { id } = book;
+                //     const chapterData = await getChapters(id);
+                //     console.log('[DB]chapterData', chapterData);
 
+                // }
+
+                // const [chapterResult] = await this.db.executeSql(`SELECT COUNT(*) as count FROM books`);
+                // const chapterCount = chapterResult.rows.item(0).count;
+
+                // if (chapterCount > 0) {
+                //     console.log('[DB] Already seeded');
+                // } else {
+
+                // }
+                resolve(true); //temp
+                // for (const row of verseData) {
+                //     const { book_id, book_name, chapter_id, chapter_hd, chapter_en, chapter_mm, verse_number, text_hd, text_en, text_mm,  } = row;
+                //     const audio_from = row.audio_from || "";
+                //     const audio_to = row.audio_to || "";
+                //     const chapterKey = `${book_id}_${chapter_id}`;
+
+                //     if (!chapterMap.has(chapterKey)) {
+                //         const res = await this.db.executeSql(
+                //             'INSERT INTO chapters (book_id, number, title_hd, title_en, title_mm) VALUES (?, ?, ?, ?, ?)',
+                //             [book_id, chapter_id, chapter_hd, chapter_en, chapter_mm]
+                //         );
+                //         chapterMap.set(chapterKey, res[0].insertId);
+                //         console.log('[DB]inserted chapter', res[0].insertId);
+                //     }
+
+                //     const chapter_ids = chapterMap.get(chapterKey);
+                //     await this.db.executeSql(
+                //         `INSERT INTO verses (chapter_id, number, text_hd, text_en, text_mm, audio_from, audio_to)
+                //      VALUES (?, ?, ?, ?, ?, ?, ?)`,
+                //         [chapter_ids, verse_number, text_hd, text_en, text_mm, audio_from, audio_to]
+                //     );
+                //     console.log('[DB]inserted verse of', book_id, ' : ', chapter_id);
+                // }
+                // const [chapterCount] = await this.db.executeSql(`
+                //     SELECT book_id, COUNT(*) AS chapter_count
+                //     FROM chapters
+                //     GROUP BY book_id;`
+                // );
+                // const updates: { bookId: number, count: number }[] = [];
+                // for (let i = 0; i < chapterCount.rows.length; i++) {
+                //     const { book_id, chapter_count } = chapterCount.rows.item(i);
+                //     updates.push({ bookId: book_id, count: chapter_count });
+                // }
+                // console.log('[DB]chapterCount', updates);
+                // for (const { bookId, count } of updates) {
+                //     await this.db.executeSql(
+                //         `UPDATE books SET count = ? WHERE id = ?`,
+                //         [count, bookId]
+                //     ).then(() => {
+                //         console.log('[DB]updated book', bookId);
+                //     });
+                // }
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // update chapters table with audio_path and audio_milestone
                 // const audio23 = ['00:04', '00:12', '00:23', '00:36', '00:47', '00:58'];
                 // // Update audio info for Psalm 23
@@ -608,9 +666,10 @@ export default class DatabaseService {
 
     /**
      * Functions for Chapters TABLE
+     * @function getChapterIdByBookIdAndChapterNumber
      * @function getChaptersByBook
      * @function getChaptersByBookId
-     * @function getChapterIdByBookIdAndChapterNumber
+     * @function updateChapterCompletedAt
     */
 
     public async getChapterIdByBookIdAndChapterNumber(bookId: number, chapterNumber: number): Promise<number | null> {
@@ -693,6 +752,41 @@ export default class DatabaseService {
                 resolve(chap);
             } catch (error) {
                 console.error('[DB] getChaptersByBookId error:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async updateChapterCompletedAt(chapterId: number): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+            const completedAt = new Date().toISOString();
+            try {
+                const results: any = await this.db.executeSql(`UPDATE ${TABLE_CHAPTERS} SET is_completed = 1, completed_at = ? WHERE id = ? AND is_completed = 0`, [completedAt, chapterId]);
+                console.log('[DB] updateChapterCompletedAt results', results);
+                resolve(results[0].rowsAffected > 0);
+            } catch (error) {
+                console.error('[DB] updateChapterCompletedAt error:', error);
+                reject(error);
+                return;
+            }
+        });
+    }
+
+    public async calcReadingProgress(): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+            const TOTAL_CHAPTERS = constants.bibleTotalChapters;
+            try {
+                const [results] = await this.db.executeSql(`SELECT COUNT(*) as completed_chapters FROM ${TABLE_CHAPTERS} WHERE is_completed = 1`);
+                const completedChapters = results.rows.item(0).completed_chapters;
+                console.log('Completed Chapters:', completedChapters, '/', TOTAL_CHAPTERS);
+                const readingProgress = completedChapters / TOTAL_CHAPTERS;
+                const roundedReadingProgress = Math.round(readingProgress * 100) / 100;
+                console.log('Reading Progress:', roundedReadingProgress, '%');
+                resolve(roundedReadingProgress);
+            } catch (error) {
+                console.error('[DB] calcReadingProgress error:', error);
                 reject(error);
             }
         });

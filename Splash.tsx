@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { ActivityIndicator, View, StyleSheet, ImageBackground, Text, Dimensions, ProgressBarAndroidComponent, Animated, ProgressBarAndroidBase, StatusBar, Alert, Image } from "react-native";
+import { ActivityIndicator, View, StyleSheet, ImageBackground, Text, Dimensions, Animated, PermissionsAndroid, StatusBar, Alert, Image } from "react-native";
 // import { AppColors } from "./src/constants/AppColors";
 import DeviceInfo from "react-native-device-info";
 import { AppColors } from "./src/constants/Color";
@@ -116,6 +116,25 @@ const SplashScreen = ({ navigation }: any) => {
 
     }
 
+    const requestStoragePermission = async () => {
+        try {
+            const granted = await PermissionsAndroid.request(
+                PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+                {
+                    title: "Storage Permission Required",
+                    message: "This app needs access to your storage to download files",
+                    buttonNeutral: "Ask Me Later",
+                    buttonNegative: "Cancel",
+                    buttonPositive: "OK"
+                }
+            );
+            return granted === PermissionsAndroid.RESULTS.GRANTED;
+        } catch (err) {
+            console.warn(err);
+            return false;
+        }
+    };
+
     return (
         <View style={SplashScreenStyle.mainWrapper}>
             <StatusBar translucent backgroundColor="transparent" />
@@ -123,7 +142,6 @@ const SplashScreen = ({ navigation }: any) => {
             <AnimatedSplashScreen />
             <View style={SplashScreenStyle.iconContainer}>
                 <Image source={require('./src/assets/images/icon.png')} style={SplashScreenStyle.icon} resizeMode="contain" />
-                {/* <Text style={SplashScreenStyle.nameText}>GATHANGPU DLO</Text> */}
             </View>
             <View style={SplashScreenStyle.bottomView}>
                 <Text style={SplashScreenStyle.text}>v.{DeviceInfo.getVersion()}</Text>
@@ -131,7 +149,7 @@ const SplashScreen = ({ navigation }: any) => {
                     <Animated.View style={[SplashScreenStyle.bar, { width: progress }]} />
                     <View style={SplashScreenStyle.barI}></View>
                 </View>
-                <Text style={SplashScreenStyle.text}>{`Copyrightⓒ ${currentYear} Gathanpu Dlo. All rights reserved.`}</Text>
+                <Text style={SplashScreenStyle.text}>{`Copyrightⓒ ${currentYear} Gathengpu Dlo. All rights reserved.`}</Text>
             </View>
         </View>
     );

@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, FlatList, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
 
-// import { getChaptersByBook, getVersesByBook } from '../../services/DatabaseService';
-// import { NEW_TESTAMENT_BOOKS, OLD_TESTAMENT_BOOKS } from '../../assets/seeder/data';
 import ChevonDownIcon from '../../components/icons/ChevonDownIcon';
 import ChevonUpIcon from '../../components/icons/ChevonUpIcon';
-import DatabaseService from '../../services/DataService';
-import { AppColors } from '../../constants/Color';
-import { useDispatch, useSelector } from 'react-redux';
 import { setCurrent } from '../../store/slices/readerSlice';
+import DatabaseService from '../../services/DataService';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppColors } from '../../constants/Color';
 import { CurrentRead } from '../../types/reader';
 
 const Bible = ({ navigation }: any) => {
     const dispatch = useDispatch();
+    const reader = useSelector((state: any) => state.reader);
     const device = useSelector((state: any) => state.device);
     const [activeTab, setActiveTab] = useState<'old' | 'new'>('old');
     const [verses, setVerses] = useState<any[]>([]);
@@ -25,6 +24,7 @@ const Bible = ({ navigation }: any) => {
     const [newTestamentBooks, setNewTestamentBooks] = useState<any[]>([]);
 
     useEffect(() => {
+        console.log('Bible useEffect');
         loadBooks();
     }, []);
 
@@ -42,7 +42,8 @@ const Bible = ({ navigation }: any) => {
 
     const handleChapterPress = (book: any, chapter: any) => {  
         console.log('handleChapterPress', book, chapter);
-        const reader: CurrentRead = {
+        const currentReaderData = reader.currentRead;
+        const readerData: CurrentRead = {       
             bookName: book.name,
             bookId: book.id,
             chapterId: chapter.id,
@@ -50,14 +51,21 @@ const Bible = ({ navigation }: any) => {
             verseId: 1,
             verseNumber: 1,
             maxChapter: book.count,
+            progress: currentReaderData.progress
         };
-        console.log('handleChapterPress', reader);
-        dispatch(setCurrent(reader));
+        console.log('handleChapterPress', readerData);
+        dispatch(setCurrent(readerData));
         navigation.navigate('Reader', { book: book.name, chapter: chapter.number, chapterId: chapter.id, verse: 1 });
     };
 
     const loadChapters = async (book: any, bookId: any) => {
-        console.log('loadChapters', book, bookId);
+        console.log('loadChapters', book, bookId, selectedBookObj?.id);
+        if ( selectedBook === book.name) {
+            setChapterList([]);
+            setSelectedBook('');
+            setSelectedBookObj(null);
+            return;
+        }
         setSelectedBook(book.name);
         setSelectedBookObj(book);
         try {

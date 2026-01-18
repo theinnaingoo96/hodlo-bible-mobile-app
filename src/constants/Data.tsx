@@ -20,6 +20,9 @@ export const languages = [
 
 export const constants = {
     toastDuration: 3000,
+    bibleTotalChapters: 1189,
+    bibleTotalBooks: 66,
+    bibleTotalVerses: 31102,
     toast: {
         success: { color: '#28a745', icon: 'check' },
         error: { color: '#dc3545', icon: 'xmark' },

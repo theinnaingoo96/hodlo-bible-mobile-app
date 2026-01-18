@@ -3,7 +3,7 @@ import DatabaseService from './DataService';
 
 export const scheduleDailyNotificationold = () => {
     // Cancel all to avoid duplicates
-    PushNotification.cancelAllLocalNotifications();
+    // PushNotification.cancelAllLocalNotifications();
 
     const now = new Date();
     const scheduledTime = new Date();
@@ -16,14 +16,14 @@ export const scheduleDailyNotificationold = () => {
         scheduledTime.setDate(scheduledTime.getDate() + 1);
     }
 
-    PushNotification.localNotificationSchedule({
-        channelId: 'ho-dlo-channel',
-        title: 'Good Morning!',
-        message: 'Here’s your daily 6 AM notification ☀️',
-        date: scheduledTime,
-        // date: new Date(Date.now() + 60 * 1000), // First after 1 min (for test)
-        repeatType: 'day', // Repeat every day
-    });
+    // PushNotification.localNotificationSchedule({
+    //     channelId: 'ho-dlo-channel',
+    //     title: 'Good Morning!',
+    //     message: 'Here’s your daily 6 AM notification ☀️',
+    //     date: scheduledTime,
+    //     // date: new Date(Date.now() + 60 * 1000), // First after 1 min (for test)
+    //     repeatType: 'day', // Repeat every day
+    // });
 
     console.log(`[Scheduled] Daily notification for: ${scheduledTime}`);
 };
@@ -37,7 +37,7 @@ const getNext6AM = (i: number) => {
 
 export const scheduleNotification = (randomVerses: any) => {
     // Cancel all to avoid duplicates
-    PushNotification.cancelAllLocalNotifications();
+    // PushNotification.cancelAllLocalNotifications();
 
     let startOffset = 0;
 
@@ -55,13 +55,13 @@ export const scheduleNotification = (randomVerses: any) => {
         const verse = randomVerses[i];
         const triggerDate = getNext6AM(dayOffset);
         const notificationTitle = verse.book_name + ' ' + verse.chapter_number + ':' + verse.verse_number;
-        PushNotification.localNotificationSchedule({
-            channelId: 'ho-dlo-channel',
-            title: notificationTitle,
-            message: verse.text_hd,
-            date: triggerDate,
-            allowWhileIdle: true,
-        });
+        // PushNotification.localNotificationSchedule({
+        //     channelId: 'ho-dlo-channel',
+        //     title: notificationTitle,
+        //     message: verse.text_hd,
+        //     date: triggerDate,
+        //     allowWhileIdle: false,
+        // });
         console.log('triggerDate', triggerDate.toISOString());
         DatabaseService.getInstance().addNotification(verse.verse_id, triggerDate.toISOString());
         // console.log(`[Scheduled] ${i + 1} Verse: ${verse}`);
