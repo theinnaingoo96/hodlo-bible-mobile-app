@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
         paddingBottom: 8,
         paddingTop: 8,
         backgroundColor: AppColors.primary,
+        marginBottom: 40
         // borderTopWidth: 1,
         // borderTopColor: AppColors.appTextGrey,
     },

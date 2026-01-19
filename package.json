@@ -15,6 +15,9 @@
     "icon": "npx react-native set-icon --path ./assets/icon.png --platform android"
   },
   "dependencies": {
+    "@azure/core-asynciterator-polyfill": "^1.0.2",
+    "@google/genai": "^1.37.0",
+    "@google/generative-ai": "^0.24.1",
     "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-native-community/slider": "^4.5.7",
     "@react-native-vector-icons/evil-icons": "^12.0.0",
@@ -26,11 +29,15 @@
     "@types/react-native-snap-carousel": "^3.8.11",
     "@types/react-native-vector-icons": "^6.4.18",
     "axios": "^1.12.2",
+    "lucide-react": "^0.562.0",
     "react": "19.0.0",
     "react-native": "0.79.2",
     "react-native-device-info": "^14.0.4",
     "react-native-fs": "^2.20.0",
     "react-native-gesture-handler": "^2.26.0",
+    "react-native-gifted-chat": "^3.2.3",
+    "react-native-keyboard-controller": "^1.20.6",
+    "react-native-markdown-display": "^7.0.2",
     "react-native-material-menu": "^2.0.0",
     "react-native-push-notification": "^8.1.1",
     "react-native-reanimated": "^3.18.0",
@@ -41,11 +48,14 @@
     "react-native-sound-player": "^0.14.5",
     "react-native-sqlite-storage": "^6.0.1",
     "react-native-svg": "^15.12.0",
+    "react-native-url-polyfill": "^3.0.0",
     "react-native-vector-icons": "^10.2.0",
-    "react-redux": "^9.2.0"
+    "react-redux": "^9.2.0",
+    "text-encoding": "^0.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
+    "@babel/plugin-transform-export-namespace-from": "^7.27.1",
     "@babel/preset-env": "^7.25.3",
     "@babel/runtime": "^7.25.0",
     "@react-native-community/cli": "18.0.0",

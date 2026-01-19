@@ -157,6 +157,55 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/x86_64/CMakeFiles/cmake.verify_globs")
 endif()
 
+# LIB_CUSTOM_SRCS at /Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-keyboard-controller/android/src/main/jni/CMakeLists.txt:23 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-keyboard-controller/android/src/main/jni/*.cpp")
+set(OLD_GLOB
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/x86_64/CMakeFiles/cmake.verify_globs")
+endif()
+
+# LIB_CUSTOM_SRCS at /Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-keyboard-controller/android/src/main/jni/CMakeLists.txt:23 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-keyboard-controller/android/src/main/jni/../../../../common/cpp/react/renderer/components/RNKC/*.cpp")
+set(OLD_GLOB
+  "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-keyboard-controller/android/src/main/jni/../../../../common/cpp/react/renderer/components/RNKC/RNKCKeyboardBackgroundViewShadowNode.cpp"
+  "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-keyboard-controller/android/src/main/jni/../../../../common/cpp/react/renderer/components/RNKC/RNKCKeyboardControllerViewShadowNode.cpp"
+  "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-keyboard-controller/android/src/main/jni/../../../../common/cpp/react/renderer/components/RNKC/RNKCKeyboardExtenderShadowNode.cpp"
+  "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-keyboard-controller/android/src/main/jni/../../../../common/cpp/react/renderer/components/RNKC/RNKCKeyboardGestureAreaShadowNode.cpp"
+  "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-keyboard-controller/android/src/main/jni/../../../../common/cpp/react/renderer/components/RNKC/RNKCOverKeyboardViewShadowNode.cpp"
+  "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-keyboard-controller/android/src/main/jni/../../../../common/cpp/react/renderer/components/RNKC/RNKCOverKeyboardViewState.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/x86_64/CMakeFiles/cmake.verify_globs")
+endif()
+
+# LIB_CODEGEN_SRCS at /Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-keyboard-controller/android/src/main/jni/CMakeLists.txt:24 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-keyboard-controller/android/src/main/jni/../../../build/generated/source/codegen/jni/*.cpp")
+set(OLD_GLOB
+  "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-keyboard-controller/android/src/main/jni/../../../build/generated/source/codegen/jni/RNKC-generated.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/x86_64/CMakeFiles/cmake.verify_globs")
+endif()
+
+# LIB_CODEGEN_SRCS at /Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-keyboard-controller/android/src/main/jni/CMakeLists.txt:24 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-keyboard-controller/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/RNKC/*.cpp")
+set(OLD_GLOB
+  "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-keyboard-controller/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/RNKC/ComponentDescriptors.cpp"
+  "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-keyboard-controller/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/RNKC/EventEmitters.cpp"
+  "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-keyboard-controller/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/RNKC/Props.cpp"
+  "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-keyboard-controller/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/RNKC/RNKCJSI-generated.cpp"
+  "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-keyboard-controller/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/RNKC/ShadowNodes.cpp"
+  "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-keyboard-controller/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/RNKC/States.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/x86_64/CMakeFiles/cmake.verify_globs")
+endif()
+
 # react_codegen_SRCS at /Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-reanimated/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-reanimated/android/build/generated/source/codegen/jni/*.cpp")
 set(OLD_GLOB

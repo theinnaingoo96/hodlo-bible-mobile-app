@@ -5,6 +5,7 @@
     "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/@react-native-vector-icons/evil-icons/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/@react-native-vector-icons/fontawesome6/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/CMakeLists.txt",
+    "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-keyboard-controller/android/src/main/jni/CMakeLists.txt",
     "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-reanimated/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-safe-area-context/android/src/main/jni/CMakeLists.txt",
     "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-screens/android/src/main/jni/CMakeLists.txt",
@@ -47,6 +48,17 @@
         "/Users/bluestone/.gradle/caches/8.13/transforms/490740573f38e6ed55cd7cd0f0ce2cff/transformed/jetified-fbjni-0.7.0/prefab/modules/fbjni/libs/android.arm64-v8a/libfbjni.so",
         "/Users/bluestone/.gradle/caches/8.13/transforms/f3d5096a21f09ffba54b9358be8babf3/transformed/jetified-react-android-0.79.2-debug/prefab/modules/jsi/libs/android.arm64-v8a/libjsi.so",
         "/Users/bluestone/.gradle/caches/8.13/transforms/f3d5096a21f09ffba54b9358be8babf3/transformed/jetified-react-android-0.79.2-debug/prefab/modules/reactnative/libs/android.arm64-v8a/libreactnative.so"
+      ]
+    },
+    "react_codegen_RNKC::@01e3c54a97c6e9d385b6": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "react_codegen_RNKC",
+      "output": "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/build/intermediates/cxx/Debug/4h2q3o4e/obj/arm64-v8a/libreact_codegen_RNKC.so",
+      "runtimeFiles": [
+        "/Users/bluestone/.gradle/caches/8.13/transforms/f3d5096a21f09ffba54b9358be8babf3/transformed/jetified-react-android-0.79.2-debug/prefab/modules/reactnative/libs/android.arm64-v8a/libreactnative.so",
+        "/Users/bluestone/.gradle/caches/8.13/transforms/f3d5096a21f09ffba54b9358be8babf3/transformed/jetified-react-android-0.79.2-debug/prefab/modules/jsi/libs/android.arm64-v8a/libjsi.so",
+        "/Users/bluestone/.gradle/caches/8.13/transforms/490740573f38e6ed55cd7cd0f0ce2cff/transformed/jetified-fbjni-0.7.0/prefab/modules/fbjni/libs/android.arm64-v8a/libfbjni.so"
       ]
     },
     "react_codegen_RNVectorIconsSpec::@479809fae146501fd34d": {

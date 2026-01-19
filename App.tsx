@@ -30,6 +30,8 @@ import Reader from './src/pages/reader/Reader';
 import { store } from './src/store/store';
 import SplashScreen from './SplashAni';
 import Main from './src/pages/Main';
+import BibleChat from './src/pages/BibleChat';
+// import Chat from './src/pages/BibleChat';
 
 function App(): React.JSX.Element {
   const device = useSelector((state: any) => state.device);
@@ -209,6 +211,11 @@ function App(): React.JSX.Element {
               name="AudioPlayer"
               component={PsalmAudioExample}
               options={{ title: 'Psalm Audio' }}
+            />
+            <Stack.Screen
+              name="BibleChat"
+              component={BibleChat}
+              options={{ headerShown: false }}
             />
           </Stack.Navigator>
         </NavigationContainer>

@@ -73,10 +73,10 @@ const Setting = () => {
                     <UpdateIcon name="update" color={device.theme ? AppColors.primary : AppColors.appTextWhite} />
                     <Text style={[styles.settingText, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>Check for updates</Text>
                 </TouchableOpacity>
-                {/* <TouchableOpacity style={styles.settingContainer} onPress={() => navigation.navigate('DatabaseViewer' as never)}>
-                    <FontAwesome6 iconStyle="solid" name="database" size={18} style={{ paddingHorizontal: 5 }} color={device.theme ? AppColors.primary : AppColors.appTextWhite} />
-                    <Text style={[styles.settingText, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>Database Viewer</Text>
-                </TouchableOpacity> */}
+                <TouchableOpacity style={styles.settingContainer} onPress={() => navigation.navigate('BibleChat' as never)}>
+                    <FontAwesome6 iconStyle="solid" name="message" size={18} style={{ paddingHorizontal: 5 }} color={device.theme ? AppColors.primary : AppColors.appTextWhite} />
+                    <Text style={[styles.settingText, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>Bible Chat Bot</Text>
+                </TouchableOpacity>
             </View>
             {/* <Text style={{ fontFamily: 'Pyidaungsu-Regular', fontSize: 18 }}>ပြည်ထောင်စုဖောင့် Pyidaungsu Regular</Text>
             <Text style={{ fontFamily: 'Pyidaungsu-Bold', fontSize: 18 }}>ပြည်ထောင်စုဖောင့် Pyidaungsu Bold</Text>

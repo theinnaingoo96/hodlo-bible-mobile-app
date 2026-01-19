@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { AppColors } from "../constants/Color";
 
@@ -14,9 +15,10 @@ interface NormalHeaderProps {
 const NormalHeader = ({ title, backButton }: NormalHeaderProps) => {
     const device = useSelector((state: any) => state.device);
     const navigation = useNavigation();
+    const insets = useSafeAreaInsets();
 
     return (
-        <View style={[styles.headerContainer, { backgroundColor: device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDark }]}>
+        <View style={[styles.headerContainer, { marginTop: insets.top, backgroundColor: device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDark }]}>
             {backButton && <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
                 <FontAwesome6 name="arrow-left" iconStyle="solid" color={device.theme ? AppColors.primaryDark : AppColors.appTextWhite} size={20} />
             </TouchableOpacity>}
