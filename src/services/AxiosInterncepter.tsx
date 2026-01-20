@@ -1,5 +1,6 @@
 // services/api.ts
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { Alert, BackHandler } from "react-native";
 
 const api: AxiosInstance = axios.create({
   // baseURL: "https://api.gathengpudlo.com/api", // change to your API base URL
@@ -37,6 +38,17 @@ api.interceptors.response.use(
           break;
       }
     } else if (error.request) {
+      Alert.alert('No internet connection', 'Please check your internet connection and try again',
+      [
+        {
+          text: 'OK',
+          style: 'default',
+          onPress: () => {
+            BackHandler.exitApp();
+          },
+        },
+      ]
+    );
       console.error("[API] No response received:", error.request);
     } else {
       console.error("[API] Request error:", error.message);

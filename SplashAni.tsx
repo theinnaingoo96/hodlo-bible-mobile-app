@@ -10,6 +10,7 @@ import { Alert } from 'react-native';
 import permissionService from './src/services/PermissionService';
 import { createUser } from './src/services/ApiService';
 import ProgressBar from './src/components/ProgressBar';
+import NetInfo, { addEventListener } from "@react-native-community/netinfo";
 
 const SplashScreen = ({ navigation }: any) => {
     // Animated values for the icon's horizontal position and the text's properties
@@ -19,6 +20,7 @@ const SplashScreen = ({ navigation }: any) => {
     const textOpacity = useRef(new Animated.Value(0)).current;
     const device = useSelector((state: any) => state.device);
     const [finish, setFinish] = useState(false);
+    const [isOnline, setIsOnline] = useState<any>(true);
 
     useEffect(() => {
         console.log('downloaded in splash screen...', device.downloaded);
@@ -31,6 +33,23 @@ const SplashScreen = ({ navigation }: any) => {
             // }, 2500)
         }
     }, [device.downloaded, finish]);
+
+    // useEffect(()=> {
+    //     if (device.startDownload && !isOnline) {
+    //         // dispatch(setStartDownload(true));
+    //         Alert.alert('No internet connection', 'Please check your internet connection and try again',
+    //             [
+    //                 {
+    //                   text: 'OK',
+    //                   style: 'default',
+    //                   onPress: () => {
+                        
+    //                   },
+    //                 },
+    //               ]
+    //         );
+    //     }
+    // }, [device.startDownload, isOnline])
 
     useEffect(() => {
         // Wait for 1 second before starting the transition
@@ -181,6 +200,17 @@ const SplashScreen = ({ navigation }: any) => {
             useNativeDriver: false
         }).start();
     }, []);
+
+    // useEffect(() => {
+    //     const netInfoSubscription = NetInfo.addEventListener(handleNetWorkChange);
+    //     return () => {
+    //       netInfoSubscription && netInfoSubscription();
+    //     };
+    //   }, [isOnline]);
+
+    // const handleNetWorkChange = (state: any) => {
+    //     setIsOnline(state.isConnected);
+    // };
 
     return (
         <View style={styles.container}>
