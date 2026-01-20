@@ -9,6 +9,7 @@ import { scheduleNotification } from "./src/services/DailyVerseService";
 import { Alert } from 'react-native';
 import permissionService from './src/services/PermissionService';
 import { createUser } from './src/services/ApiService';
+import ProgressBar from './src/components/ProgressBar';
 
 const SplashScreen = ({ navigation }: any) => {
     // Animated values for the icon's horizontal position and the text's properties
@@ -120,7 +121,7 @@ const SplashScreen = ({ navigation }: any) => {
 
         const initDB = async () => {
             const db = DatabaseService.getInstance();
-            await db.init().then(() => {
+            await db.init(dispatch).then(() => {
                 db.getRandomVerse(10).then(async (data) => {
                     console.log('random verse', data);
                     // db.addNotificati`on(data[9].verse_id);
@@ -205,6 +206,7 @@ const SplashScreen = ({ navigation }: any) => {
                 </Animated.Text>
             </View>
             <View style={styles.footer}>
+                {device.startDownload && <ProgressBar progress={device.downloadProgress} />}
                 <Text style={styles.version}>v.1.0</Text>
                 <Text style={styles.copyright}>Copyright © 2025 Gathengpu Dlo. All rights reserved.</Text>
             </View>

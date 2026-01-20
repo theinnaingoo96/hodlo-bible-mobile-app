@@ -5,6 +5,8 @@ import DeviceInfo from "react-native-device-info";
 
 import { createUser, getBooks, getChapters, getVerses } from './ApiService';
 import { constants } from '../constants/Data';
+import { Dispatch } from '@reduxjs/toolkit';
+import { setDownloadProgress, setStartDownload } from '../store/slices/deviceSlice';
 
 SQLite.enablePromise(true);
 
@@ -29,7 +31,7 @@ export default class DatabaseService {
         return DatabaseService.instance;
     }
 
-    public async init(): Promise<any> {
+    public async init(dispatch: Dispatch): Promise<any> {
         return new Promise(async (resolve, reject) => {
             if (this.db) return;
 
@@ -46,7 +48,7 @@ export default class DatabaseService {
                         this.createTables().then(() => {
                             console.log('[DB] Tables created');
                             console.log('[DB] Seeding data...');
-                            this.seedData().then(async () => {
+                            this.seedData(dispatch).then(async () => {
                                 console.log('[DB] Data seeded');
 
                                 const deviceId = await DeviceInfo.getUniqueId();
@@ -234,7 +236,7 @@ export default class DatabaseService {
         })
     }
 
-    private async seedData(): Promise<any> {
+    private async seedData(dispatch: Dispatch): Promise<any> {
 
         return new Promise(async (resolve, reject) => {
             if (!this.db) throw new Error('DB not ready');
@@ -250,8 +252,10 @@ export default class DatabaseService {
 
                 console.log('[DB]Seeding database1...');
                 console.log('[DB] Start Downloading ...');
-
+                dispatch(setStartDownload(true));
+                dispatch(setDownloadProgress(0));
                 const bookData = await getBooks();
+                let chapterCountForProgress = 0;
 
                 for (const book of bookData) {
                     const { id, textEn, textMy, textHd, orderNumber } = book;
@@ -263,6 +267,7 @@ export default class DatabaseService {
                     const bookId = id;
                     const chapterData = await getChapters(id);
                     console.log('[DB]chapterData', chapterData.length);
+                    chapterCountForProgress += chapterData.length;
 
                     for (const chapter of chapterData) {
                         const { id, bookId, number, textHd, textEn, textMy } = chapter;
@@ -288,6 +293,10 @@ export default class DatabaseService {
                         `UPDATE books SET count = ? WHERE id = ?`,
                         [chapterData.length, bookId]
                     )
+                    // Update progress as a 0-1 value (not percent)
+                    dispatch(setDownloadProgress(chapterCountForProgress / constants.bibleTotalChapters));
+
+                    // dispatch(setDownloadProgress(Math.round((chapterCountForProgress / constants.bibleTotalChapters) * 100)));
                     console.log('[DB]updated book count', bookId, chapterData.length);
                 }
                 // 

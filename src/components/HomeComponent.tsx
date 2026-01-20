@@ -1,4 +1,5 @@
 import React from "react";
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import ProgressBar from "./ProgressBar";
 import { useSelector } from "react-redux";
@@ -30,13 +31,16 @@ export const ReadingProgressCard = ({ progress }: any) => {
 
             <View style={styles.actions}>
                 <TouchableOpacity style={styles.actionBtn}>
-                    <Text style={[styles.actionText, { color: device.theme ? '#000' : '#fff' }]}>🔖 Bookmarks</Text>
+                    <FontAwesome6 name="bookmark" iconStyle="solid" color={AppColors.primaryDark} size={20} />
+                    <Text style={[styles.actionText, { color: device.theme ? '#000' : '#fff' }]}>Bookmarks</Text>
                 </TouchableOpacity>
+                {/* <TouchableOpacity style={styles.actionBtn}>
+                    <FontAwesome6 name="magnifying-glass" iconStyle="solid" color={AppColors.primaryDark} size={20} />
+                    <Text style={[styles.actionText, { color: device.theme ? '#000' : '#fff' }]}>Search</Text>
+                </TouchableOpacity> */}
                 <TouchableOpacity style={styles.actionBtn}>
-                    <Text style={[styles.actionText, { color: device.theme ? '#000' : '#fff' }]}>🖍 Highlights</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.actionBtn}>
-                    <Text style={[styles.actionText, { color: device.theme ? '#000' : '#fff' }]}>📝 Notes</Text>
+                    <FontAwesome6 name="bars-progress" iconStyle="solid" color={AppColors.primaryDark} size={20} />
+                    <Text style={[styles.actionText, { color: device.theme ? '#000' : '#fff' }]}>Activities</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -96,10 +100,14 @@ const styles = StyleSheet.create({
         justifyContent: "space-around",
     },
     actionBtn: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 8,
         padding: 8,
     },
     actionText: {
         fontSize: 14,
+        marginLeft: 4,
     },
     verseBottomView: {
         flexDirection: "row",
