@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
-import { StyleSheet, View, Dimensions, PanResponder, Animated, CursorValue, TouchableOpacity, Text, FlatList, NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
+import { StyleSheet, View, Dimensions, PanResponder, Animated, CursorValue, TouchableOpacity, Text, FlatList, NativeSyntheticEvent, NativeScrollEvent, Alert } from 'react-native';
 
 import TermsIcon from '../../components/icons/setting/UpdateIcon';
 import CustomAlert from '../../components/CustomAlert';
@@ -15,13 +15,14 @@ import DatabaseService from '../../services/DataService';
 interface SplitReaderViewProps {
     verses: any[];
     onStartBookmark: (verse: any) => void;
+    onRemoveBookmark: (id: number) => void;
     onNextChapter: () => void;
     onPreviousChapter: () => void;
     dividerMode: string;
     onVerseClick: (verse: any) => void;
 }
 
-const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookmark, onNextChapter, onPreviousChapter, dividerMode, onVerseClick }) => {
+const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookmark, onRemoveBookmark, onNextChapter, onPreviousChapter, dividerMode, onVerseClick }) => {
     const device = useSelector((state: any) => state.device);
     const deviceHeight = Dimensions.get('window').height;
     const deviceWidth = Dimensions.get('window').width;
@@ -318,7 +319,13 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
             >
                 <TouchableOpacity style={styles.verseContainer}
                     // activeOpacity={0.5}
-                    onLongPress={() => !verse.bookmark && onStartBookmark(verse)}
+                    onLongPress={() => {
+                        if (!verse.bookmark) {
+                            onStartBookmark(verse);
+                        } else {
+                            onRemoveBookmark(verse.id);
+                        }
+                    }}
                     delayLongPress={500}
                     onPress={() => {
                         console.log('onPress on View');

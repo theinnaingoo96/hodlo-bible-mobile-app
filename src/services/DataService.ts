@@ -1012,7 +1012,7 @@ export default class DatabaseService {
             if (!this.db) throw new Error('Database not initialized');
 
             try {
-                const [results] = await this.db.executeSql(`DELETE FROM ${TABLE_BOOKMARKS} WHERE id = ?;`, [id]);
+                const [results] = await this.db.executeSql(`DELETE FROM ${TABLE_BOOKMARKS} WHERE verse_id = ?;`, [id]);
                 resolve(results);
             } catch (error) {
                 console.error('[DB] Error deleting Bookmark:', error);

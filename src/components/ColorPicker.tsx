@@ -35,22 +35,38 @@ type ColorPickerProps = {
 //     // { name: 'Off White', hex: '#FDFDFD' },
 // ];
 
+// const colorPaletteWithNames: ColorOption[] = [
+//     { name: 'Red', hex: 'rgba(244, 67, 54, 0.7)', code: 'rgba(244, 67, 54, 0.2)' },
+//     { name: 'Orange', hex: 'rgba(255, 152, 0, 0.7)', code: 'rgba(255, 152, 0, 0.2)' },
+//     { name: 'Yellow', hex: 'rgba(255, 235, 59, 0.7)', code: 'rgba(255, 235, 59, 0.2)' },
+//     { name: 'Green', hex: 'rgba(76, 175, 80, 0.7)', code: 'rgba(76, 175, 80, 0.2)' },
+//     { name: 'Teal', hex: 'rgba(38, 198, 218, 0.7)', code: 'rgba(38, 198, 218, 0.2)' },
+//     { name: 'Blue', hex: 'rgba(33, 150, 243, 0.7)', code: 'rgba(33, 150, 243, 0.2)' },
+//     { name: 'Indigo', hex: 'rgba(126, 87, 194, 0.7)', code: 'rgba(126, 87, 194, 0.2)' },
+//     { name: 'Pink', hex: 'rgba(236, 64, 122, 0.7)', code: 'rgba(236, 64, 122, 0.2)' },
+//     { name: 'Deep Pink', hex: 'rgba(244, 67, 102, 0.7)', code: 'rgba(244, 67, 102, 0.2)' },
+//     { name: 'Magenta', hex: 'rgba(224, 64, 251, 0.7)', code: 'rgba(224, 64, 251, 0.2)' },
+//     { name: 'Purple', hex: 'rgba(149, 117, 205, 0.7)', code: 'rgba(149, 117, 205, 0.2)' },
+//     { name: 'Light Blue', hex: 'rgba(3, 169, 244, 0.7)', code: 'rgba(3, 169, 244, 0.2)' },
+//     { name: 'Emerald', hex: 'rgba(38, 166, 154, 0.7)', code: 'rgba(38, 166, 154, 0.2)' },
+//     { name: 'Lime', hex: 'rgba(205, 220, 57, 0.7)', code: 'rgba(205, 220, 57, 0.2)' },
+//   ];  
 const colorPaletteWithNames: ColorOption[] = [
-    { name: 'Red', hex: 'rgba(244, 67, 54, 0.7)', code: 'rgba(244, 67, 54, 0.2)' },
-    { name: 'Orange', hex: 'rgba(255, 152, 0, 0.7)', code: 'rgba(255, 152, 0, 0.2)' },
-    { name: 'Yellow', hex: 'rgba(255, 235, 59, 0.7)', code: 'rgba(255, 235, 59, 0.2)' },
-    { name: 'Green', hex: 'rgba(76, 175, 80, 0.7)', code: 'rgba(76, 175, 80, 0.2)' },
-    { name: 'Teal', hex: 'rgba(38, 198, 218, 0.7)', code: 'rgba(38, 198, 218, 0.2)' },
-    { name: 'Blue', hex: 'rgba(33, 150, 243, 0.7)', code: 'rgba(33, 150, 243, 0.2)' },
-    { name: 'Indigo', hex: 'rgba(126, 87, 194, 0.7)', code: 'rgba(126, 87, 194, 0.2)' },
-    { name: 'Pink', hex: 'rgba(236, 64, 122, 0.7)', code: 'rgba(236, 64, 122, 0.2)' },
-    { name: 'Deep Pink', hex: 'rgba(244, 67, 102, 0.7)', code: 'rgba(244, 67, 102, 0.2)' },
-    { name: 'Magenta', hex: 'rgba(224, 64, 251, 0.7)', code: 'rgba(224, 64, 251, 0.2)' },
-    { name: 'Purple', hex: 'rgba(149, 117, 205, 0.7)', code: 'rgba(149, 117, 205, 0.2)' },
-    { name: 'Light Blue', hex: 'rgba(3, 169, 244, 0.7)', code: 'rgba(3, 169, 244, 0.2)' },
-    { name: 'Emerald', hex: 'rgba(38, 166, 154, 0.7)', code: 'rgba(38, 166, 154, 0.2)' },
-    { name: 'Lime', hex: 'rgba(205, 220, 57, 0.7)', code: 'rgba(205, 220, 57, 0.2)' },
-  ];  
+    { name: 'Red', hex: 'rgba(198, 40, 40, 0.7)', code: 'rgba(198, 40, 40, 0.5)' },
+    { name: 'Orange', hex: 'rgba(230, 81, 0, 0.7)', code: 'rgba(230, 81, 0, 0.5)' },
+    { name: 'Yellow', hex: 'rgba(205, 207, 14, 0.7)', code: 'rgba(205, 207, 14, 0.5)'},
+    { name: 'Green', hex: 'rgba(46, 125, 50, 0.7)', code: 'rgba(46, 125, 50, 0.5)' },
+    { name: 'Teal', hex: 'rgba(0, 131, 143, 0.7)', code: 'rgba(0, 131, 143, 0.5)' },
+    { name: 'Blue', hex: 'rgba(21, 101, 192, 0.7)', code: 'rgba(21, 101, 192, 0.5)' },
+    { name: 'Indigo', hex: 'rgba(69, 39, 160, 0.7)', code: 'rgba(69, 39, 160, 0.5)' },
+    { name: 'Pink', hex: 'rgba(173, 20, 87, 0.7)', code: 'rgba(173, 20, 87, 0.5)' },
+    { name: 'Deep Pink', hex: 'rgba(183, 28, 28, 0.7)', code: 'rgba(183, 28, 28, 0.5)' },
+    { name: 'Magenta', hex: 'rgba(170, 0, 255, 0.7)', code: 'rgba(170, 0, 255, 0.5)' },
+    { name: 'Purple', hex: 'rgba(103, 58, 183, 0.7)', code: 'rgba(103, 58, 183, 0.5)' },
+    { name: 'Light Blue', hex: 'rgba(1, 87, 155, 0.7)', code: 'rgba(1, 87, 155, 0.5)' },
+    { name: 'Emerald', hex: 'rgba(0, 105, 92, 0.7)', code: 'rgba(0, 105, 92, 0.5)' },
+    { name: 'Lime', hex: 'rgba(130, 119, 23, 0.7)', code: 'rgba(130, 119, 23, 0.5)' },
+]
 
 const ColorPicker: React.FC<ColorPickerProps> = ({
     colors = colorPaletteWithNames,

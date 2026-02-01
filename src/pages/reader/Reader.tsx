@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Slider from '@react-native-community/slider';
-import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, StatusBar, Modal, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, StatusBar, Modal, Dimensions, Alert } from 'react-native';
 import { GestureDetector, Gesture } from 'react-native-gesture-handler';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import SoundPlayer from 'react-native-sound-player';
@@ -150,7 +150,7 @@ const Reader = ({ navigation, route }: any) => {
     }
 
     const handleCreateBookmark = (verse: any) => {
-        // console.log(verse);
+        console.log('handleCreateBookmark', verse);
         setBookmarkModalVisible(true);
         setBookmarkedVerse({
             book_name: params.book,
@@ -163,6 +163,23 @@ const Reader = ({ navigation, route }: any) => {
             text_mm: verse.text_mm
         })
     };
+
+    const handleRemoveBookmark = (id: number) => {
+        console.log('handleRemoveBookmark', id);
+        Alert.alert('Bookmark already exists', 'Are you sure you want to remove the bookmark?', [
+            { text: 'Cancel', style: 'cancel' },
+            { text: 'Remove', onPress: () => {
+                DatabaseService.getInstance().clearBookmarkById(id).then((result: any) => {
+                    console.log('result', result);
+                    setBookmarkModalVisible(false);
+                    setBottomSheetVisible(false);
+                    setOptionSheetVisible(false);
+                    fetchVerses();
+                    store.dispatch(setToast({ show: true, message: 'Bookmark removed', type: 'change', duration: constants.toastDuration }));
+                });
+            } },
+        ]);
+    }
 
     const handleConfirmBookmark = () => {
         DatabaseService.getInstance().addBookmark(bookmarkedVerse.verse_id, selectedColor.code).then(() => {
@@ -501,7 +518,7 @@ const Reader = ({ navigation, route }: any) => {
                 <View style={[styles.contentContainer]}>
                     {
                         verses && <View style={{ flex: 1, zIndex: 1 }}>
-                            <SplitReaderView verses={verses} onStartBookmark={handleCreateBookmark} onNextChapter={handleNextChapter} onPreviousChapter={handlePreviousChapter} dividerMode={dividerMode} onVerseClick={handleVerseClick} />
+                            <SplitReaderView verses={verses} onStartBookmark={handleCreateBookmark} onRemoveBookmark={handleRemoveBookmark} onNextChapter={handleNextChapter} onPreviousChapter={handlePreviousChapter} dividerMode={dividerMode} onVerseClick={handleVerseClick} />
                         </View>
                     }
                 </View>
