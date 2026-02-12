@@ -39,13 +39,13 @@ const Home = () => {
                 setTodayVerse(result[0]);
             }
         });
-        // DatabaseService.getInstance().seedAudioMilestone23().then((result: any) => {
-        //     console.log('seedAudioMilestone23', result)
-        // })
+        DatabaseService.getInstance().seedAudioMilestone23().then((result: any) => {
+            console.log('seedAudioMilestone23', result)
+        })
 
-        // DatabaseService.getInstance().seedAudioMilestone24().then((result: any) => {
-        //     console.log('seedAudioMilestone24', result)
-        // })
+        DatabaseService.getInstance().seedAudioMilestone24().then((result: any) => {
+            console.log('seedAudioMilestone24', result)
+        })
         console.log('[HOME]reader', reader.currentRead);
     }, []);
 

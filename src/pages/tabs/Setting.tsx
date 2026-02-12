@@ -61,11 +61,11 @@ const Setting = () => {
                     <RecentIcon name="recent" color={device.theme ? AppColors.primary : AppColors.appTextWhite} />
                     <Text style={[styles.settingText, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>Clear Search History</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.settingContainer}>
+                <TouchableOpacity style={styles.settingContainer} onPress={() => navigation.navigate('TermsAndConditions' as never)}>
                     <TermsIcon name="terms" color={device.theme ? AppColors.primary : AppColors.appTextWhite} />
                     <Text style={[styles.settingText, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>Terms and Conditions</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.settingContainer}>
+                <TouchableOpacity style={styles.settingContainer} onPress={() => navigation.navigate('AboutUs' as never)}>
                     <InfoIcon name="info" color={device.theme ? AppColors.primary : AppColors.appTextWhite} />
                     <Text style={[styles.settingText, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>About Us</Text>
                 </TouchableOpacity>

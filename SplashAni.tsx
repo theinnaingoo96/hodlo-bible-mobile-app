@@ -100,17 +100,14 @@ const SplashScreen = ({ navigation }: any) => {
         const requestPermissions = async () => {
             return new Promise(async (resolve, reject) => {
                 try {
-                    // Check permissions first
                     const notificationsGranted = await permissionService.checkPermission('notifications');
                     const mediaAudioGranted = await permissionService.checkPermission('media_audio');
 
                     console.log('Permission status - Notifications:', notificationsGranted, 'Audio:', mediaAudioGranted);
 
-                    // Request essential permissions if not granted
                     if (!notificationsGranted ) {
                         const results = await permissionService.requestEssentialPermissions();
 
-                        // Log permission results
                         Object.entries(results).forEach(([permission, result]) => {
                             if (!result.granted) {
                                 console.warn(`Permission ${permission} was not granted:`, result.message);
@@ -119,7 +116,6 @@ const SplashScreen = ({ navigation }: any) => {
                             }
                         });
 
-                        // If critical permissions are denied, log warning
                         if (!results.notifications.granted) {
                             console.warn('Notification permission is required for daily verses');
                         }
@@ -156,17 +152,14 @@ const SplashScreen = ({ navigation }: any) => {
                     const deviceType = Platform.OS;
                     console.log('[Splash] deviceId', deviceId, 'deviceName', deviceName, 'deviceType', deviceType);
                     
-                    const result = await createUser(deviceId, deviceName, deviceType);
-                    console.log('[Splash] create user result', result);
-
                     dispatch(setDownloaded(true));
+
+                    // const result = createUser(deviceId, deviceName, deviceType);
+                    // console.log('[Splash] create user result', result);
                 }).catch((error) => {
                     console.log('[Splash] random verse error', error);
+                    dispatch(setDownloaded(true));
                 });
-                // navigation.reset({
-                //     index: 0,
-                //     routes: [{ name: 'M ain' }],
-                // });
             }).catch((error) => {
                 Alert.alert('Error', 'Failed to initialize database');
                 console.log('[Splash] db error', error);

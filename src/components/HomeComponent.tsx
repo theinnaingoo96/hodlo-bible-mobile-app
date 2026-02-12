@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import ProgressBar from "./ProgressBar";
 import { useSelector } from "react-redux";
 import { AppColors } from "../constants/Color";
+import { useNavigation } from "@react-navigation/native";
 
 export const VerseOfTheDayCard = ({ verse, reference, onShare }: any) => {
     const device = useSelector((state: any) => state.device);
@@ -24,13 +25,24 @@ export const VerseOfTheDayCard = ({ verse, reference, onShare }: any) => {
 
 export const ReadingProgressCard = ({ progress }: any) => {
     const device = useSelector((state: any) => state.device);
+    const navigation = useNavigation();
+
+    const handleBookmarks = () => {
+        console.log('handleBookmarks');
+        navigation.navigate('Bookmark' as never);
+    };
+
+    const handleReadingHistory = () => {
+        console.log('handleReadingHistory');
+        navigation.navigate('ReadingHistory' as never);
+    };
 
     return (
         <View style={[styles.card, { backgroundColor: device.theme ? '#fff' : '#000' }]}>
             <ProgressBar progress={progress} color={AppColors.primaryDark} label="Reading Progress" />
 
             <View style={styles.actions}>
-                <TouchableOpacity style={styles.actionBtn}>
+                <TouchableOpacity style={styles.actionBtn} onPress={handleBookmarks}>
                     <FontAwesome6 name="bookmark" iconStyle="solid" color={AppColors.primaryDark} size={20} />
                     <Text style={[styles.actionText, { color: device.theme ? '#000' : '#fff' }]}>Bookmarks</Text>
                 </TouchableOpacity>
@@ -38,9 +50,9 @@ export const ReadingProgressCard = ({ progress }: any) => {
                     <FontAwesome6 name="magnifying-glass" iconStyle="solid" color={AppColors.primaryDark} size={20} />
                     <Text style={[styles.actionText, { color: device.theme ? '#000' : '#fff' }]}>Search</Text>
                 </TouchableOpacity> */}
-                <TouchableOpacity style={styles.actionBtn}>
+                <TouchableOpacity style={styles.actionBtn} onPress={handleReadingHistory}>
                     <FontAwesome6 name="bars-progress" iconStyle="solid" color={AppColors.primaryDark} size={20} />
-                    <Text style={[styles.actionText, { color: device.theme ? '#000' : '#fff' }]}>Activities</Text>
+                    <Text style={[styles.actionText, { color: device.theme ? '#000' : '#fff' }]}>Reading History</Text>
                 </TouchableOpacity>
             </View>
         </View>

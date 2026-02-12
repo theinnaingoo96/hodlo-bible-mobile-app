@@ -20,9 +20,10 @@ interface SplitReaderViewProps {
     onPreviousChapter: () => void;
     dividerMode: string;
     onVerseClick: (verse: any) => void;
+    selectedVerse: any;
 }
 
-const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookmark, onRemoveBookmark, onNextChapter, onPreviousChapter, dividerMode, onVerseClick }) => {
+const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookmark, onRemoveBookmark, onNextChapter, onPreviousChapter, dividerMode, onVerseClick, selectedVerse }) => {
     const device = useSelector((state: any) => state.device);
     const deviceHeight = Dimensions.get('window').height;
     const deviceWidth = Dimensions.get('window').width;
@@ -314,19 +315,19 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
 
     const VerseComponent = ({ verse, language, index }: any) => {
         return (
-            <View style={{ flex: 1 }}
+            <View style={[{ flex: 1 }, selectedVerse?.id === verse.id ? { backgroundColor: constants.theme[reader.readerSetting.theme - 1].highlightColor } : {}]}
             // onLayout={(e) => handleLayout(e, index)}
             >
                 <TouchableOpacity style={styles.verseContainer}
                     // activeOpacity={0.5}
-                    onLongPress={() => {
-                        if (!verse.bookmark) {
-                            onStartBookmark(verse);
-                        } else {
-                            onRemoveBookmark(verse.id);
-                        }
-                    }}
-                    delayLongPress={500}
+                    // onLongPress={() => {
+                    //     if (!verse.bookmark) {
+                    //         onStartBookmark(verse);
+                    //     } else {
+                    //         onRemoveBookmark(verse.id);
+                    //     }
+                    // }}
+                    // delayLongPress={500}
                     onPress={() => {
                         console.log('onPress on View');
                         onVerseClick(verse);
@@ -394,7 +395,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
                             <Animated.View
                                 style={[
                                     { minHeight: 40, flex: 1 },
-                                    { height: topHeight },
+                                    { height: topHeight, width: Dimensions.get('window').width },
                                 ]}
                             >
                                 <FlatList
@@ -572,7 +573,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({ verses, onStartBookma
 const styles = StyleSheet.create({
     content: {
         flex: 1,
-        width: '100%',
+        width: Dimensions.get('window').width,
         height: '100%',
     },
     divider: {
@@ -600,12 +601,12 @@ const styles = StyleSheet.create({
     verseContainer: {
         // height: 60,
         justifyContent: 'flex-start',
-        paddingHorizontal: 20,
+        paddingHorizontal: 10,
         paddingVertical: 8,
         // borderBottomWidth: 1,
         flexDirection: 'row',
         alignItems: 'flex-start',
-        gap: 10,
+        // gap: 10,
         // zIndex: 1000,
     },
     verseNumber: {
@@ -618,6 +619,9 @@ const styles = StyleSheet.create({
         // fontSize: 16,
         color: AppColors.appTextBlack,
         lineHeight: 27,
+        paddingLeft: 5,
+        marginLeft: 5,
+        marginRight: 15,
     },
     ellipsisButton: {
         width: '20%',

@@ -30,6 +30,9 @@ import Reader from './src/pages/reader/Reader';
 import { store } from './src/store/store';
 import SplashScreen from './SplashAni';
 import Main from './src/pages/Main';
+import TermsAndConditions from './src/pages/TermsAndConditions';
+import AboutUs from './src/pages/AboutUs';
+import ReadingHistory from './src/pages/ReadingHistory';
 
 function App(): React.JSX.Element {
   const device = useSelector((state: any) => state.device);
@@ -209,6 +212,21 @@ function App(): React.JSX.Element {
               name="AudioPlayer"
               component={PsalmAudioExample}
               options={{ title: 'Psalm Audio' }}
+            />
+            <Stack.Screen
+              name="TermsAndConditions"
+              component={TermsAndConditions}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="AboutUs"
+              component={AboutUs}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="ReadingHistory"
+              component={ReadingHistory}
+              options={{ headerShown: false }}
             />
           </Stack.Navigator>
         </NavigationContainer>

@@ -16,6 +16,7 @@ const TABLE_CHAPTERS = 'chapters';
 const TABLE_VERSES = 'verses';
 const TABLE_SEARCH_HISTORY = 'search_history';
 const TABLE_BOOKMARKS = 'bookmarks';
+const TABLE_HIGHLIGHTS = 'highlights';
 const TABLE_NOTIFICATIONS = 'notifications';
 
 export default class DatabaseService {
@@ -131,6 +132,7 @@ export default class DatabaseService {
                     );`
                 );
                 console.log(`Table "${TABLE_BOOKS}" created successfully or already exists.`);
+
                 await this.db.executeSql(
                     `CREATE TABLE IF NOT EXISTS ${TABLE_CHAPTERS} (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -146,6 +148,7 @@ export default class DatabaseService {
                     );`
                 );
                 console.log(`Table "${TABLE_CHAPTERS}" created successfully or already exists.`);
+
                 await this.db.executeSql(
                     `CREATE TABLE IF NOT EXISTS ${TABLE_VERSES} (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -160,6 +163,7 @@ export default class DatabaseService {
                     );`
                 );
                 console.log(`Table "${TABLE_VERSES}" created successfully or already exists.`);
+
                 await this.db.executeSql(
                     `CREATE TABLE IF NOT EXISTS ${TABLE_SEARCH_HISTORY} (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -170,8 +174,20 @@ export default class DatabaseService {
                     );`
                 );
                 console.log(`Table "${TABLE_SEARCH_HISTORY}" created successfully or already exists.`);
+
                 await this.db.executeSql(
                     `CREATE TABLE IF NOT EXISTS ${TABLE_BOOKMARKS} (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    verse_id INTEGER NOT NULL UNIQUE,
+                    note TEXT,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY(verse_id) REFERENCES verses(id)
+                    );`
+                );
+                console.log(`Table "${TABLE_BOOKMARKS}" created successfully or already exists.`);
+
+                await this.db.executeSql(
+                    `CREATE TABLE IF NOT EXISTS ${TABLE_HIGHLIGHTS} (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     verse_id INTEGER NOT NULL UNIQUE,
                     color TEXT,
@@ -179,7 +195,8 @@ export default class DatabaseService {
                     FOREIGN KEY(verse_id) REFERENCES verses(id)
                     );`
                 );
-                console.log(`Table "${TABLE_BOOKMARKS}" created successfully or already exists.`);
+                console.log(`Table "${TABLE_HIGHLIGHTS}" created successfully or already exists.`);
+
                 await this.db.executeSql(
                     `CREATE TABLE IF NOT EXISTS ${TABLE_NOTIFICATIONS} (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -796,6 +813,30 @@ export default class DatabaseService {
                 resolve(roundedReadingProgress);
             } catch (error) {
                 console.error('[DB] calcReadingProgress error:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async getReadingHistory(): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+            try {
+                // const [results] = await this.db.executeSql(`SELECT * FROM ${TABLE_CHAPTERS} WHERE is_completed = 1 ORDER BY completed_at DESC;`);
+                const [results] = await this.db.executeSql(
+                    `SELECT chapters.*, books.name as book_name 
+                     FROM ${TABLE_CHAPTERS} as chapters
+                     JOIN ${TABLE_BOOKS} as books ON chapters.book_id = books.id
+                     WHERE chapters.is_completed = 1
+                     ORDER BY chapters.completed_at DESC;`
+                );
+                const readingHistory = [];
+                for (let i = 0; i < results.rows.length; i++) {
+                    readingHistory.push(results.rows.item(i));
+                }
+                resolve(readingHistory);
+            } catch (error) {
+                console.error('[DB] getReadingHistory error:', error);
                 reject(error);
             }
         });

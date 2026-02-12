@@ -62,6 +62,7 @@ export const constants = {
             backgroundColor: '#FFFFFF',
             toolbarColor: '#FFFFFF',
             buttonColor: '#C40111',
+            highlightColor: '#F1F5F9',
         }, {
             id: 2,
             name: 'Dark',
@@ -69,6 +70,7 @@ export const constants = {
             backgroundColor: '#333333',
             toolbarColor: '#333333',
             buttonColor: '#FFFFFF',
+            highlightColor: '#2D3748',
         }, {
             id: 3,
             name: 'Sepia',
@@ -76,6 +78,7 @@ export const constants = {
             backgroundColor: '#F3E2CA',
             toolbarColor: '#F3E2CA',
             buttonColor: '#C40111',
+            highlightColor: '#E8DCC4',
         }
     ],
 };
