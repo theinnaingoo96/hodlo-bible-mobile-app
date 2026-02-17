@@ -17,7 +17,7 @@ const ReadingHistory = () => {
     DatabaseService.getInstance()
       .getReadingHistory()
       .then((result: any) => {
-        console.log('result', result);
+        // console.log('result', result);
         if (result.length > 0) {
         setSections(groupHistoryByDate(result));
         }
@@ -68,7 +68,7 @@ const ReadingHistory = () => {
         <View style={styles.contentCard}>
           <View>
             <Text style={styles.bookTitle}>
-              {item.book_name} {item.chapter}
+              {item.book_name} - {item.number}
             </Text>
             <Text style={styles.timestamp}>
               Completed at {new Date(item.completed_at).toLocaleTimeString()}

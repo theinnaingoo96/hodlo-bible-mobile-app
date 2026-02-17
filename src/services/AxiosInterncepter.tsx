@@ -10,7 +10,7 @@ import {Alert, BackHandler} from 'react-native';
 const api: AxiosInstance = axios.create({
   baseURL: "https://api.gathengpudlo.com/api", // change to your API base URL
   // baseURL: 'http://163.44.197.76:8080/api',
-  timeout: 10000,
+  timeout: 60000,
   headers: {
     'Content-Type': 'application/json',
   },

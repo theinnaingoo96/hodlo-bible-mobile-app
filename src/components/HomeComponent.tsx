@@ -37,19 +37,24 @@ export const ReadingProgressCard = ({ progress }: any) => {
         navigation.navigate('ReadingHistory' as never);
     };
 
+    const handleHighlights = () => {
+        console.log('handleHighlights');
+        navigation.navigate('Highlight' as never);
+    };
+
     return (
         <View style={[styles.card, { backgroundColor: device.theme ? '#fff' : '#000' }]}>
             <ProgressBar progress={progress} color={AppColors.primaryDark} label="Reading Progress" />
 
             <View style={styles.actions}>
-                <TouchableOpacity style={styles.actionBtn} onPress={handleBookmarks}>
+                {/* <TouchableOpacity style={styles.actionBtn} onPress={handleBookmarks}>
                     <FontAwesome6 name="bookmark" iconStyle="solid" color={AppColors.primaryDark} size={20} />
                     <Text style={[styles.actionText, { color: device.theme ? '#000' : '#fff' }]}>Bookmarks</Text>
-                </TouchableOpacity>
-                {/* <TouchableOpacity style={styles.actionBtn}>
-                    <FontAwesome6 name="magnifying-glass" iconStyle="solid" color={AppColors.primaryDark} size={20} />
-                    <Text style={[styles.actionText, { color: device.theme ? '#000' : '#fff' }]}>Search</Text>
                 </TouchableOpacity> */}
+                <TouchableOpacity style={styles.actionBtn} onPress={handleHighlights}>
+                    <FontAwesome6 name="highlighter" iconStyle="solid" color={AppColors.primaryDark} size={20} />
+                    <Text style={[styles.actionText, { color: device.theme ? '#000' : '#fff' }]}>Highlights</Text>
+                </TouchableOpacity>
                 <TouchableOpacity style={styles.actionBtn} onPress={handleReadingHistory}>
                     <FontAwesome6 name="bars-progress" iconStyle="solid" color={AppColors.primaryDark} size={20} />
                     <Text style={[styles.actionText, { color: device.theme ? '#000' : '#fff' }]}>Reading History</Text>

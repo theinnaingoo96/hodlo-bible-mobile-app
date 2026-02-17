@@ -66,7 +66,7 @@ class PermissionService {
    */
   private async checkAndroidPermission(permission: PermissionType): Promise<boolean> {
     const androidVersion = DeviceInfo.getSystemVersion();
-    const apiLevel = parseInt(androidVersion.split('.')[0]) || 0;
+    const apiLevel = Platform.Version as number;//parseInt(androidVersion.split('.')[0]) || 0;
 
     switch (permission) {
       case 'notifications':
@@ -187,7 +187,7 @@ class PermissionService {
    */
   private async requestAndroidPermission(permission: PermissionType): Promise<PermissionResult> {
     const androidVersion = DeviceInfo.getSystemVersion();
-    const apiLevel = parseInt(androidVersion.split('.')[0]) || 0;
+    const apiLevel = Platform.Version as number;//parseInt(androidVersion.split('.')[0]) || 0;
 
     let permissionString: (typeof PermissionsAndroid.PERMISSIONS)[keyof typeof PermissionsAndroid.PERMISSIONS];
     let title: string;

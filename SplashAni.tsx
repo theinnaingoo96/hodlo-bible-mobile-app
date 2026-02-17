@@ -3,14 +3,13 @@ import { Animated, StyleSheet, View, Text, Platform, PermissionsAndroid, Linking
 import DeviceInfo from "react-native-device-info";
 import { AppColors } from "./src/constants/Color";
 import { useDispatch, useSelector } from 'react-redux';
-import { setDeviceId, setDownloaded, setLoginTime } from './src/store/slices/deviceSlice';
+import { setDeviceId, setLoginTime } from './src/store/slices/deviceSlice';
 import DatabaseService from "./src/services/DataService";
 import { scheduleNotification } from "./src/services/DailyVerseService";
 import { Alert } from 'react-native';
 import permissionService from './src/services/PermissionService';
 import { createUser } from './src/services/ApiService';
 import ProgressBar from './src/components/ProgressBar';
-import NetInfo, { addEventListener } from "@react-native-community/netinfo";
 
 const SplashScreen = ({ navigation }: any) => {
     // Animated values for the icon's horizontal position and the text's properties
@@ -152,13 +151,13 @@ const SplashScreen = ({ navigation }: any) => {
                     const deviceType = Platform.OS;
                     console.log('[Splash] deviceId', deviceId, 'deviceName', deviceName, 'deviceType', deviceType);
                     
-                    dispatch(setDownloaded(true));
+                    // dispatch(setDownloaded(true));
 
                     // const result = createUser(deviceId, deviceName, deviceType);
                     // console.log('[Splash] create user result', result);
                 }).catch((error) => {
                     console.log('[Splash] random verse error', error);
-                    dispatch(setDownloaded(true));
+                    // dispatch(setDownloaded(true));
                 });
             }).catch((error) => {
                 Alert.alert('Error', 'Failed to initialize database');

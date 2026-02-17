@@ -17,6 +17,7 @@ import DatabaseService from '../../services/DataService';
 import CustomAlert from '../../components/CustomAlert';
 import {AppColors} from '../../constants/Color';
 import ShareModal from '../../components/modals/ShareModal';
+import BookmarkViewModal from '../../components/modals/BookmarkViewModal';
 
 const Bookmark = () => {
   const device = useSelector((state: any) => state.device);
@@ -27,10 +28,11 @@ const Bookmark = () => {
   const [selectedBookmark, setSelectedBookmark] = useState<any>(null);
   const [shareBookmark, setShareBookmark] = useState<any>(null);
   const [shareModalVisible, setShareModalVisible] = useState(false);
+  const [bookmarkViewModalVisible, setBookmarkViewModalVisible] = useState(false);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', async e => {
-      console.log('Bookmark focused.........', e);
+      // console.log('Bookmark focused.........', e);
       getBookmark();
     });
 
@@ -41,7 +43,7 @@ const Bookmark = () => {
     DatabaseService.getInstance()
       .getBookmarks()
       .then((result: any) => {
-        console.log(result);
+        // console.log(result);
         setBookmarks(result.map((item: any) => ({...item, visible: false})));
         // Alert.alert('result')
       });
@@ -56,7 +58,7 @@ const Bookmark = () => {
   };
 
   const showMenu = (item: any) => {
-    console.log('showMenu', item);
+    // console.log('showMenu', item);
     const temp: any = bookmarks.map((bookmark: any) => ({
       ...bookmark,
       visible: bookmark.id === item.id ? true : bookmark.visible,
@@ -70,24 +72,31 @@ const Bookmark = () => {
   };
 
   const handleDeleteBookmark = (item: any) => {
-    console.log('handleDeleteBookmark');
+    // console.log('handleDeleteBookmark');
     DatabaseService.getInstance()
       .clearBookmarkById(item.id)
       .then((result: any) => {
         setIsAlertVisible(false);
         getBookmark();
-        console.log('result', result);
+        // console.log('result', result);
       });
   };
 
   const handleShareBookmark = (item: any) => {
-    console.log('handleShareBookmark', item);
+    // console.log('handleShareBookmark', item);
     setShareBookmark({
         number: item.verse,
         ...item,
     });
     hideMenu(item);
     setShareModalVisible(true);
+  };
+
+  const handleViewBookmark = (item: any) => {
+    // console.log('handleViewBookmark', item);
+    setSelectedBookmark(item);
+    hideMenu(item);
+    setBookmarkViewModalVisible(true);
   };
 
   const renderItem = ({item, index}: {item: any; index: number}) => {
@@ -132,7 +141,7 @@ const Bookmark = () => {
             visible={item.visible}
             // anchor={<Text onPress={() => showMenu(index)}>Show menu</Text>}
             onRequestClose={() => hideMenu(item)}>
-            <MenuItem onPress={() => hideMenu(item)}>View</MenuItem>
+            <MenuItem onPress={() => handleViewBookmark(item)}>View</MenuItem>
             <MenuItem onPress={() => handleShareBookmark(item)}>Share</MenuItem>
             <MenuItem onPress={() => deleteBookmark(item)}>Delete</MenuItem>
           </Menu>
@@ -209,6 +218,18 @@ const Bookmark = () => {
           selectedVerse={shareBookmark}
           bookName={shareBookmark?.book}
           chapterNumber={shareBookmark?.chapter}
+        />
+      </Modal>
+      <Modal
+        transparent
+        visible={bookmarkViewModalVisible}
+        animationType="fade"
+        navigationBarTranslucent={true}>
+        <BookmarkViewModal
+          setBookmarkViewModalVisible={setBookmarkViewModalVisible}
+          selectedBookmark={selectedBookmark}
+          bookName={selectedBookmark?.book}
+          chapterNumber={selectedBookmark?.chapter}
         />
       </Modal>
     </View>

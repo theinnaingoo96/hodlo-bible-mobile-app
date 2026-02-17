@@ -6,7 +6,7 @@ import DeviceInfo from "react-native-device-info";
 import { createUser, getBooks, getChapters, getVerses } from './ApiService';
 import { constants } from '../constants/Data';
 import { Dispatch } from '@reduxjs/toolkit';
-import { setDownloadProgress, setStartDownload } from '../store/slices/deviceSlice';
+import { setDownloaded, setDownloadProgress, setStartDownload } from '../store/slices/deviceSlice';
 
 SQLite.enablePromise(true);
 
@@ -144,6 +144,7 @@ export default class DatabaseService {
                     audio_path TEXT,
                     is_completed INTEGER DEFAULT 0,
                     completed_at TIMESTAMP,
+                    master_chapter_id INTEGER UNIQUE,
                     FOREIGN KEY(book_id) REFERENCES books(id)
                     );`
                 );
@@ -159,6 +160,7 @@ export default class DatabaseService {
                     text_mm TEXT,
                     audio_from TEXT,
                     audio_to TEXT,
+                    master_verse_id INTEGER UNIQUE,
                     FOREIGN KEY(chapter_id) REFERENCES chapters(id)
                     );`
                 );
@@ -272,7 +274,11 @@ export default class DatabaseService {
                 dispatch(setStartDownload(true));
                 dispatch(setDownloadProgress(0));
                 const bookData = await getBooks();
+                console.log('[DB]bookData', bookData);
+                
                 let chapterCountForProgress = 0;
+
+                await this.db.executeSql('BEGIN TRANSACTION');
 
                 for (const book of bookData) {
                     const { id, textEn, textMy, textHd, orderNumber } = book;
@@ -283,39 +289,74 @@ export default class DatabaseService {
 
                     const bookId = id;
                     const chapterData = await getChapters(id);
-                    console.log('[DB]chapterData', chapterData.length);
                     chapterCountForProgress += chapterData.length;
 
                     for (const chapter of chapterData) {
                         const { id, bookId, number, textHd, textEn, textMy } = chapter;
-                        const result: any = await this.db.executeSql(
-                            'INSERT INTO chapters (book_id, number, title_hd, title_en, title_mm) VALUES (?, ?, ?, ?, ?)',
-                            [bookId, number, textHd, textEn, textMy]
-                        );
-                        console.log('[DB]inserted chapter', id, result);
+                        // const result: any = await this.db.executeSql(
+                        //     `INSERT INTO chapters (
+                        //         book_id, number, title_hd, title_en, title_mm, master_chapter_id
+                        //     )
+                        //     VALUES (?, ?, ?, ?, ?, ?)
+                        //     ON CONFLICT(master_chapter_id) 
+                        //     DO UPDATE SET 
+                        //         title_hd = excluded.title_hd, 
+                        //         title_en = excluded.title_en, 
+                        //         title_mm = excluded.title_mm`,
+                        //     [bookId, number, textHd, textEn, textMy, id]
+                        // );
+                        await this.db.executeSql(
+                            `INSERT OR REPLACE INTO chapters (
+                                book_id, number, title_hd, title_en, title_mm, master_chapter_id
+                            ) VALUES (?, ?, ?, ?, ?, ?)`,
+                            [bookId, number, textHd, textEn, textMy, id]
+                        )
+                        console.log('[DB]inserted chapter', id);
 
                         const chapterId = id;
                         const verseData = await getVerses(id);
                         for (const verse of verseData) {
                             const { id, number, textHd, textEn, textMy } = verse;
+                            // await this.db.executeSql(
+                            //     `INSERT INTO verses (
+                            //         chapter_id, number, text_hd, text_en, text_mm, audio_from, audio_to, master_verse_id
+                            //     )
+                            //     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                            //     ON CONFLICT(master_verse_id) 
+                            //     DO UPDATE SET 
+                            //         text_hd = excluded.text_hd, 
+                            //         text_en = excluded.text_en, 
+                            //         text_mm = excluded.text_mm, 
+                            //         audio_from = excluded.audio_from, 
+                            //         audio_to = excluded.audio_to`,
+                            //     [chapterId, number, textHd, textEn, textMy, "", "", id]
+                            // );
                             await this.db.executeSql(
-                                `INSERT INTO verses (chapter_id, number, text_hd, text_en, text_mm, audio_from, audio_to)
-                                VALUES (?, ?, ?, ?, ?, ?, ?)`,
-                                [chapterId, number, textHd, textEn, textMy, "", ""]
+                                `INSERT OR REPLACE INTO verses (
+                                    chapter_id, 
+                                    number, 
+                                    text_hd, 
+                                    text_en, 
+                                    text_mm, 
+                                    audio_from, 
+                                    audio_to, 
+                                    master_verse_id
+                                )
+                                VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+                                [chapterId, number, textHd, textEn, textMy, "", "", id]
                             );
-                            console.log('[DB]inserted verse', id);
+                            // console.log('[DB]inserted verse', id);
                         }
                     }
                     await this.db.executeSql(
                         `UPDATE books SET count = ? WHERE id = ?`,
                         [chapterData.length, bookId]
                     )
-                    // Update progress as a 0-1 value (not percent)
                     dispatch(setDownloadProgress(chapterCountForProgress / constants.bibleTotalChapters));
-
-                    // dispatch(setDownloadProgress(Math.round((chapterCountForProgress / constants.bibleTotalChapters) * 100)));
-                    console.log('[DB]updated book count', bookId, chapterData.length);
                 }
+
+                // dispatch(setDownloadProgress(Math.round((chapterCountForProgress / constants.bibleTotalChapters) * 100)));
+                // console.log('[DB]updated book count', bookId, chapterData.length);
                 // 
                 // for (const book of bookData) {
                 //     const { id } = book;
@@ -332,7 +373,6 @@ export default class DatabaseService {
                 // } else {
 
                 // }
-                resolve(true); //temp
                 // for (const row of verseData) {
                 //     const { book_id, book_name, chapter_id, chapter_hd, chapter_en, chapter_mm, verse_number, text_hd, text_en, text_mm,  } = row;
                 //     const audio_from = row.audio_from || "";
@@ -445,9 +485,13 @@ export default class DatabaseService {
                 //     }
                 // }
                 console.log('[DB] SEEDING COMPLETED...');
+                await this.db.executeSql('COMMIT');
+                dispatch(setDownloaded(true));
                 resolve(true);
             } catch (error) {
-                console.error('[DB] Seeding error:', error);
+                await this.db.executeSql('ROLLBACK');
+                console.error('[DB] Seeding Failed:', error);
+                dispatch(setStartDownload(false));
                 reject(error);
             }
         })
@@ -502,7 +546,7 @@ export default class DatabaseService {
                     ORDER BY b.name, c.number, v.number
                     LIMIT 100;
                 `, [`%${searchQuery}%`, `%${searchQuery}%`, `%${searchQuery}%`]);
-                console.log('[DB]results', results.rows.length);
+                // console.log('[DB]results', results.rows.length);
                 const verses = [];
                 for (let i = 0; i < results.rows.length; i++) {
                     verses.push(results.rows.item(i));
@@ -576,7 +620,7 @@ export default class DatabaseService {
     }
 
     public async getVersesByChapterId(chapterId: number): Promise<any[]> {
-        console.log('[DB]getVersesByChapter', chapterId);
+        // console.log('[DB]getVersesByChapter', chapterId);
         return new Promise(async (resolve, reject) => {
             if (!this.db) throw new Error('Database not initialized');
 
@@ -590,12 +634,12 @@ export default class DatabaseService {
 
                     [chapterId]
                 );
-                console.log('[DB]results getVersesByChapter', results.rows.length);
+                // console.log('[DB]results getVersesByChapter', results.rows.length);
                 const verses = [];
                 for (let i = 0; i < results.rows.length; i++) {
                     verses.push(results.rows.item(i));
                 }
-                console.log('[DB]verses getVersesByChapter', verses);
+                // console.log('[DB]verses getVersesByChapter', verses);
                 resolve(verses);
             } catch (error) {
                 console.error('[DB] getVersesByChapter error:', error);
@@ -673,7 +717,7 @@ export default class DatabaseService {
                     JOIN ${TABLE_BOOKS} b ON c.book_id = b.id
                     ORDER BY RANDOM()
                     LIMIT ${limit};`);
-                console.log('[DB]results getRandomVerse', results.rows.length);
+                // console.log('[DB]results getRandomVerse', results.rows.length);
                 if (results.rows.length > 0) {
                     const randomVerses = [];
                     for (let i = 0; i < results.rows.length; i++) {
@@ -745,7 +789,7 @@ export default class DatabaseService {
                     ORDER BY c.number`,
                     [bookName]
                 );
-                console.log('[DB]results', results.rows.length);
+                // console.log('[DB]results', results.rows.length);
                 const chapters = [];
                 for (let i = 0; i < results.rows.length; i++) {
                     chapters.push({
@@ -770,7 +814,7 @@ export default class DatabaseService {
                     `SELECT * FROM chapters WHERE book_id = ?`,
                     [bookId]
                 );
-                console.log('[DB]results', results.rows.length);
+                // console.log('[DB]results', results.rows.length);
                 const chap = [];
                 for (let i = 0; i < results.rows.length; i++) {
                     chap.push(results.rows.item(i));
@@ -789,7 +833,7 @@ export default class DatabaseService {
             const completedAt = new Date().toISOString();
             try {
                 const results: any = await this.db.executeSql(`UPDATE ${TABLE_CHAPTERS} SET is_completed = 1, completed_at = ? WHERE id = ? AND is_completed = 0`, [completedAt, chapterId]);
-                console.log('[DB] updateChapterCompletedAt results', results);
+                // console.log('[DB] updateChapterCompletedAt results', results);
                 resolve(results[0].rowsAffected > 0);
             } catch (error) {
                 console.error('[DB] updateChapterCompletedAt error:', error);
@@ -806,10 +850,10 @@ export default class DatabaseService {
             try {
                 const [results] = await this.db.executeSql(`SELECT COUNT(*) as completed_chapters FROM ${TABLE_CHAPTERS} WHERE is_completed = 1`);
                 const completedChapters = results.rows.item(0).completed_chapters;
-                console.log('Completed Chapters:', completedChapters, '/', TOTAL_CHAPTERS);
+                // console.log('Completed Chapters:', completedChapters, '/', TOTAL_CHAPTERS);
                 const readingProgress = completedChapters / TOTAL_CHAPTERS;
                 const roundedReadingProgress = Math.round(readingProgress * 100) / 100;
-                console.log('Reading Progress:', roundedReadingProgress, '%');
+                // console.log('Reading Progress:', roundedReadingProgress, '%');
                 resolve(roundedReadingProgress);
             } catch (error) {
                 console.error('[DB] calcReadingProgress error:', error);
@@ -868,7 +912,7 @@ export default class DatabaseService {
     }
 
     public async getBooksById(bookId: number): Promise<any> {
-        console.log('[DB]getBooksById', bookId);
+        // console.log('[DB]getBooksById', bookId);
         return new Promise(async (resolve, reject) => {
             if (!this.db) throw new Error('Database not initialized');
 
@@ -1001,12 +1045,11 @@ export default class DatabaseService {
     public async getBookmarks(): Promise<any> {
         return new Promise(async (resolve, reject) => {
             if (!this.db) throw new Error('Database not initialized');
-
             try {
                 const [results] = await this.db.executeSql(`
                     SELECT 
                         bk.id,
-                        bk.color,
+                        bk.note,
                         bk.created_at,
                         b.name as book,
                         c.number as chapter,
@@ -1033,12 +1076,12 @@ export default class DatabaseService {
         });
     }
 
-    public async addBookmark(verseId: any, color: string): Promise<any> {
+    public async addBookmark(verseId: any, note: string): Promise<any> {
         return new Promise(async (resolve, reject) => {
             if (!this.db) throw new Error('Database not initialized');
 
             try {
-                const [results] = await this.db.executeSql(`INSERT INTO ${TABLE_BOOKMARKS} (verse_id, color) VALUES (?, ?);`, [verseId, color]);
+                const [results] = await this.db.executeSql(`INSERT INTO ${TABLE_BOOKMARKS} (verse_id, note) VALUES (?, ?);`, [verseId, note]);
                 console.log(`[DB] Bookmark inserted: ${verseId}, ID: ${results.insertId}`);
                 resolve(results);
             } catch (error) {
@@ -1057,6 +1100,77 @@ export default class DatabaseService {
                 resolve(results);
             } catch (error) {
                 console.error('[DB] Error deleting Bookmark:', error);
+                reject(error);
+            }
+        });
+    }
+
+    /**
+     * Functions for highlights TABLE
+     * @function getHighlights
+     * @function addHighlights
+     * @function clearHighlightById
+     */
+
+    public async getHighlights(): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+
+            try {
+                const [results] = await this.db.executeSql(`
+                    SELECT 
+                        hl.id,
+                        hl.color,
+                        hl.created_at,
+                        b.name as book,
+                        c.number as chapter,
+                        v.number as verse,
+                        v.text_hd,
+                        v.text_en,
+                        v.text_mm,
+                        v.id as verse_id
+                    FROM ${TABLE_HIGHLIGHTS} hl
+                    JOIN ${TABLE_VERSES} v ON hl.verse_id = v.id
+                    JOIN ${TABLE_CHAPTERS} c ON v.chapter_id = c.id
+                    JOIN ${TABLE_BOOKS} b ON c.book_id = b.id
+                    ORDER BY hl.created_at DESC;
+                `);
+                const verses = [];
+                for (let i = 0; i < results.rows.length; i++) {
+                    verses.push(results.rows.item(i));
+                }
+                resolve(verses);
+            } catch (error) {
+                console.error('[DB] Error getting Highlights:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async addHighlight(verseId: any, color: string): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+
+            try {
+                const [results] = await this.db.executeSql(`INSERT INTO ${TABLE_HIGHLIGHTS} (verse_id, color) VALUES (?, ?);`, [verseId, color]);
+                console.log(`[DB] Highlight inserted: ${verseId}, ID: ${results.insertId}`);
+                resolve(results);
+            } catch (error) {
+                console.error('[DB] Error inserting Highlight:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async clearHighlightById(id: number): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+
+            try {
+                const [results] = await this.db.executeSql(`DELETE FROM ${TABLE_HIGHLIGHTS} WHERE verse_id = ?;`, [id]);
+                resolve(results);
+            } catch (error) {
+                console.error('[DB] Error deleting Highlight:', error);
                 reject(error);
             }
         });

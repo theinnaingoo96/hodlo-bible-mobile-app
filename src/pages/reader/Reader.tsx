@@ -11,6 +11,7 @@ import {
   Modal,
   Dimensions,
   Alert,
+  TextInput,
 } from 'react-native';
 import Clipboard from '@react-native-clipboard/clipboard';
 import {GestureDetector, Gesture} from 'react-native-gesture-handler';
@@ -85,8 +86,19 @@ const Reader = ({navigation, route}: any) => {
 
   const formattedTime = formatTime(currentTime);
   const formattedDuration = formatTime(duration);
+  const [highlightModalVisible, sethighlightModalVisible] = useState(false);
   const [bookmarkModalVisible, setBookmarkModalVisible] = useState(false);
   const [shareModalVisible, setShareModalVisible] = useState(false);
+  const [highlightedVerse, setHighlightedVerse] = useState({
+    book_name: '',
+    chapter_no: '',
+    chapter_id: '',
+    verse_id: '',
+    verse_number: '',
+    text_en: '',
+    text_hd: '',
+    text_mm: '',
+  });
   const [bookmarkedVerse, setBookmarkedVerse] = useState({
     book_name: '',
     chapter_no: '',
@@ -104,6 +116,7 @@ const Reader = ({navigation, route}: any) => {
     code: 'rgba(244, 67, 54, 0.2)',
   });
   const [currentVerse, setCurrentVerse] = useState(101);
+  const [bookmarkNote, setBookmarkNote] = useState('');
 
   // Monitor currentTime updates
   // useEffect(() => {
@@ -123,7 +136,7 @@ const Reader = ({navigation, route}: any) => {
         console.log('LANDSCAPE');
       }
     });
-  }, [route.params, bookmarkModalVisible]);
+  }, [route.params, highlightModalVisible, bookmarkModalVisible]);
 
   useEffect(() => {
     console.log('verses from Reader 2', verses, route.params);
@@ -149,23 +162,41 @@ const Reader = ({navigation, route}: any) => {
         console.log('verses from fetchVerses', v);
         let temp_verses = v;
         DatabaseService.getInstance()
-          .getBookmarks()
-          .then(async (b: any) => {
-            // console.log('bookmarks from fetchVerses', b);
-            const temp_bookmarks = b;
-            await temp_bookmarks.forEach((bookmark: any) => {
+          .getHighlights()
+          .then(async (h: any) => {
+            console.log('highlights from fetchVerses', h);
+            const temp_highlights = h;
+            await temp_highlights.forEach((highlight: any) => {
               const index = temp_verses.findIndex(
-                (v: any) => v.id === bookmark.verse_id,
+                (v: any) => v.id === highlight.verse_id,
               );
               if (index !== -1) {
-                temp_verses[index].bookmark = true;
-                temp_verses[index].bookmark_color = bookmark.color;
+                temp_verses[index].highlight = true;
+                temp_verses[index].highlight_color = highlight.color;
               }
             });
-            if (temp_verses.length > 0) {
-              setVerses(temp_verses);
-            }
-            // console.log('verses from fetchVerses after', temp_verses);
+            // if (temp_verses.length > 0) {
+            //   setVerses(temp_verses);
+            // }
+            DatabaseService.getInstance()
+              .getBookmarks()
+              .then(async (b: any) => {
+                console.log('bookmarks from fetchVerses', b);
+                const t_bookmarks = b;
+                await t_bookmarks.forEach((bookmark: any) => {
+                  const index = temp_verses.findIndex(
+                    (v: any) => v.id === bookmark.verse_id,
+                  );
+                  if (index !== -1) {
+                    temp_verses[index].bookmark = true;
+                    temp_verses[index].bookmark_note = bookmark.note;
+                  }
+                });
+                if (temp_verses.length > 0) {
+                  setVerses(temp_verses);
+                }
+              });
+            console.log('verses from fetchVerses after', temp_verses);
           });
       });
   };
@@ -219,10 +250,69 @@ const Reader = ({navigation, route}: any) => {
   };
 
   const handleConfirmBookmark = () => {
+    console.log('handleConfirmBookmark', bookmarkedVerse, bookmarkNote);
     DatabaseService.getInstance()
-      .addBookmark(bookmarkedVerse.verse_id, selectedColor.code)
+      .addBookmark(bookmarkedVerse.verse_id, bookmarkNote)
       .then(() => {
         setBookmarkModalVisible(false);
+        setBottomSheetVisible(false);
+        setOptionSheetVisible(false);
+      });
+  };
+
+  const handleCreateHighlight = (verse: any) => {
+    console.log('handleCreateHighlight', verse);
+    sethighlightModalVisible(true);
+    setHighlightedVerse({
+      book_name: params.book,
+      chapter_no: params.chapter,
+      chapter_id: verse.chapter_id,
+      verse_id: verse.id,
+      verse_number: verse.number,
+      text_en: verse.text_en,
+      text_hd: verse.text_hd,
+      text_mm: verse.text_mm,
+    });
+  };
+
+  const handleRemoveHighlight = (id: number) => {
+    console.log('handleRemoveHighlight', id);
+    Alert.alert(
+      'Remove Highlight',
+      'Are you sure you want to remove this highlight?',
+      [
+        {text: 'Cancel', style: 'cancel'},
+        {
+          text: 'Remove',
+          onPress: () => {
+            DatabaseService.getInstance()
+              .clearHighlightById(id)
+              .then((result: any) => {
+                console.log('result', result);
+                sethighlightModalVisible(false);
+                setBottomSheetVisible(false);
+                setOptionSheetVisible(false);
+                fetchVerses();
+                store.dispatch(
+                  setToast({
+                    show: true,
+                    message: 'Highlight removed',
+                    type: 'change',
+                    duration: constants.toastDuration,
+                  }),
+                );
+              });
+          },
+        },
+      ],
+    );
+  };
+
+  const handleConfirmHighlight = () => {
+    DatabaseService.getInstance()
+      .addHighlight(highlightedVerse.verse_id, selectedColor.code)
+      .then(() => {
+        sethighlightModalVisible(false);
         setBottomSheetVisible(false);
         setOptionSheetVisible(false);
       });
@@ -689,6 +779,16 @@ const Reader = ({navigation, route}: any) => {
           onAudioReaderPress={() => {
             playPsalmAudio();
           }}
+          onAddHighlightPress={() => {
+            if (selectedVerse) {
+              handleCreateHighlight(selectedVerse);
+            }
+          }}
+          onRemoveHighlightPress={() => {
+            if (selectedVerse) {
+              handleRemoveHighlight(selectedVerse.id);
+            }
+          }}
           onAddBookmarkPress={() => {
             if (selectedVerse) {
               handleCreateBookmark(selectedVerse);
@@ -728,7 +828,7 @@ const Reader = ({navigation, route}: any) => {
 
           <View style={styles.playerSheetContainer} pointerEvents="box-none">
             <View style={styles.playerSheetContent} pointerEvents="box-none">
-              <View style={styles.bookmarkModalHeader} pointerEvents="auto">
+              <View style={styles.highlightModalHeader} pointerEvents="auto">
                 <TouchableOpacity
                   onPress={() => {
                     setPlayerSheetVisible(false);
@@ -866,25 +966,25 @@ const Reader = ({navigation, route}: any) => {
           sheetHeight={500}>
           <ReaderSetting />
         </BottomSheet>
-        <Modal transparent visible={bookmarkModalVisible} animationType="fade">
-          <View style={styles.bookmarkModalContainer}>
-            <View style={styles.bookmarkModalContentContainer}>
-              <View style={styles.bookmarkModalHeader}>
+        <Modal transparent visible={highlightModalVisible} animationType="fade">
+          <View style={styles.highlightModalContainer}>
+            <View style={styles.highlightModalContentContainer}>
+              <View style={styles.highlightModalHeader}>
                 <TouchableOpacity
-                  onPress={() => setBookmarkModalVisible(false)}>
+                  onPress={() => sethighlightModalVisible(false)}>
                   <CloseIcon name="cross" color={AppColors.appTextBlack} />
                 </TouchableOpacity>
               </View>
-              <View style={styles.bookmarkModalContent}>
-                <Text style={styles.bookmarkModalContentTitle}>
-                  {bookmarkedVerse.book_name +
+              <View style={styles.highlightModalContent}>
+                <Text style={styles.highlightModalContentTitle}>
+                  {highlightedVerse.book_name +
                     ' ' +
-                    bookmarkedVerse.chapter_no +
+                    highlightedVerse.chapter_no +
                     ':' +
-                    bookmarkedVerse.verse_number}
+                    highlightedVerse.verse_number}
                 </Text>
-                <Text style={styles.bookmarkModalContentItemText}>
-                  {bookmarkedVerse.text_hd}
+                <Text style={styles.highlightModalContentItemText}>
+                  {highlightedVerse.text_hd}
                 </Text>
                 <ColorPicker
                   selectedColor={selectedColor.hex}
@@ -892,18 +992,65 @@ const Reader = ({navigation, route}: any) => {
                   onSelect={color => setSelectedColor(color)}
                 />
               </View>
-              <View style={styles.bookmarkModalFooter}>
+              <View style={styles.highlightModalFooter}>
                 <TouchableOpacity
-                  style={styles.bookmarkModalCancelButton}
-                  onPress={() => setBookmarkModalVisible(false)}>
-                  <Text style={styles.bookmarkModalFooterButtonText}>
+                  style={styles.highlightModalCancelButton}
+                  onPress={() => sethighlightModalVisible(false)}>
+                  <Text style={styles.highlightModalFooterButtonText}>
                     Cancel
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  style={styles.bookmarkModalOKButton}
+                  style={styles.highlightModalOKButton}
+                  onPress={handleConfirmHighlight}>
+                  <Text style={styles.highlightModalFooterButtonText}>OK</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
+        <Modal transparent visible={bookmarkModalVisible} animationType="fade">
+          <View style={styles.highlightModalContainer}>
+            <View style={styles.highlightModalContentContainer}>
+              <View style={styles.highlightModalHeader}>
+                <TouchableOpacity
+                  onPress={() => setBookmarkModalVisible(false)}>
+                  <CloseIcon name="cross" color={AppColors.appTextBlack} />
+                </TouchableOpacity>
+              </View>
+              <View style={styles.highlightModalContent}>
+                <Text style={styles.highlightModalContentTitle}>
+                  {bookmarkedVerse.book_name +
+                    ' ' +
+                    bookmarkedVerse.chapter_no +
+                    ':' +
+                    bookmarkedVerse.verse_number}
+                </Text>
+                <Text style={styles.highlightModalContentItemText}>
+                  {bookmarkedVerse.text_hd}
+                </Text>
+                <Text style={styles.bookmarkNoteTitle}>Note</Text>
+                <TextInput
+                  placeholder="Enter bookmark note"
+                  value={bookmarkNote}
+                  onChangeText={setBookmarkNote}
+                  numberOfLines={4}
+                  multiline={true}
+                  style={styles.bookmarkNoteInput}
+                />
+              </View>
+              <View style={styles.highlightModalFooter}>
+                <TouchableOpacity
+                  style={styles.highlightModalCancelButton}
+                  onPress={() => setBookmarkModalVisible(false)}>
+                  <Text style={styles.highlightModalFooterButtonText}>
+                    Cancel
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.highlightModalOKButton}
                   onPress={handleConfirmBookmark}>
-                  <Text style={styles.bookmarkModalFooterButtonText}>OK</Text>
+                  <Text style={styles.highlightModalFooterButtonText}>OK</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -967,19 +1114,19 @@ const styles = StyleSheet.create({
     left: '50%',
     transform: [{translateX: -17.5}],
   },
-  bookmarkModalContainer: {
+  highlightModalContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#00000080',
   },
-  bookmarkModalContentContainer: {
+  highlightModalContentContainer: {
     backgroundColor: 'white',
     padding: 20,
     borderRadius: 10,
     width: '90%',
   },
-  bookmarkModalHeader: {
+  highlightModalHeader: {
     flexDirection: 'row',
     // justifyContent: 'space-between',
     alignItems: 'center',
@@ -987,40 +1134,40 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 10,
   },
-  bookmarkModalTitle: {
+  highlightModalTitle: {
     fontSize: 17,
     fontWeight: 'bold',
     color: AppColors.appTextBlack,
   },
-  bookmarkModalCloseButton: {
+  highlightModalCloseButton: {
     fontSize: 16,
     color: AppColors.appTextBlack,
   },
-  bookmarkModalContent: {
+  highlightModalContent: {
     // flex: 1,
     justifyContent: 'center',
     alignItems: 'flex-start',
     // backgroundColor: 'red'//AppColors.appTextWhite,
   },
-  bookmarkModalContentTitle: {
+  highlightModalContentTitle: {
     fontSize: 16,
     fontWeight: 'bold',
     color: AppColors.appTextBlack,
     marginBottom: 13,
   },
-  bookmarkModalContentList: {
+  highlightModalContentList: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  bookmarkModalContentItem: {
+  highlightModalContentItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
     padding: 10,
   },
-  bookmarkModalFooter: {
+  highlightModalFooter: {
     flexDirection: 'row',
     gap: 16,
     justifyContent: 'space-between',
@@ -1029,7 +1176,7 @@ const styles = StyleSheet.create({
 
     // padding: 10,
   },
-  bookmarkModalOKButton: {
+  highlightModalOKButton: {
     backgroundColor: AppColors.primaryDark,
     padding: 10,
     borderRadius: 5,
@@ -1037,7 +1184,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  bookmarkModalCancelButton: {
+  highlightModalCancelButton: {
     backgroundColor: AppColors.lightGrey,
     padding: 10,
     borderRadius: 5,
@@ -1045,12 +1192,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  bookmarkModalFooterButtonText: {
+  highlightModalFooterButtonText: {
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
   },
-  bookmarkModalContentItemText: {
+  highlightModalContentItemText: {
     fontSize: 16,
     color: AppColors.appTextBlack,
     marginBottom: 35,
@@ -1180,6 +1327,21 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
+  bookmarkNoteTitle: {
+    fontSize: 16,
+    color: AppColors.appTextBlack,
+    marginBottom: 5,
+  },
+  bookmarkNoteInput: {
+    borderWidth: 1,
+    borderColor: AppColors.lightGrey,
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 20,
+    width: '100%',
+    height: 100,
+    textAlignVertical: 'top',
+  }
 });
 
 export default Reader;

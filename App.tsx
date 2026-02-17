@@ -33,6 +33,7 @@ import Main from './src/pages/Main';
 import TermsAndConditions from './src/pages/TermsAndConditions';
 import AboutUs from './src/pages/AboutUs';
 import ReadingHistory from './src/pages/ReadingHistory';
+import Highlight from './src/pages/Highlight';
 
 function App(): React.JSX.Element {
   const device = useSelector((state: any) => state.device);
@@ -41,7 +42,13 @@ function App(): React.JSX.Element {
   const { stop } = useAudioPlayer();
 
   useEffect(() => {
-    store.dispatch(setDownloaded(false));
+    AsyncStorage.getItem("ho-dlo-downloaded").then((value: any) => {
+      if (value) {
+        store.dispatch(setDownloaded(value == "true" ? true : false));
+      } else {
+        store.dispatch(setDownloaded(false));
+      }
+    });
     AsyncStorage.getItem("ho-dlo-theme").then((value: any) => {
       if (value) {
         store.dispatch(setTheme(value == "true" ? true : false));
@@ -72,7 +79,7 @@ function App(): React.JSX.Element {
         store.dispatch(setCurrent(currentReading))
       } else {
         const readerInitial: CurrentRead = {
-          bookName: "Exodus",
+          bookName: "Genesis",
           bookId: 1,
           chapterId: 1,
           chapterNumber: 1,
@@ -226,6 +233,11 @@ function App(): React.JSX.Element {
             <Stack.Screen
               name="ReadingHistory"
               component={ReadingHistory}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Highlight"
+              component={Highlight}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>

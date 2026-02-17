@@ -21,7 +21,7 @@ const Search = ({ navigation }: any) => {
 
     useEffect(() => {
         const unsubscribe = navigation.addListener("focus", async (e: any) => {
-            console.log('Search focused.........', e);
+            // console.log('Search focused.........', e);
             getHistory();
         })
 
@@ -39,7 +39,7 @@ const Search = ({ navigation }: any) => {
         setSearchQuery('');
         setSearchResults([]);
         DatabaseService.getInstance().getSearchHistory().then((results: any) => {
-            console.log('results Search History', results.length);
+            // console.log('results Search History', results.length);
             setSearchHistory(results);
             // dispatch(setLoading(false));
         }).catch((error) => {
@@ -56,11 +56,11 @@ const Search = ({ navigation }: any) => {
     }
 
     const handleSearchSubmit = async () => {
-        console.log('Searching for:', searchQuery.length > 0);
+        // console.log('Searching for:', searchQuery.length > 0);
         if (searchQuery !== null && searchQuery !== undefined && searchQuery !== '') {
             dispatch(setLoading(true));
             DatabaseService.getInstance().getVersesByKeyword(searchQuery).then((results: any) => {
-                console.log('Search results:', results);
+                // console.log('Search results:', results);
                 if (results.length > 0) {
                     setSearchResults(results);
                 } else {
@@ -93,7 +93,7 @@ const Search = ({ navigation }: any) => {
     );
 
     const handleSearchResultPress = (item: any) => {
-        console.log('Search result pressed:', item);
+        // console.log('Search result pressed:', item);
         if (searchQuery !== '' && searchQuery !== null && searchQuery !== undefined) {
             DatabaseService.getInstance().addSearchHistory(searchQuery, item.verse_id).then(() => {
                 navigation.navigate('Reader', { book: item.book, chapter: item.chapter, chapterId: item.chapter, verse: item.verse_id });
@@ -121,7 +121,7 @@ const Search = ({ navigation }: any) => {
                     value={searchQuery}
                     onChangeText={(text) => {
                         setSearchQuery(text);
-                        console.log('searchQuery', searchQuery);
+                        // console.log('searchQuery', searchQuery);
                         if (text.length === 0) {
                             setSearchResults([]);
                         }

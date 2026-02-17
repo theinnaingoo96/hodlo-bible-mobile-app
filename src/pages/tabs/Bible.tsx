@@ -24,7 +24,7 @@ const Bible = ({ navigation }: any) => {
     const [newTestamentBooks, setNewTestamentBooks] = useState<any[]>([]);
 
     useEffect(() => {
-        console.log('Bible useEffect');
+        // console.log('Bible useEffect');
         loadBooks();
     }, []);
 
@@ -41,7 +41,7 @@ const Bible = ({ navigation }: any) => {
     };
 
     const handleChapterPress = (book: any, chapter: any) => {  
-        console.log('handleChapterPress', book, chapter);
+        // console.log('handleChapterPress', book, chapter);
         const currentReaderData = reader.currentRead;
         const readerData: CurrentRead = {       
             bookName: book.name,
@@ -53,13 +53,13 @@ const Bible = ({ navigation }: any) => {
             maxChapter: book.count,
             progress: currentReaderData.progress
         };
-        console.log('handleChapterPress', readerData);
+        // console.log('handleChapterPress', readerData);
         dispatch(setCurrent(readerData));
         navigation.navigate('Reader', { book: book.name, chapter: chapter.number, chapterId: chapter.id, verse: 1 });
     };
 
     const loadChapters = async (book: any, bookId: any) => {
-        console.log('loadChapters', book, bookId, selectedBookObj?.id);
+        // console.log('loadChapters', book, bookId, selectedBookObj?.id);
         if ( selectedBook === book.name) {
             setChapterList([]);
             setSelectedBook('');
@@ -70,7 +70,7 @@ const Bible = ({ navigation }: any) => {
         setSelectedBookObj(book);
         try {
             DatabaseService.getInstance().getChaptersByBookId(book.id).then((result: any) => {
-                console.log('result >', result);
+                // console.log('result >', result);
                 setChapterList(result || []);
             });
         } catch (error) {

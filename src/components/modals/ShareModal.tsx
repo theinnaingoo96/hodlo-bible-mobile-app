@@ -37,13 +37,7 @@ const ShareModal = ({
   const [blurRadius, setBlurRadius] = useState(5);
   const [imageUri, setImageUri] = useState<any>('https://images.unsplash.com/photo-1441974231531-c6227db76b6e');
 
-
-  useEffect(() => {
-    console.log('selectedVerse from ShareModal', selectedVerse);
-  }, [selectedVerse]);
-
   const handleSharePress = async () => {
-    console.log('handleSharePress');
     try {
       if (viewShotRef.current) {
         const uri = await viewShotRef.current?.capture();
@@ -52,7 +46,6 @@ const ShareModal = ({
           type: 'image/png',
           message: 'Shared from Gathengpu Dlo App',
         });
-        console.log('result', result);
       }
     } catch (error) {
       console.error('Sharing failed', error);
@@ -61,8 +54,10 @@ const ShareModal = ({
 
   const handleImportImagePress = async () => {
     const androidVersion = DeviceInfo.getSystemVersion();
-    const apiLevel = parseInt(androidVersion.split('.')[0]) || 0;
+    const apiLevel = Platform.Version as number;//parseInt(androidVersion.split('.')[0]) || 0;
     let hasPermission = false;
+    console.log('androidVersion', androidVersion);
+    console.log('apiLevel', apiLevel);
     if (Platform.OS === 'android') {
       if (apiLevel >= 33) {
         hasPermission = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES);

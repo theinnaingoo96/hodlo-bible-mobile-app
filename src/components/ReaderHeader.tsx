@@ -27,6 +27,8 @@ interface ReaderHeaderProps {
   onSettingsPress: () => void;
   onAudioReaderPress: () => void;
   setDividerMode: (mode: string) => void;
+  onAddHighlightPress: () => void;
+  onRemoveHighlightPress: () => void;
   onAddBookmarkPress: () => void;
   onRemoveBookmarkPress: () => void;
   onCopytoClickboard: (text: number) => void;
@@ -42,6 +44,8 @@ const ReaderHeader = ({
   onSettingsPress,
   onAudioReaderPress,
   setDividerMode,
+  onAddHighlightPress,
+  onRemoveHighlightPress,
   onAddBookmarkPress,
   onRemoveBookmarkPress,
   onCopytoClickboard,
@@ -53,14 +57,9 @@ const ReaderHeader = ({
   const [isOpen, setIsOpen] = useState(false);
   const {stop} = useAudioPlayer();
   const handleTitlePress = () => {
-    console.log('handleTitlePress');
+    // console.log('handleTitlePress');
   };
-
-  useEffect(() => {
-    console.log('selectedVerse from ReaderHeader', selectedVerse);
-  }, [selectedVerse]);
   
-
   const hideMenu = (type: number) => {
     setIsOpen(false);
     switch (type) {
@@ -86,12 +85,18 @@ const ReaderHeader = ({
         onCopytoClickboard(3);
         break;
       case 7:
-        onAddBookmarkPress();
+        onAddHighlightPress();
         break;
       case 8:
-        onRemoveBookmarkPress();
+        onRemoveHighlightPress();
         break;
       case 9:
+        onAddBookmarkPress();
+        break;
+      case 10:
+        onRemoveBookmarkPress();
+        break;
+      case 11:
         onSharePress();
         break;
       default:
@@ -160,12 +165,12 @@ const ReaderHeader = ({
           ]}>
           {title}
         </Text>
-        <FontAwesome6
+        {/* <FontAwesome6
           name="caret-down"
           iconStyle="solid"
           color={constants.theme[reader.readerSetting.theme - 1].fontColor}
           size={20}
-        />
+        /> */}
       </TouchableOpacity>
       <View style={styles.optionsContainer}>
         {device.language == 'en' || device.language == 'mm' ? (
@@ -238,13 +243,20 @@ const ReaderHeader = ({
               }
               {/* <MenuItem onPress={() => hideMenu(4)}>Share Verse</MenuItem> */}
               {
-                selectedVerse && selectedVerse.bookmark ? (
-                  <MenuItem onPress={() => hideMenu(8)}>Remove Bookmark</MenuItem>
+                selectedVerse && selectedVerse.highlight ? (
+                  <MenuItem onPress={() => hideMenu(8)}>Remove Highlight</MenuItem>
                 ) : (
-                  <MenuItem onPress={() => hideMenu(7)}>Add Bookmark</MenuItem>
+                  <MenuItem onPress={() => hideMenu(7)}>Add Highlight</MenuItem>
                 )
               }
-              <MenuItem onPress={() => hideMenu(9)}>Share Verse</MenuItem>
+              {
+                selectedVerse && selectedVerse.bookmark ? (
+                  <MenuItem onPress={() => hideMenu(10)}>Remove Bookmark</MenuItem>
+                ) : (
+                  <MenuItem onPress={() => hideMenu(9)}>Add Bookmark</MenuItem>
+                )
+              }
+              <MenuItem onPress={() => hideMenu(11)}>Share Verse</MenuItem>
             </View>
           )}
         </Menu>

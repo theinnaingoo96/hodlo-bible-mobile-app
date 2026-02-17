@@ -34,19 +34,19 @@ const Home = () => {
         //     console.log('book from getBooksById', b);
         // })
         DatabaseService.getInstance().getTodayNotifications().then((result: any) => {
-            console.log('getFutureNotifications', result);
+            // console.log('getFutureNotifications', result);
             if (result.length > 0) {
                 setTodayVerse(result[0]);
             }
         });
         DatabaseService.getInstance().seedAudioMilestone23().then((result: any) => {
-            console.log('seedAudioMilestone23', result)
+            // console.log('seedAudioMilestone23', result)
         })
 
         DatabaseService.getInstance().seedAudioMilestone24().then((result: any) => {
-            console.log('seedAudioMilestone24', result)
+            // console.log('seedAudioMilestone24', result)
         })
-        console.log('[HOME]reader', reader.currentRead);
+        // console.log('[HOME]reader', reader.currentRead);
     }, []);
 
     const carouselItems: CarouselItem[] = [
@@ -138,7 +138,7 @@ const Home = () => {
                     reader.currentRead.bookName && (
                         <TouchableOpacity style={[styles.currentReadContent, { backgroundColor: device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDark }]}
                             onPress={() => {
-                                console.log('reader.currentRead', reader.currentRead);
+                                //console.log('reader.currentRead', reader.currentRead);
                                 navigation.navigate('Reader', { book: reader.currentRead.bookName, chapter: reader.currentRead.chapterNumber, chapterId: reader.currentRead.chapterId, verse: reader.currentRead.verseId });
                             }}>
                             <View style={styles.currentReadVerse}>

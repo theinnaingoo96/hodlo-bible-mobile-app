@@ -75,6 +75,7 @@ const deviceSlice = createSlice({
     },
     setDownloaded: (state, action: PayloadAction<boolean>) => {
       state.downloaded = action.payload;
+      AsyncStorage.setItem("ho-dlo-downloaded", action.payload.toString());
     },
     setStartDownload: (state, action: PayloadAction<boolean>) => {
       state.startDownload = action.payload;

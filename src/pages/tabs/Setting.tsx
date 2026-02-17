@@ -24,7 +24,7 @@ const Setting = () => {
     const navigation = useNavigation();
 
     useEffect(() => {
-        console.log('device', device);
+        // console.log('device', device);
     }, [device]);
 
     const clear = async () => {
@@ -33,7 +33,7 @@ const Setting = () => {
 
     const handleConfirm = async () => {
         const res = await DatabaseService.getInstance().clearSearchHistoryAll();
-        console.log('res', res);
+        // console.log('res', res);
         setIsAlertVisible(false);
     }
 
