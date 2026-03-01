@@ -740,6 +740,8 @@ export default class DatabaseService {
      * @function getChaptersByBook
      * @function getChaptersByBookId
      * @function updateChapterCompletedAt
+     * @function calcReadingProgress
+     * @function getReadingHistory
     */
 
     public async getChapterIdByBookIdAndChapterNumber(bookId: number, chapterNumber: number): Promise<number | null> {
@@ -886,6 +888,18 @@ export default class DatabaseService {
         });
     }
 
+    public async getAudioReader(bookId: number, chapterId: number): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+            try {
+                const [results] = await this.db.executeSql(`SELECT * FROM ${TABLE_CHAPTERS} WHERE book_id = ? AND number = ?`, [bookId, chapterId]);
+                resolve(results.rows.item(0));
+            } catch (error) {
+                console.error('[DB] getAudioReader error:', error);
+                reject(error);
+            }
+        });
+    }
 
     /**
      * Functions for Books TABLE

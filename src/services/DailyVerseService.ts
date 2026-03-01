@@ -55,13 +55,13 @@ export const scheduleNotification = (randomVerses: any) => {
         const verse = randomVerses[i];
         const triggerDate = getNext6AM(dayOffset);
         const notificationTitle = verse.book_name + ' ' + verse.chapter_number + ':' + verse.verse_number;
-        // PushNotification.localNotificationSchedule({
-        //     channelId: 'ho-dlo-channel',
-        //     title: notificationTitle,
-        //     message: verse.text_hd,
-        //     date: triggerDate,
-        //     allowWhileIdle: false,
-        // });
+        PushNotification.localNotificationSchedule({
+            channelId: 'ho-dlo-channel',
+            title: notificationTitle,
+            message: verse.text_hd,
+            date: triggerDate,
+            allowWhileIdle: false,
+        });
         console.log('triggerDate', triggerDate.toISOString());
         DatabaseService.getInstance().addNotification(verse.verse_id, triggerDate.toISOString());
         // console.log(`[Scheduled] ${i + 1} Verse: ${verse}`);

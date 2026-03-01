@@ -30,8 +30,9 @@ import DatabaseService from '../../services/DataService';
 
 interface SplitReaderViewProps {
   verses: any[];
-  onStartBookmark: (verse: any) => void;
-  onRemoveBookmark: (id: number) => void;
+  // onStartBookmark: (verse: any) => void;
+  // onRemoveBookmark: (id: number) => void;
+  onLongPress: (verse: any) => void;
   onNextChapter: () => void;
   onPreviousChapter: () => void;
   dividerMode: string;
@@ -41,8 +42,9 @@ interface SplitReaderViewProps {
 
 const SplitReaderView: React.FC<SplitReaderViewProps> = ({
   verses,
-  onStartBookmark,
-  onRemoveBookmark,
+  // onStartBookmark,
+  // onRemoveBookmark,
+  onLongPress,
   onNextChapter,
   onPreviousChapter,
   dividerMode,
@@ -377,13 +379,14 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
         <TouchableOpacity
           style={styles.verseContainer}
           // activeOpacity={0.5}
-          // onLongPress={() => {
-          //     if (!verse.bookmark) {
-          //         onStartBookmark(verse);
-          //     } else {
-          //         onRemoveBookmark(verse.id);
-          //     }
-          // }}
+          onLongPress={() => {
+            onLongPress(verse);
+              // if (!verse.bookmark) {
+              //     onStartBookmark(verse);
+              // } else {
+              //     onRemoveBookmark(verse.id);
+              // }
+          }}
           // delayLongPress={500}
           onPress={() => {
             console.log('onPress on View');

@@ -85,7 +85,7 @@ function App(): React.JSX.Element {
           chapterNumber: 1,
           verseId: 1,
           verseNumber: 1,
-          maxChapter: 0,
+          maxChapter: 50,
           progress: 0
         }
         store.dispatch(setCurrent(readerInitial));

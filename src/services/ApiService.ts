@@ -16,6 +16,11 @@ export const getVerses = async (chapterId: number) => {
   return response.data;
 };
 
+export const getAudioChapter = async (chapterId: number) => {
+  const response = await api.get(`/audio/chapter?chapterId=${chapterId}`);
+  return response.data;
+};
+
 export const createUser = async (deviceId: any, deviceName: any, deviceType: any) => {
   const body: any = {
     "deviceId": deviceId,

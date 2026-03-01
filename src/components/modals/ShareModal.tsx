@@ -46,9 +46,11 @@ const ShareModal = ({
           type: 'image/png',
           message: 'Shared from Gathengpu Dlo App',
         });
+        setShareModalVisible(false);
       }
     } catch (error) {
       console.error('Sharing failed', error);
+      setShareModalVisible(false);
     }
   };
 

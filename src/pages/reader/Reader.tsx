@@ -34,6 +34,7 @@ import {CurrentRead} from '../../types/reader';
 import {store} from '../../store/store';
 import SplitReaderView from './View';
 import ShareModal from '../../components/modals/ShareModal';
+import OptionModal from '../../components/modals/OptionModal';
 
 const Reader = ({navigation, route}: any) => {
   const device = useSelector((state: any) => state.device);
@@ -89,6 +90,7 @@ const Reader = ({navigation, route}: any) => {
   const [highlightModalVisible, sethighlightModalVisible] = useState(false);
   const [bookmarkModalVisible, setBookmarkModalVisible] = useState(false);
   const [shareModalVisible, setShareModalVisible] = useState(false);
+  const [optionModalVisible, setOptionModalVisible] = useState(false);
   const [highlightedVerse, setHighlightedVerse] = useState({
     book_name: '',
     chapter_no: '',
@@ -369,7 +371,7 @@ const Reader = ({navigation, route}: any) => {
 
   const handleNextChapter = () => {
     const currentReaderData = reader.currentRead;
-    // console.log('handleNextChapter', currentReaderData);
+    console.log('handleNextChapter', currentReaderData);
     if (currentReaderData.maxChapter > currentReaderData.chapterNumber) {
       store.dispatch(
         setToast({
@@ -683,6 +685,45 @@ const Reader = ({navigation, route}: any) => {
     setShareModalVisible(true);
   };
 
+  const handleLongPress = (verse: any) => {
+    setOptionModalVisible(true);
+    setSelectedVerse(verse);
+  };
+
+  const handleAudioReaderPress = async () => {
+    console.log('handleAudioReaderPress', params, params.chapterId);
+    DatabaseService.getInstance()
+      .getAudioReader(params.bookId, params.chapterId)
+      .then((audioReader: any) => {
+        console.log('audioReader', audioReader);
+        if (audioReader) {
+          setPlayerSheetVisible(true);
+        } else {
+          store.dispatch(
+            setToast({
+              show: true,
+              message: 'Audio Reader is not available for this book',
+              type: 'change',
+              duration: constants.toastDuration,
+            }),
+          );
+        }
+        setPlayerSheetVisible(true);
+      })
+      .catch((error: any) => {
+        console.error('Error getting audio reader:', error);
+        store.dispatch(
+          setToast({
+            show: true,
+            message: 'Error getting audio reader',
+            type: 'error',
+            duration: constants.toastDuration,
+          }),
+        );
+        setPlayerSheetVisible(false);
+      });
+  };
+
   const AudioVerseComponent = ({verses}: any) => {
     // console.log('AudioVerseComponent', verses);
     // Define time ranges for each verse in the audio (Psalm 23:00)
@@ -777,7 +818,8 @@ const Reader = ({navigation, route}: any) => {
             setBottomSheetVisible(true);
           }}
           onAudioReaderPress={() => {
-            playPsalmAudio();
+            handleAudioReaderPress();
+            // playPsalmAudio();
           }}
           onAddHighlightPress={() => {
             if (selectedVerse) {
@@ -808,13 +850,14 @@ const Reader = ({navigation, route}: any) => {
             <View style={{flex: 1, zIndex: 1}}>
               <SplitReaderView
                 verses={verses}
-                onStartBookmark={() => {}}
-                onRemoveBookmark={() => {}}
+                // onStartBookmark={() => {}}
+                // onRemoveBookmark={() => {}}
                 onNextChapter={handleNextChapter}
                 onPreviousChapter={handlePreviousChapter}
                 dividerMode={dividerMode}
                 onVerseClick={handleVerseClick}
                 selectedVerse={selectedVerse}
+                onLongPress={handleLongPress}
               />
             </View>
           )}
@@ -1066,6 +1109,23 @@ const Reader = ({navigation, route}: any) => {
             selectedVerse={selectedVerse}
             bookName={params.book}
             chapterNumber={params.chapter}
+          />
+        </Modal>
+        <Modal
+          transparent
+          visible={optionModalVisible}
+          animationType="fade"
+          navigationBarTranslucent={true}>
+          <OptionModal
+            onHighlightPress={() => {
+              setOptionModalVisible(false);
+              handleCreateHighlight(selectedVerse);
+            }}
+            onBookmarkPress={() => {
+              setOptionModalVisible(false);
+              handleCreateBookmark(selectedVerse);
+            }}
+            setOptionModalVisible={setOptionModalVisible}
           />
         </Modal>
       </View>
@@ -1341,7 +1401,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 100,
     textAlignVertical: 'top',
-  }
+  },
 });
 
 export default Reader;
