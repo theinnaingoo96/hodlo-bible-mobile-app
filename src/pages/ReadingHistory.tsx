@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {SectionList, View, Text, StyleSheet, SafeAreaView} from 'react-native';
 import moment from 'moment';
 
-import DatabaseService from '../services/DataService';
+import DatabaseService from '../services/DatabaseService';
 import {AppColors} from '../constants/Color';
 import NormalHeader from '../components/NormalHeader';
 import {useSelector} from 'react-redux';

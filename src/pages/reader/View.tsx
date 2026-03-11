@@ -26,7 +26,7 @@ import {
   setReadingProgress,
 } from '../../store/slices/readerSlice';
 import {useAudioPlayer} from '../../hooks/useAudioPlayer';
-import DatabaseService from '../../services/DataService';
+import DatabaseService from '../../services/DatabaseService';
 
 interface SplitReaderViewProps {
   verses: any[];
@@ -185,7 +185,9 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
   const getScrollRatio = (scrollY: number, from: any, to: any) => {
     const fromScrollable = from.content - from.layout;
     const toScrollable = to.content - to.layout;
-    if (fromScrollable <= 0 || toScrollable <= 0) {return 0;}
+    if (fromScrollable <= 0 || toScrollable <= 0) {
+      return 0;
+    }
     return (scrollY / fromScrollable) * toScrollable;
   };
 
@@ -197,7 +199,9 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
 
   const scrollToIndex = (index: number, animated: boolean = true) => {
     console.log('scroll to index', index);
-    if (index < 0 || index >= verses.length) {return;}
+    if (index < 0 || index >= verses.length) {
+      return;
+    }
 
     // Add a small delay to ensure layout is complete
     setTimeout(() => {
@@ -250,7 +254,9 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
 
   const onTopScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     // console.log('onTopScroll', e);
-    if (isSyncing.current) {return;}
+    if (isSyncing.current) {
+      return;
+    }
     const scrollY = e.nativeEvent.contentOffset.y;
     const syncedY = getScrollRatio(
       scrollY,
@@ -265,7 +271,9 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
 
   const onBottomScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     // console.log('onBottomScroll', e);
-    if (isSyncing.current) {return;}
+    if (isSyncing.current) {
+      return;
+    }
     const scrollY = e.nativeEvent.contentOffset.y;
     const syncedY = getScrollRatio(
       scrollY,
@@ -280,7 +288,9 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
 
   const onLeftScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     // console.log('onLeftScroll', e);
-    if (isSyncing.current) {return;}
+    if (isSyncing.current) {
+      return;
+    }
     const scrollY = e.nativeEvent.contentOffset.y;
     const syncedY = getScrollRatio(
       scrollY,
@@ -294,7 +304,9 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
   };
   const onRightScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     // console.log('onRightScroll', e);
-    if (isSyncing.current) {return;}
+    if (isSyncing.current) {
+      return;
+    }
     const scrollY = e.nativeEvent.contentOffset.y;
     const syncedY = getScrollRatio(
       scrollY,
@@ -381,11 +393,11 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
           // activeOpacity={0.5}
           onLongPress={() => {
             onLongPress(verse);
-              // if (!verse.bookmark) {
-              //     onStartBookmark(verse);
-              // } else {
-              //     onRemoveBookmark(verse.id);
-              // }
+            // if (!verse.bookmark) {
+            //     onStartBookmark(verse);
+            // } else {
+            //     onRemoveBookmark(verse.id);
+            // }
           }}
           // delayLongPress={500}
           onPress={() => {
@@ -413,25 +425,28 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
               />
             )}
           </View>
-          <Text
-            style={[
-              styles.verseText,
-              {
-                fontSize: reader.readerSetting.fontSize,
-                fontFamily:
-                  constants.fontFamily[reader.readerSetting.fontFamily - 1]
-                    .regular,
-                lineHeight:
-                  constants.fontFamily[reader.readerSetting.fontFamily - 1]
-                    .lineHeight,
-                color:
-                  constants.theme[reader.readerSetting.theme - 1].fontColor,
-                backgroundColor: verse.highlight
-                  ? verse.highlight_color
-                  : 'transparent',
-              },
-            ]}>
-            {verse['text_' + language]}
+          <Text style={{paddingLeft: 5, paddingRight: 15}}>
+            <Text
+              style={[
+                styles.verseText,
+                {
+                  fontSize: reader.readerSetting.fontSize,
+                  lineHeight: reader.readerSetting.fontSize * 1.5,
+                  fontFamily:
+                    constants.fontFamily[reader.readerSetting.fontFamily - 1]
+                      .regular,
+                  // lineHeight:
+                  //   constants.fontFamily[reader.readerSetting.fontFamily - 1]
+                  //     .lineHeight,
+                  color:
+                    constants.theme[reader.readerSetting.theme - 1].fontColor,
+                  backgroundColor: verse.highlight
+                    ? verse.highlight_color
+                    : 'transparent',
+                },
+              ]}>
+              {verse['text_' + language]}
+            </Text>
           </Text>
         </TouchableOpacity>
         {language === 'hd' && <View style={{height: 3}} />}
@@ -453,6 +468,31 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
   //         }
   //     });
 
+  const ChapterEndFooterComponent = () => {
+    return (
+      <View style={styles.footerWrapper}>
+        <View style={styles.dividerRow}>
+          <View style={styles.line} />
+          <Text style={styles.ornament}>❦</Text>
+          <View style={styles.line} />
+        </View>
+
+        <Text
+          style={[
+            styles.endOfText,
+            {
+              fontFamily:
+                constants.fontFamily[reader.readerSetting.fontFamily - 1]
+                  .regular,
+            },
+          ]}>
+          Conclusion of {reader.currentRead.bookName} Chapter{' '}
+          {reader.currentRead.chapterNumber}
+        </Text>
+      </View>
+    );
+  };
+
   return (
     <View
       style={[
@@ -473,11 +513,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
           style={{height: topHeight}}
           scrollEventThrottle={16}
           onEndReached={onCompleteChapter}
-          // ListFooterComponent={
-          //     <Button title="Test" onPress={() => {
-          //         console.log('onPress on Button');
-          //     }} />
-          // }
+          ListFooterComponent={ChapterEndFooterComponent}
         />
       ) : dividerMode === 'horizontal' ? (
         <>
@@ -504,6 +540,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
                 (topHeights.current.layout = e.nativeEvent.layout.height)
               }
               onEndReached={onCompleteChapter}
+              ListFooterComponent={ChapterEndFooterComponent}
             />
           </Animated.View>
           <View
@@ -559,6 +596,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
               onLayout={e =>
                 (bottomHeights.current.layout = e.nativeEvent.layout.height)
               }
+              ListFooterComponent={ChapterEndFooterComponent}
             />
           </Animated.View>
         </>
@@ -583,6 +621,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
                 (leftHeights.current.layout = e.nativeEvent.layout.height)
               }
               onEndReached={onCompleteChapter}
+              ListFooterComponent={ChapterEndFooterComponent}
             />
           </Animated.View>
           <View
@@ -625,6 +664,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
               onLayout={e =>
                 (rightHeights.current.layout = e.nativeEvent.layout.height)
               }
+              ListFooterComponent={ChapterEndFooterComponent}
             />
           </Animated.View>
         </>
@@ -792,6 +832,36 @@ const styles = StyleSheet.create({
   fabText: {
     color: '#fff',
     fontWeight: 'bold',
+  },
+  footerWrapper: {
+    paddingTop: 60,
+    paddingBottom: 80,
+    paddingHorizontal: 25,
+    // backgroundColor: '#F9F7F2', // Soft parchment color
+    alignItems: 'center',
+    // borderTopWidth: 1,
+    // borderTopColor: '#E8E4D9',
+  },
+  dividerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  line: {
+    flex: 1,
+    height: 1,
+    backgroundColor: '#D1CDC0',
+  },
+  ornament: {
+    paddingHorizontal: 15,
+    fontSize: 20,
+    color: '#A6A295',
+  },
+  endOfText: {
+    fontSize: 16,
+    color: '#7C786A',
+    fontStyle: 'italic',
+    marginBottom: 40,
   },
 });
 

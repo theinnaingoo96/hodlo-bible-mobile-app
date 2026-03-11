@@ -5,7 +5,7 @@ import Logo from "./icons/Logo";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
-import DatabaseService from "../services/DataService";
+import DatabaseService from "../services/DatabaseService";
 
 interface TabHeaderProps {
     title: string;

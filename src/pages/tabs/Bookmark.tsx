@@ -13,7 +13,7 @@ import {
   Modal,
 } from 'react-native';
 
-import DatabaseService from '../../services/DataService';
+import DatabaseService from '../../services/DatabaseService';
 import CustomAlert from '../../components/CustomAlert';
 import {AppColors} from '../../constants/Color';
 import ShareModal from '../../components/modals/ShareModal';

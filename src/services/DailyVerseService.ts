@@ -1,5 +1,5 @@
 import PushNotification from 'react-native-push-notification';
-import DatabaseService from './DataService';
+import DatabaseService from './DatabaseService';
 
 export const scheduleDailyNotificationold = () => {
     // Cancel all to avoid duplicates

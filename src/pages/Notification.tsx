@@ -4,7 +4,7 @@ import SoundPlayer from 'react-native-sound-player';
 import { View, Text, StyleSheet, SafeAreaView, FlatList, Alert, TouchableOpacity } from 'react-native';
 
 import NormalHeader from '../components/NormalHeader';
-import DatabaseService from '../services/DataService';
+import DatabaseService from '../services/DatabaseService';
 import { AppColors } from '../constants/Color';
 
 const Notification = () => {

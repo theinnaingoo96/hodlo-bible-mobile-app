@@ -9,7 +9,7 @@ import CloseIcon from '../../components/icons/CloseIcon';
 import { AppColors } from '../../constants/Color';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoading } from '../../store/slices/deviceSlice';
-import DatabaseService from '../../services/DataService';
+import DatabaseService from '../../services/DatabaseService';
 
 const Search = ({ navigation }: any) => {
     const device = useSelector((state: any) => state.device);

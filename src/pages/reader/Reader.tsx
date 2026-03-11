@@ -24,7 +24,8 @@ import ReaderSetting from '../../components/ReaderSetting';
 import {testAudioLoading} from '../../utils/audioDebug';
 import {setToast} from '../../store/slices/deviceSlice';
 import ReaderHeader from '../../components/ReaderHeader';
-import DatabaseService from '../../services/DataService';
+import DatabaseService from '../../services/DatabaseService';
+import DataService from '../../services/DatabaseService';
 import CloseIcon from '../../components/icons/CloseIcon';
 import BottomSheet from '../../components/BottomSheet';
 import ColorPicker from '../../components/ColorPicker';
@@ -35,6 +36,7 @@ import {store} from '../../store/store';
 import SplitReaderView from './View';
 import ShareModal from '../../components/modals/ShareModal';
 import OptionModal from '../../components/modals/OptionModal';
+import {getAudioChapter} from '../../services/ApiService';
 
 const Reader = ({navigation, route}: any) => {
   const device = useSelector((state: any) => state.device);
@@ -119,6 +121,7 @@ const Reader = ({navigation, route}: any) => {
   });
   const [currentVerse, setCurrentVerse] = useState(101);
   const [bookmarkNote, setBookmarkNote] = useState('');
+  const [chapterMasterId, setChapterMasterId] = useState(0);
 
   // Monitor currentTime updates
   // useEffect(() => {
@@ -130,6 +133,7 @@ const Reader = ({navigation, route}: any) => {
   useEffect(() => {
     if (route.params.chapter) {
       fetchVerses();
+      fetchChapterMasterId();
     }
     Dimensions.addEventListener('change', ({window: {width, height}}) => {
       if (width < height) {
@@ -155,6 +159,15 @@ const Reader = ({navigation, route}: any) => {
   useEffect(() => {
     // console.log('progress', progress);
   }, [currentTime, duration]);
+
+  const fetchChapterMasterId = () => {
+    DatabaseService.getInstance()
+      .getChapterMasterId(route.params.chapterId)
+      .then((chapterMasterId: any) => {
+        console.log('chapterMasterId from fetchChapterMasterId', chapterMasterId);
+        setChapterMasterId(chapterMasterId);
+      });
+  };
 
   const fetchVerses = () => {
     // console.log('fetchVerses', route.params.chapter);
@@ -702,13 +715,37 @@ const Reader = ({navigation, route}: any) => {
           store.dispatch(
             setToast({
               show: true,
-              message: 'Audio Reader is not available for this book',
+              message: 'Downloading Audio',
               type: 'change',
               duration: constants.toastDuration,
             }),
           );
+          getAudioChapter(chapterMasterId).then((audioReader: any) => {
+            console.log('api call audioReader ', audioReader);
+            if (audioReader) {
+              setPlayerSheetVisible(true);
+            } else {
+              store.dispatch(
+                setToast({
+                  show: true,
+                  message: 'Audio Reader is not available for this chapter',
+                  type: 'change',
+                  duration: constants.toastDuration,
+                }),
+              );
+              setPlayerSheetVisible(false);
+            }
+          });
+          // store.dispatch(
+          //   setToast({
+          //     show: true,
+          //     message: 'Audio Reader is not available for this book',
+          //     type: 'change',
+          //     duration: constants.toastDuration,
+          //   }),
+          // );
+          // setPlayerSheetVisible(false);
         }
-        setPlayerSheetVisible(true);
       })
       .catch((error: any) => {
         console.error('Error getting audio reader:', error);

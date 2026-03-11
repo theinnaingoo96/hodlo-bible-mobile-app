@@ -5,7 +5,7 @@ import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import { View, StyleSheet, Image, Dimensions, Text, ScrollView, TouchableOpacity, Alert, Share } from 'react-native';
 
 import { ReadingProgressCard, VerseOfTheDayCard } from '../../components/HomeComponent';
-import DatabaseService from '../../services/DataService';
+import DatabaseService from '../../services/DatabaseService';
 import { AppColors } from '../../constants/Color';
 
 const { width: screenWidth } = Dimensions.get('window');

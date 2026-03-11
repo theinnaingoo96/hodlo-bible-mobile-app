@@ -742,6 +742,8 @@ export default class DatabaseService {
      * @function updateChapterCompletedAt
      * @function calcReadingProgress
      * @function getReadingHistory
+     * @function getAudioReader
+     * @function getChapterMasterId
     */
 
     public async getChapterIdByBookIdAndChapterNumber(bookId: number, chapterNumber: number): Promise<number | null> {
@@ -791,7 +793,6 @@ export default class DatabaseService {
                     ORDER BY c.number`,
                     [bookName]
                 );
-                // console.log('[DB]results', results.rows.length);
                 const chapters = [];
                 for (let i = 0; i < results.rows.length; i++) {
                     chapters.push({
@@ -799,6 +800,7 @@ export default class DatabaseService {
                         title: results.rows.item(i).title
                     });
                 }
+                // console.log('[DB]results getChaptersByBook', bookName, ' => ', chapters);
                 resolve(chapters);
             } catch (error) {
                 console.error(`[DB] getChaptersByBook error:`, error);
@@ -896,6 +898,24 @@ export default class DatabaseService {
                 resolve(results.rows.item(0));
             } catch (error) {
                 console.error('[DB] getAudioReader error:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async getChapterMasterId(chapterId: number): Promise<number | null> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+            try {
+                const [results] = await this.db.executeSql(`SELECT master_chapter_id FROM ${TABLE_CHAPTERS} WHERE id = ?`, [chapterId]);
+                console.log('[DB] results getChapterMasterId', chapterId , ' => ', results.rows.item(0).master_chapter_id);
+                if (results.rows.length > 0) {
+                    resolve(results.rows.item(0).master_chapter_id);
+                } else {
+                    resolve(null);
+                }
+            } catch (error) {
+                console.error('[DB] getChapterMasterId error:', error);
                 reject(error);
             }
         });

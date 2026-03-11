@@ -4,7 +4,7 @@ import DeviceInfo from "react-native-device-info";
 import { AppColors } from "./src/constants/Color";
 import { useDispatch, useSelector } from 'react-redux';
 import { setDeviceId, setLoginTime } from './src/store/slices/deviceSlice';
-import DatabaseService from "./src/services/DataService";
+import DatabaseService from "./src/services/DatabaseService";
 import { scheduleNotification } from "./src/services/DailyVerseService";
 import { Alert } from 'react-native';
 import permissionService from './src/services/PermissionService';

@@ -13,7 +13,7 @@ import TermsIcon from '../../components/icons/setting/TermsIcon';
 import MoonIcon from '../../components/icons/setting/MoonIcon';
 import InfoIcon from '../../components/icons/setting/InfoIcon';
 import SunIcon from '../../components/icons/setting/SunIcon';
-import DatabaseService from '../../services/DataService';
+import DatabaseService from '../../services/DatabaseService';
 import CustomAlert from '../../components/CustomAlert';
 import { AppColors } from '../../constants/Color';
 

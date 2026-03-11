@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, SafeAreaView } fr
 import ChevonDownIcon from '../../components/icons/ChevonDownIcon';
 import ChevonUpIcon from '../../components/icons/ChevonUpIcon';
 import { setCurrent } from '../../store/slices/readerSlice';
-import DatabaseService from '../../services/DataService';
+import DatabaseService from '../../services/DatabaseService';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppColors } from '../../constants/Color';
 import { CurrentRead } from '../../types/reader';
@@ -31,6 +31,7 @@ const Bible = ({ navigation }: any) => {
     const loadBooks = async () => {
         try {
             DatabaseService.getInstance().getAllBooks().then((result: any) => {
+                console.log('result getAllBooks', result);
                 setBookList(result || []);
                 setOldTestamentBooks(result.filter((book: any) => book.testament === 'OT'));
                 setNewTestamentBooks(result.filter((book: any) => book.testament === 'NT'));
@@ -70,7 +71,7 @@ const Bible = ({ navigation }: any) => {
         setSelectedBookObj(book);
         try {
             DatabaseService.getInstance().getChaptersByBookId(book.id).then((result: any) => {
-                // console.log('result >', result);
+                console.log('result getChaptersByBookId', book.id, ' => ', result);
                 setChapterList(result || []);
             });
         } catch (error) {

@@ -27,7 +27,7 @@ const ReaderSetting = () => {
     }
 
     const handleFontSize = (size: number) => {
-        if (size > 11 && size < 20) {
+        if (size > 11 && size < 41) {
             setActiveSize(size);
             store.dispatch(setReaderFontSize(size));
         }

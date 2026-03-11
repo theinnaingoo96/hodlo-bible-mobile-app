@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, ActivityIndicator, TouchableOpacity } from 'react-native';
-import DatabaseService from '../services/DataService';
+import DatabaseService from '../services/DatabaseService';
 import { AppColors } from '../constants/Color';
 import AppHeader from '../components/AppHeader';
 
