@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -9,6 +9,7 @@ import {
   PermissionsAndroid,
   Platform,
   Alert,
+  ScrollView,
 } from 'react-native';
 import Share from 'react-native-share';
 import ViewShot from 'react-native-view-shot';
@@ -17,7 +18,7 @@ import { launchImageLibrary } from 'react-native-image-picker';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 
 import CloseIcon from '../icons/CloseIcon';
-import {AppColors} from '../../constants/Color';
+import { AppColors } from '../../constants/Color';
 import FontColorPicker from '../FontColorPicker';
 import DeviceInfo from 'react-native-device-info';
 
@@ -33,9 +34,33 @@ const ShareModal = ({
   chapterNumber: number;
 }) => {
   const viewShotRef = useRef<any>(null);
+
+  // -- Editor States --
+  const [editingMode, setEditingMode] = useState<'text' | 'font' | 'ratio' | 'background' | 'adjust'>('ratio');
+  const [aspectRatio, setAspectRatio] = useState<'1:1' | '3:4'>('1:1');
   const [selectedColor, setSelectedColor] = useState({ name: 'White', hex: '#FFFFFF', code: '#FFFFFF' });
   const [blurRadius, setBlurRadius] = useState(5);
+  const [fontSize, setFontSize] = useState(20);
+  const [fontFamily, setFontFamily] = useState('Pretendard-Bold');
+  const [textAlign, setTextAlign] = useState<'center' | 'left' | 'right'>('center');
+  const [brightness, setBrightness] = useState(0.4); // For dark overlay
   const [imageUri, setImageUri] = useState<any>('https://images.unsplash.com/photo-1441974231531-c6227db76b6e');
+  const [textVersion, setTextVersion] = useState<'hd' | 'en' | 'mm'>('hd');
+
+  const screenWidth = Dimensions.get('window').width;
+  const screenHeight = Dimensions.get('window').height;
+  const headerHeight = Platform.OS === 'ios' ? 100 : 80;
+  const navHeight = 80;
+  const controlHeight = 160;
+
+  const availableHeight = screenHeight - headerHeight - navHeight - controlHeight - 40;
+  const previewWidth = screenWidth * 0.95;
+  const targetHeight = aspectRatio === '1:1' ? previewWidth : previewWidth * (4 / 3);
+
+  // Scale down if target height exceeds available height
+  const scale = targetHeight > availableHeight ? availableHeight / targetHeight : 1;
+  const previewHeight = targetHeight * scale;
+  const finalPreviewWidth = previewWidth * scale;
 
   const handleSharePress = async () => {
     try {
@@ -94,10 +119,10 @@ const ShareModal = ({
       );
       return;
     }
-    const result = await launchImageLibrary({mediaType: 'photo'});
+    const result = await launchImageLibrary({ mediaType: 'photo' });
     if (result.assets) {
       setImageUri(result.assets[0].uri);
-    } 
+    }
   };
 
   const handleSaveToDevicePress = async () => {
@@ -119,113 +144,246 @@ const ShareModal = ({
 
   return (
     <View style={styles.shareModalContainer}>
-      <View style={styles.shareModalContentContainer}>
-        <View style={styles.shareModalHeader}>
-          <TouchableOpacity
-            style={styles.imageImportButton}
-            onPress={handleImportImagePress}>
-            <FontAwesome6
-              name="file-import"
-              iconStyle="solid"
-              color={AppColors.appTextBlack}
-              size={15}
-            />
-            <Text style={{fontSize: 12, color: AppColors.appTextBlack}}>
-              Import Image
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleCancelPress}>
-            <CloseIcon name="cross" color={AppColors.appTextBlack} />
+      {/* Top Header */}
+      <View style={styles.shareModalHeader}>
+        <TouchableOpacity onPress={handleCancelPress} style={styles.iconBtn}>
+          <FontAwesome6
+            name="chevron-left"
+            iconStyle="solid"
+            size={20}
+            color={AppColors.primaryDark} />
+        </TouchableOpacity>
+        {/* <Text style={styles.headerTitle}>Create Image</Text> */}
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 15 }}>
+          {/* <TouchableOpacity onPress={handleImportImagePress} style={styles.iconBtn}>
+            <FontAwesome6 name="image" iconStyle="solid" size={20} color="" />
+          </TouchableOpacity> */}
+          <TouchableOpacity onPress={handleSharePress} style={styles.saveBtn}>
+            <Text style={styles.saveBtnText}>Share</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.shareModalContent}>
-          <ViewShot ref={viewShotRef} options={{format: 'png', quality: 0.9}}>
-            {/* <ImageBackground
-              source={{
-                uri: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e',
-              }}
-              style={styles.absoluteBackground}
-              resizeMode="cover"> */}
-            {/* <View style={styles.centered}>
-                <Text style={styles.shareModalContentTitle}>
-                  {selectedVerse.book_name} {selectedVerse.chapter_number}:
-                  {selectedVerse.verse_number}
-                </Text>
-                <Text style={styles.shareModalContentItemText}>
-                  {selectedVerse.text_hd}
-                </Text>
-              </View> */}
-            {/* <View
-                style={[
-                  styles.glassOverlay,
-                  {
-                    backgroundColor: 'rgba(255,255,255,0.5)',
-                  },
-                ]}>
-                <Text style={styles.verseTitle}>
-                  {selectedVerse.book_name} {selectedVerse.chapter_number}:
-                  {selectedVerse.verse_number}
-                </Text>
-                <Text style={styles.verseText}>{selectedVerse.text_hd}</Text>
-              </View>
-            </ImageBackground> */}
-            <View style={styles.cardContainer}>
-              <Image
-                source={{
-                  uri: imageUri,
-                }}
-                style={StyleSheet.absoluteFill}
-                blurRadius={blurRadius}
-              />
+      </View>
 
-              <View style={styles.darkenLayer}>
-                <Text style={[styles.verseTitle, {color: selectedColor.hex}]}>
-                  {bookName} {chapterNumber}:{selectedVerse.number}
-                </Text>
-                <Text style={[styles.verseText, {color: selectedColor.hex}]}>{selectedVerse.text_hd}</Text>
+      {/* Preview Area */}
+      <View style={styles.previewContainer}>
+        <ViewShot ref={viewShotRef} options={{ format: 'png', quality: 1.0 }}>
+          <View style={[styles.cardContainer, { width: finalPreviewWidth, height: previewHeight }]}>
+            <Image
+              source={{ uri: imageUri }}
+              style={StyleSheet.absoluteFill}
+              blurRadius={blurRadius}
+            />
+            <View style={[styles.darkenLayer, { backgroundColor: `rgba(0,0,0,${brightness})` }]}>
+              <Text style={[
+                styles.verseText,
+                {
+                  color: selectedColor.hex,
+                  fontSize: fontSize * scale,
+                  fontFamily: fontFamily,
+                  textAlign: textAlign,
+                  width: '90%'
+                }
+              ]}>
+                {selectedVerse[`text_${textVersion}`]}
+              </Text>
+              <Text style={[
+                styles.verseTitle,
+                {
+                  color: selectedColor.hex,
+                  fontSize: 16 * scale,
+                  fontFamily: fontFamily,
+                  marginTop: 15 * scale,
+                }
+              ]}>
+                {bookName} {chapterNumber}:{selectedVerse.number}
+              </Text>
+            </View>
+          </View>
+        </ViewShot>
+      </View>
+
+      {/* Editing Controls */}
+      <View style={styles.controlCenter}>
+        <ScrollView
+          contentContainerStyle={styles.modeControlsContainer}
+          showsVerticalScrollIndicator={false}>
+          {editingMode === 'ratio' && (
+            <View style={styles.modeControls}>
+              <TouchableOpacity
+                style={[styles.ratioOption, aspectRatio === '1:1' && styles.activeRatio]}
+                onPress={() => setAspectRatio('1:1')}>
+                <Text style={styles.ratioText}>1:1</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.ratioOption, aspectRatio === '3:4' && styles.activeRatio]}
+                onPress={() => setAspectRatio('3:4')}>
+                <Text style={styles.ratioText}>3:4</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+
+          {editingMode === 'text' && (
+            <View style={styles.modeControlsSliders}>
+              <View style={styles.sliderRow}>
+                <View style={styles.sliderIconBox}>
+                  <FontAwesome6 name="text-height" iconStyle="solid" size={14} color={AppColors.appTextBlack} />
+                </View>
+                <Slider
+                  value={fontSize}
+                  onValueChange={setFontSize}
+                  minimumValue={14}
+                  maximumValue={40}
+                  step={1}
+                  style={styles.modeSlider}
+                  minimumTrackTintColor={AppColors.primary}
+                  thumbTintColor={AppColors.primary}
+                />
+              </View>
+              <View style={styles.segmentedContainer}>
+                {(['left', 'center', 'right'] as const).map((align) => (
+                  <TouchableOpacity
+                    key={align}
+                    onPress={() => setTextAlign(align)}
+                    style={[
+                      styles.segmentedBtn,
+                      textAlign === align && styles.activeSegmentedBtn
+                    ]}>
+                    <FontAwesome6
+                      name={`align-${align}`}
+                      iconStyle="solid"
+                      size={16}
+                      color={textAlign === align ? 'white' : AppColors.appTextBlack}
+                    />
+                  </TouchableOpacity>
+                ))}
+              </View>
+              <View style={styles.segmentedContainer}>
+                {[
+                  { label: 'Ho Dlo', value: 'hd' },
+                  { label: 'Myanmar', value: 'mm' },
+                  { label: 'English', value: 'en' },
+                ].map((v) => (
+                  <TouchableOpacity
+                    key={v.value}
+                    onPress={() => setTextVersion(v.value as any)}
+                    style={[
+                      styles.segmentedBtn,
+                      textVersion === v.value && styles.activeSegmentedBtn
+                    ]}>
+                    <Text style={[
+                      styles.versionText,
+                      textVersion === v.value && { color: 'white' }
+                    ]}>{v.label}</Text>
+                  </TouchableOpacity>
+                ))}
               </View>
             </View>
-          </ViewShot>
+          )}
 
-          <View style={{marginVertical: 20}}>
-            <Text
-              style={styles.titleText}>
-              Background Blur Effect: {blurRadius}%
-            </Text>
-            <Slider
-              value={blurRadius}
-              onValueChange={value => setBlurRadius(value)}
-              minimumValue={0}
-              maximumValue={25}
-              step={1}
-              minimumTrackTintColor={AppColors.primary || '#4791db'}
-              maximumTrackTintColor="#d3d3d3"
-              thumbTintColor={AppColors.primary || '#4791db'}
-              style={styles.slider}
-            />
-          </View>
+          {editingMode === 'font' && (
+            <View style={styles.fontModeWrapper}>
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.fontScrollContent}>
+                {[
+                  { name: 'Pretendard', id: 'Pretendard-Bold' },
+                  { name: 'Noto Sans', id: 'NotoSansMyanmar-Regular' },
+                  { name: 'Pyidaungsu', id: 'Pyidaungsu-Bold' },
+                ].map((f) => (
+                  <TouchableOpacity
+                    key={f.id}
+                    onPress={() => setFontFamily(f.id)}
+                    style={[
+                      styles.fontCard,
+                      fontFamily === f.id && styles.activeFontCard
+                    ]}>
+                    <Text style={[
+                      styles.fontCardPreview,
+                      { fontFamily: f.id },
+                      fontFamily === f.id && { color: 'white' }
+                    ]}>Aa</Text>
+                    <Text style={[
+                      styles.fontCardName,
+                      fontFamily === f.id && { color: 'white' }
+                    ]}>{f.name}</Text>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+            </View>
+          )}
 
-          <FontColorPicker
-            selectedColor={selectedColor.hex}
-            style={styles.colorPicker}
-            onSelect={color => setSelectedColor(color)}
-          />
-        </View>
+          {editingMode === 'background' && (
+            <View style={styles.modeControlsScroll}>
+              <TouchableOpacity style={styles.importBtn} onPress={handleImportImagePress}>
+                <FontAwesome6 name="image" iconStyle="solid" size={18} color={AppColors.appTextBlack} />
+                <Text style={styles.importBtnText}>Change Background</Text>
+              </TouchableOpacity>
+              <FontColorPicker
+                showLabel={false}
+                selectedColor={selectedColor.hex}
+                onSelect={setSelectedColor}
+                style={styles.subColorPicker}
+                isDarkMode={false}
+              />
+            </View>
+          )}
 
-        <View style={styles.shareModalFooter}>
-          <TouchableOpacity
-            style={styles.shareModalCancelButton}
-            onPress={handleCancelPress}>
-            <Text style={styles.shareModalFooterButtonText}>
-              Cancel
-            </Text>  
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.shareModalOKButton}
-            onPress={handleSharePress}>
-            <Text style={styles.shareModalFooterButtonText}>Share Image</Text>
-          </TouchableOpacity>
-        </View>
+          {editingMode === 'adjust' && (
+            <View style={styles.modeControlsSliders}>
+              <View style={styles.sliderRow}>
+                <FontAwesome6 name="sun"
+                  iconStyle="solid" size={16} color={AppColors.appTextBlack} />
+                <Slider
+                  value={brightness}
+                  onValueChange={setBrightness}
+                  minimumValue={0}
+                  maximumValue={0.9}
+                  style={styles.modeSlider}
+                  minimumTrackTintColor={AppColors.primary}
+                  thumbTintColor={AppColors.primary}
+                />
+              </View>
+              <View style={styles.sliderRow}>
+                <FontAwesome6 name="droplet"
+                  iconStyle="solid" size={16} color={AppColors.appTextBlack} />
+                <Slider
+                  value={blurRadius}
+                  onValueChange={setBlurRadius}
+                  minimumValue={0}
+                  maximumValue={20}
+                  style={styles.modeSlider}
+                  minimumTrackTintColor={AppColors.primary}
+                  thumbTintColor={AppColors.primary}
+                />
+              </View>
+            </View>
+          )}
+        </ScrollView>
+      </View>
+
+      {/* Bottom Nav */}
+      <View style={styles.bottomNav}>
+        <TouchableOpacity onPress={() => setEditingMode('text')} style={[styles.navItem, editingMode === 'text' && styles.activeNavItem]}>
+          {/* <Text style={styles.navIconText}>Tt</Text> */}
+          <FontAwesome6 name="font-awesome" iconStyle="solid" size={20} color={AppColors.appTextBlack} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setEditingMode('font')} style={[styles.navItem, editingMode === 'font' && styles.activeNavItem]}>
+          {/* <Text style={styles.navIconTextLarge}>AA</Text> */}
+          <FontAwesome6 name="font" iconStyle="solid" size={20} color={AppColors.appTextBlack} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setEditingMode('ratio')} style={[styles.navItem, editingMode === 'ratio' && styles.activeNavItem]}>
+          <FontAwesome6 name="crop"
+            iconStyle="solid" size={20} color={AppColors.appTextBlack} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setEditingMode('background')} style={[styles.navItem, editingMode === 'background' && styles.activeNavItem]}>
+          <FontAwesome6 name="image"
+            iconStyle="solid" size={20} color={AppColors.appTextBlack} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setEditingMode('adjust')} style={[styles.navItem, editingMode === 'adjust' && styles.activeNavItem]}>
+          <FontAwesome6 name="sliders"
+            iconStyle="solid" size={20} color={AppColors.appTextBlack} />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -234,173 +392,249 @@ const ShareModal = ({
 const styles = StyleSheet.create({
   shareModalContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#00000080',
-  },
-  shareModalContentContainer: {
-    backgroundColor: 'white',
-    padding: 20,
-    borderRadius: 10,
-    width: '90%',
+    backgroundColor: AppColors.appBackgroundGrey,
   },
   shareModalHeader: {
     flexDirection: 'row',
-    // justifyContent: 'space-between',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: '100%',
-    padding: 10,
+    paddingHorizontal: 20,
+    paddingTop: Platform.OS === 'ios' ? 60 : 20,
+    paddingBottom: 20,
   },
-  shareModalTitle: {
-    fontSize: 17,
-    fontWeight: 'bold',
-    color: AppColors.appTextBlack,
-  },
-  shareModalCloseButton: {
-    fontSize: 16,
-    color: AppColors.appTextBlack,
-  },
-  shareModalContent: {
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-  },
-  shareModalContentTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: AppColors.appTextBlack,
-    marginBottom: 13,
-  },
-  shareModalContentList: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  shareModalContentItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
-    padding: 10,
-  },
-  shareModalFooter: {
-    flexDirection: 'row',
-    gap: 16,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
-  },
-  shareModalOKButton: {
-    backgroundColor: AppColors.primaryDark,
-    padding: 10,
-    borderRadius: 5,
-    width: '45%',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  shareModalCancelButton: {
-    backgroundColor: AppColors.lightGrey,
-    padding: 10,
-    borderRadius: 5,
-    width: '45%',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  shareModalFooterButtonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  shareModalContentItemText: {
-    fontSize: 16,
-    color: AppColors.appTextBlack,
-    marginBottom: 35,
-  },
-  colorPicker: {
-    marginBottom: 25,
-  },
-  absoluteBackground: {
-    width: '100%',
-    height: Dimensions.get('window').width * 0.5,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  centered: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  absolute: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-  },
-  glassOverlay: {
-    width: '90%',
-    padding: 20,
-    borderRadius: 15,
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.4)',
-    // The trick is the combination of a light background and a border
-    backgroundColor: 'rgba(255,255,255,0.25)',
-  },
-  darkenLayer: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.3)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  verseTitle: {
+  headerTitle: {
     color: 'white',
     fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: {width: -1, height: 1},
-    textShadowRadius: 10,
+    fontWeight: '600',
+  },
+  iconBtn: {
+    padding: 5,
+  },
+  saveBtn: {
+    backgroundColor: AppColors.primaryDark,
+    paddingHorizontal: 15,
+    paddingVertical: 6,
+    borderRadius: 15,
+  },
+  saveBtnText: {
+    color: 'white',
+    fontWeight: '600',
+  },
+  previewContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  cardContainer: {
+    backgroundColor: '#1E1E1E',
+    overflow: 'hidden',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  darkenLayer: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 30,
   },
   verseText: {
     color: 'white',
-    fontSize: 16,
     textAlign: 'center',
-    marginTop: 10,
+    lineHeight: 32,
   },
-  cardContainer: {
-    width: Dimensions.get('window').width * 0.8,
-    height: 300,
-    // borderRadius: 20,
-    overflow: 'hidden',
-    alignSelf: 'center',
+  verseTitle: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: '600',
+    textAlign: 'center',
   },
-
-  slider: {
-    width: Dimensions.get('window').width * 0.8,
-    alignSelf: 'center',
-    height: 40,
-    marginHorizontal: 8,
+  controlCenter: {
+    height: 160,
+    justifyContent: 'center',
   },
-  imageImportButton: {
+  modeControlsContainer: {
+    paddingVertical: 10,
+    justifyContent: 'center',
+  },
+  modeControls: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 20,
+  },
+  modeControlsSliders: {
+    paddingHorizontal: 30,
+    gap: 15,
+  },
+  modeControlsScroll: {
+    alignItems: 'center',
+    gap: 10,
+  },
+  sliderRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
-    backgroundColor: AppColors.primaryTint,
-    paddingVertical: 3,
-    paddingHorizontal: 10,
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 4,
+    gap: 15,
   },
-  titleText: {
-    fontSize: 14,
-    marginBottom: 10,
+  modeSlider: {
+    flex: 1,
+    height: 40,
+  },
+  sliderIconBox: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: 'rgba(0,0,0,0.05)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  segmentedContainer: {
+    flexDirection: 'row',
+    backgroundColor: 'rgba(0,0,0,0.05)',
+    borderRadius: 10,
+    padding: 4,
+    marginTop: 5,
+  },
+  segmentedBtn: {
+    flex: 1,
+    height: 36,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 8,
+  },
+  activeSegmentedBtn: {
+    backgroundColor: AppColors.primaryDark,
+  },
+  fontModeWrapper: {
+    // height: 450,
+    justifyContent: 'center',
+    backgroundColor: 'red'
+  },
+  fontScrollContent: {
+    paddingHorizontal: 20,
+    gap: 15,
+  },
+  fontCard: {
+    width: 90,
+    height: 80,
+    backgroundColor: 'white',
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.1)',
+    shadowColor: '#000',
+    shadowOpacity: 0.05,
+    shadowRadius: 5,
+    elevation: 2,
+  },
+  activeFontCard: {
+    backgroundColor: AppColors.primaryDark,
+    borderColor: AppColors.primaryDark,
+  },
+  fontCardPreview: {
+    fontSize: 24,
     color: AppColors.appTextBlack,
-    alignSelf: 'flex-start',
-  }
+    marginBottom: 4,
+  },
+  fontCardName: {
+    fontSize: 10,
+    color: 'gray',
+    fontWeight: '500',
+  },
+  versionText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: AppColors.appTextBlack,
+  },
+  ratioOption: {
+    width: 60,
+    height: 60,
+    borderWidth: 2,
+    borderColor: AppColors.appTextBlack,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  activeRatio: {
+    backgroundColor: AppColors.primary,
+    borderColor: AppColors.primary,
+  },
+  ratioText: {
+    color: AppColors.appTextBlack,
+    fontWeight: 'bold',
+  },
+  alignRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 30,
+    marginTop: 10,
+  },
+  alignBtn: {
+    padding: 8,
+    borderRadius: 8,
+  },
+  activeAlignBtn: {
+    backgroundColor: 'rgba(255,255,255,0.3)',
+  },
+  fontOption: {
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(255,255,255,0.1)',
+  },
+  fontOptionText: {
+    color: AppColors.appTextBlack,
+    fontSize: 16,
+  },
+  importBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    backgroundColor: AppColors.primaryDark,
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    borderRadius: 25,
+    marginBottom: 10,
+    shadowColor: '#000',
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    elevation: 5,
+  },
+  importBtnText: {
+    color: 'white',
+    fontSize: 14,
+  },
+  subColorPicker: {
+    height: 60,
+    marginTop: 10
+  },
+  bottomNav: {
+    flexDirection: 'row',
+    height: 80,
+    backgroundColor: AppColors.appBackgroundGrey,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    paddingBottom: Platform.OS === 'ios' ? 20 : 10,
+  },
+  navItem: {
+    width: 50,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 25,
+  },
+  activeNavItem: {
+    backgroundColor: 'rgba(255,255,255,0.1)',
+  },
+  navIconText: {
+    color: AppColors.appTextBlack,
+    fontSize: 22,
+    fontWeight: 'bold',
+  },
+  navIconTextLarge: {
+    color: AppColors.appTextBlack,
+    fontSize: 24,
+    fontWeight: '300',
+  },
 });
 
 export default ShareModal;

@@ -23,4 +23,5 @@ export const AppColors = {
     grey: "#808080",
     lightGrey: "#D3D3D3",
     lightGreyTint: "#E0E0E0",
+    darkGrey: "#666666",
 }

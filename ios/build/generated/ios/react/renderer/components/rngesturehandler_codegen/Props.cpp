@@ -33,9 +33,9 @@ RNGestureHandlerButtonProps::RNGestureHandlerButtonProps(
 RNGestureHandlerRootViewProps::RNGestureHandlerRootViewProps(
     const PropsParserContext &context,
     const RNGestureHandlerRootViewProps &sourceProps,
-    const RawProps &rawProps): ViewProps(context, sourceProps, rawProps)
+    const RawProps &rawProps): ViewProps(context, sourceProps, rawProps),
 
-    
+    unstable_forceActive(convertRawProp(context, rawProps, "unstable_forceActive", sourceProps.unstable_forceActive, {false}))
       {}
 
 } // namespace facebook::react

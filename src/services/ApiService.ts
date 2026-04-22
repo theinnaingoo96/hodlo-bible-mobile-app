@@ -6,6 +6,11 @@ export const getBooks = async () => {
   return response.data;
 };
 
+export const getBookDetail = async (bookId: number) => {
+  const response = await api.get(`/books/${bookId}/detail`);
+  return response.data;
+}
+
 export const getChapters = async (bookId: number) => {
   const response = await api.get(`/books/${bookId}/chapters`);
   return response.data;

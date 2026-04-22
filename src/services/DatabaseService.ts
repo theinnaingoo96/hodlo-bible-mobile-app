@@ -275,7 +275,7 @@ export default class DatabaseService {
                 dispatch(setDownloadProgress(0));
                 const bookData = await getBooks();
                 console.log('[DB]bookData', bookData);
-                
+
                 let chapterCountForProgress = 0;
 
                 await this.db.executeSql('BEGIN TRANSACTION');
@@ -903,12 +903,51 @@ export default class DatabaseService {
         });
     }
 
+    public async updateChapterAudioPath(chapterId: number, audioPath: string): Promise<void> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+            try {
+                await this.db.executeSql(
+                    `UPDATE ${TABLE_CHAPTERS} SET audio_path = ? WHERE master_chapter_id = ?`,
+                    [audioPath, chapterId]
+                );
+                console.log(`[DB] Updated audio_path for chapter ${chapterId} to ${audioPath}`);
+                resolve();
+            } catch (error) {
+                console.error('[DB] updateChapterAudioPath error:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async updateVersesAudioData(audioVerses: any[]): Promise<void> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) throw new Error('Database not initialized');
+            try {
+                for (const verse of audioVerses) {
+                    const { verseId, startMs, endMs } = verse;
+                    if (verseId && startMs !== undefined && endMs !== undefined) {
+                        await this.db.executeSql(
+                            `UPDATE ${TABLE_VERSES} SET audio_from = ?, audio_to = ? WHERE master_verse_id = ?`,
+                            [startMs, endMs, verseId]
+                        );
+                    }
+                }
+                console.log(`[DB] Updated audio timings for ${audioVerses.length} verses`);
+                resolve();
+            } catch (error) {
+                console.error('[DB] updateVersesAudioData error:', error);
+                reject(error);
+            }
+        });
+    }
+
     public async getChapterMasterId(chapterId: number): Promise<number | null> {
         return new Promise(async (resolve, reject) => {
             if (!this.db) throw new Error('Database not initialized');
             try {
                 const [results] = await this.db.executeSql(`SELECT master_chapter_id FROM ${TABLE_CHAPTERS} WHERE id = ?`, [chapterId]);
-                console.log('[DB] results getChapterMasterId', chapterId , ' => ', results.rows.item(0).master_chapter_id);
+                console.log('[DB] results getChapterMasterId', chapterId, ' => ', results.rows.item(0).master_chapter_id);
                 if (results.rows.length > 0) {
                     resolve(results.rows.item(0).master_chapter_id);
                 } else {
@@ -1387,6 +1426,67 @@ export default class DatabaseService {
         });
     }
 
+    public async getRandomVerses(count: number): Promise<any[]> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) {
+                try {
+                    this.db = await SQLite.openDatabase({
+                        name: DATABASE_NAME,
+                        location: 'default',
+                    });
+                } catch (error) {
+                    console.error('[DB] Error initializing database:', error);
+                    reject(error);
+                    return;
+                }
+            }
+            try {
+                const [results] = await this.db.executeSql(
+                    `SELECT v.*, b.name as book_name, c.number as chapter_number 
+                     FROM ${TABLE_VERSES} v
+                     JOIN ${TABLE_CHAPTERS} c ON v.chapter_id = c.id
+                     JOIN ${TABLE_BOOKS} b ON c.book_id = b.id
+                     ORDER BY RANDOM() LIMIT ?`,
+                    [count]
+                );
+                const verses = [];
+                for (let i = 0; i < results.rows.length; i++) {
+                    verses.push(results.rows.item(i));
+                }
+                resolve(verses);
+            } catch (error) {
+                console.error('[DB] getRandomVerses error:', error);
+                reject(error);
+            }
+        });
+    }
+
+    public async getFutureNotificationCount(): Promise<number> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.db) {
+                try {
+                    this.db = await SQLite.openDatabase({
+                        name: DATABASE_NAME,
+                        location: 'default',
+                    });
+                } catch (error) {
+                    console.error('[DB] Error initializing database:', error);
+                    reject(error);
+                    return;
+                }
+            }
+            try {
+                const [results] = await this.db.executeSql(
+                    `SELECT COUNT(*) as count FROM ${TABLE_NOTIFICATIONS} WHERE planned_at > CURRENT_TIMESTAMP`
+                );
+                resolve(results.rows.item(0).count || 0);
+            } catch (error) {
+                console.error('[DB] getFutureNotificationCount error:', error);
+                reject(error);
+            }
+        });
+    }
+
     public async clearNotificationAll(): Promise<any> {
         return new Promise(async (resolve, reject) => {
             if (!this.db) throw new Error('Database not initialized');
@@ -1457,9 +1557,9 @@ export default class DatabaseService {
                                  WHERE id = ?`,
                                 [audio_from, audio_to, id]
                             );
-                            console.log('[DB] seed audio', pindex, id, res);
+                            // console.log('[DB] seed audio', pindex, id, res);
                         }
-                        console.log('[DB] Updated Psalm 23 verse audio milestones');
+                        // console.log('[DB] Updated Psalm 23 verse audio milestones');
                     }
                     resolve(true);
                 } else {
@@ -1532,7 +1632,7 @@ export default class DatabaseService {
                                  WHERE id = ?`,
                                 [audio_from, audio_to, id]
                             );
-                            console.log('[DB] seed audio', pindex, id, res);
+                            // console.log('[DB] seed audio', pindex, id, res);
                         }
                         console.log('[DB] Updated Psalm 24 verse audio milestones');
                     }

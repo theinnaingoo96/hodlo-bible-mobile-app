@@ -1,5 +1,5 @@
-import {useSelector} from 'react-redux';
-import {useEffect, useState} from 'react';
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import Slider from '@react-native-community/slider';
 import {
   View,
@@ -14,31 +14,31 @@ import {
   TextInput,
 } from 'react-native';
 import Clipboard from '@react-native-clipboard/clipboard';
-import {GestureDetector, Gesture} from 'react-native-gesture-handler';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
-import SoundPlayer from 'react-native-sound-player';
 
-import {setCurrent} from '../../store/slices/readerSlice';
-import {useAudioPlayer} from '../../hooks/useAudioPlayer';
+import { setCurrent } from '../../store/slices/readerSlice';
+import { useAudioPlayer } from '../../hooks/useAudioPlayer';
 import ReaderSetting from '../../components/ReaderSetting';
-import {testAudioLoading} from '../../utils/audioDebug';
-import {setToast} from '../../store/slices/deviceSlice';
+import { testAudioLoading } from '../../utils/audioDebug';
+import { setToast } from '../../store/slices/deviceSlice';
 import ReaderHeader from '../../components/ReaderHeader';
 import DatabaseService from '../../services/DatabaseService';
-import DataService from '../../services/DatabaseService';
 import CloseIcon from '../../components/icons/CloseIcon';
 import BottomSheet from '../../components/BottomSheet';
 import ColorPicker from '../../components/ColorPicker';
-import {AppColors} from '../../constants/Color';
-import {constants} from '../../constants/Data';
-import {CurrentRead} from '../../types/reader';
-import {store} from '../../store/store';
+import { AppColors } from '../../constants/Color';
+import { constants } from '../../constants/Data';
+import { CurrentRead } from '../../types/reader';
+import { store } from '../../store/store';
 import SplitReaderView from './View';
 import ShareModal from '../../components/modals/ShareModal';
 import OptionModal from '../../components/modals/OptionModal';
-import {getAudioChapter} from '../../services/ApiService';
+import { getAudioChapter } from '../../services/ApiService';
+import audioPlayer from '../../services/AudioPlayerService';
+import fileDownloadService from '../../services/FileDownloadService';
+import { setDownloadProgress } from '../../store/slices/deviceSlice';
 
-const Reader = ({navigation, route}: any) => {
+const Reader = ({ navigation, route }: any) => {
   const device = useSelector((state: any) => state.device);
   const reader = useSelector((state: any) => state.reader);
   const params = route.params;
@@ -119,9 +119,11 @@ const Reader = ({navigation, route}: any) => {
     hex: 'rgba(255, 59, 48, 0.7)',
     code: 'rgba(244, 67, 54, 0.2)',
   });
-  const [currentVerse, setCurrentVerse] = useState(101);
+  const [currentVerse, setCurrentVerse] = useState(params.chapter || 101);
   const [bookmarkNote, setBookmarkNote] = useState('');
   const [chapterMasterId, setChapterMasterId] = useState(0);
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [downloadProgressValue, setDownloadProgressValue] = useState(0);
 
   // Monitor currentTime updates
   // useEffect(() => {
@@ -135,7 +137,7 @@ const Reader = ({navigation, route}: any) => {
       fetchVerses();
       fetchChapterMasterId();
     }
-    Dimensions.addEventListener('change', ({window: {width, height}}) => {
+    Dimensions.addEventListener('change', ({ window: { width, height } }) => {
       if (width < height) {
         console.log('PORTRAIT');
       } else {
@@ -147,13 +149,6 @@ const Reader = ({navigation, route}: any) => {
   useEffect(() => {
     console.log('verses from Reader 2', verses, route.params);
     // fetchVerses();
-    SoundPlayer.addEventListener('FinishedPlaying', data => {
-      console.log('FinishedPlaying', data);
-      setCurrentVerse(currentVerse + 1);
-      // setTimeout(() => {
-      //     playPsalm23Audio()
-      // }, 100);
-    });
   }, []);
 
   useEffect(() => {
@@ -237,7 +232,7 @@ const Reader = ({navigation, route}: any) => {
       'Remove Bookmark',
       'Are you sure you want to remove this bookmark?',
       [
-        {text: 'Cancel', style: 'cancel'},
+        { text: 'Cancel', style: 'cancel' },
         {
           text: 'Remove',
           onPress: () => {
@@ -296,7 +291,7 @@ const Reader = ({navigation, route}: any) => {
       'Remove Highlight',
       'Are you sure you want to remove this highlight?',
       [
-        {text: 'Cancel', style: 'cancel'},
+        { text: 'Cancel', style: 'cancel' },
         {
           text: 'Remove',
           onPress: () => {
@@ -493,52 +488,8 @@ const Reader = ({navigation, route}: any) => {
     console.log('Audio test result:', result);
   };
 
-  // Audio control functions
-  const playAudio = async () => {
-    try {
-      // Check if audio player is available
-      if (error && error.includes('not available')) {
-        console.log(
-          '[AUDIO] Audio player not available, skipping audio playback',
-        );
-        return;
-      }
-      // await playPsalm101();
-
-      // First test audio loading
-      // await testAudio();
-      console.log('currentVerse', currentVerse);
-      // Determine which Psalm to play based on current chapter
-      const chapterNumber = currentVerse;
-      switch (chapterNumber) {
-        case 101:
-          await playPsalm101();
-          break;
-        case 102:
-          await playPsalm102();
-          break;
-        case 103:
-          await playPsalm103();
-          break;
-        case 104:
-          await playPsalm104();
-          break;
-        case 105:
-          await playPsalm105();
-          break;
-        case 106:
-          await playPsalm106();
-          break;
-        default:
-          // Default to Psalm 101 if chapter doesn't match
-          await playPsalm101();
-      }
-      // setCurrentVerse(chapterNumber);
-    } catch (error) {
-      console.error('Error playing audio:', error);
-    }
-  };
-
+  /*
+  // OLD FLOW - Blocked to use new API download flow
   const playPsalmAudio = async () => {
     console.log('playPsalmAudio', params.book);
 
@@ -576,6 +527,7 @@ const Reader = ({navigation, route}: any) => {
       );
     }
   };
+  */
 
   // const playPsalm24Audio = async () => {
   //     try {
@@ -596,15 +548,15 @@ const Reader = ({navigation, route}: any) => {
       pause();
     } else {
       if (currentTime == 0) {
-        // await playPsalm23();
-        await playPsalmAudio();
+        // Updated to use new flow's play method
+        await play();
       } else {
         resume();
       }
     }
   };
 
-  const handleResume = async () => {};
+  const handleResume = async () => { };
 
   const handleStop = () => {
     stop();
@@ -670,24 +622,23 @@ const Reader = ({navigation, route}: any) => {
         text =
           selectedVerse.text_hd +
           '\n\n' +
-          selectedVerse['text_' + device.language];
+          selectedVerse['text_' + (device.language === 'hodlo' ? 'hd' : device.language)];
       } else {
-        text = selectedVerse['text_' + device.language];
+        text = selectedVerse['text_' + (device.language === 'hodlo' ? 'hd' : device.language)];
       }
       Clipboard.setString(text || '');
     }
     store.dispatch(
       setToast({
         show: true,
-        message: `${
-          index == 3
-            ? 'Both versions'
-            : index == 2
+        message: `${index == 3
+          ? 'Both versions'
+          : index == 2
             ? 'Myanmar version'
             : index == 1
-            ? 'English version'
-            : 'Ho Dlo version'
-        } copied to clipboard`,
+              ? 'English version'
+              : 'Ho Dlo version'
+          } copied to clipboard`,
         type: 'success',
         duration: constants.toastDuration,
       }),
@@ -705,130 +656,122 @@ const Reader = ({navigation, route}: any) => {
 
   const handleAudioReaderPress = async () => {
     console.log('handleAudioReaderPress', params, params.chapterId);
-    DatabaseService.getInstance()
-      .getAudioReader(params.bookId, params.chapterId)
-      .then((audioReader: any) => {
-        console.log('audioReader', audioReader);
-        if (audioReader) {
-          setPlayerSheetVisible(true);
-        } else {
-          store.dispatch(
-            setToast({
-              show: true,
-              message: 'Downloading Audio',
-              type: 'change',
-              duration: constants.toastDuration,
-            }),
-          );
-          getAudioChapter(chapterMasterId).then((audioReader: any) => {
-            console.log('api call audioReader ', audioReader);
-            if (audioReader) {
-              setPlayerSheetVisible(true);
-            } else {
-              store.dispatch(
-                setToast({
-                  show: true,
-                  message: 'Audio Reader is not available for this chapter',
-                  type: 'change',
-                  duration: constants.toastDuration,
-                }),
-              );
-              setPlayerSheetVisible(false);
-            }
-          });
-          // store.dispatch(
-          //   setToast({
-          //     show: true,
-          //     message: 'Audio Reader is not available for this book',
-          //     type: 'change',
-          //     duration: constants.toastDuration,
-          //   }),
-          // );
-          // setPlayerSheetVisible(false);
-        }
-      })
-      .catch((error: any) => {
-        console.error('Error getting audio reader:', error);
-        store.dispatch(
-          setToast({
-            show: true,
-            message: 'Error getting audio reader',
-            type: 'error',
-            duration: constants.toastDuration,
-          }),
+
+    try {
+      const audioReader = await DatabaseService.getInstance().getAudioReader(
+        params.bookId,
+        params.chapter,
+      );
+
+      let localFileExists = false;
+      let finalPath = '';
+
+      if (audioReader && audioReader.audio_path) {
+        // Check if the file actually exists on the disk
+        finalPath = fileDownloadService.getDownloadPath(audioReader.audio_path);
+        localFileExists = await fileDownloadService.fileExists(
+          audioReader.audio_path,
         );
-        setPlayerSheetVisible(false);
-      });
-  };
-
-  const AudioVerseComponent = ({verses}: any) => {
-    // console.log('AudioVerseComponent', verses);
-    // Define time ranges for each verse in the audio (Psalm 23:00)
-    // const audio23 = [
-    //     { from: '00:00', to: '00:05' }, // Verse 1
-    //     { from: '00:05', to: '00:13' }, // Verse 2
-    //     { from: '00:13', to: '00:24' }, // Verse 3
-    //     { from: '00:24', to: '00:37' }, // Verse 4
-    //     { from: '00:37', to: '00:48' }, // Verse 5
-    //     { from: '00:48', to: '00:58' }  // Verse 6
-    // ];
-
-    // Convert time string (MM:SS) to seconds
-    const timeToSeconds = (timeStr: string): number => {
-      const [minutes, seconds] = timeStr
-        ? timeStr.split(':').map(Number)
-        : [0, 0];
-      return minutes * 60 + seconds;
-    };
-
-    // Find which verse should be displayed based on currentTime
-    const getCurrentVerseIndex = (): number => {
-      for (let i = 0; i < verses.length; i++) {
-        const fromSeconds = timeToSeconds(verses[i].audio_from);
-        const toSeconds = timeToSeconds(verses[i].audio_to);
-
-        if (currentTime >= fromSeconds && currentTime <= toSeconds) {
-          return i;
-        }
       }
-      return -1; // No verse matches current time
-    };
 
-    const currentVerseIndex = getCurrentVerseIndex();
+      if (localFileExists) {
+        console.log('[AUDIO] Playing from local storage:', finalPath);
+        // Load the local file into the player
+        await audioPlayer.loadAudio(finalPath);
+        setPlayerSheetVisible(true);
+        return;
+      }
 
-    // Display the verse if we have verses data and found a matching index
-    if (!verses || !Array.isArray(verses) || verses.length === 0) {
-      return null;
+      console.log('[AUDIO] Local file not found, fetching from API...');
+      setIsDownloading(true);
+      setDownloadProgressValue(0);
+
+      store.dispatch(
+        setToast({
+          show: true,
+          message: 'Downloading Bible audio for offline use...',
+          type: 'change',
+          duration: 3000,
+        }),
+      );
+
+      const apiResult = await getAudioChapter(chapterMasterId);
+      console.log('[AUDIO] API result:', apiResult);
+
+      // 3.5 Sync verse timings if provided
+      if (apiResult?.verses && apiResult.verses.length > 0) {
+        console.log('[AUDIO] Syncing verse timings from API...');
+        await DatabaseService.getInstance().updateVersesAudioData(apiResult.verses);
+        // Refresh verses to enable highlighting immediately
+        fetchVerses();
+      }
+
+      const downloadUrl = apiResult?.audioUrl || apiResult?.url;
+      if (!downloadUrl) {
+        throw new Error('Audio not available for this chapter');
+      }
+
+      let fullDownloadUrl = downloadUrl;
+      if (downloadUrl.startsWith('/')) {
+        // The base URL in Axios is GathenGpudlo.com/api, but the audio stream is likely at the root
+        fullDownloadUrl = `https://api.gathengpudlo.com/api${downloadUrl}`;
+      }
+
+      const downloadResult = await fileDownloadService.downloadFile(
+        fullDownloadUrl,
+        `${params.book}_${params.chapter}.m4a`,
+        progressData => {
+          setDownloadProgressValue(progressData.progress);
+          // Also sync with global state if needed
+          store.dispatch(setDownloadProgress(progressData.progress));
+        },
+      );
+
+      // 4. Update the database with the new local path
+      await DatabaseService.getInstance().updateChapterAudioPath(
+        chapterMasterId,
+        downloadResult.fileName,
+      );
+
+      setIsDownloading(false);
+
+      store.dispatch(
+        setToast({
+          show: true,
+          message: 'Download complete!',
+          type: 'success',
+          duration: 2000,
+        }),
+      );
+
+      // 5. Play the newly downloaded file
+      await audioPlayer.loadAudio(downloadResult.path);
+      setPlayerSheetVisible(true);
+    } catch (err: any) {
+      console.error('[AUDIO] Error in handleAudioReaderPress:', err);
+      setIsDownloading(false);
+      store.dispatch(
+        setToast({
+          show: true,
+          message: err.message || 'Error downloading audio',
+          type: 'error',
+          duration: 4000,
+        }),
+      );
     }
-
-    const verseToDisplay =
-      currentVerseIndex >= 0 && currentVerseIndex < verses.length
-        ? verses[currentVerseIndex]
-        : null;
-
-    return (
-      <View style={styles.audioVerseContainer}>
-        {verseToDisplay ? (
-          <View style={styles.audioVerseContent}>
-            <Text style={styles.verseNumber}>{verseToDisplay.number}</Text>
-            <Text style={styles.verseText}>{verseToDisplay.text_hd}</Text>
-          </View>
-        ) : (
-          ''
-        )}
-      </View>
-    );
   };
+
+
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       <StatusBar
         backgroundColor={
           constants.theme[reader.readerSetting.theme - 1].backgroundColor
         }
         barStyle={
           constants.theme[reader.readerSetting.theme - 1].fontColor ===
-          '#000000'
+            '#000000'
             ? 'dark-content'
             : 'light-content'
         }
@@ -847,7 +790,7 @@ const Reader = ({navigation, route}: any) => {
         <ReaderHeader
           title={params.book + ' ' + params.chapter}
           backButton={true}
-          onTitlePress={() => {}}
+          onTitlePress={() => { }}
           dividerMode={dividerMode}
           selectedVerse={selectedVerse}
           setDividerMode={onChangeDividerMode}
@@ -884,7 +827,7 @@ const Reader = ({navigation, route}: any) => {
 
         <View style={[styles.contentContainer]}>
           {verses && (
-            <View style={{flex: 1, zIndex: 1}}>
+            <View style={{ flex: 1, zIndex: 1 }}>
               <SplitReaderView
                 verses={verses}
                 // onStartBookmark={() => {}}
@@ -917,12 +860,10 @@ const Reader = ({navigation, route}: any) => {
                   <CloseIcon name="cross" color={AppColors.appTextBlack} />
                 </TouchableOpacity>
               </View>
-              <View pointerEvents="box-none">
-                <AudioVerseComponent verses={verses} />
-              </View>
+
               <View style={styles.playerContainer} pointerEvents="auto">
                 <View style={styles.playerControls}>
-                  <TouchableOpacity
+                  {/* <TouchableOpacity
                     style={styles.controlButton}
                     onPress={handleStop}>
                     <FontAwesome6
@@ -931,7 +872,7 @@ const Reader = ({navigation, route}: any) => {
                       color={AppColors.appTextWhite}
                       size={18}
                     />
-                  </TouchableOpacity>
+                  </TouchableOpacity> */}
                   <TouchableOpacity
                     style={[
                       styles.playButton,
@@ -955,7 +896,24 @@ const Reader = ({navigation, route}: any) => {
                       />
                     )}
                   </TouchableOpacity>
-                  <TouchableOpacity
+
+                  <View style={styles.progressContainer}>
+                    <Slider
+                      style={styles.progressBar}
+                      minimumValue={0}
+                      maximumValue={1}
+                      value={progress}
+                      onValueChange={handleSeek}
+                      minimumTrackTintColor={AppColors.primary}
+                      maximumTrackTintColor={AppColors.appTextGrey}
+                      thumbTintColor={AppColors.primary}
+                    />
+                    <View style={styles.timeContainer}>
+                      <Text style={styles.timeText}>{formattedTime}</Text>
+                      <Text style={styles.timeText}>{formattedDuration}</Text>
+                    </View>
+                  </View>
+                  {/* <TouchableOpacity
                     style={styles.controlButton}
                     onPress={handleStop}>
                     <FontAwesome6
@@ -964,22 +922,7 @@ const Reader = ({navigation, route}: any) => {
                       color={AppColors.appTextWhite}
                       size={18}
                     />
-                  </TouchableOpacity>
-                </View>
-
-                <View style={styles.progressContainer}>
-                  <Text style={styles.timeText}>{formattedTime}</Text>
-                  <Slider
-                    style={styles.progressBar}
-                    minimumValue={0}
-                    maximumValue={1}
-                    value={progress}
-                    onValueChange={handleSeek}
-                    minimumTrackTintColor={AppColors.primary}
-                    maximumTrackTintColor={AppColors.appTextGrey}
-                    thumbTintColor={AppColors.primary}
-                  />
-                  <Text style={styles.timeText}>{formattedDuration}</Text>
+                  </TouchableOpacity> */}
                 </View>
 
                 {error && (
@@ -1165,6 +1108,29 @@ const Reader = ({navigation, route}: any) => {
             setOptionModalVisible={setOptionModalVisible}
           />
         </Modal>
+
+        {/* Download Progress Overlay */}
+        {isDownloading && (
+          <View style={styles.downloadOverlay}>
+            <View style={styles.downloadProgressCard}>
+              <Text style={styles.downloadTitle}>Downloading Chapter Audio</Text>
+              <View style={styles.progressTrack}>
+                <View
+                  style={[
+                    styles.progressFill,
+                    { width: `${downloadProgressValue * 100}%` }
+                  ]}
+                />
+              </View>
+              <Text style={styles.progressPercent}>
+                {Math.round(downloadProgressValue * 100)}%
+              </Text>
+              <Text style={styles.downloadSubtext}>
+                Saving for offline playback...
+              </Text>
+            </View>
+          </View>
+        )}
       </View>
     </SafeAreaView>
   );
@@ -1209,7 +1175,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: -10,
     left: '50%',
-    transform: [{translateX: -17.5}],
+    transform: [{ translateX: -17.5 }],
   },
   highlightModalContainer: {
     flex: 1,
@@ -1229,7 +1195,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-end',
     width: '100%',
-    padding: 10,
+    paddingHorizontal: 10,
   },
   highlightModalTitle: {
     fontSize: 17,
@@ -1349,13 +1315,21 @@ const styles = StyleSheet.create({
     fontFamily: 'Pretendard-Regular',
   },
   progressContainer: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
-    marginBottom: 20,
+    // marginBottom: 20,
   },
   progressBar: {
     flex: 1,
     marginHorizontal: 10,
+    width: 300,
+  },
+  timeContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: 300,
+    paddingHorizontal: 10,
   },
   timeText: {
     color: AppColors.appTextBlack,
@@ -1403,13 +1377,13 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    maxHeight: 320,
+    maxHeight: 100,
     zIndex: 1000,
     pointerEvents: 'box-none',
   },
   playerSheetContent: {
     backgroundColor: 'white',
-    height: 320,
+    height: 100,
     paddingTop: 0,
     borderColor: AppColors.lightGrey,
     borderWidth: 1,
@@ -1438,6 +1412,53 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 100,
     textAlignVertical: 'top',
+  },
+  downloadOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    zIndex: 9999,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  downloadProgressCard: {
+    backgroundColor: 'white',
+    width: '80%',
+    padding: 24,
+    borderRadius: 16,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+    elevation: 8,
+  },
+  downloadTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: AppColors.appTextBlack,
+    marginBottom: 16,
+  },
+  progressTrack: {
+    width: '100%',
+    height: 10,
+    backgroundColor: AppColors.lightGrey,
+    borderRadius: 5,
+    overflow: 'hidden',
+    marginBottom: 8,
+  },
+  progressFill: {
+    height: '100%',
+    backgroundColor: AppColors.primary,
+  },
+  progressPercent: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: AppColors.primaryDark,
+    marginBottom: 8,
+  },
+  downloadSubtext: {
+    fontSize: 12,
+    color: AppColors.darkGrey,
   },
 });
 

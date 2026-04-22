@@ -7,7 +7,7 @@ export interface PermissionResult {
   message?: string;
 }
 
-export type PermissionType = 
+export type PermissionType =
   | 'notifications'
   | 'storage'
   | 'media_images'
@@ -65,8 +65,7 @@ class PermissionService {
    * Check Android permissions
    */
   private async checkAndroidPermission(permission: PermissionType): Promise<boolean> {
-    const androidVersion = DeviceInfo.getSystemVersion();
-    const apiLevel = Platform.Version as number;//parseInt(androidVersion.split('.')[0]) || 0;
+    const apiLevel = Platform.OS === 'android' ? (Platform.Version as number) : 0;
 
     switch (permission) {
       case 'notifications':
@@ -186,8 +185,7 @@ class PermissionService {
    * Request Android permissions
    */
   private async requestAndroidPermission(permission: PermissionType): Promise<PermissionResult> {
-    const androidVersion = DeviceInfo.getSystemVersion();
-    const apiLevel = Platform.Version as number;//parseInt(androidVersion.split('.')[0]) || 0;
+    const apiLevel = Platform.OS === 'android' ? (Platform.Version as number) : 0;
 
     let permissionString: (typeof PermissionsAndroid.PERMISSIONS)[keyof typeof PermissionsAndroid.PERMISSIONS];
     let title: string;
@@ -210,8 +208,8 @@ class PermissionService {
           const audioResult = await this.requestPermission('media_audio');
           return {
             granted: imagesResult.granted && audioResult.granted,
-            message: imagesResult.granted && audioResult.granted 
-              ? undefined 
+            message: imagesResult.granted && audioResult.granted
+              ? undefined
               : 'Storage permissions are required to access media files.'
           };
         } else {
@@ -300,7 +298,9 @@ class PermissionService {
   async requestEssentialPermissions(): Promise<Record<PermissionType, PermissionResult>> {
     const permissions: PermissionType[] = [
       'notifications',
-      'media_audio', // For audio playback
+      'storage',
+      'media_audio',
+      'media_images',
     ];
 
     return await this.requestMultiplePermissions(permissions);
@@ -314,8 +314,8 @@ class PermissionService {
       await Linking.openSettings();
     } catch (error) {
       console.error('Error opening app settings:', error);
-      const platformText = Platform.OS === 'ios' 
-        ? 'Settings > Ho Dlo Bible' 
+      const platformText = Platform.OS === 'ios'
+        ? 'Settings > Ho Dlo Bible'
         : 'Settings > Apps > Ho Dlo Bible';
       Alert.alert(
         'Settings',
@@ -369,13 +369,13 @@ class PermissionService {
     showAlertIfDenied: boolean = true
   ): Promise<boolean> {
     const isGranted = await this.checkPermission(permission);
-    
+
     if (isGranted) {
       return true;
     }
 
     const result = await this.requestPermission(permission);
-    
+
     if (!result.granted && showAlertIfDenied) {
       this.showPermissionDeniedAlert(permission);
     }

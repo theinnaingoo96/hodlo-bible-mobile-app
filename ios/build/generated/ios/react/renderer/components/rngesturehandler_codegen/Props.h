@@ -41,7 +41,7 @@ class RNGestureHandlerRootViewProps final : public ViewProps {
 
 #pragma mark - Props
 
-  
+  bool unstable_forceActive{false};
 };
 
 } // namespace facebook::react

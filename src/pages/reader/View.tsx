@@ -1,5 +1,5 @@
-import React, {useState, useRef, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useState, useRef, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import {
   StyleSheet,
@@ -18,14 +18,14 @@ import {
 
 import TermsIcon from '../../components/icons/setting/UpdateIcon';
 import CustomAlert from '../../components/CustomAlert';
-import {AppColors} from '../../constants/Color';
-import {Gesture, GestureDetector} from 'react-native-gesture-handler';
-import {constants} from '../../constants/Data';
+import { AppColors } from '../../constants/Color';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import { constants } from '../../constants/Data';
 import {
   setCurrentVerse,
   setReadingProgress,
 } from '../../store/slices/readerSlice';
-import {useAudioPlayer} from '../../hooks/useAudioPlayer';
+import { useAudioPlayer } from '../../hooks/useAudioPlayer';
 import DatabaseService from '../../services/DatabaseService';
 
 interface SplitReaderViewProps {
@@ -72,11 +72,13 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
   const rightRef = useRef<FlatList>(null);
   const singleRef = useRef<FlatList>(null);
   const isSyncing = useRef(false);
+  const isUserInteracting = useRef(false);
+  const [activeVerseIndex, setActiveVerseIndex] = useState(-1);
 
-  const topHeights = useRef({content: 1, layout: 1});
-  const bottomHeights = useRef({content: 1, layout: 1});
-  const leftHeights = useRef({content: 1, layout: 1});
-  const rightHeights = useRef({content: 1, layout: 1});
+  const topHeights = useRef({ content: 1, layout: 1 });
+  const bottomHeights = useRef({ content: 1, layout: 1 });
+  const leftHeights = useRef({ content: 1, layout: 1 });
+  const rightHeights = useRef({ content: 1, layout: 1 });
   // const leftWidths = useRef({ content: 1, layout: 1 });
   // const rightWidths = useRef({ content: 1, layout: 1 });
 
@@ -105,8 +107,54 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
 
     const currentVerse = reader.currentRead.verseId;
     const targetIndex = verses.findIndex(x => x.id === currentVerse);
-    console.log(reader.currentRead, targetIndex);
+    // console.log(reader.currentRead, targetIndex);
   }, []);
+
+  // Helper to convert MM:SS to seconds
+  const timeToSeconds = (timeStr: any): number => {
+    if (!timeStr) return 0;
+    if (typeof timeStr === 'number') return timeStr;
+
+    const parts = timeStr.toString().split(':').map(Number);
+    if (parts.length === 2) {
+      return parts[0] * 60 + parts[1];
+    }
+    return parts[0] || 0; // Fallback to raw number if no colon
+  };
+
+  useEffect(() => {
+    if (!isPlaying || isStopped || !verses || verses.length === 0) {
+      if (activeVerseIndex !== -1) setActiveVerseIndex(-1);
+      return;
+    }
+
+    if (Math.floor(currentTime) % 1 === 0 && currentTime > 0) {
+      const firstWithAudio = verses.find(v => v.audio_from);
+      if (!firstWithAudio) {
+        console.warn('[Highlight Debug] No verses have audio_from/to data!');
+      } else if (activeVerseIndex === -1) {
+        console.log(`[Highlight Debug] Time: ${currentTime.toFixed(2)}, Sample Verse Audio: ${firstWithAudio.audio_from} - ${firstWithAudio.audio_to}`);
+      }
+    }
+
+    const newIndex = verses.findIndex(v => {
+      const from = timeToSeconds(v.audio_from);
+      const to = timeToSeconds(v.audio_to);
+
+      if (from === 0 && to === 0) return false;
+
+      return currentTime >= from && currentTime <= to;
+    });
+
+    if (newIndex !== -1 && newIndex !== activeVerseIndex) {
+      console.log(`[Highlight] New Active Verse Index: ${newIndex} (Time: ${currentTime})`);
+      setActiveVerseIndex(newIndex);
+
+      if (!isUserInteracting.current) {
+        scrollToIndex(newIndex, true);
+      }
+    }
+  }, [currentTime, isPlaying, isStopped, verses]);
 
   // Auto-scroll to target index when layouts are available
   // useEffect(() => {
@@ -192,9 +240,9 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
   };
 
   const handleLayout = (e: any, index: number) => {
-    const {y} = e.nativeEvent.layout;
+    const { y } = e.nativeEvent.layout;
     // console.log("handleLayout", index, e.nativeEvent);
-    setItemLayouts((prev: any) => ({...prev, [index]: y}));
+    setItemLayouts((prev: any) => ({ ...prev, [index]: y }));
   };
 
   const scrollToIndex = (index: number, animated: boolean = true) => {
@@ -207,15 +255,15 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
     setTimeout(() => {
       if (device.language !== 'en' && device.language !== 'mm') {
         // Single view mode
-        singleRef.current?.scrollToIndex({index, animated});
+        singleRef.current?.scrollToIndex({ index, animated });
       } else if (dividerMode === 'horizontal') {
         // Horizontal split view
-        topRef.current?.scrollToIndex({index, animated});
-        bottomRef.current?.scrollToIndex({index, animated});
+        topRef.current?.scrollToIndex({ index, animated });
+        bottomRef.current?.scrollToIndex({ index, animated });
       } else {
         // Vertical split view
-        leftRef.current?.scrollToIndex({index, animated});
-        rightRef.current?.scrollToIndex({index, animated});
+        leftRef.current?.scrollToIndex({ index, animated });
+        rightRef.current?.scrollToIndex({ index, animated });
       }
     }, 100);
   };
@@ -265,7 +313,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
     );
 
     isSyncing.current = true;
-    bottomRef.current?.scrollToOffset({offset: syncedY, animated: false});
+    bottomRef.current?.scrollToOffset({ offset: syncedY, animated: false });
     setTimeout(() => (isSyncing.current = false), 10);
   };
 
@@ -282,7 +330,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
     );
 
     isSyncing.current = true;
-    topRef.current?.scrollToOffset({offset: syncedY, animated: false});
+    topRef.current?.scrollToOffset({ offset: syncedY, animated: false });
     setTimeout(() => (isSyncing.current = false), 10);
   };
 
@@ -299,7 +347,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
     );
 
     isSyncing.current = true;
-    rightRef.current?.scrollToOffset({offset: syncedY, animated: false});
+    rightRef.current?.scrollToOffset({ offset: syncedY, animated: false });
     setTimeout(() => (isSyncing.current = false), 10);
   };
   const onRightScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -315,7 +363,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
     );
 
     isSyncing.current = true;
-    leftRef.current?.scrollToOffset({offset: syncedY, animated: false});
+    leftRef.current?.scrollToOffset({ offset: syncedY, animated: false });
     setTimeout(() => (isSyncing.current = false), 10);
   };
 
@@ -353,12 +401,10 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
     DatabaseService.getInstance()
       .updateChapterCompletedAt(reader.currentRead.chapterId)
       .then((result: any) => {
-        console.log('completeChapter', result);
         if (result) {
           DatabaseService.getInstance()
             .calcReadingProgress()
             .then((progress: any) => {
-              console.log('Reading Progress:', progress);
               dispatch(setReadingProgress(progress));
             });
         }
@@ -373,21 +419,42 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
   //     }, 300);
   // };
 
-  const VerseComponent = ({verse, language, index}: any) => {
+  const VerseComponent = ({ verse, language, index }: any) => {
+    const isActive = activeVerseIndex === index;
+    const isSelected = selectedVerse?.id === verse.id;
+
     return (
       <View
         style={[
-          {flex: 1},
-          selectedVerse?.id === verse.id
-            ? {
-                backgroundColor:
-                  constants.theme[reader.readerSetting.theme - 1]
-                    .highlightColor,
-              }
-            : {},
-        ]}
-        // onLayout={(e) => handleLayout(e, index)}
-      >
+          { flex: 1 },
+          isSelected && {
+            backgroundColor: constants.theme[reader.readerSetting.theme - 1].highlightColor,
+          },
+          isActive && {
+            backgroundColor: reader.readerSetting.theme === 1
+              ? 'rgba(212, 175, 55, 0.15)' // Warmer for Light
+              : 'rgba(212, 175, 55, 0.3)',  // Stronger for Dark
+          }
+        ]}>
+        {isActive && (
+          <View
+            style={{
+              position: 'absolute',
+              left: 0,
+              top: 3,
+              bottom: 3,
+              width: 4,
+              backgroundColor: AppColors.primary,
+              borderTopRightRadius: 4,
+              borderBottomRightRadius: 4,
+              elevation: 2, // Shadow for Android
+              shadowColor: '#000', // Shadow for iOS
+              shadowOffset: { width: 1, height: 0 },
+              shadowOpacity: 0.2,
+              shadowRadius: 1,
+            }}
+          />
+        )}
         <TouchableOpacity
           style={styles.verseContainer}
           // activeOpacity={0.5}
@@ -401,7 +468,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
           }}
           // delayLongPress={500}
           onPress={() => {
-            console.log('onPress on View');
+            // console.log('onPress on View');
             onVerseClick(verse);
           }}>
           <View>
@@ -425,7 +492,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
               />
             )}
           </View>
-          <Text style={{paddingLeft: 5, paddingRight: 15}}>
+          <Text style={{ paddingLeft: 5, paddingRight: 15 }}>
             <Text
               style={[
                 styles.verseText,
@@ -449,24 +516,10 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
             </Text>
           </Text>
         </TouchableOpacity>
-        {language === 'hd' && <View style={{height: 3}} />}
+        {language === 'hd' && <View style={{ height: 3 }} />}
       </View>
     );
   };
-
-  // const swipeGesture = Gesture.Pan()
-  //     .onEnd((event) => {
-  //         if (event.translationX > 0) {
-  //             console.log('Swiped right!');
-  //         } else if (event.translationX < 0) {
-  //             console.log('Swiped left!');
-  //         }
-  //         if (event.translationY > 0) {
-  //             console.log('Swiped down!');
-  //         } else if (event.translationY < 0) {
-  //             console.log('Swiped up!');
-  //         }
-  //     });
 
   const ChapterEndFooterComponent = () => {
     return (
@@ -497,20 +550,31 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
     <View
       style={[
         styles.content,
-        {flexDirection: dividerMode === 'horizontal' ? 'column' : 'row'},
+        { flexDirection: dividerMode === 'horizontal' ? 'column' : 'row' },
       ]}>
       {device.language !== 'en' && device.language !== 'mm' ? (
         <FlatList
           ref={singleRef}
           data={verses}
+          extraData={{ activeVerseIndex, selectedVerse }}
           keyExtractor={(item, index) => `single-view-${index}`}
-          renderItem={({item, index}) => (
+          renderItem={({ item, index }) => (
             <VerseComponent verse={item} language={'hd'} index={index} />
           )}
-          onScrollBeginDrag={hideFAB}
-          onMomentumScrollEnd={showFAB}
+          onScrollBeginDrag={() => {
+            isUserInteracting.current = true;
+            hideFAB();
+          }}
+          onScrollEndDrag={() => {
+            isUserInteracting.current = false;
+            showFAB();
+          }}
+          onMomentumScrollEnd={() => {
+            isUserInteracting.current = false;
+            showFAB();
+          }}
           onScroll={onSingleScroll}
-          style={{height: topHeight}}
+          style={{ height: topHeight }}
           scrollEventThrottle={16}
           onEndReached={onCompleteChapter}
           ListFooterComponent={ChapterEndFooterComponent}
@@ -519,21 +583,32 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
         <>
           <Animated.View
             style={[
-              {minHeight: 40, flex: 1},
-              {height: topHeight, width: Dimensions.get('window').width},
+              { minHeight: 40, flex: 1 },
+              { height: topHeight, width: Dimensions.get('window').width },
             ]}>
             <FlatList
               ref={topRef}
               data={verses}
+              extraData={{ activeVerseIndex, selectedVerse }}
               keyExtractor={(item, index) => `top-${index}`}
-              renderItem={({item, index}) => (
+              renderItem={({ item, index }) => (
                 <VerseComponent verse={item} language={'hd'} index={index} />
               )}
-              style={{flex: 1}}
+              style={{ flex: 1 }}
               scrollEnabled={true}
               onScroll={onTopScroll}
-              onScrollBeginDrag={hideFAB}
-              onMomentumScrollEnd={showFAB}
+              onScrollBeginDrag={() => {
+                isUserInteracting.current = true;
+                hideFAB();
+              }}
+              onScrollEndDrag={() => {
+                isUserInteracting.current = false;
+                showFAB();
+              }}
+              onMomentumScrollEnd={() => {
+                isUserInteracting.current = false;
+                showFAB();
+              }}
               showsVerticalScrollIndicator={false}
               onContentSizeChange={(w, h) => (topHeights.current.content = h)}
               onLayout={e =>
@@ -552,8 +627,8 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
                 alignItems: 'center',
               },
               isDividerClicked
-                ? {backgroundColor: '#666'}
-                : {backgroundColor: '#e2e2e2'},
+                ? { backgroundColor: '#666' }
+                : { backgroundColor: '#e2e2e2' },
             ]}
             // style={[
             //     styles.divider,
@@ -572,23 +647,34 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
               <View style={styles.dragHandle} />
             </View>
           </View>
-          <Animated.View style={[{minHeight: 40}, {height: bottomHeight}]}>
+          <Animated.View style={[{ minHeight: 40 }, { height: bottomHeight }]}>
             <FlatList
               ref={bottomRef}
               data={verses}
+              extraData={{ activeVerseIndex, selectedVerse }}
               keyExtractor={(item, index) => `bottom-${index}`}
-              renderItem={({item, index}) => (
+              renderItem={({ item, index }) => (
                 <VerseComponent
                   verse={item}
                   language={device.language}
                   index={index}
                 />
               )}
-              style={{flex: 1}}
+              style={{ flex: 1 }}
               scrollEnabled={true}
               onScroll={onBottomScroll}
-              onScrollBeginDrag={hideFAB}
-              onMomentumScrollEnd={showFAB}
+              onScrollBeginDrag={() => {
+                isUserInteracting.current = true;
+                hideFAB();
+              }}
+              onScrollEndDrag={() => {
+                isUserInteracting.current = false;
+                showFAB();
+              }}
+              onMomentumScrollEnd={() => {
+                isUserInteracting.current = false;
+                showFAB();
+              }}
               showsVerticalScrollIndicator={false}
               onContentSizeChange={(w, h) =>
                 (bottomHeights.current.content = h)
@@ -602,19 +688,30 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
         </>
       ) : (
         <>
-          <Animated.View style={[{minWidth: 40, flex: 1}, {width: leftWidth}]}>
+          <Animated.View style={[{ minWidth: 40, flex: 1 }, { width: leftWidth }]}>
             <FlatList
               ref={leftRef}
               data={verses}
+              extraData={{ activeVerseIndex, selectedVerse }}
               keyExtractor={(item, index) => `left-${index}`}
-              renderItem={({item, index}) => (
+              renderItem={({ item, index }) => (
                 <VerseComponent verse={item} language={'hd'} index={index} />
               )}
-              style={{flex: 1}}
+              style={{ flex: 1 }}
               scrollEnabled={true}
               onScroll={onLeftScroll}
-              onScrollBeginDrag={hideFAB}
-              onMomentumScrollEnd={showFAB}
+              onScrollBeginDrag={() => {
+                isUserInteracting.current = true;
+                hideFAB();
+              }}
+              onScrollEndDrag={() => {
+                isUserInteracting.current = false;
+                showFAB();
+              }}
+              onMomentumScrollEnd={() => {
+                isUserInteracting.current = false;
+                showFAB();
+              }}
               showsVerticalScrollIndicator={false}
               onContentSizeChange={(w, h) => (leftHeights.current.content = h)}
               onLayout={e =>
@@ -628,8 +725,8 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
             style={[
               styles.dividerVertical,
               isDividerClicked
-                ? {backgroundColor: '#666'}
-                : {backgroundColor: '#e2e2e2'},
+                ? { backgroundColor: '#666' }
+                : { backgroundColor: '#e2e2e2' },
             ]}
             {...horizontalPanResponder.panHandlers}>
             {/* <TouchableOpacity style={styles.ellipsisButtonVertical} onPress={() => {
@@ -642,23 +739,34 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
               <View style={styles.dragHandleVertical} />
             </View>
           </View>
-          <Animated.View style={[{minWidth: 40}, {width: rightWidth}]}>
+          <Animated.View style={[{ minWidth: 40 }, { width: rightWidth }]}>
             <FlatList
               ref={rightRef}
               data={verses}
+              extraData={{ activeVerseIndex, selectedVerse }}
               keyExtractor={(item, index) => `right-${index}`}
-              renderItem={({item, index}) => (
+              renderItem={({ item, index }) => (
                 <VerseComponent
                   verse={item}
                   language={device.language}
                   index={index}
                 />
               )}
-              style={{flex: 1}}
+              style={{ flex: 1 }}
               scrollEnabled={true}
               onScroll={onRightScroll}
-              onScrollBeginDrag={hideFAB}
-              onMomentumScrollEnd={showFAB}
+              onScrollBeginDrag={() => {
+                isUserInteracting.current = true;
+                hideFAB();
+              }}
+              onScrollEndDrag={() => {
+                isUserInteracting.current = false;
+                showFAB();
+              }}
+              onMomentumScrollEnd={() => {
+                isUserInteracting.current = false;
+                showFAB();
+              }}
               showsVerticalScrollIndicator={false}
               onContentSizeChange={(w, h) => (rightHeights.current.content = h)}
               onLayout={e =>
@@ -674,7 +782,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
           styles.fabContainer,
           {
             opacity: fadeAnim,
-            transform: [{translateY}],
+            transform: [{ translateY }],
           },
         ]}>
         <TouchableOpacity

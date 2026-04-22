@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, TouchableOpacity, StyleSheet, Text} from 'react-native';
-import {AppColors} from '../constants/Color';
+import { View, TouchableOpacity, StyleSheet, Text } from 'react-native';
+import { AppColors } from '../constants/Color';
 
 type ColorOption = {
   name: string;
@@ -12,7 +12,9 @@ type FontColorPickerProps = {
   colors?: ColorOption[];
   selectedColor?: string;
   style?: any;
+  showLabel?: boolean;
   onSelect: (color: ColorOption) => void;
+  isDarkMode?: boolean;
 };
 
 // const colorPaletteWithNames: ColorOption[] = [
@@ -33,35 +35,40 @@ type FontColorPickerProps = {
 // ]
 
 const colorPaletteWithNames: ColorOption[] = [
-  {name: 'White', hex: '#FFFFFF', code: '#FFFFFF'},
-  {name: 'Black', hex: '#000000', code: '#000000'},
-  {name: 'Red', hex: '#F80000', code: '#F80000'},
-  {name: 'Orange', hex: '#FF8D15', code: '#FF8D15'},
-  {name: 'Yellow', hex: '#FFD828', code: '#FFD828'},
-  {name: 'Green', hex: '#36BF36', code: '#36BF36'},
-  {name: 'Blue', hex: '#3EA6FF', code: '#3EA6FF'},
-  {name: 'Purple', hex: '#9A4DFF', code: '#9A4DFF'},
-  {name: 'Pink', hex: '#FF76DA', code: '#FF76DA'},
-  {name: 'Maroon', hex: '#AD1457', code: '#AD1457'},
-  {name: 'Lavender', hex: '#DCADD0', code: '#DCADD0'},
-  {name: 'Rose', hex: '#E89A8B', code: '#E89A8B'},
-  {name: 'Burgundy', hex: '#FFE0B2', code: '#FFE0B2'},
-  {name: 'Beige', hex: '#BDA88A', code: '#BDA88A'},
-  {name: 'Brown', hex: '#6D4C41', code: '#6D4C41'},
-  {name: 'Green', hex: '#1B5E20', code: '#1B5E20'},
-  {name: 'Blue-Green', hex: '#00838F', code: '#00838F'},
-  {name: 'Indigo', hex: '#3F5CB5', code: '#3F5CB5'},
+  { name: 'White', hex: '#FFFFFF', code: '#FFFFFF' },
+  { name: 'Black', hex: '#000000', code: '#000000' },
+  { name: 'Red', hex: '#F80000', code: '#F80000' },
+  { name: 'Orange', hex: '#FF8D15', code: '#FF8D15' },
+  { name: 'Yellow', hex: '#FFD828', code: '#FFD828' },
+  { name: 'Green', hex: '#36BF36', code: '#36BF36' },
+  { name: 'Blue', hex: '#3EA6FF', code: '#3EA6FF' },
+  { name: 'Purple', hex: '#9A4DFF', code: '#9A4DFF' },
+  { name: 'Pink', hex: '#FF76DA', code: '#FF76DA' },
+  { name: 'Maroon', hex: '#AD1457', code: '#AD1457' },
+  { name: 'Lavender', hex: '#DCADD0', code: '#DCADD0' },
+  { name: 'Rose', hex: '#E89A8B', code: '#E89A8B' },
+  { name: 'Burgundy', hex: '#FFE0B2', code: '#FFE0B2' },
+  { name: 'Beige', hex: '#BDA88A', code: '#BDA88A' },
+  { name: 'Brown', hex: '#6D4C41', code: '#6D4C41' },
+  { name: 'Green', hex: '#1B5E20', code: '#1B5E20' },
+  { name: 'Blue-Green', hex: '#00838F', code: '#00838F' },
+  { name: 'Indigo', hex: '#3F5CB5', code: '#3F5CB5' },
 ];
 
 const FontColorPicker: React.FC<FontColorPickerProps> = ({
   colors = colorPaletteWithNames,
   selectedColor,
   style,
+  showLabel = true,
   onSelect,
+  isDarkMode = true,
 }) => {
   return (
     <View style={[styles.container, style]}>
-      <Text style={styles.titleText}>choose Font color</Text>
+      {
+        showLabel &&
+        <Text style={[styles.titleText, isDarkMode && { color: 'white' }]}>choose Font color</Text>
+      }
       <View style={styles.content}>
         {colors.map((color, index) => {
           const isSelected = selectedColor === color.hex;
@@ -73,12 +80,12 @@ const FontColorPicker: React.FC<FontColorPickerProps> = ({
               <View
                 style={[
                   styles.swatch,
-                  {backgroundColor: color.hex},
+                  { backgroundColor: color.hex },
                   isSelected && styles.selected,
                 ]}
               />
               {selectedColor === color.hex && (
-                <Text style={styles.label}>{color.name}</Text>
+                <Text style={[styles.label, isDarkMode && { color: 'white' }]}>{color.name}</Text>
               )}
             </TouchableOpacity>
           );
@@ -117,7 +124,7 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   selected: {
-    borderColor: '#000',
+    borderColor: AppColors.primary,
     borderWidth: 3,
   },
   label: {

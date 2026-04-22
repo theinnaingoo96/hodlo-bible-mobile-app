@@ -94,6 +94,7 @@ class FileDownloadService {
     url: string,
     fileName?: string,
     onProgress?: ProgressListener,
+    retries: number = 3,
   ): Promise<DownloadResult> {
     if (!url) {
       throw new Error('Download URL is required');
@@ -105,6 +106,7 @@ class FileDownloadService {
     const destinationPath = this.getDownloadPath(resolvedFileName);
 
     if (await RNFS.exists(destinationPath)) {
+      console.log(`[Download] File already exists at ${destinationPath}`);
       return {
         status: 'already_exists',
         path: destinationPath,
@@ -113,53 +115,67 @@ class FileDownloadService {
       };
     }
 
-    const temporaryPath = `${destinationPath}.download`; // ensure partial downloads do not overwrite
+    const temporaryPath = `${destinationPath}.download`;
+    let attempt = 0;
 
-    if (await RNFS.exists(temporaryPath)) {
-      await RNFS.unlink(temporaryPath);
-    }
+    while (attempt < retries) {
+      try {
+        attempt++;
+        console.log(`[Download] Starting attempt ${attempt}/${retries} for ${url}`);
 
-    const downloadOptions: DownloadFileOptions = {
-      fromUrl: url,
-      toFile: temporaryPath,
-      progressDivider: 5,
-      progress: (data: DownloadProgressCallbackResult) => {
-        if (!onProgress) return;
-        const { jobId, bytesWritten, contentLength } = data;
-        const calculatedProgress = contentLength
-          ? bytesWritten / contentLength
-          : 0;
+        if (await RNFS.exists(temporaryPath)) {
+          await RNFS.unlink(temporaryPath);
+        }
 
-        onProgress({
-          jobId,
-          bytesWritten,
-          contentLength,
-          progress: Math.min(1, Math.max(0, calculatedProgress)),
-        });
-      },
-    };
+        const downloadOptions: DownloadFileOptions = {
+          fromUrl: url,
+          toFile: temporaryPath,
+          progressDivider: 2,
+          progress: (data: DownloadProgressCallbackResult) => {
+            if (!onProgress) return;
+            const { jobId, bytesWritten, contentLength } = data;
+            const calculatedProgress = contentLength
+              ? bytesWritten / contentLength
+              : 0;
 
-    const { promise } = RNFS.downloadFile(downloadOptions);
-
-    try {
-      const result = await promise;
-
-      if (result.statusCode >= 200 && result.statusCode < 300) {
-        await RNFS.moveFile(temporaryPath, destinationPath);
-        return {
-          status: 'downloaded',
-          path: destinationPath,
-          fileName: resolvedFileName,
-          bytesWritten: result.bytesWritten,
+            onProgress({
+              jobId,
+              bytesWritten,
+              contentLength,
+              progress: Math.min(1, Math.max(0, calculatedProgress)),
+            });
+          },
         };
-      }
 
-      await this.safeUnlink(temporaryPath);
-      throw new Error(`Download failed with status code ${result.statusCode}`);
-    } catch (error) {
-      await this.safeUnlink(temporaryPath);
-      throw error;
+        const { promise } = RNFS.downloadFile(downloadOptions);
+        const result = await promise;
+
+        if (result.statusCode >= 200 && result.statusCode < 300) {
+          await RNFS.moveFile(temporaryPath, destinationPath);
+          console.log(`[Download] Successfully downloaded to ${destinationPath}`);
+          return {
+            status: 'downloaded',
+            path: destinationPath,
+            fileName: resolvedFileName,
+            bytesWritten: result.bytesWritten,
+          };
+        } else {
+          throw new Error(`Download failed with status code ${result.statusCode}`);
+        }
+      } catch (error) {
+        console.warn(`[Download] Attempt ${attempt} failed:`, error);
+        await this.safeUnlink(temporaryPath);
+
+        if (attempt >= retries) {
+          throw error;
+        }
+
+        const backoffTime = Math.pow(2, attempt - 1) * 1000;
+        await new Promise(resolve => setTimeout(resolve, backoffTime));
+      }
     }
+
+    throw new Error('Download failed after multiple attempts');
   }
 
   private deriveFileNameFromUrl(url: string): string {
@@ -184,5 +200,5 @@ class FileDownloadService {
 }
 
 export const fileDownloadService = FileDownloadService.getInstance();
-export default FileDownloadService;
+export default fileDownloadService;
 

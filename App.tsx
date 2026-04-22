@@ -13,6 +13,8 @@ import PushNotification from 'react-native-push-notification';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import permissionService from './src/services/PermissionService';
+import DailyVerseService from './src/services/DailyVerseService';
 
 import { setDownloaded, setLanguage, setTheme } from './src/store/slices/deviceSlice';
 import { setCurrent, setReaderSetting } from './src/store/slices/readerSlice';
@@ -60,7 +62,7 @@ function App(): React.JSX.Element {
       }
     });
     AsyncStorage.getItem("ho-dlo-reader-setting").then((readerSetting: any) => {
-      console.log('reader setting', readerSetting);
+      // console.log('reader setting', readerSetting);
       if (readerSetting) {
         const readerSettingData = JSON.parse(readerSetting);
         store.dispatch(setReaderSetting(readerSettingData));
@@ -91,35 +93,22 @@ function App(): React.JSX.Element {
         store.dispatch(setCurrent(readerInitial));
       }
     })
-    notificationSetup()
+    initialPermissionSetup()
   }, []);
 
-  const notificationSetup = async () => {
-    const notiGranted = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS
-    );
-    // const alarmGranted = await PermissionsAndroid.request(
-    //   PermissionsAndroid.PERMISSIONS.SCHEDULE_EXACT_ALARMS
-    // );
-    const audioGranted = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.READ_MEDIA_AUDIO
-    );
-    if (notiGranted === PermissionsAndroid.RESULTS.GRANTED && audioGranted === PermissionsAndroid.RESULTS.GRANTED) {
+  const initialPermissionSetup = async () => {
+    const results = await permissionService.requestEssentialPermissions();
+    if (results.notifications.granted) {
       PushNotification.createChannel(
         {
           channelId: 'ho-dlo-channel',
           channelName: 'Ho Dlo Notifications',
           importance: 4,
         },
-        (created) => console.log(`createChannel returned '${created}'`)
+        (created) => console.log(`[Push] createChannel returned '${created}'`)
       );
     }
-    if (notiGranted !== PermissionsAndroid.RESULTS.GRANTED) {
-      Alert.alert('Error', 'Notification permission is required to receive daily verses and reminders.');
-    }
-    if (audioGranted !== PermissionsAndroid.RESULTS.GRANTED) {
-      Alert.alert('Error', 'Audio permission is required to play audio files.');
-    }
+    await DailyVerseService.checkAndScheduleNotifications();
   }
 
   useEffect(() => {

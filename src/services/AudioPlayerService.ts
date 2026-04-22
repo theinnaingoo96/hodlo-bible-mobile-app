@@ -1,6 +1,4 @@
 import SoundPlayer from 'react-native-sound-player';
-import { AppColors } from '../constants/Color';
-import { debugAudioPath } from '../utils/audioDebug';
 import { store } from '../store/store';
 import {
   setAudioPlayerState,
@@ -10,8 +8,6 @@ import {
   setAudioPlayerDuration,
   setAudioPlayerCurrentTime,
   setAudioPlayerVolume,
-  setAudioPlayerLoading,
-  setAudioPlayerError,
   resetAudioPlayer,
 } from '../store/slices/readerSlice';
 
@@ -26,20 +22,13 @@ export interface AudioPlayerState {
   error: string | null;
 }
 
-export interface AudioPlayerCallbacks {
-  onPlay?: () => void;
-  onPause?: () => void;
-  onStop?: () => void;
-  onLoad?: (duration: number) => void;
-  onProgress?: (currentTime: number, duration: number) => void;
-  onEnd?: () => void;
-  onError?: (error: string) => void;
-}
+export type PlayerEventType = 'play' | 'pause' | 'stop' | 'load' | 'progress' | 'end' | 'error';
 
 class AudioPlayerService {
-  private callbacks: AudioPlayerCallbacks = {};
   private progressInterval: NodeJS.Timeout | null = null;
   private currentAudioPath: string | null = null;
+  private subscriptions: any[] = [];
+  private eventListeners: Map<PlayerEventType, Set<(...args: any[]) => void>> = new Map();
 
   // Centralized mapping for Psalm audio resources
   private psalmResources: { [key: number]: any } = {
@@ -49,213 +38,156 @@ class AudioPlayerService {
     104: require('../assets/audio/Psalm-00104.m4a'),
     105: require('../assets/audio/Psalm-00105.m4a'),
     106: require('../assets/audio/Psalm-00106.m4a'),
+    23: require('../assets/audio/psalms2300.wav'),
+    24: require('../assets/audio/psalms2400.mp3'),
   };
 
   constructor() {
-    try {
-      this.initializeSoundPlayer();
-    } catch (error) {
-      console.error('Error initializing AudioPlayerService:', error);
-      store.dispatch(setAudioPlayerState({ 
-        error: 'Failed to initialize audio player', 
-        isLoading: false 
-      }));
-    }
+    this.initializeSoundPlayer();
   }
 
   private initializeSoundPlayer() {
     try {
-      // Set up event listeners for react-native-sound-player
       this.setupEventListeners();
-      store.dispatch(setAudioPlayerState({ 
+      store.dispatch(setAudioPlayerState({
         isLoading: false,
-        error: null 
+        error: null
       }));
     } catch (error) {
       console.error('Error in initializeSoundPlayer:', error);
-      store.dispatch(setAudioPlayerState({ 
-        error: 'Failed to initialize sound player', 
-        isLoading: false 
+      store.dispatch(setAudioPlayerState({
+        error: 'Failed to initialize sound player',
+        isLoading: false
       }));
     }
   }
 
   private setupEventListeners() {
+    // Clear existing subscriptions if any
+    this.removeEventListeners();
+
     // Listen for finished playing
-    SoundPlayer.addEventListener('FinishedPlaying', (data) => {
-      store.dispatch(setAudioPlayerStopped(true));
-      store.dispatch(setAudioPlayerCurrentTime(0));
-      this.callbacks.onEnd?.();
-      this.stopProgressTracking();
-    });
+    this.subscriptions.push(
+      SoundPlayer.addEventListener('FinishedPlaying', () => {
+        store.dispatch(setAudioPlayerStopped(true));
+        store.dispatch(setAudioPlayerCurrentTime(0));
+        this.emit('end');
+        this.stopProgressTracking();
+      })
+    );
 
     // Listen for finished loading
-    SoundPlayer.addEventListener('FinishedLoading', (data) => {
-      const state = store.getState().reader.audioPlayer;
-      store.dispatch(setAudioPlayerState({ 
-        isLoading: false,
-        error: null 
-      }));
-      this.callbacks.onLoad?.(state.duration);
-    });
+    this.subscriptions.push(
+      SoundPlayer.addEventListener('FinishedLoading', () => {
+        const state = store.getState().reader.audioPlayer;
+        store.dispatch(setAudioPlayerState({ isLoading: false, error: null }));
+        this.emit('load', state.duration);
+      })
+    );
 
-    // Listen for setup errors
-    SoundPlayer.addEventListener('OnSetupError', (data) => {
-      store.dispatch(setAudioPlayerState({ 
-        error: 'Setup error occurred', 
-        isLoading: false 
-      }));
-      this.callbacks.onError?.('Setup error occurred');
-    });
+    this.subscriptions.push(
+      SoundPlayer.addEventListener('OnSetupError', (data) => {
+        store.dispatch(setAudioPlayerState({
+          error: 'Setup error occurred',
+          isLoading: false
+        }));
+        this.emit('error', 'Setup error occurred');
+      })
+    );
+  }
+
+  public removeEventListeners() {
+    this.subscriptions.forEach(sub => sub.remove());
+    this.subscriptions = [];
+  }
+
+  public addListener(event: PlayerEventType, callback: (...args: any[]) => void) {
+    if (!this.eventListeners.has(event)) {
+      this.eventListeners.set(event, new Set());
+    }
+    this.eventListeners.get(event)!.add(callback);
+    return () => this.eventListeners.get(event)?.delete(callback);
+  }
+
+  private emit(event: PlayerEventType, ...args: any[]) {
+    this.eventListeners.get(event)?.forEach(cb => cb(...args));
   }
 
   public getState(): AudioPlayerState {
     return store.getState().reader.audioPlayer;
   }
 
-  public setCallbacks(callbacks: AudioPlayerCallbacks) {
-    this.callbacks = { ...this.callbacks, ...callbacks };
-  }
-
   public async loadAudio(audioPath: any): Promise<void> {
     return new Promise(async (resolve, reject) => {
       store.dispatch(setAudioPlayerState({ isLoading: true, error: null }));
-      
+
       try {
-        // Enhanced debugging for audio path
-        console.log('=== Audio Path Debug ===');
-        console.log('audioPath:', audioPath);
-        console.log('audioPath type:', typeof audioPath);
-        console.log('audioPath constructor:', audioPath?.constructor?.name);
-        console.log('audioPath keys:', audioPath && typeof audioPath === 'object' ? Object.keys(audioPath) : 'N/A');
-        console.log('========================');
-        
-        // Handle different types of audio paths for react-native-sound-player
         let soundSource: any;
-        
+
         if (typeof audioPath === 'string') {
           soundSource = audioPath;
-          console.log('Using string path:', soundSource);
-        } else if (audioPath && typeof audioPath === 'object') {
-          // Handle require() objects - they might be resource IDs or objects with properties
-          if (typeof audioPath === 'number') {
-            // This is likely a resource ID from require()
-            soundSource = audioPath;
-            console.log('Using resource ID:', soundSource);
-          } else if (audioPath.uri) {
-            soundSource = audioPath.uri;
-            console.log('Using uri from object:', soundSource);
-          } else if (audioPath.path) {
-            soundSource = audioPath.path;
-            console.log('Using path from object:', soundSource);
-          } else {
-            // Use the object directly as fallback
-            soundSource = audioPath;
-            console.log('Using object directly as fallback:', soundSource);
-          }
-        } else if (typeof audioPath === 'number') {
-          // Direct resource ID
-          soundSource = audioPath;
-          console.log('Using direct resource ID:', soundSource);
-        } else if (audioPath === null || audioPath === undefined) {
-          throw new Error('Audio path is null or undefined');
+        } else if (typeof audioPath === 'number' || (audioPath && typeof audioPath === 'object')) {
+          soundSource = audioPath.uri || audioPath.path || audioPath;
         } else {
-          // Try to convert to string as last resort
-          soundSource = String(audioPath);
-          console.log('Converting to string:', soundSource);
+          throw new Error('Unsupported audio path');
         }
 
-        console.log('Final soundSource:', soundSource);
-        console.log('Final soundSource type:', typeof soundSource);
-
-        // Load audio using react-native-sound-player
-        try {
-          if (typeof soundSource === 'number') {
-            // Load asset by resource ID
-            SoundPlayer.loadAsset(soundSource);
-            this.currentAudioPath = `asset_${soundSource}`;
-          } else if (typeof soundSource === 'string') {
-            if (soundSource.startsWith('http')) {
-              // Load URL
-              SoundPlayer.loadUrl(soundSource);
-              this.currentAudioPath = soundSource;
-            } else {
-              // Load file by name and type
-              const fileName = soundSource.split('/').pop()?.split('.')[0] || 'audio';
-              const fileType = soundSource.split('.').pop() || 'm4a';
-              SoundPlayer.loadSoundFile(fileName, fileType);
-              this.currentAudioPath = soundSource;
-            }
+        if (typeof soundSource === 'number') {
+          SoundPlayer.loadAsset(soundSource);
+          this.currentAudioPath = `asset_${soundSource}`;
+        } else if (typeof soundSource === 'string') {
+          if (soundSource.startsWith('http')) {
+            SoundPlayer.loadUrl(soundSource);
+          } else if (soundSource.startsWith('/') || soundSource.startsWith('file://')) {
+            // Local file path
+            const localPath = soundSource.startsWith('file://') ? soundSource : `file://${soundSource}`;
+            SoundPlayer.loadUrl(localPath);
           } else {
-            throw new Error('Unsupported audio source type');
+            // Bundle resource
+            const fileName = soundSource.split('/').pop()?.split('.')[0] || 'audio';
+            const fileType = soundSource.split('.').pop() || 'm4a';
+            SoundPlayer.loadSoundFile(fileName, fileType);
           }
+          this.currentAudioPath = soundSource;
+        }
 
-          // Get duration after loading
-          try {
-            const info = await SoundPlayer.getInfo();
-            store.dispatch(setAudioPlayerDuration(info.duration));
-            store.dispatch(setAudioPlayerState({ 
-              isLoading: false,
-              error: null 
-            }));
-            this.callbacks.onLoad?.(info.duration);
-            resolve();
-          } catch (infoError) {
-            console.log('Could not get audio info, but audio may still be loaded');
-            store.dispatch(setAudioPlayerState({ 
-              isLoading: false,
-              error: null 
-            }));
-            this.callbacks.onLoad?.(0);
-            resolve();
-          }
-        } catch (soundError: any) {
-          console.error('Error loading audio:', soundError);
-          store.dispatch(setAudioPlayerState({ 
-            error: `Failed to load audio: ${soundError.message}`, 
-            isLoading: false 
-          }));
-          this.callbacks.onError?.(`Failed to load audio: ${soundError.message}`);
-          reject(soundError);
+        try {
+          const info = await SoundPlayer.getInfo();
+          store.dispatch(setAudioPlayerDuration(info.duration));
+          store.dispatch(setAudioPlayerState({ isLoading: false, error: null }));
+          this.emit('load', info.duration);
+          resolve();
+        } catch (infoError) {
+          store.dispatch(setAudioPlayerState({ isLoading: false, error: null }));
+          resolve();
         }
       } catch (error: any) {
-        console.error('Error in loadAudio:', error);
-        store.dispatch(setAudioPlayerState({ 
-          error: `Failed to load audio: ${error.message}`, 
-          isLoading: false 
-        }));
-        this.callbacks.onError?.(`Failed to load audio: ${error.message}`);
+        store.dispatch(setAudioPlayerState({ error: error.message, isLoading: false }));
+        this.emit('error', error.message);
         reject(error);
       }
     });
   }
 
   public async play(): Promise<void> {
-    if (!this.currentAudioPath) {
-      this.callbacks.onError?.('No audio loaded');
-      return;
-    }
-
+    if (!this.currentAudioPath) return;
     try {
       SoundPlayer.play();
       store.dispatch(setAudioPlayerPlaying(true));
-      this.callbacks.onPlay?.();
+      this.emit('play');
       this.startProgressTracking();
     } catch (error: any) {
-      const errorMessage = 'Playback failed';
-      store.dispatch(setAudioPlayerError(errorMessage));
-      this.callbacks.onError?.(errorMessage);
-      throw new Error(errorMessage);
+      store.dispatch(setAudioPlayerState({ error: 'Playback failed' }));
+      this.emit('error', 'Playback failed');
     }
   }
 
   public pause(): void {
     if (!this.currentAudioPath) return;
-
     try {
       SoundPlayer.pause();
       store.dispatch(setAudioPlayerPaused(true));
-      this.callbacks.onPause?.();
+      this.emit('pause');
       this.stopProgressTracking();
     } catch (error) {
       console.error('Error pausing audio:', error);
@@ -264,11 +196,10 @@ class AudioPlayerService {
 
   public resume(): void {
     if (!this.currentAudioPath) return;
-
     try {
       SoundPlayer.resume();
       store.dispatch(setAudioPlayerPlaying(true));
-      this.callbacks.onPlay?.();
+      this.emit('play');
       this.startProgressTracking();
     } catch (error) {
       console.error('Error resuming audio:', error);
@@ -277,12 +208,10 @@ class AudioPlayerService {
 
   public stop(): void {
     if (!this.currentAudioPath) return;
-
     try {
       SoundPlayer.stop();
       store.dispatch(setAudioPlayerStopped(true));
-      store.dispatch(setAudioPlayerCurrentTime(0));
-      this.callbacks.onStop?.();
+      this.emit('stop');
       this.stopProgressTracking();
     } catch (error) {
       console.error('Error stopping audio:', error);
@@ -291,7 +220,6 @@ class AudioPlayerService {
 
   public seekTo(time: number): void {
     if (!this.currentAudioPath) return;
-
     try {
       SoundPlayer.seek(time);
       store.dispatch(setAudioPlayerCurrentTime(time));
@@ -310,40 +238,19 @@ class AudioPlayerService {
     }
   }
 
-  public async getDuration(): Promise<number> {
-    try {
-      const info = await SoundPlayer.getInfo();
-      return info.duration || 0;
-    } catch (error) {
-      console.error('Error getting duration:', error);
-      return 0;
-    }
-  }
-
-  public async getCurrentTime(): Promise<number> {
-    try {
-      const info = await SoundPlayer.getInfo();
-      return info.currentTime || 0;
-    } catch (error) {
-      console.error('Error getting current time:', error);
-      return 0;
-    }
-  }
-
   private startProgressTracking(): void {
     this.stopProgressTracking();
     this.progressInterval = setInterval(async () => {
-      const state = store.getState().reader.audioPlayer;
-      if (this.currentAudioPath && state.isPlaying) {
+      if (this.currentAudioPath) {
         try {
-          const currentTime = await this.getCurrentTime();          
-          store.dispatch(setAudioPlayerCurrentTime(currentTime));
-          this.callbacks.onProgress?.(currentTime, state.duration);
+          const info = await SoundPlayer.getInfo();
+          store.dispatch(setAudioPlayerCurrentTime(info.currentTime));
+          this.emit('progress', info.currentTime, info.duration);
         } catch (error) {
           console.error('Error tracking progress:', error);
         }
       }
-    }, 100);
+    }, 250); // Increased interval slightly for better battery performance
   }
 
   private stopProgressTracking(): void {
@@ -355,169 +262,36 @@ class AudioPlayerService {
 
   public release(): void {
     this.stop();
+    this.removeEventListeners();
     this.stopProgressTracking();
     this.currentAudioPath = null;
     store.dispatch(resetAudioPlayer());
   }
 
-  // Helper method to load audio with fallback
-  private async loadAudioWithFallback(requirePath: any, psalmName: string): Promise<void> {
-    try {
-      console.log(`Loading ${psalmName}...`);
-      debugAudioPath(requirePath, psalmName);
-      await this.loadAudio(requirePath);
-      await this.play();
-    } catch (error) {
-      console.error(`Error playing ${psalmName}:`, error);
-      this.callbacks.onError?.(`Failed to play ${psalmName}`);
+  /**
+   * Generic playback method
+   */
+  public async playResource(resourceId: number): Promise<void> {
+    const asset = this.psalmResources[resourceId];
+    if (!asset) {
+      const msg = `Audio resource for ID ${resourceId} not found`;
+      this.emit('error', msg);
+      return;
     }
+    await this.loadAudio(asset);
+    await this.play();
   }
 
-  public async playAudioWithPath(path: string): Promise<void> {
-    try {
-      console.log('=== Playing Audio with Path ===');
-      // const _path = '../assets/audio/' + path
-      // const audioPath = require(_path);
-      await this.loadAudioWithFallback(path, 'Psalm 23');
-    } catch (error) {
-      console.error('Error playing Psalm 23:', error);
-      this.callbacks.onError?.('Failed to play Psalm 23');
-    }
-  }
-
-  public async playPsalm23(): Promise<void> {
-    try {
-      console.log('=== Playing Psalm 23 ===');
-      const audioPath = require('../assets/audio/psalms2300.wav');
-      await this.loadAudioWithFallback(audioPath, 'Psalm 23');
-    } catch (error) {
-      console.error('Error playing Psalm 23:', error);
-      this.callbacks.onError?.('Failed to play Psalm 23');
-    }
-  }
-
-  public async playPsalm24(): Promise<void> {
-    try {
-      console.log('=== Playing Psalm 24 ===');
-      const audioPath = require('../assets/audio/psalms2400.mp3');
-      await this.loadAudioWithFallback(audioPath, 'Psalm 24');
-    } catch (error) {
-      console.error('Error playing Psalm 24:', error);
-      this.callbacks.onError?.('Failed to play Psalm 24');
-    }
-  }
-
-  // Convenience methods for specific Psalm audio
-  public async playPsalm101(): Promise<void> {
-    try {
-      console.log('=== Playing Psalm 23 ===');
-      const audioPath = require('../assets/audio/Psalm-00101.m4a');
-      await this.loadAudioWithFallback(audioPath, 'Psalm 101');
-    } catch (error) {
-      console.error('Error playing Psalm 101:', error);
-      this.callbacks.onError?.('Failed to play Psalm 101');
-    }
-  }
-
-  public async playPsalm102(): Promise<void> {
-    try {
-      console.log('=== Playing Psalm 102 ===');
-      const audioPath = this.psalmResources[102];
-      await this.loadAudioWithFallback(audioPath, 'Psalm 102');
-    } catch (error) {
-      console.error('Error playing Psalm 102:', error);
-      this.callbacks.onError?.('Failed to play Psalm 102');
-    }
-  }
-
-  public async playPsalm103(): Promise<void> {
-    try {
-      console.log('=== Playing Psalm 103 ===');
-      const audioPath = this.psalmResources[103];
-      await this.loadAudioWithFallback(audioPath, 'Psalm 103');
-    } catch (error) {
-      console.error('Error playing Psalm 103:', error);
-      this.callbacks.onError?.('Failed to play Psalm 103');
-    }
-  }
-
-  public async playPsalm104(): Promise<void> {
-    try {
-      console.log('=== Playing Psalm 104 ===');
-      const audioPath = this.psalmResources[104];
-      await this.loadAudioWithFallback(audioPath, 'Psalm 104');
-    } catch (error) {
-      console.error('Error playing Psalm 104:', error);
-      this.callbacks.onError?.('Failed to play Psalm 104');
-    }
-  }
-
-  public async playPsalm105(): Promise<void> {
-    try {
-      console.log('=== Playing Psalm 105 ===');
-      const audioPath = this.psalmResources[105];
-      await this.loadAudioWithFallback(audioPath, 'Psalm 105');
-    } catch (error) {
-      console.error('Error playing Psalm 105:', error);
-      this.callbacks.onError?.('Failed to play Psalm 105');
-    }
-  }
-
-  public async playPsalm106(): Promise<void> {
-    try {
-      console.log('=== Playing Psalm 106 ===');
-      const audioPath = this.psalmResources[106];
-      await this.loadAudioWithFallback(audioPath, 'Psalm 106');
-    } catch (error) {
-      console.error('Error playing Psalm 106:', error);
-      this.callbacks.onError?.('Failed to play Psalm 106');
-    }
-  }
+  // Simplified convenience methods mapping to playResource
+  public async playPsalm23() { return this.playResource(23); }
+  public async playPsalm24() { return this.playResource(24); }
+  public async playPsalm101() { return this.playResource(101); }
+  public async playPsalm102() { return this.playResource(102); }
+  public async playPsalm103() { return this.playResource(103); }
+  public async playPsalm104() { return this.playResource(104); }
+  public async playPsalm105() { return this.playResource(105); }
+  public async playPsalm106() { return this.playResource(106); }
 }
 
-// Export singleton instance with error handling
-let audioPlayerInstance: AudioPlayerService | null = null;
-
-try {
-  audioPlayerInstance = new AudioPlayerService();
-} catch (error) {
-  console.error('Failed to create AudioPlayerService:', error);
-  // Create a fallback instance that handles errors gracefully
-  audioPlayerInstance = {
-    getState: () => {
-      try {
-        return store.getState().reader.audioPlayer;
-      } catch (error) {
-        return {
-      isPlaying: false,
-      isPaused: false,
-      isStopped: true,
-      duration: 0,
-      currentTime: 0,
-      volume: 1.0,
-      isLoading: false,
-      error: 'Audio player not available',
-        };
-      }
-    },
-    setCallbacks: () => {},
-    play: async () => { throw new Error('Audio player not available'); },
-    pause: () => {},
-    resume: () => {},
-    stop: () => {},
-    seekTo: () => {},
-    setVolume: () => {},
-    loadAudio: async () => { throw new Error('Audio player not available'); },
-    playPsalm23: async () => { throw new Error('Audio player not available'); },
-    playPsalm101: async () => { throw new Error('Audio player not available'); },
-    playPsalm102: async () => { throw new Error('Audio player not available'); },
-    playPsalm103: async () => { throw new Error('Audio player not available'); },
-    playPsalm104: async () => { throw new Error('Audio player not available'); },
-    playPsalm105: async () => { throw new Error('Audio player not available'); },
-    playPsalm106: async () => { throw new Error('Audio player not available'); },
-    release: () => {},
-  } as any;
-}
-
-export const audioPlayer = audioPlayerInstance;
+export const audioPlayer = new AudioPlayerService();
 export default audioPlayer;

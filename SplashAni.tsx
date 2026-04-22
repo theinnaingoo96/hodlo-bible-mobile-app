@@ -5,7 +5,7 @@ import { AppColors } from "./src/constants/Color";
 import { useDispatch, useSelector } from 'react-redux';
 import { setDeviceId, setLoginTime } from './src/store/slices/deviceSlice';
 import DatabaseService from "./src/services/DatabaseService";
-import { scheduleNotification } from "./src/services/DailyVerseService";
+import DailyVerseService from "./src/services/DailyVerseService";
 import { Alert } from 'react-native';
 import permissionService from './src/services/PermissionService';
 import { createUser } from './src/services/ApiService';
@@ -42,7 +42,7 @@ const SplashScreen = ({ navigation }: any) => {
     //                   text: 'OK',
     //                   style: 'default',
     //                   onPress: () => {
-                        
+
     //                   },
     //                 },
     //               ]
@@ -104,7 +104,7 @@ const SplashScreen = ({ navigation }: any) => {
 
                     console.log('Permission status - Notifications:', notificationsGranted, 'Audio:', mediaAudioGranted);
 
-                    if (!notificationsGranted ) {
+                    if (!notificationsGranted) {
                         const results = await permissionService.requestEssentialPermissions();
 
                         Object.entries(results).forEach(([permission, result]) => {
@@ -136,28 +136,21 @@ const SplashScreen = ({ navigation }: any) => {
         const initDB = async () => {
             const db = DatabaseService.getInstance();
             await db.init(dispatch).then(() => {
-                db.getRandomVerse(10).then(async (data) => {
+                db.getRandomVerses(10).then(async (data) => {
                     console.log('random verse', data);
-                    // db.addNotificati`on(data[9].verse_id);
-                    // if (Platform.OS === "android" && Platform.Version >= 31) {
-                    //     await Linking.openSettings();
-                    // }
+                    
                     const notificationsGranted = await permissionService.checkPermission('notifications');
                     if (notificationsGranted) {
-                        scheduleNotification(data);
+                        // The automated check in App.tsx will handle this, 
+                        // but we can trigger an immediate check here if needed.
+                        await DailyVerseService.checkAndScheduleNotifications();
                     }
                     const deviceId = await DeviceInfo.getUniqueId();
                     const deviceName = await DeviceInfo.getDeviceName();
                     const deviceType = Platform.OS;
                     console.log('[Splash] deviceId', deviceId, 'deviceName', deviceName, 'deviceType', deviceType);
-                    
-                    // dispatch(setDownloaded(true));
-
-                    // const result = createUser(deviceId, deviceName, deviceType);
-                    // console.log('[Splash] create user result', result);
                 }).catch((error) => {
                     console.log('[Splash] random verse error', error);
-                    // dispatch(setDownloaded(true));
                 });
             }).catch((error) => {
                 Alert.alert('Error', 'Failed to initialize database');
@@ -182,8 +175,8 @@ const SplashScreen = ({ navigation }: any) => {
 
         // Request permissions first, then initialize app
         // requestPermissions().then(() => {
-            initDB();
-            initializeApp();
+        initDB();
+        initializeApp();
         // });
 
         Animated.timing(progress, {
