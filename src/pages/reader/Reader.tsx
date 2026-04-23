@@ -675,14 +675,14 @@ const Reader = ({ navigation, route }: any) => {
       }
 
       if (localFileExists) {
-        console.log('[AUDIO] Playing from local storage:', finalPath);
+        // console.log('[AUDIO] Playing from local storage:', finalPath);
         // Load the local file into the player
         await audioPlayer.loadAudio(finalPath);
         setPlayerSheetVisible(true);
         return;
       }
 
-      console.log('[AUDIO] Local file not found, fetching from API...');
+      // console.log('[AUDIO] Local file not found, fetching from API...');
       setIsDownloading(true);
       setDownloadProgressValue(0);
 
@@ -696,11 +696,11 @@ const Reader = ({ navigation, route }: any) => {
       );
 
       const apiResult = await getAudioChapter(chapterMasterId);
-      console.log('[AUDIO] API result:', apiResult);
+      // console.log('[AUDIO] API result:', apiResult);
 
       // 3.5 Sync verse timings if provided
       if (apiResult?.verses && apiResult.verses.length > 0) {
-        console.log('[AUDIO] Syncing verse timings from API...');
+        // console.log('[AUDIO] Syncing verse timings from API...');
         await DatabaseService.getInstance().updateVersesAudioData(apiResult.verses);
         // Refresh verses to enable highlighting immediately
         fetchVerses();

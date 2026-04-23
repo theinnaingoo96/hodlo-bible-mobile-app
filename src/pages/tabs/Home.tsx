@@ -34,10 +34,12 @@ const Home = () => {
         //     console.log('book from getBooksById', b);
         // })
         DatabaseService.getInstance().getTodayNotifications().then((result: any) => {
-            // console.log('getFutureNotifications', result);
+            console.log('[HOME] getFutureNotifications', result);
             if (result.length > 0) {
                 setTodayVerse(result[0]);
             }
+        }).catch((error: any) => {
+            console.log('[HOME] getFutureNotifications error', error);
         });
         DatabaseService.getInstance().seedAudioMilestone23().then((result: any) => {
             // console.log('seedAudioMilestone23', result)
@@ -163,11 +165,21 @@ const Home = () => {
                     </View>
                 </View> */}
                 <View style={styles.homeContainer}>
-                    <VerseOfTheDayCard
-                        verse={todayVerse?.text_hd || ''}
-                        reference={todayVerse?.book_name + " " + todayVerse?.chapter_number + ":" + todayVerse?.verse_number}
-                        onShare={handleShare}
-                    />
+                    {
+                        todayVerse ? (
+                            <VerseOfTheDayCard
+                                verse={todayVerse?.text_hd || ''}
+                                reference={todayVerse?.book_name + " " + todayVerse?.chapter_number + ":" + todayVerse?.verse_number}
+                                onShare={handleShare}
+                            />
+                        ) : (
+                            <VerseOfTheDayCard
+                                verse={'No verse of the day available'}
+                                reference={''}
+                                onShare={() => { }}
+                            />
+                        )
+                    }
                     <View style={{ height: 16 }} />
                     <ReadingProgressCard progress={reader.currentRead.progress || 0} />
                 </View>

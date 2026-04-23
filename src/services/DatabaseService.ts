@@ -3,7 +3,7 @@ import { Platform } from 'react-native';
 import SQLite from 'react-native-sqlite-storage';
 import DeviceInfo from "react-native-device-info";
 
-import { createUser, getBooks, getChapters, getVerses } from './ApiService';
+import { createUser, getBookDetail, getBooks, getChapters, getVerses } from './ApiService';
 import { constants } from '../constants/Data';
 import { Dispatch } from '@reduxjs/toolkit';
 import { setDownloaded, setDownloadProgress, setStartDownload } from '../store/slices/deviceSlice';
@@ -161,6 +161,9 @@ export default class DatabaseService {
                     audio_from TEXT,
                     audio_to TEXT,
                     master_verse_id INTEGER UNIQUE,
+                    subtitle_hd TEXT,
+                    subtitle_my TEXT,
+                    subtitle_en TEXT,
                     FOREIGN KEY(chapter_id) REFERENCES chapters(id)
                     );`
                 );
@@ -269,89 +272,91 @@ export default class DatabaseService {
                     resolve(true);
                 }
 
-                console.log('[DB]Seeding database1...');
-                console.log('[DB] Start Downloading ...');
+                // console.log('[DB]Seeding database1...');
+                // console.log('[DB] Start Downloading ...');
                 dispatch(setStartDownload(true));
                 dispatch(setDownloadProgress(0));
-                const bookData = await getBooks();
-                console.log('[DB]bookData', bookData);
+                const bookAllData = await getBooks();
+
+                // console.log('[DB]bookAllData', bookAllData);
 
                 let chapterCountForProgress = 0;
 
                 await this.db.executeSql('BEGIN TRANSACTION');
 
-                for (const book of bookData) {
+                for (const book of bookAllData) {
                     const { id, textEn, textMy, textHd, orderNumber } = book;
                     const testament = book.testament == 'Old' ? 'OT' : 'NT';
                     const chapterCount = 0;
-                    await this.db.executeSql('INSERT INTO books (id, name, nameMy, nameHd, number, count, testament) VALUES (?, ?, ?, ?, ?, ?, ?)', [id, textEn, textMy, textHd, orderNumber, chapterCount, testament]);
-                    console.log('[DB]inserted book', id);
-
+                    
                     const bookId = id;
-                    const chapterData = await getChapters(id);
+                    const bookData = await getBookDetail(id);
+                    const chapterData = bookData.chapters;
                     chapterCountForProgress += chapterData.length;
 
+                    // NEW Optimized Batch Processing
+                    const batchQueries: any[] = [];
+                    
+                    // 1. Add Book
+                    batchQueries.push([
+                        'INSERT INTO books (id, name, nameMy, nameHd, number, count, testament) VALUES (?, ?, ?, ?, ?, ?, ?)',
+                        [id, textEn, textMy, textHd, orderNumber, chapterData.length, testament]
+                    ]);
+
                     for (const chapter of chapterData) {
-                        const { id, bookId, number, textHd, textEn, textMy } = chapter;
-                        // const result: any = await this.db.executeSql(
-                        //     `INSERT INTO chapters (
-                        //         book_id, number, title_hd, title_en, title_mm, master_chapter_id
-                        //     )
-                        //     VALUES (?, ?, ?, ?, ?, ?)
-                        //     ON CONFLICT(master_chapter_id) 
-                        //     DO UPDATE SET 
-                        //         title_hd = excluded.title_hd, 
-                        //         title_en = excluded.title_en, 
-                        //         title_mm = excluded.title_mm`,
-                        //     [bookId, number, textHd, textEn, textMy, id]
-                        // );
+                        const { id: masterChapterId, number, textHd: cTextHd, textEn: cTextEn, textMy: cTextMy, verses } = chapter;
+                        
+                        // 2. Add Chapter
+                        batchQueries.push([
+                            `INSERT OR REPLACE INTO chapters (
+                                book_id, number, title_hd, title_en, title_mm, master_chapter_id
+                            ) VALUES (?, ?, ?, ?, ?, ?)`,
+                            [bookId, number, cTextHd, cTextEn, cTextMy, masterChapterId]
+                        ]);
+
+                        const chapterId = masterChapterId;
+                        for (const verse of verses) {
+                            const { id: vId, number: vNum, textHd: vHd, textEn: vEn, textMy: vMy, subtitleHd, subtitleMy, subtitleEn } = verse;
+                            
+                            // 3. Add Verses
+                            batchQueries.push([
+                                `INSERT OR REPLACE INTO verses (
+                                    chapter_id, number, text_hd, text_en, text_mm, audio_from, audio_to, master_verse_id,
+                                    subtitle_hd, subtitle_my, subtitle_en
+                                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                                [chapterId, vNum, vHd, vEn, vMy, "", "", vId, subtitleHd, subtitleMy, subtitleEn]
+                            ]);
+                        }
+                    }
+                    
+                    // Execute the entire book in one native trip
+                    await this.db.sqlBatch(batchQueries);
+                    // console.log(`[DB] Batch inserted book ${id} with ${batchQueries.length} operations`);
+
+                    /* OLD SLOW METHOD (Preserved for recovery)
+                    await this.db.executeSql('INSERT INTO books (id, name, nameMy, nameHd, number, count, testament) VALUES (?, ?, ?, ?, ?, ?, ?)', [id, textEn, textMy, textHd, orderNumber, chapterCount, testament]);
+
+                    for (const chapter of chapterData) {
+                        const { id, bookId, number, textHd, textEn, textMy, verses } = chapter;
                         await this.db.executeSql(
                             `INSERT OR REPLACE INTO chapters (
                                 book_id, number, title_hd, title_en, title_mm, master_chapter_id
                             ) VALUES (?, ?, ?, ?, ?, ?)`,
                             [bookId, number, textHd, textEn, textMy, id]
                         )
-                        console.log('[DB]inserted chapter', id);
 
                         const chapterId = id;
-                        const verseData = await getVerses(id);
+                        const verseData = verses; 
                         for (const verse of verseData) {
-                            const { id, number, textHd, textEn, textMy } = verse;
-                            // await this.db.executeSql(
-                            //     `INSERT INTO verses (
-                            //         chapter_id, number, text_hd, text_en, text_mm, audio_from, audio_to, master_verse_id
-                            //     )
-                            //     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-                            //     ON CONFLICT(master_verse_id) 
-                            //     DO UPDATE SET 
-                            //         text_hd = excluded.text_hd, 
-                            //         text_en = excluded.text_en, 
-                            //         text_mm = excluded.text_mm, 
-                            //         audio_from = excluded.audio_from, 
-                            //         audio_to = excluded.audio_to`,
-                            //     [chapterId, number, textHd, textEn, textMy, "", "", id]
-                            // );
+                            const { id, number, textHd, textEn, textMy, subtitleHd, subtitleMy, subtitleEn } = verse;
                             await this.db.executeSql(
-                                `INSERT OR REPLACE INTO verses (
-                                    chapter_id, 
-                                    number, 
-                                    text_hd, 
-                                    text_en, 
-                                    text_mm, 
-                                    audio_from, 
-                                    audio_to, 
-                                    master_verse_id
-                                )
-                                VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-                                [chapterId, number, textHd, textEn, textMy, "", "", id]
+                                `INSERT OR REPLACE INTO verses ...`,
+                                [chapterId, number, textHd, textEn, textMy, "", "", id, subtitleHd, subtitleMy, subtitleEn]
                             );
-                            // console.log('[DB]inserted verse', id);
                         }
                     }
-                    await this.db.executeSql(
-                        `UPDATE books SET count = ? WHERE id = ?`,
-                        [chapterData.length, bookId]
-                    )
+                    */
+
                     dispatch(setDownloadProgress(chapterCountForProgress / constants.bibleTotalChapters));
                 }
 
