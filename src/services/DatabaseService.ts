@@ -330,7 +330,7 @@ export default class DatabaseService {
                     }
                     
                     // Execute the entire book in one native trip
-                    await this.db.sqlBatch(batchQueries);
+                    await (this.db as any).sqlBatch(batchQueries);
                     // console.log(`[DB] Batch inserted book ${id} with ${batchQueries.length} operations`);
 
                     /* OLD SLOW METHOD (Preserved for recovery)
