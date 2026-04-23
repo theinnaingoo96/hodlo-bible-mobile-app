@@ -288,7 +288,7 @@ export default class DatabaseService {
                     const { id, textEn, textMy, textHd, orderNumber } = book;
                     const testament = book.testament == 'Old' ? 'OT' : 'NT';
                     const chapterCount = 0;
-                    
+
                     const bookId = id;
                     const bookData = await getBookDetail(id);
                     const chapterData = bookData.chapters;
@@ -296,8 +296,7 @@ export default class DatabaseService {
 
                     // NEW Optimized Batch Processing
                     const batchQueries: any[] = [];
-                    
-                    // 1. Add Book
+
                     batchQueries.push([
                         'INSERT INTO books (id, name, nameMy, nameHd, number, count, testament) VALUES (?, ?, ?, ?, ?, ?, ?)',
                         [id, textEn, textMy, textHd, orderNumber, chapterData.length, testament]
@@ -305,8 +304,7 @@ export default class DatabaseService {
 
                     for (const chapter of chapterData) {
                         const { id: masterChapterId, number, textHd: cTextHd, textEn: cTextEn, textMy: cTextMy, verses } = chapter;
-                        
-                        // 2. Add Chapter
+
                         batchQueries.push([
                             `INSERT OR REPLACE INTO chapters (
                                 book_id, number, title_hd, title_en, title_mm, master_chapter_id
@@ -317,8 +315,7 @@ export default class DatabaseService {
                         const chapterId = masterChapterId;
                         for (const verse of verses) {
                             const { id: vId, number: vNum, textHd: vHd, textEn: vEn, textMy: vMy, subtitleHd, subtitleMy, subtitleEn } = verse;
-                            
-                            // 3. Add Verses
+
                             batchQueries.push([
                                 `INSERT OR REPLACE INTO verses (
                                     chapter_id, number, text_hd, text_en, text_mm, audio_from, audio_to, master_verse_id,
@@ -328,7 +325,7 @@ export default class DatabaseService {
                             ]);
                         }
                     }
-                    
+
                     // Execute the entire book in one native trip
                     await (this.db as any).sqlBatch(batchQueries);
                     // console.log(`[DB] Batch inserted book ${id} with ${batchQueries.length} operations`);
