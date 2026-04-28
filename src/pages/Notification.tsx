@@ -6,6 +6,7 @@ import { View, Text, StyleSheet, SafeAreaView, FlatList, Alert, TouchableOpacity
 import NormalHeader from '../components/NormalHeader';
 import DatabaseService from '../services/DatabaseService';
 import { AppColors } from '../constants/Color';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const Notification = () => {
 
@@ -14,6 +15,7 @@ const Notification = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
+  const insets = useSafeAreaInsets();
 
   useEffect(() => {
     // const hd = require('../assets/seeder/19.json')
@@ -139,7 +141,7 @@ const Notification = () => {
   }
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: device.theme ? AppColors.appBackgroundGrey : AppColors.appBackgroundDarkTint }]}>
+    <SafeAreaView style={[styles.container, { backgroundColor: device.theme ? AppColors.appBackgroundGrey : AppColors.appBackgroundDarkTint, paddingTop: insets.top }]}>
       <NormalHeader title="Notification" backButton={true} />
       {/* <View style={styles.contentContainer}>
       <TouchableOpacity onPress={play}>

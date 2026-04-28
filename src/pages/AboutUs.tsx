@@ -1,20 +1,23 @@
 import {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
-import {View, StyleSheet, SafeAreaView, Text, Image} from 'react-native';
+import {View, StyleSheet, Text, Image} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import NormalHeader from '../components/NormalHeader';
 import {AppColors} from '../constants/Color';
 
 const AboutUs = () => {
   const device = useSelector((state: any) => state.device);
+  const insets = useSafeAreaInsets();
 
   useEffect(() => {}, []);
 
   return (
-    <SafeAreaView
+    <View
       style={[
         styles.container,
         {
+          paddingTop: insets.top,
           backgroundColor: device.theme
             ? AppColors.appBackgroundGrey
             : AppColors.appBackgroundDarkTint,
@@ -35,7 +38,7 @@ const AboutUs = () => {
           </Text>
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

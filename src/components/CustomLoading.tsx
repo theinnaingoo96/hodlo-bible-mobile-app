@@ -31,7 +31,7 @@ const CustomLoading = ({ visible = false }: { visible: boolean }) => {
     }));
 
     return (
-        <Modal transparent visible={visible} animationType="fade">
+        <Modal transparent visible={visible} animationType="fade" statusBarTranslucent={true}>
             <View style={styles.container}>
                 <View style={styles.overlay}>
                     <AnimatedView

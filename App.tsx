@@ -159,7 +159,7 @@ function App(): React.JSX.Element {
         <StatusBar
           backgroundColor={device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDark}
           barStyle={device.theme ? "dark-content" : "light-content"}
-          showHideTransition="fade" animated={true}
+          showHideTransition="fade" animated={true} translucent={true}
         />
         {/* <GestureHandlerRootView style={{ flex: 1 }}> */}
         <NavigationContainer ref={navigationRef}>

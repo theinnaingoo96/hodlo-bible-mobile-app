@@ -1,19 +1,20 @@
-import {useSelector} from 'react-redux';
-import React, {useEffect, useRef, useState} from 'react';
-import {useIsFocused, useNavigation} from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import React, { useEffect, useRef, useState } from 'react';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import {
   View,
   Text,
   StyleSheet,
   FlatList,
-  SafeAreaView,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import DatabaseService from '../services/DatabaseService';
 import CustomAlert from '../components/CustomAlert';
-import {AppColors} from '../constants/Color';
+import { AppColors } from '../constants/Color';
 import NormalHeader from '../components/NormalHeader';
 import SmoothSwipeRow from '../components/SmoothSwipeRow';
+import { StatusBar } from 'react-native';
 
 const Highlight = () => {
   const device = useSelector((state: any) => state.device);
@@ -23,6 +24,7 @@ const Highlight = () => {
   const [isAlertVisible, setIsAlertVisible] = useState(false);
   const [selectedHighlight, setSelectedHighlight] = useState<any>(null);
   const rowRefs = useRef(new Map());
+  const insets = useSafeAreaInsets();
 
   useEffect(() => {
     getHighlight();
@@ -33,7 +35,7 @@ const Highlight = () => {
       .getHighlights()
       .then((result: any) => {
         // console.log(result);
-        setHighlights(result.map((item: any) => ({...item, visible: false})));
+        setHighlights(result.map((item: any) => ({ ...item, visible: false })));
         // Alert.alert('result')
       });
   };
@@ -75,7 +77,7 @@ const Highlight = () => {
       });
   };
 
-  const renderItem = ({item}: {item: any}) => {
+  const renderItem = ({ item }: { item: any }) => {
     return (
       <SmoothSwipeRow
         ref={ref => { rowRefs.current.set(item.id, ref as any); }}
@@ -87,17 +89,23 @@ const Highlight = () => {
   };
 
   return (
-    <SafeAreaView
+    <View
       style={[
         styles.container,
         {
+          paddingTop: insets.top,
           backgroundColor: device.theme
             ? AppColors.appBackgroundGrey
             : AppColors.appBackgroundDarkTint,
         },
       ]}>
+      <StatusBar
+        backgroundColor={device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDark}
+        barStyle={device.theme ? "dark-content" : "light-content"}
+        translucent={true}
+      />
       <NormalHeader title="Highlight" backButton={true} />
-      <View style={{height: 16}} />
+      <View style={{ height: 16 }} />
       <FlatList
         data={highlights}
         renderItem={renderItem}
@@ -112,10 +120,10 @@ const Highlight = () => {
             No Highlights found
           </Text>
         }
-        ItemSeparatorComponent={() => <View style={{height: 10}} />}
+        ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
         showsVerticalScrollIndicator={false}
         style={styles.listContainer}
-        contentContainerStyle={{paddingHorizontal: 16}}
+        contentContainerStyle={{ paddingHorizontal: 16 }}
       />
       <CustomAlert
         visible={isAlertVisible}
@@ -137,7 +145,7 @@ const Highlight = () => {
           chapterNumber={shareBookmark?.chapter}
         />
       </Modal> */}
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -167,7 +175,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     flexDirection: 'column',
     shadowColor: AppColors.appTextBlack,
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,

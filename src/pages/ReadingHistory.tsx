@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {SectionList, View, Text, StyleSheet, SafeAreaView} from 'react-native';
+import {SectionList, View, Text, StyleSheet} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import moment from 'moment';
 
 import DatabaseService from '../services/DatabaseService';
@@ -12,6 +13,7 @@ const ReadingHistory = () => {
   const [sections, setSections] = useState<any[]>([]);
   const device = useSelector((state: any) => state.device);
   const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
 
   useEffect(() => {
     DatabaseService.getInstance()
@@ -83,10 +85,11 @@ const ReadingHistory = () => {
   };
 
   return (
-    <SafeAreaView
+    <View
       style={[
         styles.container,
         {
+          paddingTop: insets.top,
           backgroundColor: device.theme
             ? AppColors.appBackgroundGrey
             : AppColors.appBackgroundDarkTint,
@@ -103,7 +106,7 @@ const ReadingHistory = () => {
         stickySectionHeadersEnabled={false}
         contentContainerStyle={{padding: 20}}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 

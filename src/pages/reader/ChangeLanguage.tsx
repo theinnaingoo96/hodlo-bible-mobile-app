@@ -7,12 +7,14 @@ import AppHeader from '../../components/AppHeader';
 import { AppColors } from '../../constants/Color';
 import { languages } from '../../constants/Data';
 import { setLanguage } from '../../store/slices/deviceSlice';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const ChangeLanguage = () => {
     const dispatch = useDispatch();
     const device = useSelector((state: any) => state.device);
     const [languageList, setLanguageList] = useState(languages);
     const [toastVisible, setToastVisible] = useState(false);
+    const insets = useSafeAreaInsets();
 
     useEffect(() => {
         setLanguageList(languages.map((language) => {
@@ -46,7 +48,7 @@ const ChangeLanguage = () => {
     };
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { paddingTop: insets.top }]}>
             <AppHeader title="Change Language" backButton={true} />
             <View style={[styles.contentContainer, { backgroundColor: device.theme ? AppColors.appBackgroundGrey : AppColors.appBackgroundDarkTint }]}>
                 {languageList.map((language: any, index: number) => (
