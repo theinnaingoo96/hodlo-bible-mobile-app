@@ -135,7 +135,7 @@ export default class DatabaseService {
 
                 await this.db.executeSql(
                     `CREATE TABLE IF NOT EXISTS ${TABLE_CHAPTERS} (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    id INTEGER PRIMARY KEY,
                     book_id INTEGER,
                     number INTEGER,
                     title_hd TEXT,
@@ -152,7 +152,7 @@ export default class DatabaseService {
 
                 await this.db.executeSql(
                     `CREATE TABLE IF NOT EXISTS ${TABLE_VERSES} (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    id INTEGER PRIMARY KEY,
                     chapter_id INTEGER,
                     number INTEGER,
                     text_hd TEXT,
@@ -287,18 +287,18 @@ export default class DatabaseService {
                     const chunk = bookAllData.slice(i, i + CONCURRENCY_LIMIT);
 
                     await Promise.all(chunk.map(async (book: any) => {
-                        const { id, textEn, textMy, textHd, orderNumber } = book;
+                        const { id: bookId, textEn, textMy, textHd, orderNumber } = book;
                         const testament = book.testament === 'Old' ? 'OT' : 'NT';
 
                         try {
-                            console.log(`[DB] Downloading book: ${textEn} (ID: ${id})`);
-                            const bookData = await getBookDetail(id);
+                            console.log(`[DB] Downloading book: ${textEn} (ID: ${bookId})`);
+                            const bookData = await getBookDetail(bookId);
                             const chapterData = bookData.chapters;
 
                             const batchQueries: any[] = [];
                             batchQueries.push([
                                 'INSERT INTO books (id, name, nameMy, nameHd, number, count, testament) VALUES (?, ?, ?, ?, ?, ?, ?)',
-                                [id, textEn, textMy, textHd, orderNumber, chapterData.length, testament]
+                                [bookId, textEn, textMy, textHd, orderNumber, chapterData.length, testament]
                             ]);
 
                             for (const chapter of chapterData) {
@@ -306,19 +306,19 @@ export default class DatabaseService {
 
                                 batchQueries.push([
                                     `INSERT OR REPLACE INTO chapters (
-                                        book_id, number, title_hd, title_en, title_mm, master_chapter_id
-                                    ) VALUES (?, ?, ?, ?, ?, ?)`,
-                                    [id, number, cTextHd, cTextEn, cTextMy, masterChapterId]
+                                        id, book_id, number, title_hd, title_en, title_mm, master_chapter_id
+                                    ) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+                                    [masterChapterId, bookId, number, cTextHd, cTextEn, cTextMy, masterChapterId]
                                 ]);
 
                                 for (const verse of verses) {
                                     const { id: vId, number: vNum, textHd: vHd, textEn: vEn, textMy: vMy, subtitleHd, subtitleMy, subtitleEn } = verse;
                                     batchQueries.push([
                                         `INSERT OR REPLACE INTO verses (
-                                            chapter_id, number, text_hd, text_en, text_mm, audio_from, audio_to, master_verse_id,
+                                            id, chapter_id, number, text_hd, text_en, text_mm, audio_from, audio_to, master_verse_id,
                                             subtitle_hd, subtitle_my, subtitle_en
-                                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-                                        [masterChapterId, vNum, vHd, vEn, vMy, "", "", vId, subtitleHd, subtitleMy, subtitleEn]
+                                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                                        [vId, masterChapterId, vNum, vHd, vEn, vMy, "", "", vId, subtitleHd, subtitleMy, subtitleEn]
                                     ]);
                                 }
                             }
@@ -332,7 +332,7 @@ export default class DatabaseService {
                             console.log(`[DB] Seeded ${textEn} successfully.`);
 
                         } catch (bookError) {
-                            console.error(`[DB] Failed to seed book ${id}:`, bookError);
+                            console.error(`[DB] Failed to seed book ${bookId}:`, bookError);
                             // We don't reject here so other books can continue, 
                             // but you might want more robust retry logic in production.
                         }
@@ -779,6 +779,8 @@ export default class DatabaseService {
             try {
                 for (const verse of audioVerses) {
                     const { verseId, startMs, endMs } = verse;
+                    console.log('[DB] updateVersesAudioData', verseId, startMs, endMs);
+
                     if (verseId && startMs !== undefined && endMs !== undefined) {
                         await this.db.executeSql(
                             `UPDATE ${TABLE_VERSES} SET audio_from = ?, audio_to = ? WHERE master_verse_id = ?`,
