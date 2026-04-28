@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Platform } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import useKeyboardVisible from "../utils/hooks/useKeyboardVisible";
@@ -10,6 +10,7 @@ import SearchIcon from "../components/icons/SearchIcon";
 import BibleIcon from "../components/icons/BibleIcon";
 import HomeIcon from "../components/icons/HomeIcon";
 import TabHeader from "../components/TabHeader";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { AppColors } from "../constants/Color";
 
 import Bookmark from "./tabs/Bookmark";
@@ -33,6 +34,7 @@ interface CustomHeaderProps {
 const Main = () => {
     const device = useSelector((state: any) => state.device);
     const isKeyboardVisible = useKeyboardVisible();
+    const insets = useSafeAreaInsets();
 
     return (
         <View style={styles.mainWrapper}>
@@ -41,7 +43,14 @@ const Main = () => {
                     headerShown: true,
                     headerStyle: [styles.header, { backgroundColor: device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDark }],
                     headerTitleAlign: 'center',
-                    tabBarStyle: [styles.tabBar, { display: isKeyboardVisible ? 'none' : 'flex' }], //{ backgroundColor: device.theme ? AppColors.primary : AppColors.primaryNior }],
+                    tabBarStyle: [
+                        styles.tabBar,
+                        {
+                            display: isKeyboardVisible ? 'none' : 'flex',
+                            height: Platform.OS === 'ios' ? 75 : 60 + insets.bottom + 10,
+                            paddingBottom: insets.bottom > 0 ? insets.bottom + 10 : 10
+                        }
+                    ], //{ backgroundColor: device.theme ? AppColors.primary : AppColors.primaryNior }],
                     tabBarActiveTintColor: AppColors.appTextWhite,
                     tabBarInactiveTintColor: AppColors.appTextBlack,
                     tabBarLabelStyle: {
@@ -130,9 +139,10 @@ const styles = StyleSheet.create({
         // padding: 0
     },
     tabBar: {
-        height: 70,
+        // height: 70,
         paddingBottom: 8,
         paddingTop: 8,
+        // marginBottom: 20,
         backgroundColor: AppColors.primary,
         // borderTopWidth: 1,
         // borderTopColor: AppColors.appTextGrey,

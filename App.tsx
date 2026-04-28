@@ -9,7 +9,7 @@ import {
   Alert
 } from 'react-native';
 import { useSelector } from 'react-redux';
-import PushNotification from 'react-native-push-notification';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -98,16 +98,6 @@ function App(): React.JSX.Element {
 
   const initialPermissionSetup = async () => {
     const results = await permissionService.requestEssentialPermissions();
-    if (results.notifications.granted) {
-      PushNotification.createChannel(
-        {
-          channelId: 'ho-dlo-channel',
-          channelName: 'Ho Dlo Notifications',
-          importance: 4,
-        },
-        (created) => console.log(`[Push] createChannel returned '${created}'`)
-      );
-    }
     await DailyVerseService.checkAndScheduleNotifications();
   }
 
@@ -164,7 +154,7 @@ function App(): React.JSX.Element {
   }, []);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaProvider>
       <View style={{ flex: 1 }}>
         <StatusBar
           backgroundColor={device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDark}
@@ -235,7 +225,7 @@ function App(): React.JSX.Element {
         <CustomLoading visible={device.loading} />
         <CustomToast visible={device.toast.show} message={device.toast.message} type={device.toast.type} duration={device.toast.duration} />
       </View>
-    </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 

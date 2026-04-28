@@ -259,7 +259,6 @@ export default class DatabaseService {
     }
 
     private async seedData(dispatch: Dispatch): Promise<any> {
-
         return new Promise(async (resolve, reject) => {
             if (!this.db) throw new Error('DB not ready');
 
@@ -270,233 +269,85 @@ export default class DatabaseService {
                 if (count > 0) {
                     console.log('[DB] Already seeded');
                     resolve(true);
+                    return;
                 }
 
-                // console.log('[DB]Seeding database1...');
-                // console.log('[DB] Start Downloading ...');
                 dispatch(setStartDownload(true));
                 dispatch(setDownloadProgress(0));
+
+                console.log('[DB] Fetching book list...');
                 const bookAllData = await getBooks();
+                console.log(`[DB] Found ${bookAllData.length} books. Starting parallel seed...`);
 
-                // console.log('[DB]bookAllData', bookAllData);
+                let chaptersProcessed = 0;
+                const CONCURRENCY_LIMIT = 5; // Download 5 books at a time
 
-                let chapterCountForProgress = 0;
+                // Process in chunks to avoid overwhelming the server
+                for (let i = 0; i < bookAllData.length; i += CONCURRENCY_LIMIT) {
+                    const chunk = bookAllData.slice(i, i + CONCURRENCY_LIMIT);
 
-                await this.db.executeSql('BEGIN TRANSACTION');
+                    await Promise.all(chunk.map(async (book: any) => {
+                        const { id, textEn, textMy, textHd, orderNumber } = book;
+                        const testament = book.testament === 'Old' ? 'OT' : 'NT';
 
-                for (const book of bookAllData) {
-                    const { id, textEn, textMy, textHd, orderNumber } = book;
-                    const testament = book.testament == 'Old' ? 'OT' : 'NT';
-                    const chapterCount = 0;
+                        try {
+                            console.log(`[DB] Downloading book: ${textEn} (ID: ${id})`);
+                            const bookData = await getBookDetail(id);
+                            const chapterData = bookData.chapters;
 
-                    const bookId = id;
-                    const bookData = await getBookDetail(id);
-                    const chapterData = bookData.chapters;
-                    chapterCountForProgress += chapterData.length;
-
-                    // NEW Optimized Batch Processing
-                    const batchQueries: any[] = [];
-
-                    batchQueries.push([
-                        'INSERT INTO books (id, name, nameMy, nameHd, number, count, testament) VALUES (?, ?, ?, ?, ?, ?, ?)',
-                        [id, textEn, textMy, textHd, orderNumber, chapterData.length, testament]
-                    ]);
-
-                    for (const chapter of chapterData) {
-                        const { id: masterChapterId, number, textHd: cTextHd, textEn: cTextEn, textMy: cTextMy, verses } = chapter;
-
-                        batchQueries.push([
-                            `INSERT OR REPLACE INTO chapters (
-                                book_id, number, title_hd, title_en, title_mm, master_chapter_id
-                            ) VALUES (?, ?, ?, ?, ?, ?)`,
-                            [bookId, number, cTextHd, cTextEn, cTextMy, masterChapterId]
-                        ]);
-
-                        const chapterId = masterChapterId;
-                        for (const verse of verses) {
-                            const { id: vId, number: vNum, textHd: vHd, textEn: vEn, textMy: vMy, subtitleHd, subtitleMy, subtitleEn } = verse;
-
+                            const batchQueries: any[] = [];
                             batchQueries.push([
-                                `INSERT OR REPLACE INTO verses (
-                                    chapter_id, number, text_hd, text_en, text_mm, audio_from, audio_to, master_verse_id,
-                                    subtitle_hd, subtitle_my, subtitle_en
-                                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-                                [chapterId, vNum, vHd, vEn, vMy, "", "", vId, subtitleHd, subtitleMy, subtitleEn]
+                                'INSERT INTO books (id, name, nameMy, nameHd, number, count, testament) VALUES (?, ?, ?, ?, ?, ?, ?)',
+                                [id, textEn, textMy, textHd, orderNumber, chapterData.length, testament]
                             ]);
+
+                            for (const chapter of chapterData) {
+                                const { id: masterChapterId, number, textHd: cTextHd, textEn: cTextEn, textMy: cTextMy, verses } = chapter;
+
+                                batchQueries.push([
+                                    `INSERT OR REPLACE INTO chapters (
+                                        book_id, number, title_hd, title_en, title_mm, master_chapter_id
+                                    ) VALUES (?, ?, ?, ?, ?, ?)`,
+                                    [id, number, cTextHd, cTextEn, cTextMy, masterChapterId]
+                                ]);
+
+                                for (const verse of verses) {
+                                    const { id: vId, number: vNum, textHd: vHd, textEn: vEn, textMy: vMy, subtitleHd, subtitleMy, subtitleEn } = verse;
+                                    batchQueries.push([
+                                        `INSERT OR REPLACE INTO verses (
+                                            chapter_id, number, text_hd, text_en, text_mm, audio_from, audio_to, master_verse_id,
+                                            subtitle_hd, subtitle_my, subtitle_en
+                                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                                        [masterChapterId, vNum, vHd, vEn, vMy, "", "", vId, subtitleHd, subtitleMy, subtitleEn]
+                                    ]);
+                                }
+                            }
+
+                            await (this.db as any).sqlBatch(batchQueries);
+                            chaptersProcessed += chapterData.length;
+
+                            // Update progress
+                            const progress = chaptersProcessed / constants.bibleTotalChapters;
+                            dispatch(setDownloadProgress(progress > 1 ? 1 : progress));
+                            console.log(`[DB] Seeded ${textEn} successfully.`);
+
+                        } catch (bookError) {
+                            console.error(`[DB] Failed to seed book ${id}:`, bookError);
+                            // We don't reject here so other books can continue, 
+                            // but you might want more robust retry logic in production.
                         }
-                    }
-
-                    // Execute the entire book in one native trip
-                    await (this.db as any).sqlBatch(batchQueries);
-                    // console.log(`[DB] Batch inserted book ${id} with ${batchQueries.length} operations`);
-
-                    /* OLD SLOW METHOD (Preserved for recovery)
-                    await this.db.executeSql('INSERT INTO books (id, name, nameMy, nameHd, number, count, testament) VALUES (?, ?, ?, ?, ?, ?, ?)', [id, textEn, textMy, textHd, orderNumber, chapterCount, testament]);
-
-                    for (const chapter of chapterData) {
-                        const { id, bookId, number, textHd, textEn, textMy, verses } = chapter;
-                        await this.db.executeSql(
-                            `INSERT OR REPLACE INTO chapters (
-                                book_id, number, title_hd, title_en, title_mm, master_chapter_id
-                            ) VALUES (?, ?, ?, ?, ?, ?)`,
-                            [bookId, number, textHd, textEn, textMy, id]
-                        )
-
-                        const chapterId = id;
-                        const verseData = verses; 
-                        for (const verse of verseData) {
-                            const { id, number, textHd, textEn, textMy, subtitleHd, subtitleMy, subtitleEn } = verse;
-                            await this.db.executeSql(
-                                `INSERT OR REPLACE INTO verses ...`,
-                                [chapterId, number, textHd, textEn, textMy, "", "", id, subtitleHd, subtitleMy, subtitleEn]
-                            );
-                        }
-                    }
-                    */
-
-                    dispatch(setDownloadProgress(chapterCountForProgress / constants.bibleTotalChapters));
+                    }));
                 }
 
-                // dispatch(setDownloadProgress(Math.round((chapterCountForProgress / constants.bibleTotalChapters) * 100)));
-                // console.log('[DB]updated book count', bookId, chapterData.length);
-                // 
-                // for (const book of bookData) {
-                //     const { id } = book;
-                //     const chapterData = await getChapters(id);
-                //     console.log('[DB]chapterData', chapterData);
-
-                // }
-
-                // const [chapterResult] = await this.db.executeSql(`SELECT COUNT(*) as count FROM books`);
-                // const chapterCount = chapterResult.rows.item(0).count;
-
-                // if (chapterCount > 0) {
-                //     console.log('[DB] Already seeded');
-                // } else {
-
-                // }
-                // for (const row of verseData) {
-                //     const { book_id, book_name, chapter_id, chapter_hd, chapter_en, chapter_mm, verse_number, text_hd, text_en, text_mm,  } = row;
-                //     const audio_from = row.audio_from || "";
-                //     const audio_to = row.audio_to || "";
-                //     const chapterKey = `${book_id}_${chapter_id}`;
-
-                //     if (!chapterMap.has(chapterKey)) {
-                //         const res = await this.db.executeSql(
-                //             'INSERT INTO chapters (book_id, number, title_hd, title_en, title_mm) VALUES (?, ?, ?, ?, ?)',
-                //             [book_id, chapter_id, chapter_hd, chapter_en, chapter_mm]
-                //         );
-                //         chapterMap.set(chapterKey, res[0].insertId);
-                //         console.log('[DB]inserted chapter', res[0].insertId);
-                //     }
-
-                //     const chapter_ids = chapterMap.get(chapterKey);
-                //     await this.db.executeSql(
-                //         `INSERT INTO verses (chapter_id, number, text_hd, text_en, text_mm, audio_from, audio_to)
-                //      VALUES (?, ?, ?, ?, ?, ?, ?)`,
-                //         [chapter_ids, verse_number, text_hd, text_en, text_mm, audio_from, audio_to]
-                //     );
-                //     console.log('[DB]inserted verse of', book_id, ' : ', chapter_id);
-                // }
-                // const [chapterCount] = await this.db.executeSql(`
-                //     SELECT book_id, COUNT(*) AS chapter_count
-                //     FROM chapters
-                //     GROUP BY book_id;`
-                // );
-                // const updates: { bookId: number, count: number }[] = [];
-                // for (let i = 0; i < chapterCount.rows.length; i++) {
-                //     const { book_id, chapter_count } = chapterCount.rows.item(i);
-                //     updates.push({ bookId: book_id, count: chapter_count });
-                // }
-                // console.log('[DB]chapterCount', updates);
-                // for (const { bookId, count } of updates) {
-                //     await this.db.executeSql(
-                //         `UPDATE books SET count = ? WHERE id = ?`,
-                //         [count, bookId]
-                //     ).then(() => {
-                //         console.log('[DB]updated book', bookId);
-                //     });
-                // }
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                // update chapters table with audio_path and audio_milestone
-                // const audio23 = ['00:04', '00:12', '00:23', '00:36', '00:47', '00:58'];
-                // // Update audio info for Psalm 23
-                // const [psalmChapterId] = await this.db.executeSql(
-                //     `SELECT * FROM chapters WHERE book_id = ? AND number = ?`,
-                //     [19, 23]
-                // );
-                // console.log('[DB] psalmChapterId', psalmChapterId);
-                // if (psalmChapterId.rows.length > 0) {
-                //     const psalmId = psalmChapterId.rows.item(0).id;
-                //     console.log('[DB] psalmBookId', psalmId);
-                //     // Update chapter audio path
-                //     await this.db.executeSql(
-                //         `UPDATE chapters 
-                //          SET audio_path = ? 
-                //          WHERE id = ?`,
-                //         ['psalms2300.wav', psalmId]
-                //     );
-                //     console.log('[DB] Updated Psalm 23 chapter audio path', psalmId, 23);
-
-                //     // Get chapter id for Psalm 23
-                //     const [psalmChapter] = await this.db.executeSql(
-                //         `SELECT * FROM verses 
-                //          WHERE chapter_id = ?`,
-                //         [psalmId]
-                //     );
-                //     const audioVerses = [];
-                //     for (let i = 0; i < psalmChapter.rows.length; i++) {
-                //         audioVerses.push(psalmChapter.rows.item(i));
-                //     }
-                //     console.log('[DB] psalmChapter', audioVerses);
-                //     let pindex = 0;
-                //     if (audioVerses.length > 0) {
-                //         for (const verse of audioVerses) {
-                //             const { id, number, text_hd, text_en, text_mm } = verse;
-                //             const audio_milestone = audio23[pindex];
-                //             pindex++;
-                //             const res = await this.db.executeSql(
-                //                 `UPDATE verses 
-                //                  SET audio_milestone = ?
-                //                  WHERE id = ?`,
-                //                 [audio_milestone, id]
-                //             );
-                //             console.log('[DB] seed audio', pindex, id, res);
-                //         }
-                //         // for (const verse of chapterId) {
-                //         //     // const { id, number, text_hd, text_en, text_mm } = verse;
-                //         //     const audio_milestone = audio23[pindex];
-                //         //     pindex++;
-                //         //     await this.db.executeSql(
-                //         //         `UPDATE verses 
-                //         //          SET audio_milestone = ?
-                //         //          WHERE id = ?`,
-                //         //         [audio_milestone, id]
-                //         //     );
-                //         // }
-                //         // const chapterId = psalmChapter.rows.item(0).id;
-
-                //         // // Update verse audio milestones
-                //         // await this.db.executeSql(
-                //         //     `UPDATE verses 
-                //         //      SET audio_milestone = ?
-                //         //      WHERE chapter_id = ?`,
-                //         //     ['00:20', chapterId]
-                //         // );
-                //         console.log('[DB] Updated Psalm 23 verse audio milestones');
-                //     }
-                // }
-                console.log('[DB] SEEDING COMPLETED...');
-                await this.db.executeSql('COMMIT');
+                console.log('[DB] SEEDING COMPLETED SUCCESSFULLY.');
                 dispatch(setDownloaded(true));
                 resolve(true);
             } catch (error) {
-                await this.db.executeSql('ROLLBACK');
-                console.error('[DB] Seeding Failed:', error);
+                console.error('[DB] Seeding Global Failure:', error);
                 dispatch(setStartDownload(false));
                 reject(error);
             }
-        })
+        });
     }
 
     public async getAllData(): Promise<any> {
@@ -1503,151 +1354,153 @@ export default class DatabaseService {
         });
     }
 
-    public async seedAudioMilestone23(): Promise<any> {
-        return new Promise(async (resolve, reject) => {
-            if (!this.db) throw new Error('Database not initialized');
-            try {
-                // update chapters table with audio_path and audio_milestone
-                // const audio23 = ['00:04', '00:12', '00:23', '00:36', '00:47', '00:58'];
-                const audio23 = [
-                    { from: '00:00', to: '00:05' }, // Verse 1
-                    { from: '00:05', to: '00:13' }, // Verse 2
-                    { from: '00:13', to: '00:24' }, // Verse 3
-                    { from: '00:24', to: '00:37' }, // Verse 4
-                    { from: '00:37', to: '00:48' }, // Verse 5
-                    { from: '00:48', to: '00:58' }  // Verse 6
-                ];
-                // Update audio info for Psalm 23
-                const [psalmChapterId] = await this.db.executeSql(
-                    `SELECT * FROM chapters WHERE book_id = ? AND number = ?`,
-                    [19, 23]
-                );
-                console.log('[DB] psalmChapterId', psalmChapterId);
-                if (psalmChapterId.rows.length > 0) {
-                    const psalmId = psalmChapterId.rows.item(0).id;
-                    console.log('[DB] psalmBookId', psalmId);
-                    // Update chapter audio path
-                    await this.db.executeSql(
-                        `UPDATE chapters 
-                         SET audio_path = ? 
-                         WHERE id = ?`,
-                        ['psalms2400.mp3', psalmId]
-                    );
-                    console.log('[DB] Updated Psalm 23 chapter audio path', psalmId, 23);
+    // public async seedAudioMilestone23(): Promise<any> {
+    //     return new Promise(async (resolve, reject) => {
+    //         if (!this.db) throw new Error('Database not initialized');
+    //         try {
+    //             // update chapters table with audio_path and audio_milestone
+    //             // const audio23 = ['00:04', '00:12', '00:23', '00:36', '00:47', '00:58'];
+    //             const audio23 = [
+    //                 { from: '00:00', to: '00:05' }, // Verse 1
+    //                 { from: '00:05', to: '00:13' }, // Verse 2
+    //                 { from: '00:13', to: '00:24' }, // Verse 3
+    //                 { from: '00:24', to: '00:37' }, // Verse 4
+    //                 { from: '00:37', to: '00:48' }, // Verse 5
+    //                 { from: '00:48', to: '00:58' }  // Verse 6
+    //             ];
+    //             // Update audio info for Psalm 23
+    //             const [psalmChapterId] = await this.db.executeSql(
+    //                 `SELECT * FROM chapters WHERE book_id = ? AND number = ?`,
+    //                 [19, 23]
+    //             );
+    //             console.log('[DB] psalmChapterId', psalmChapterId);
+    //             if (psalmChapterId.rows.length > 0) {
+    //                 const psalmId = psalmChapterId.rows.item(0).id;
+    //                 console.log('[DB] psalmBookId', psalmId);
+    //                 // Update chapter audio path
+    //                 await this.db.executeSql(
+    //                     `UPDATE chapters 
+    //                      SET audio_path = ? 
+    //                      WHERE id = ?`,
+    //                     ['psalms2400.mp3', psalmId]
+    //                 );
+    //                 console.log('[DB] Updated Psalm 23 chapter audio path', psalmId, 23);
 
-                    // Get chapter id for Psalm 23
-                    const [psalmChapter] = await this.db.executeSql(
-                        `SELECT * FROM verses 
-                         WHERE chapter_id = ?`,
-                        [psalmId]
-                    );
-                    const audioVerses = [];
-                    for (let i = 0; i < psalmChapter.rows.length; i++) {
-                        audioVerses.push(psalmChapter.rows.item(i));
-                    }
-                    console.log('[DB] psalmChapter', audioVerses);
-                    let pindex = 0;
-                    if (audioVerses.length > 0) {
-                        for (const verse of audioVerses) {
-                            const { id, number, text_hd, text_en, text_mm } = verse;
-                            const audio_from = audio23[pindex].from;
-                            const audio_to = audio23[pindex].to;
-                            pindex++;
-                            const res = await this.db.executeSql(
-                                `UPDATE verses 
-                                 SET audio_from = ?, audio_to = ?
-                                 WHERE id = ?`,
-                                [audio_from, audio_to, id]
-                            );
-                            // console.log('[DB] seed audio', pindex, id, res);
-                        }
-                        // console.log('[DB] Updated Psalm 23 verse audio milestones');
-                    }
-                    resolve(true);
-                } else {
-                    resolve(false);
-                }
-            } catch (error) {
-                console.error('[DB] Error seeding Audio Milestone:', error);
-                reject(error);
-            }
-        });
-    }
+    //                 // Get chapter id for Psalm 23
+    //                 const [psalmChapter] = await this.db.executeSql(
+    //                     `SELECT * FROM verses 
+    //                      WHERE chapter_id = ?`,
+    //                     [psalmId]
+    //                 );
+    //                 const audioVerses = [];
+    //                 for (let i = 0; i < psalmChapter.rows.length; i++) {
+    //                     audioVerses.push(psalmChapter.rows.item(i));
+    //                 }
+    //                 console.log('[DB] psalmChapter', audioVerses);
+    //                 let pindex = 0;
+    //                 if (audioVerses.length > 0) {
+    //                     for (const verse of audioVerses) {
+    //                         if (pindex >= audio23.length) break;
+    //                         const { id, number, text_hd, text_en, text_mm } = verse;
+    //                         const audio_from = audio23[pindex].from;
+    //                         const audio_to = audio23[pindex].to;
+    //                         pindex++;
+    //                         const res = await this.db.executeSql(
+    //                             `UPDATE verses 
+    //                              SET audio_from = ?, audio_to = ?
+    //                              WHERE id = ?`,
+    //                             [audio_from, audio_to, id]
+    //                         );
+    //                         // console.log('[DB] seed audio', pindex, id, res);
+    //                     }
+    //                     // console.log('[DB] Updated Psalm 23 verse audio milestones');
+    //                 }
+    //                 resolve(true);
+    //             } else {
+    //                 resolve(false);
+    //             }
+    //         } catch (error) {
+    //             console.error('[DB] Error seeding Audio Milestone:', error);
+    //             reject(error);
+    //         }
+    //     });
+    // }
 
-    public async seedAudioMilestone24(): Promise<any> {
-        return new Promise(async (resolve, reject) => {
-            if (!this.db) throw new Error('Database not initialized');
-            try {
-                // update chapters table with audio_path and audio_milestone
-                // const audio23 = ['00:04', '00:12', '00:23', '00:36', '00:47', '00:58'];
-                const audio24 = [
-                    { from: '00:00', to: '00:11' }, // Verse 1
-                    { from: '00:11', to: '00:21' }, // Verse 2
-                    { from: '00:21', to: '00:30' }, // Verse 3
-                    { from: '00:30', to: '00:38' }, // Verse 4
-                    { from: '00:38', to: '00:50' }, // Verse 5
-                    { from: '00:50', to: '00:57' }, // Verse 6
-                    { from: '00:57', to: '01:07' }, // Verse 7
-                    { from: '01:07', to: '01:17' }, // Verse 8
-                    { from: '01:18', to: '01:26' }, // Verse 9
-                    { from: '01:27', to: '01:33' }  // Verse 10
-                ];
-                // Update audio info for Psalm 23
-                const [psalmChapterId] = await this.db.executeSql(
-                    `SELECT * FROM chapters WHERE book_id = ? AND number = ?`,
-                    [19, 24]
-                );
-                console.log('[DB] psalmChapterId', psalmChapterId);
-                if (psalmChapterId.rows.length > 0) {
-                    const psalmId = psalmChapterId.rows.item(0).id;
-                    console.log('[DB] psalmBookId', psalmId);
-                    // Update chapter audio path
-                    await this.db.executeSql(
-                        `UPDATE chapters 
-                         SET audio_path = ? 
-                         WHERE id = ?`,
-                        ['psalms2400.mp3', psalmId]
-                    );
-                    console.log('[DB] Updated Psalm 24 chapter audio path', psalmId, 24);
+    // public async seedAudioMilestone24(): Promise<any> {
+    //     return new Promise(async (resolve, reject) => {
+    //         if (!this.db) throw new Error('Database not initialized');
+    //         try {
+    //             // update chapters table with audio_path and audio_milestone
+    //             // const audio23 = ['00:04', '00:12', '00:23', '00:36', '00:47', '00:58'];
+    //             const audio24 = [
+    //                 { from: '00:00', to: '00:11' }, // Verse 1
+    //                 { from: '00:11', to: '00:21' }, // Verse 2
+    //                 { from: '00:21', to: '00:30' }, // Verse 3
+    //                 { from: '00:30', to: '00:38' }, // Verse 4
+    //                 { from: '00:38', to: '00:50' }, // Verse 5
+    //                 { from: '00:50', to: '00:57' }, // Verse 6
+    //                 { from: '00:57', to: '01:07' }, // Verse 7
+    //                 { from: '01:07', to: '01:17' }, // Verse 8
+    //                 { from: '01:18', to: '01:26' }, // Verse 9
+    //                 { from: '01:27', to: '01:33' }  // Verse 10
+    //             ];
+    //             // Update audio info for Psalm 23
+    //             const [psalmChapterId] = await this.db.executeSql(
+    //                 `SELECT * FROM chapters WHERE book_id = ? AND number = ?`,
+    //                 [19, 24]
+    //             );
+    //             console.log('[DB] psalmChapterId', psalmChapterId);
+    //             if (psalmChapterId.rows.length > 0) {
+    //                 const psalmId = psalmChapterId.rows.item(0).id;
+    //                 console.log('[DB] psalmBookId', psalmId);
+    //                 // Update chapter audio path
+    //                 await this.db.executeSql(
+    //                     `UPDATE chapters 
+    //                      SET audio_path = ? 
+    //                      WHERE id = ?`,
+    //                     ['psalms2400.mp3', psalmId]
+    //                 );
+    //                 console.log('[DB] Updated Psalm 24 chapter audio path', psalmId, 24);
 
-                    // Get chapter id for Psalm 23
-                    const [psalmChapter] = await this.db.executeSql(
-                        `SELECT * FROM verses 
-                         WHERE chapter_id = ?`,
-                        [psalmId]
-                    );
-                    const audioVerses = [];
-                    for (let i = 0; i < psalmChapter.rows.length; i++) {
-                        audioVerses.push(psalmChapter.rows.item(i));
-                    }
-                    console.log('[DB] psalmChapter', audioVerses);
-                    let pindex = 0;
-                    if (audioVerses.length > 0) {
-                        for (const verse of audioVerses) {
-                            const { id, number, text_hd, text_en, text_mm } = verse;
-                            const audio_from = audio24[pindex].from;
-                            const audio_to = audio24[pindex].to;
-                            pindex++;
-                            const res = await this.db.executeSql(
-                                `UPDATE verses 
-                                 SET audio_from = ?, audio_to = ?
-                                 WHERE id = ?`,
-                                [audio_from, audio_to, id]
-                            );
-                            // console.log('[DB] seed audio', pindex, id, res);
-                        }
-                        console.log('[DB] Updated Psalm 24 verse audio milestones');
-                    }
-                    resolve(true);
-                } else {
-                    resolve(false);
-                }
-            } catch (error) {
-                console.error('[DB] Error seeding Audio Milestone:', error);
-                reject(error);
-            }
-        });
-    }
+    //                 // Get chapter id for Psalm 23
+    //                 const [psalmChapter] = await this.db.executeSql(
+    //                     `SELECT * FROM verses 
+    //                      WHERE chapter_id = ?`,
+    //                     [psalmId]
+    //                 );
+    //                 const audioVerses = [];
+    //                 for (let i = 0; i < psalmChapter.rows.length; i++) {
+    //                     audioVerses.push(psalmChapter.rows.item(i));
+    //                 }
+    //                 console.log('[DB] psalmChapter', audioVerses);
+    //                 let pindex = 0;
+    //                 if (audioVerses.length > 0) {
+    //                     for (const verse of audioVerses) {
+    //                         if (pindex >= audio24.length) break;
+    //                         const { id, number, text_hd, text_en, text_mm } = verse;
+    //                         const audio_from = audio24[pindex].from;
+    //                         const audio_to = audio24[pindex].to;
+    //                         pindex++;
+    //                         const res = await this.db.executeSql(
+    //                             `UPDATE verses 
+    //                              SET audio_from = ?, audio_to = ?
+    //                              WHERE id = ?`,
+    //                             [audio_from, audio_to, id]
+    //                         );
+    //                         // console.log('[DB] seed audio', pindex, id, res);
+    //                     }
+    //                     console.log('[DB] Updated Psalm 24 verse audio milestones');
+    //                 }
+    //                 resolve(true);
+    //             } else {
+    //                 resolve(false);
+    //             }
+    //         } catch (error) {
+    //             console.error('[DB] Error seeding Audio Milestone:', error);
+    //             reject(error);
+    //         }
+    //     });
+    // }
 
     public async close(): Promise<void> {
         if (this.db) {

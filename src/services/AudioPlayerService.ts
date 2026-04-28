@@ -1,4 +1,5 @@
 import SoundPlayer from 'react-native-sound-player';
+import RNFS from 'react-native-fs';
 import { store } from '../store/store';
 import {
   setAudioPlayerState,
@@ -10,6 +11,7 @@ import {
   setAudioPlayerVolume,
   resetAudioPlayer,
 } from '../store/slices/readerSlice';
+import { Platform } from 'react-native';
 
 export interface AudioPlayerState {
   isPlaying: boolean;
@@ -133,34 +135,50 @@ class AudioPlayerService {
         }
 
         if (typeof soundSource === 'number') {
+          console.log('[AUDIO] Loading asset:', soundSource);
           SoundPlayer.loadAsset(soundSource);
           this.currentAudioPath = `asset_${soundSource}`;
         } else if (typeof soundSource === 'string') {
           if (soundSource.startsWith('http')) {
+            console.log('[AUDIO] Loading URL:', soundSource);
             SoundPlayer.loadUrl(soundSource);
           } else if (soundSource.startsWith('/') || soundSource.startsWith('file://')) {
-            // Local file path
-            const localPath = soundSource.startsWith('file://') ? soundSource : `file://${soundSource}`;
+            // Local file path - CRITICAL: Must be encoded for iOS
+            let localPath = soundSource.startsWith('file://') ? soundSource : `file://${soundSource}`;
+
+            // Encode the URI to handle spaces/special characters in folder names or filenames
+            // We ignore 'file://' prefix during encoding then put it back
+            if (Platform.OS === 'ios') {
+              const pathPart = localPath.replace('file://', '');
+              localPath = 'file://' + encodeURI(pathPart);
+            }
+
+            console.log('[AUDIO] Loading local file:', localPath);
             SoundPlayer.loadUrl(localPath);
           } else {
             // Bundle resource
             const fileName = soundSource.split('/').pop()?.split('.')[0] || 'audio';
             const fileType = soundSource.split('.').pop() || 'm4a';
+            console.log('[AUDIO] Loading bundle resource:', fileName, fileType);
             SoundPlayer.loadSoundFile(fileName, fileType);
           }
           this.currentAudioPath = soundSource;
         }
 
-        try {
-          const info = await SoundPlayer.getInfo();
-          store.dispatch(setAudioPlayerDuration(info.duration));
-          store.dispatch(setAudioPlayerState({ isLoading: false, error: null }));
-          this.emit('load', info.duration);
-          resolve();
-        } catch (infoError) {
-          store.dispatch(setAudioPlayerState({ isLoading: false, error: null }));
-          resolve();
-        }
+        // Give the native player a moment to initialize before getting info
+        setTimeout(async () => {
+          try {
+            const info = await SoundPlayer.getInfo();
+            store.dispatch(setAudioPlayerDuration(info.duration));
+            store.dispatch(setAudioPlayerState({ isLoading: false, error: null }));
+            this.emit('load', info.duration);
+            resolve();
+          } catch (infoError) {
+            console.warn('[AUDIO] Failed to get initial info, but resolving anyway:', infoError);
+            store.dispatch(setAudioPlayerState({ isLoading: false, error: null }));
+            resolve();
+          }
+        }, 300);
       } catch (error: any) {
         store.dispatch(setAudioPlayerState({ error: error.message, isLoading: false }));
         this.emit('error', error.message);

@@ -1,6 +1,5 @@
 import { Platform, PermissionsAndroid, Alert, Linking } from 'react-native';
-import PushNotification from 'react-native-push-notification';
-import DeviceInfo from 'react-native-device-info';
+import notifee, { AuthorizationStatus } from '@notifee/react-native';
 
 export interface PermissionResult {
   granted: boolean;
@@ -19,6 +18,14 @@ class PermissionService {
    */
   async checkPermission(permission: PermissionType): Promise<boolean> {
     try {
+      if (permission === 'notifications') {
+        const settings = await notifee.getNotificationSettings();
+        return (
+          settings.authorizationStatus === AuthorizationStatus.AUTHORIZED ||
+          settings.authorizationStatus === AuthorizationStatus.PROVISIONAL
+        );
+      }
+
       if (Platform.OS === 'ios') {
         return await this.checkIOSPermission(permission);
       } else {
@@ -35,27 +42,10 @@ class PermissionService {
    */
   private async checkIOSPermission(permission: PermissionType): Promise<boolean> {
     switch (permission) {
-      case 'notifications':
-        // iOS notifications are checked via PushNotification
-        return new Promise((resolve) => {
-          try {
-            PushNotification.checkPermissions((permissions: { alert?: boolean; badge?: boolean; sound?: boolean }) => {
-              resolve(permissions.alert === true || permissions.badge === true || permissions.sound === true);
-            });
-          } catch (error) {
-            console.error('Error checking iOS notification permissions:', error);
-            resolve(false);
-          }
-        });
-
       case 'storage':
       case 'media_images':
       case 'media_audio':
-        // iOS media permissions are typically granted automatically when accessing media
-        // For bundled assets, no permission is needed
-        // For user's photo library, permission is requested automatically by the system
-        return true; // Assume granted for app-bundled media
-
+        return true; 
       default:
         return false;
     }
@@ -68,17 +58,8 @@ class PermissionService {
     const apiLevel = Platform.OS === 'android' ? (Platform.Version as number) : 0;
 
     switch (permission) {
-      case 'notifications':
-        if (apiLevel >= 33) {
-          return await PermissionsAndroid.check(
-            PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS
-          );
-        }
-        return true; // Not required for Android < 13
-
       case 'storage':
         if (apiLevel >= 33) {
-          // Android 13+ uses granular media permissions
           return (
             await PermissionsAndroid.check(
               PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES
@@ -125,6 +106,18 @@ class PermissionService {
    */
   async requestPermission(permission: PermissionType): Promise<PermissionResult> {
     try {
+      if (permission === 'notifications') {
+        const settings = await notifee.requestPermission();
+        const granted =
+          settings.authorizationStatus === AuthorizationStatus.AUTHORIZED ||
+          settings.authorizationStatus === AuthorizationStatus.PROVISIONAL;
+        
+        return {
+          granted,
+          message: granted ? undefined : 'Notification permission was denied. Please enable it in Settings.',
+        };
+      }
+
       if (Platform.OS === 'ios') {
         return await this.requestIOSPermission(permission);
       } else {
@@ -144,38 +137,10 @@ class PermissionService {
    */
   private async requestIOSPermission(permission: PermissionType): Promise<PermissionResult> {
     switch (permission) {
-      case 'notifications':
-        return new Promise((resolve) => {
-          try {
-            PushNotification.requestPermissions(['alert', 'badge', 'sound']).then((permissions: { alert?: boolean; badge?: boolean; sound?: boolean }) => {
-              const granted = permissions.alert === true || permissions.badge === true || permissions.sound === true;
-              resolve({
-                granted,
-                message: granted ? undefined : 'Notification permission was denied. Please enable it in Settings.',
-              });
-            }).catch((error) => {
-              console.error('Error requesting iOS notification permissions:', error);
-              resolve({
-                granted: false,
-                message: 'Failed to request notification permission.',
-              });
-            });
-          } catch (error) {
-            console.error('Error requesting iOS notification permissions:', error);
-            resolve({
-              granted: false,
-              message: 'Failed to request notification permission.',
-            });
-          }
-        });
-
       case 'storage':
       case 'media_images':
       case 'media_audio':
-        // iOS media permissions are requested automatically by the system when accessing media
-        // For app-bundled assets, no permission is needed
         return { granted: true };
-
       default:
         return { granted: false, message: 'Unknown permission type' };
     }

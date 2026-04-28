@@ -15,11 +15,11 @@
     "icon": "npx react-native set-icon --path ./assets/icon.png --platform android"
   },
   "dependencies": {
+    "@notifee/react-native": "^9.1.8",
     "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-native-camera-roll/camera-roll": "^7.10.2",
     "@react-native-clipboard/clipboard": "^1.16.3",
     "@react-native-community/netinfo": "^11.4.1",
-    "@react-native-community/push-notification-ios": "^1.12.0",
     "@react-native-community/slider": "^4.5.7",
     "@react-native-vector-icons/evil-icons": "^12.0.0",
     "@react-native-vector-icons/fontawesome6": "^12.0.0",
@@ -38,7 +38,6 @@
     "react-native-gesture-handler": "^2.30.0",
     "react-native-image-picker": "^8.2.1",
     "react-native-material-menu": "^2.0.0",
-    "react-native-push-notification": "^8.1.1",
     "react-native-reanimated": "^3.18.0",
     "react-native-reanimated-carousel": "^4.0.2",
     "react-native-safe-area-context": "^5.4.1",
@@ -65,7 +64,6 @@
     "@react-native/typescript-config": "0.79.2",
     "@types/jest": "^29.5.13",
     "@types/react": "^19.0.0",
-    "@types/react-native-push-notification": "^8.1.4",
     "@types/react-native-sqlite-storage": "^6.0.5",
     "@types/react-test-renderer": "^19.0.0",
     "eslint": "^8.19.0",

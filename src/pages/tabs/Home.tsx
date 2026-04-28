@@ -6,6 +6,7 @@ import { View, StyleSheet, Image, Dimensions, Text, ScrollView, TouchableOpacity
 
 import { ReadingProgressCard, VerseOfTheDayCard } from '../../components/HomeComponent';
 import DatabaseService from '../../services/DatabaseService';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AppColors } from '../../constants/Color';
 
 const { width: screenWidth } = Dimensions.get('window');
@@ -23,6 +24,7 @@ const Home = () => {
     const device = useSelector((state: any) => state.device);
     const reader = useSelector((state: any) => state.reader);
     const navigation = useNavigation<any>();
+    const insets = useSafeAreaInsets();
     // const [currentRead, setCurrentRead] = useState(reader.currentRead);
 
     useEffect(() => {
@@ -41,13 +43,13 @@ const Home = () => {
         }).catch((error: any) => {
             console.log('[HOME] getFutureNotifications error', error);
         });
-        DatabaseService.getInstance().seedAudioMilestone23().then((result: any) => {
-            // console.log('seedAudioMilestone23', result)
-        })
+        // DatabaseService.getInstance().seedAudioMilestone23().then((result: any) => {
+        //     // console.log('seedAudioMilestone23', result)
+        // })
 
-        DatabaseService.getInstance().seedAudioMilestone24().then((result: any) => {
-            // console.log('seedAudioMilestone24', result)
-        })
+        // DatabaseService.getInstance().seedAudioMilestone24().then((result: any) => {
+        //     // console.log('seedAudioMilestone24', result)
+        // })
         // console.log('[HOME]reader', reader.currentRead);
     }, []);
 
@@ -100,47 +102,53 @@ const Home = () => {
     }
 
     return (
-        <View style={[styles.container, { backgroundColor: device.theme ? AppColors.appBackgroundGrey : AppColors.appBackgroundDarkTint }]}>
-            <ScrollView
-                horizontal
-                pagingEnabled
-                showsHorizontalScrollIndicator={false}
-                onScroll={handleScroll}
-                scrollEventThrottle={16}
-                style={styles.scrollView}
-            >
-                {carouselItems.map((item) => (
-                    <View key={item.id} style={styles.slide}>
-                        <Image
-                            source={item.image}
-                            style={styles.carouselImage}
-                            resizeMode="cover"
-                        />
-                        <View style={styles.carouselContent}>
-                            <Text style={styles.carouselTitle}>{item.title}</Text>
-                            <Text style={styles.carouselDescription}>{item.description}</Text>
+        <ScrollView
+            style={[styles.container, { backgroundColor: device.theme ? AppColors.appBackgroundGrey : AppColors.appBackgroundDarkTint }]}
+            contentContainerStyle={{ paddingBottom: 24 }}
+            showsVerticalScrollIndicator={false}
+        >
+            <View style={{ height: insets.top }} />
+            <View style={styles.carouselWrapper}>
+                <ScrollView
+                    horizontal
+                    pagingEnabled
+                    showsHorizontalScrollIndicator={false}
+                    onScroll={handleScroll}
+                    scrollEventThrottle={16}
+                    style={styles.scrollView}
+                >
+                    {carouselItems.map((item) => (
+                        <View key={item.id} style={styles.slide}>
+                            <Image
+                                source={item.image}
+                                style={styles.carouselImage}
+                                resizeMode="cover"
+                            />
+                            <View style={styles.carouselContent}>
+                                <Text style={styles.carouselTitle}>{item.title}</Text>
+                                <Text style={styles.carouselDescription}>{item.description}</Text>
+                            </View>
                         </View>
-                    </View>
-                ))}
-            </ScrollView>
-            <View style={styles.dotsContainer}>
-                {carouselItems.map((_, index) => (
-                    <View
-                        key={index}
-                        style={[
-                            styles.dot,
-                            index === activeIndex && styles.activeDot
-                        ]}
-                    />
-                ))}
+                    ))}
+                </ScrollView>
+                <View style={styles.dotsContainer}>
+                    {carouselItems.map((_, index) => (
+                        <View
+                            key={index}
+                            style={[
+                                styles.dot,
+                                index === activeIndex && styles.activeDot
+                            ]}
+                        />
+                    ))}
+                </View>
             </View>
-            <View></View>
-            <View style={styles.currentReadContainer}>
+
+            <View style={styles.mainContent}>
                 {
                     reader.currentRead.bookName && (
                         <TouchableOpacity style={[styles.currentReadContent, { backgroundColor: device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDark }]}
                             onPress={() => {
-                                //console.log('reader.currentRead', reader.currentRead);
                                 navigation.navigate('Reader', { book: reader.currentRead.bookName, chapter: reader.currentRead.chapterNumber, chapterId: reader.currentRead.chapterId, verse: reader.currentRead.verseId });
                             }}>
                             <View style={styles.currentReadVerse}>
@@ -154,16 +162,7 @@ const Home = () => {
                         </TouchableOpacity>
                     )
                 }
-                {/* <View style={[styles.currentReadContent, { backgroundColor: device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDark }]}>
-                    <View style={styles.currentReadVerse}>
-                        <Image source={require('../../assets/images/continue.png')} style={styles.currentReadImage} />
-                        <Text style={[styles.currentReadTitle, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>Continue Reading</Text>
-                    </View>
-                    <View style={styles.currentReadVerse}>
-                        <Text style={[styles.currentReadVerseText, { color: AppColors.primaryDark }]}>{reader.currentRead.bookName + " " + reader.currentRead.chapterNumber + ":" + reader.currentRead.verseNumber}</Text>
-                        <FontAwesome6 name="arrow-right" iconStyle="solid" color={device.theme ? AppColors.primaryDark : AppColors.appTextWhite} size={20} />
-                    </View>
-                </View> */}
+
                 <View style={styles.homeContainer}>
                     {
                         todayVerse ? (
@@ -184,7 +183,7 @@ const Home = () => {
                     <ReadingProgressCard progress={reader.currentRead.progress || 0} />
                 </View>
             </View>
-        </View>
+        </ScrollView>
     );
 };
 
@@ -233,8 +232,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: 16,
         position: 'absolute',
-        top: 165,
+        bottom: 0,
         width: '100%'
+    },
+    carouselWrapper: {
+        height: 200,
+        position: 'relative',
+    },
+    mainContent: {
+        marginTop: 16,
+        paddingTop: 10,
     },
     dot: {
         width: 8,
@@ -251,13 +258,6 @@ const styles = StyleSheet.create({
     },
     currentReadContainer: {
         flex: 2,
-        // backgroundColor: '#dac2c2',
-
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        zIndex: 1000,
     },
     currentReadImage: {
         width: 40,

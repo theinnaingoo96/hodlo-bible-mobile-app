@@ -1,18 +1,30 @@
-import PushNotification from 'react-native-push-notification';
+import notifee, { TimestampTrigger, TriggerType, AndroidImportance } from '@notifee/react-native';
 import DatabaseService from './DatabaseService';
 import { store } from '../store/store';
 
 class DailyVerseService {
     private static instance: DailyVerseService;
     private readonly NOTIFICATION_TIME = 6; // 6 AM
+    private readonly CHANNEL_ID = 'daily-verses';
 
-    private constructor() { }
+    private constructor() {
+        this.setupChannel();
+    }
 
     public static getInstance(): DailyVerseService {
         if (!DailyVerseService.instance) {
             DailyVerseService.instance = new DailyVerseService();
         }
         return DailyVerseService.instance;
+    }
+
+    private async setupChannel() {
+        await notifee.createChannel({
+            id: this.CHANNEL_ID,
+            name: 'Daily Verses',
+            importance: AndroidImportance.HIGH,
+            sound: 'default',
+        });
     }
 
     public async checkAndScheduleNotifications(): Promise<void> {
@@ -56,15 +68,29 @@ class DailyVerseService {
             if (language === 'mm' && verse.text_mm) message = verse.text_mm;
             if (language === 'en' && verse.text_en) message = verse.text_en;
 
-            PushNotification.localNotificationSchedule({
-                channelId: 'ho-dlo-channel',
-                title: title,
-                message: message,
-                date: triggerDate,
-                allowWhileIdle: true,
-                ignoreInForeground: false,
-                smallIcon: 'ic_notification',
-            });
+            try {
+                const trigger: TimestampTrigger = {
+                    type: TriggerType.TIMESTAMP,
+                    timestamp: triggerDate.getTime(),
+                };
+
+                await notifee.createTriggerNotification(
+                    {
+                        title: title,
+                        body: message,
+                        android: {
+                            channelId: this.CHANNEL_ID,
+                            pressAction: {
+                                id: 'default',
+                            },
+                            smallIcon: 'ic_notification', // Ensure this exists in android/app/src/main/res/drawable
+                        },
+                    },
+                    trigger,
+                );
+            } catch (scheduleError) {
+                console.error(`[Notification Service] Failed to schedule trigger for day ${dayOffset}:`, scheduleError);
+            }
             await DatabaseService.getInstance().addNotification(verse.id, triggerDate.toISOString());
 
             console.log(`[Notification Service] Scheduled day ${dayOffset}: ${title} at ${triggerDate.toISOString()}`);
@@ -79,7 +105,7 @@ class DailyVerseService {
     }
 
     public async clearAll(): Promise<void> {
-        PushNotification.cancelAllLocalNotifications();
+        await notifee.cancelAllNotifications();
         await DatabaseService.getInstance().clearNotificationAll();
         console.log('[Notification Service] All notifications cleared');
     }

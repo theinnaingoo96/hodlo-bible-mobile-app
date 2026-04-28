@@ -20,6 +20,7 @@ import TermsIcon from '../../components/icons/setting/UpdateIcon';
 import CustomAlert from '../../components/CustomAlert';
 import { AppColors } from '../../constants/Color';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { constants } from '../../constants/Data';
 import {
   setCurrentVerse,
@@ -56,6 +57,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
   const deviceWidth = Dimensions.get('window').width;
   const reader = useSelector((state: any) => state.reader);
   const dispatch = useDispatch();
+  const insets = useSafeAreaInsets();
   const [offset, setOffset] = useState(0);
   const [topHeight, setTopHeight] = useState(40);
   const [bottomHeight, setBottomHeight] = useState(40);
@@ -783,6 +785,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
           {
             opacity: fadeAnim,
             transform: [{ translateY }],
+            bottom: 20 + insets.bottom,
           },
         ]}>
         <TouchableOpacity
