@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import DeviceInfo from "react-native-device-info";
 import { AppColors } from "./src/constants/Color";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface AnimatedSplashScreenProps {
   iconSource?: any;
@@ -27,7 +28,7 @@ export default function AnimatedSplashScreen({
   appName = "GATHENGPU DLO",
   holdTime = 1500, // 🕒 hold icon for 1.5s
   duration = 800,
-  onFinish = () => {},
+  onFinish = () => { },
   showVersion = true,
   showCopyright = true,
 }: AnimatedSplashScreenProps) {
@@ -38,6 +39,7 @@ export default function AnimatedSplashScreen({
   const containerOpacity = useRef(new Animated.Value(1)).current;
   const progressWidth = useRef(new Animated.Value(0)).current;
   const currentYear = new Date().getFullYear();
+  const insets = useSafeAreaInsets();
 
   useEffect(() => {
     // Initial icon animation
@@ -91,13 +93,15 @@ export default function AnimatedSplashScreen({
 
   return (
     <Animated.View style={[styles.fullscreen, { opacity: containerOpacity }]}>
-      <StatusBar translucent backgroundColor="transparent" />
+      <StatusBar
+        translucent={true}
+        backgroundColor="transparent" />
       <View style={styles.center}>
         <Animated.Image
           source={iconSource}
           style={[
             styles.icon,
-            { 
+            {
               transform: [{ scale: iconScale }],
               opacity: iconOpacity,
             },
@@ -116,7 +120,7 @@ export default function AnimatedSplashScreen({
           <Text style={styles.title}>{appName}</Text>
         </Animated.View>
       </View>
-      
+
       <View style={styles.bottomView}>
         {showVersion && (
           <Text style={styles.versionText}>v.{DeviceInfo.getVersion()}</Text>

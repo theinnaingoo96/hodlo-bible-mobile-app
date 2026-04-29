@@ -32,10 +32,7 @@ class DailyVerseService {
             const db = DatabaseService.getInstance();
             const futureCount = await db.getFutureNotificationCount();
 
-            console.log(`[Notification Service] Current future queue: ${futureCount} days`);
-
             if (futureCount < 3) {
-                console.log('[Notification Service] Queue low. Scheduling more verses...');
                 const randomVerses = await db.getRandomVerses(7);
                 if (randomVerses && randomVerses.length > 0) {
                     await this.scheduleNewBatch(randomVerses, futureCount);
@@ -61,8 +58,9 @@ class DailyVerseService {
             const dayOffset = i + startOffset;
             const verse = verses[i];
             const triggerDate = this.getScheduledDate(dayOffset);
+            console.log('[Notification Service] Scheduling:', verse);
 
-            const title = `${verse.book_name} ${verse.chapter_number}:${verse.verse_number}`;
+            const title = `${verse.book_name} ${verse.chapter_number}:${verse.number}`;
             let message = verse.text_hd;
 
             if (language === 'mm' && verse.text_mm) message = verse.text_mm;

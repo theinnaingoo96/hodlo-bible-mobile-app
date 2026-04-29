@@ -18,19 +18,9 @@ const Notification = () => {
   const insets = useSafeAreaInsets();
 
   useEffect(() => {
-    // const hd = require('../assets/seeder/19.json')
-    // const en = require('../assets/seeder/psalms.json')
-    // hd.map((item: any) => {
-    //     item.text_en = en.find((enItem: any) => Number(enItem.chapter_id) === item.chapter_id && Number(enItem.verse_number) === item.verse_number)?.text_en
-    //     item.chapter_en = en.find((enItem: any) => Number(enItem.chapter_id) === item.chapter_id)?.chapter_en
-    //     item.chapter_id = Number(item.chapter_id)
-    //     item.verse_number = Number(item.verse_number)
-    // })
-    // const hd = require('../assets/seeder/19_f.json')
-    // hd.map((item: any, index: number) => {
-    //     item.id = index + 1214
-    // })
-    // console.log('hd', JSON.stringify(hd))
+    DatabaseService.getInstance().getRandomVerses(7).then((result: any) => {
+      console.log('randomVerses', result);
+    })
 
     DatabaseService.getInstance().getNotifications().then((result: any) => {
       if (result) {

@@ -6,13 +6,13 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  SafeAreaView,
   StatusBar,
   Modal,
   Dimensions,
   Alert,
   TextInput,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Clipboard from '@react-native-clipboard/clipboard';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 
@@ -42,6 +42,7 @@ const Reader = ({ navigation, route }: any) => {
   const device = useSelector((state: any) => state.device);
   const reader = useSelector((state: any) => state.reader);
   const params = route.params;
+  const insets = useSafeAreaInsets();
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
   const [optionSheetVisible, setOptionSheetVisible] = useState(false);
   const [playerSheetVisible, setPlayerSheetVisible] = useState(false);
@@ -165,16 +166,13 @@ const Reader = ({ navigation, route }: any) => {
   };
 
   const fetchVerses = () => {
-    // console.log('fetchVerses', route.params.chapter);
     DatabaseService.getInstance()
       .getVersesByChapterId(route.params.chapterId)
       .then((v: any) => {
-        console.log('verses from fetchVerses', v);
         let temp_verses = v;
         DatabaseService.getInstance()
           .getHighlights()
           .then(async (h: any) => {
-            console.log('highlights from fetchVerses', h);
             const temp_highlights = h;
             await temp_highlights.forEach((highlight: any) => {
               const index = temp_verses.findIndex(
@@ -185,13 +183,9 @@ const Reader = ({ navigation, route }: any) => {
                 temp_verses[index].highlight_color = highlight.color;
               }
             });
-            // if (temp_verses.length > 0) {
-            //   setVerses(temp_verses);
-            // }
             DatabaseService.getInstance()
               .getBookmarks()
               .then(async (b: any) => {
-                console.log('bookmarks from fetchVerses', b);
                 const t_bookmarks = b;
                 await t_bookmarks.forEach((bookmark: any) => {
                   const index = temp_verses.findIndex(
@@ -206,13 +200,11 @@ const Reader = ({ navigation, route }: any) => {
                   setVerses(temp_verses);
                 }
               });
-            console.log('verses from fetchVerses after', temp_verses);
           });
       });
   };
 
   const handleCreateBookmark = (verse: any) => {
-    console.log('handleCreateBookmark', verse);
     setBookmarkModalVisible(true);
     setBookmarkedVerse({
       book_name: params.book,
@@ -227,7 +219,6 @@ const Reader = ({ navigation, route }: any) => {
   };
 
   const handleRemoveBookmark = (id: number) => {
-    console.log('handleRemoveBookmark', id);
     Alert.alert(
       'Remove Bookmark',
       'Are you sure you want to remove this bookmark?',
@@ -260,7 +251,6 @@ const Reader = ({ navigation, route }: any) => {
   };
 
   const handleConfirmBookmark = () => {
-    console.log('handleConfirmBookmark', bookmarkedVerse, bookmarkNote);
     DatabaseService.getInstance()
       .addBookmark(bookmarkedVerse.verse_id, bookmarkNote)
       .then(() => {
@@ -271,7 +261,6 @@ const Reader = ({ navigation, route }: any) => {
   };
 
   const handleCreateHighlight = (verse: any) => {
-    console.log('handleCreateHighlight', verse);
     sethighlightModalVisible(true);
     setHighlightedVerse({
       book_name: params.book,
@@ -286,7 +275,6 @@ const Reader = ({ navigation, route }: any) => {
   };
 
   const handleRemoveHighlight = (id: number) => {
-    console.log('handleRemoveHighlight', id);
     Alert.alert(
       'Remove Highlight',
       'Are you sure you want to remove this highlight?',
@@ -298,7 +286,6 @@ const Reader = ({ navigation, route }: any) => {
             DatabaseService.getInstance()
               .clearHighlightById(id)
               .then((result: any) => {
-                console.log('result', result);
                 sethighlightModalVisible(false);
                 setBottomSheetVisible(false);
                 setOptionSheetVisible(false);
@@ -379,7 +366,6 @@ const Reader = ({ navigation, route }: any) => {
 
   const handleNextChapter = () => {
     const currentReaderData = reader.currentRead;
-    console.log('handleNextChapter', currentReaderData);
     if (currentReaderData.maxChapter > currentReaderData.chapterNumber) {
       store.dispatch(
         setToast({
@@ -399,7 +385,6 @@ const Reader = ({ navigation, route }: any) => {
           currentReaderData.chapterNumber + 1,
         )
         .then((nextChapterId: any) => {
-          // console.log('nextChapter', nextChapterId);
           const read: CurrentRead = {
             bookName: currentReaderData.bookName,
             bookId: currentReaderData.bookId,
@@ -432,9 +417,6 @@ const Reader = ({ navigation, route }: any) => {
 
   const handlePreviousChapter = () => {
     const currentReaderData = reader.currentRead;
-    // console.log('handlePreviousChapter', currentReaderData);
-    // console.log('navigation', navigation);
-
     if (currentReaderData.chapterNumber > 1) {
       store.dispatch(
         setToast({
@@ -454,7 +436,6 @@ const Reader = ({ navigation, route }: any) => {
           currentReaderData.chapterNumber - 1,
         )
         .then((previousChapterId: any) => {
-          // console.log('previousChapter', previousChapterId);
           const read: CurrentRead = {
             bookName: currentReaderData.bookName,
             bookId: currentReaderData.bookId,
@@ -477,15 +458,7 @@ const Reader = ({ navigation, route }: any) => {
   };
 
   const onChangeDividerMode = (mode: any) => {
-    // console.log('onChangeDividerMode', mode);
     setDividerMode(mode);
-  };
-
-  // Test audio loading
-  const testAudio = async () => {
-    console.log('Testing audio loading...');
-    const result = await testAudioLoading();
-    console.log('Audio test result:', result);
   };
 
   /*
@@ -548,15 +521,12 @@ const Reader = ({ navigation, route }: any) => {
       pause();
     } else {
       if (currentTime == 0) {
-        // Updated to use new flow's play method
         await play();
       } else {
         resume();
       }
     }
   };
-
-  const handleResume = async () => { };
 
   const handleStop = () => {
     stop();
@@ -568,43 +538,38 @@ const Reader = ({ navigation, route }: any) => {
     seekTo(newTime);
   };
 
-  const handleVolumeChange = (value: number) => {
-    setVolume(value);
-  };
-
-  const handleVerseClick = (verse: any) => {
+  const handleVerseClick = async (verse: any) => {
     if (selectedVerse?.id === verse?.id) {
       setSelectedVerse(null);
     } else {
       setSelectedVerse(verse);
     }
-    // pause();
-    console.log('handleVerseClick', playerSheetVisible, isPlaying, verse);
-    // Always allow verse clicks - if audio is playing, seek to that verse's time
-    if (isPlaying && duration > 0 && verse.audio_from) {
-      // Use the handleSeek function and convert audio_from to number of seconds if necessary
-      let seekValue = verse.audio_from;
-      console.log('audio from', seekValue, typeof seekValue);
-      if (typeof seekValue === 'string') {
-        const [min, sec] = seekValue.split(':').map(Number);
-        seekValue = min * 60 + sec;
+    if (verse.audio_from) {
+      if (!playerSheetVisible) {
+        await handleAudioReaderPress();
       }
-      console.log('res', seekValue, duration);
-      // handleSeek expects 0-1 normalized value, so divide by duration (guard against division by zero)
-      if (duration > 0) {
-        const normalizedValue = seekValue / duration;
-        handleSeek(normalizedValue);
-      }
-    } else if (playerSheetVisible && duration > 0 && verse.audio_from) {
-      // Also handle when player sheet is visible
-      let seekValue = verse.audio_from;
-      if (typeof seekValue === 'string') {
-        const [min, sec] = seekValue.split(':').map(Number);
+      let seekValue = 0;
+      const rawFrom = verse.audio_from;
+
+      if (typeof rawFrom === 'string' && rawFrom.includes(':')) {
+        const [min, sec] = rawFrom.split(':').map(Number);
         seekValue = min * 60 + sec;
+      } else {
+        seekValue = Number(rawFrom);
+        if (seekValue > 10000) {
+          seekValue = seekValue / 1000;
+        }
       }
       if (duration > 0) {
         const normalizedValue = seekValue / duration;
         handleSeek(normalizedValue);
+      } else {
+        setTimeout(() => {
+          const currentDuration = store.getState().reader.audioPlayer.duration;
+          if (currentDuration > 0) {
+            handleSeek(seekValue / currentDuration);
+          }
+        }, 500);
       }
     }
   };
@@ -655,98 +620,86 @@ const Reader = ({ navigation, route }: any) => {
   };
 
   const handleAudioReaderPress = async () => {
-    console.log('handleAudioReaderPress', params, params.chapterId);
+    // console.log('handleAudioReaderPress', params, params.chapterId);
 
     try {
       const audioReader = await DatabaseService.getInstance().getAudioReader(
-        params.bookId,
-        params.chapter,
+        chapterMasterId
       );
+      console.log('audioReader', audioReader, params.bookId, params.chapter, chapterMasterId);
 
       let localFileExists = false;
       let finalPath = '';
 
       if (audioReader && audioReader.audio_path) {
-        // Check if the file actually exists on the disk
         finalPath = fileDownloadService.getDownloadPath(audioReader.audio_path);
         localFileExists = await fileDownloadService.fileExists(
           audioReader.audio_path,
         );
+        if (localFileExists) {
+          await audioPlayer.loadAudio(finalPath);
+          setPlayerSheetVisible(true);
+          handlePlayPause();
+          return;
+        } else {
+          setIsDownloading(true);
+          setDownloadProgressValue(0);
+
+          store.dispatch(
+            setToast({
+              show: true,
+              message: 'Downloading Bible audio for offline use...',
+              type: 'change',
+              duration: 3000,
+            }),
+          );
+
+          const apiResult = await getAudioChapter(chapterMasterId);
+          console.log('apiResult', apiResult, chapterMasterId);
+          if (apiResult?.verses && apiResult.verses.length > 0) {
+            await DatabaseService.getInstance().updateVersesAudioData(apiResult.verses);
+            fetchVerses();
+          }
+
+          const downloadUrl = apiResult?.audioUrl || apiResult?.url;
+          if (!downloadUrl) {
+            throw new Error('Audio not available for this chapter');
+          }
+
+          let fullDownloadUrl = downloadUrl;
+          if (downloadUrl.startsWith('/')) {
+            fullDownloadUrl = `https://api.gathengpudlo.com/api${downloadUrl}`;
+          }
+
+          const downloadResult = await fileDownloadService.downloadFile(
+            fullDownloadUrl,
+            `${params.book}_${params.chapter}.m4a`,
+            progressData => {
+              setDownloadProgressValue(progressData.progress);
+              store.dispatch(setDownloadProgress(progressData.progress));
+            },
+          );
+          await DatabaseService.getInstance().updateChapterAudioPath(
+            chapterMasterId,
+            downloadResult.fileName,
+          );
+
+          setIsDownloading(false);
+
+          store.dispatch(
+            setToast({
+              show: true,
+              message: 'Download complete!',
+              type: 'success',
+              duration: 2000,
+            }),
+          );
+
+          await audioPlayer.loadAudio(downloadResult.path);
+          setPlayerSheetVisible(true);
+          handlePlayPause();
+        }
       }
-
-      if (localFileExists) {
-        // console.log('[AUDIO] Playing from local storage:', finalPath);
-        // Load the local file into the player
-        await audioPlayer.loadAudio(finalPath);
-        setPlayerSheetVisible(true);
-        return;
-      }
-
-      // console.log('[AUDIO] Local file not found, fetching from API...');
-      setIsDownloading(true);
-      setDownloadProgressValue(0);
-
-      store.dispatch(
-        setToast({
-          show: true,
-          message: 'Downloading Bible audio for offline use...',
-          type: 'change',
-          duration: 3000,
-        }),
-      );
-
-      const apiResult = await getAudioChapter(chapterMasterId);
-      // console.log('[AUDIO] API result:', apiResult);
-
-      // 3.5 Sync verse timings if provided
-      if (apiResult?.verses && apiResult.verses.length > 0) {
-        // console.log('[AUDIO] Syncing verse timings from API...');
-        await DatabaseService.getInstance().updateVersesAudioData(apiResult.verses);
-        // Refresh verses to enable highlighting immediately
-        fetchVerses();
-      }
-
-      const downloadUrl = apiResult?.audioUrl || apiResult?.url;
-      if (!downloadUrl) {
-        throw new Error('Audio not available for this chapter');
-      }
-
-      let fullDownloadUrl = downloadUrl;
-      if (downloadUrl.startsWith('/')) {
-        // The base URL in Axios is GathenGpudlo.com/api, but the audio stream is likely at the root
-        fullDownloadUrl = `https://api.gathengpudlo.com/api${downloadUrl}`;
-      }
-
-      const downloadResult = await fileDownloadService.downloadFile(
-        fullDownloadUrl,
-        `${params.book}_${params.chapter}.m4a`,
-        progressData => {
-          setDownloadProgressValue(progressData.progress);
-          // Also sync with global state if needed
-          store.dispatch(setDownloadProgress(progressData.progress));
-        },
-      );
-
-      // 4. Update the database with the new local path
-      await DatabaseService.getInstance().updateChapterAudioPath(
-        chapterMasterId,
-        downloadResult.fileName,
-      );
-
-      setIsDownloading(false);
-
-      store.dispatch(
-        setToast({
-          show: true,
-          message: 'Download complete!',
-          type: 'success',
-          duration: 2000,
-        }),
-      );
-
-      // 5. Play the newly downloaded file
-      await audioPlayer.loadAudio(downloadResult.path);
-      setPlayerSheetVisible(true);
     } catch (err: any) {
       console.error('[AUDIO] Error in handleAudioReaderPress:', err);
       setIsDownloading(false);
@@ -764,7 +717,7 @@ const Reader = ({ navigation, route }: any) => {
 
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom }}>
       <StatusBar
         backgroundColor={
           constants.theme[reader.readerSetting.theme - 1].backgroundColor
@@ -777,8 +730,8 @@ const Reader = ({ navigation, route }: any) => {
         }
         showHideTransition="fade"
         animated={true}
+        translucent={true}
       />
-      {/* device.theme ? AppColors.appBackgroundGrey : AppColors.appBackgroundDarkTint */}
       <View
         style={[
           styles.container,
@@ -799,7 +752,6 @@ const Reader = ({ navigation, route }: any) => {
           }}
           onAudioReaderPress={() => {
             handleAudioReaderPress();
-            // playPsalmAudio();
           }}
           onAddHighlightPress={() => {
             if (selectedVerse) {
@@ -843,12 +795,6 @@ const Reader = ({ navigation, route }: any) => {
           )}
         </View>
         {playerSheetVisible && (
-          // setPlayerSheetVisible(false); handleStop()
-
-          // onClose={() => {  }}
-          // sheetHeight={300}
-          // closeButton={false}
-
           <View style={styles.playerSheetContainer} pointerEvents="box-none">
             <View style={styles.playerSheetContent} pointerEvents="box-none">
               <View style={styles.highlightModalHeader} pointerEvents="auto">
@@ -863,16 +809,6 @@ const Reader = ({ navigation, route }: any) => {
 
               <View style={styles.playerContainer} pointerEvents="auto">
                 <View style={styles.playerControls}>
-                  {/* <TouchableOpacity
-                    style={styles.controlButton}
-                    onPress={handleStop}>
-                    <FontAwesome6
-                      name="backward-step"
-                      iconStyle="solid"
-                      color={AppColors.appTextWhite}
-                      size={18}
-                    />
-                  </TouchableOpacity> */}
                   <TouchableOpacity
                     style={[
                       styles.playButton,
@@ -913,16 +849,6 @@ const Reader = ({ navigation, route }: any) => {
                       <Text style={styles.timeText}>{formattedDuration}</Text>
                     </View>
                   </View>
-                  {/* <TouchableOpacity
-                    style={styles.controlButton}
-                    onPress={handleStop}>
-                    <FontAwesome6
-                      name="forward-step"
-                      iconStyle="solid"
-                      color={AppColors.appTextWhite}
-                      size={18}
-                    />
-                  </TouchableOpacity> */}
                 </View>
 
                 {error && (
@@ -932,19 +858,6 @@ const Reader = ({ navigation, route }: any) => {
                       : `Audio Error: ${error}`}
                   </Text>
                 )}
-
-                {/* <View style={styles.volumeContainer}>
-                    <Text style={styles.volumeLabel}>Volume</Text>
-                    <Slider
-                        style={styles.volumeSlider}
-                        minimumValue={0}
-                        maximumValue={1}
-                        value={0.5}
-                        minimumTrackTintColor="#000"
-                        maximumTrackTintColor="#ddd"
-                        thumbTintColor="#000"
-                    />
-                </View> */}
               </View>
             </View>
           </View>
@@ -989,7 +902,11 @@ const Reader = ({ navigation, route }: any) => {
           sheetHeight={500}>
           <ReaderSetting />
         </BottomSheet>
-        <Modal transparent visible={highlightModalVisible} animationType="fade">
+        <Modal
+          transparent
+          visible={highlightModalVisible}
+          animationType="fade"
+          statusBarTranslucent={true}>
           <View style={styles.highlightModalContainer}>
             <View style={styles.highlightModalContentContainer}>
               <View style={styles.highlightModalHeader}>
@@ -1032,7 +949,11 @@ const Reader = ({ navigation, route }: any) => {
             </View>
           </View>
         </Modal>
-        <Modal transparent visible={bookmarkModalVisible} animationType="fade">
+        <Modal
+          transparent
+          visible={bookmarkModalVisible}
+          animationType="fade"
+          statusBarTranslucent={true}>
           <View style={styles.highlightModalContainer}>
             <View style={styles.highlightModalContentContainer}>
               <View style={styles.highlightModalHeader}>
@@ -1083,7 +1004,8 @@ const Reader = ({ navigation, route }: any) => {
           transparent
           visible={shareModalVisible}
           animationType="fade"
-          navigationBarTranslucent={true}>
+          statusBarTranslucent={true}
+          onRequestClose={() => setShareModalVisible(false)}>
           <ShareModal
             setShareModalVisible={setShareModalVisible}
             selectedVerse={selectedVerse}
@@ -1095,7 +1017,8 @@ const Reader = ({ navigation, route }: any) => {
           transparent
           visible={optionModalVisible}
           animationType="fade"
-          navigationBarTranslucent={true}>
+          statusBarTranslucent={true}
+          onRequestClose={() => setOptionModalVisible(false)}>
           <OptionModal
             onHighlightPress={() => {
               setOptionModalVisible(false);
@@ -1132,7 +1055,7 @@ const Reader = ({ navigation, route }: any) => {
           </View>
         )}
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -1377,13 +1300,13 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    maxHeight: 100,
+    maxHeight: 120,
     zIndex: 1000,
     pointerEvents: 'box-none',
   },
   playerSheetContent: {
     backgroundColor: 'white',
-    height: 100,
+    height: 120,
     paddingTop: 0,
     borderColor: AppColors.lightGrey,
     borderWidth: 1,

@@ -743,11 +743,11 @@ export default class DatabaseService {
         });
     }
 
-    public async getAudioReader(bookId: number, chapterId: number): Promise<any> {
+    public async getAudioReader(chapterId: number): Promise<any> {
         return new Promise(async (resolve, reject) => {
             if (!this.db) throw new Error('Database not initialized');
             try {
-                const [results] = await this.db.executeSql(`SELECT * FROM ${TABLE_CHAPTERS} WHERE book_id = ? AND number = ?`, [bookId, chapterId]);
+                const [results] = await this.db.executeSql(`SELECT * FROM ${TABLE_CHAPTERS} WHERE master_chapter_id = ?`, [chapterId]);
                 resolve(results.rows.item(0));
             } catch (error) {
                 console.error('[DB] getAudioReader error:', error);

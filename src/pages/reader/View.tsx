@@ -28,6 +28,7 @@ import {
 } from '../../store/slices/readerSlice';
 import { useAudioPlayer } from '../../hooks/useAudioPlayer';
 import DatabaseService from '../../services/DatabaseService';
+import { VerseComponent, ChapterEndFooterComponent } from './ReaderComponents';
 
 interface SplitReaderViewProps {
   verses: any[];
@@ -112,16 +113,27 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
     // console.log(reader.currentRead, targetIndex);
   }, []);
 
-  // Helper to convert MM:SS to seconds
+  // Helper to convert MM:SS or milliseconds to seconds
   const timeToSeconds = (timeStr: any): number => {
-    if (!timeStr) return 0;
-    if (typeof timeStr === 'number') return timeStr;
+    if (timeStr === undefined || timeStr === null || timeStr === '') return 0;
 
-    const parts = timeStr.toString().split(':').map(Number);
-    if (parts.length === 2) {
-      return parts[0] * 60 + parts[1];
+    // If it's already a number, check if it's likely milliseconds
+    if (typeof timeStr === 'number') {
+      return timeStr > 10000 ? timeStr / 1000 : timeStr;
     }
-    return parts[0] || 0; // Fallback to raw number if no colon
+
+    const str = timeStr.toString();
+    if (str.includes(':')) {
+      const parts = str.split(':').map(Number);
+      if (parts.length === 2) {
+        return parts[0] * 60 + parts[1];
+      }
+      return parts[0] || 0;
+    }
+
+    const num = Number(str);
+    if (isNaN(num)) return 0;
+    return num > 10000 ? num / 1000 : num;
   };
 
   useEffect(() => {
@@ -130,26 +142,17 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
       return;
     }
 
-    if (Math.floor(currentTime) % 1 === 0 && currentTime > 0) {
-      const firstWithAudio = verses.find(v => v.audio_from);
-      if (!firstWithAudio) {
-        console.warn('[Highlight Debug] No verses have audio_from/to data!');
-      } else if (activeVerseIndex === -1) {
-        console.log(`[Highlight Debug] Time: ${currentTime.toFixed(2)}, Sample Verse Audio: ${firstWithAudio.audio_from} - ${firstWithAudio.audio_to}`);
-      }
-    }
-
     const newIndex = verses.findIndex(v => {
       const from = timeToSeconds(v.audio_from);
       const to = timeToSeconds(v.audio_to);
 
       if (from === 0 && to === 0) return false;
 
-      return currentTime >= from && currentTime <= to;
+      // Add a small buffer (0.1s) to make highlighting feel more responsive
+      return currentTime >= from && currentTime < to;
     });
 
     if (newIndex !== -1 && newIndex !== activeVerseIndex) {
-      console.log(`[Highlight] New Active Verse Index: ${newIndex} (Time: ${currentTime})`);
       setActiveVerseIndex(newIndex);
 
       if (!isUserInteracting.current) {
@@ -421,133 +424,6 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
   //     }, 300);
   // };
 
-  const VerseComponent = ({ verse, language, index }: any) => {
-    const isActive = activeVerseIndex === index;
-    const isSelected = selectedVerse?.id === verse.id;
-
-    return (
-      <View
-        style={[
-          { flex: 1 },
-          isSelected && {
-            backgroundColor: constants.theme[reader.readerSetting.theme - 1].highlightColor,
-          },
-          isActive && {
-            backgroundColor: reader.readerSetting.theme === 1
-              ? 'rgba(212, 175, 55, 0.15)' // Warmer for Light
-              : 'rgba(212, 175, 55, 0.3)',  // Stronger for Dark
-          }
-        ]}>
-        {isActive && (
-          <View
-            style={{
-              position: 'absolute',
-              left: 0,
-              top: 3,
-              bottom: 3,
-              width: 4,
-              backgroundColor: AppColors.primary,
-              borderTopRightRadius: 4,
-              borderBottomRightRadius: 4,
-              elevation: 2, // Shadow for Android
-              shadowColor: '#000', // Shadow for iOS
-              shadowOffset: { width: 1, height: 0 },
-              shadowOpacity: 0.2,
-              shadowRadius: 1,
-            }}
-          />
-        )}
-        <TouchableOpacity
-          style={styles.verseContainer}
-          // activeOpacity={0.5}
-          onLongPress={() => {
-            onLongPress(verse);
-            // if (!verse.bookmark) {
-            //     onStartBookmark(verse);
-            // } else {
-            //     onRemoveBookmark(verse.id);
-            // }
-          }}
-          // delayLongPress={500}
-          onPress={() => {
-            // console.log('onPress on View');
-            onVerseClick(verse);
-          }}>
-          <View>
-            <Text
-              style={[
-                styles.verseNumber,
-                {
-                  color: verse.bookmark
-                    ? AppColors.primaryTint
-                    : AppColors.primaryDark,
-                },
-              ]}>
-              {verse.number}
-            </Text>
-            {verse.bookmark && (
-              <FontAwesome6
-                name="bookmark"
-                iconStyle="solid"
-                color={AppColors.primaryTint}
-                size={15}
-              />
-            )}
-          </View>
-          <Text style={{ paddingLeft: 5, paddingRight: 15 }}>
-            <Text
-              style={[
-                styles.verseText,
-                {
-                  fontSize: reader.readerSetting.fontSize,
-                  lineHeight: reader.readerSetting.fontSize * 1.5,
-                  fontFamily:
-                    constants.fontFamily[reader.readerSetting.fontFamily - 1]
-                      .regular,
-                  // lineHeight:
-                  //   constants.fontFamily[reader.readerSetting.fontFamily - 1]
-                  //     .lineHeight,
-                  color:
-                    constants.theme[reader.readerSetting.theme - 1].fontColor,
-                  backgroundColor: verse.highlight
-                    ? verse.highlight_color
-                    : 'transparent',
-                },
-              ]}>
-              {verse['text_' + language]}
-            </Text>
-          </Text>
-        </TouchableOpacity>
-        {language === 'hd' && <View style={{ height: 3 }} />}
-      </View>
-    );
-  };
-
-  const ChapterEndFooterComponent = () => {
-    return (
-      <View style={styles.footerWrapper}>
-        <View style={styles.dividerRow}>
-          <View style={styles.line} />
-          <Text style={styles.ornament}>❦</Text>
-          <View style={styles.line} />
-        </View>
-
-        <Text
-          style={[
-            styles.endOfText,
-            {
-              fontFamily:
-                constants.fontFamily[reader.readerSetting.fontFamily - 1]
-                  .regular,
-            },
-          ]}>
-          Conclusion of {reader.currentRead.bookName} Chapter{' '}
-          {reader.currentRead.chapterNumber}
-        </Text>
-      </View>
-    );
-  };
-
   return (
     <View
       style={[
@@ -558,10 +434,19 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
         <FlatList
           ref={singleRef}
           data={verses}
-          extraData={{ activeVerseIndex, selectedVerse }}
-          keyExtractor={(item, index) => `single-view-${index}`}
+          extraData={{ activeVerseIndex, selectedVerse, readerSetting: reader.readerSetting }}
+          keyExtractor={(item) => `single-view-${item.id}`}
           renderItem={({ item, index }) => (
-            <VerseComponent verse={item} language={'hd'} index={index} />
+            <VerseComponent
+              verse={item}
+              language={'hd'}
+              index={index}
+              activeVerseIndex={activeVerseIndex}
+              selectedVerse={selectedVerse}
+              readerSetting={reader.readerSetting}
+              onVerseClick={onVerseClick}
+              onLongPress={onLongPress}
+            />
           )}
           onScrollBeginDrag={() => {
             isUserInteracting.current = true;
@@ -579,7 +464,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
           style={{ height: topHeight }}
           scrollEventThrottle={16}
           onEndReached={onCompleteChapter}
-          ListFooterComponent={ChapterEndFooterComponent}
+          ListFooterComponent={() => <ChapterEndFooterComponent bookName={reader.currentRead.bookName} chapterNumber={reader.currentRead.chapterNumber} readerSetting={reader.readerSetting} />}
         />
       ) : dividerMode === 'horizontal' ? (
         <>
@@ -591,10 +476,19 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
             <FlatList
               ref={topRef}
               data={verses}
-              extraData={{ activeVerseIndex, selectedVerse }}
-              keyExtractor={(item, index) => `top-${index}`}
+              extraData={{ activeVerseIndex, selectedVerse, readerSetting: reader.readerSetting }}
+              keyExtractor={(item) => `top-${item.id}`}
               renderItem={({ item, index }) => (
-                <VerseComponent verse={item} language={'hd'} index={index} />
+                <VerseComponent
+                  verse={item}
+                  language={'hd'}
+                  index={index}
+                  activeVerseIndex={activeVerseIndex}
+                  selectedVerse={selectedVerse}
+                  readerSetting={reader.readerSetting}
+                  onVerseClick={onVerseClick}
+                  onLongPress={onLongPress}
+                />
               )}
               style={{ flex: 1 }}
               scrollEnabled={true}
@@ -617,7 +511,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
                 (topHeights.current.layout = e.nativeEvent.layout.height)
               }
               onEndReached={onCompleteChapter}
-              ListFooterComponent={ChapterEndFooterComponent}
+              ListFooterComponent={() => <ChapterEndFooterComponent bookName={reader.currentRead.bookName} chapterNumber={reader.currentRead.chapterNumber} readerSetting={reader.readerSetting} />}
             />
           </Animated.View>
           <View
@@ -632,19 +526,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
                 ? { backgroundColor: '#666' }
                 : { backgroundColor: '#e2e2e2' },
             ]}
-            // style={[
-            //     styles.divider,
-            //     isDividerClicked
-            //         ? { backgroundColor: '#666' }
-            //         : { backgroundColor: '#e2e2e2' },
-            // ]}
             {...verticalPanResponder.panHandlers}>
-            {/* <TouchableOpacity style={styles.ellipsisButton} onPress={() => {
-                                    console.log('onPress');
-                                    // setIsViewChangeAlertVisible(true);
-                                }} >
-                                    <View style={styles.dragHandle} />
-                                </TouchableOpacity> */}
             <View style={styles.ellipsisButton}>
               <View style={styles.dragHandle} />
             </View>
@@ -653,13 +535,18 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
             <FlatList
               ref={bottomRef}
               data={verses}
-              extraData={{ activeVerseIndex, selectedVerse }}
-              keyExtractor={(item, index) => `bottom-${index}`}
+              extraData={{ activeVerseIndex, selectedVerse, readerSetting: reader.readerSetting }}
+              keyExtractor={(item) => `bottom-${item.id}`}
               renderItem={({ item, index }) => (
                 <VerseComponent
                   verse={item}
                   language={device.language}
                   index={index}
+                  activeVerseIndex={activeVerseIndex}
+                  selectedVerse={selectedVerse}
+                  readerSetting={reader.readerSetting}
+                  onVerseClick={onVerseClick}
+                  onLongPress={onLongPress}
                 />
               )}
               style={{ flex: 1 }}
@@ -684,7 +571,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
               onLayout={e =>
                 (bottomHeights.current.layout = e.nativeEvent.layout.height)
               }
-              ListFooterComponent={ChapterEndFooterComponent}
+              ListFooterComponent={() => <ChapterEndFooterComponent bookName={reader.currentRead.bookName} chapterNumber={reader.currentRead.chapterNumber} readerSetting={reader.readerSetting} />}
             />
           </Animated.View>
         </>
@@ -694,10 +581,19 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
             <FlatList
               ref={leftRef}
               data={verses}
-              extraData={{ activeVerseIndex, selectedVerse }}
-              keyExtractor={(item, index) => `left-${index}`}
+              extraData={{ activeVerseIndex, selectedVerse, readerSetting: reader.readerSetting }}
+              keyExtractor={(item) => `left-${item.id}`}
               renderItem={({ item, index }) => (
-                <VerseComponent verse={item} language={'hd'} index={index} />
+                <VerseComponent
+                  verse={item}
+                  language={'hd'}
+                  index={index}
+                  activeVerseIndex={activeVerseIndex}
+                  selectedVerse={selectedVerse}
+                  readerSetting={reader.readerSetting}
+                  onVerseClick={onVerseClick}
+                  onLongPress={onLongPress}
+                />
               )}
               style={{ flex: 1 }}
               scrollEnabled={true}
@@ -720,7 +616,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
                 (leftHeights.current.layout = e.nativeEvent.layout.height)
               }
               onEndReached={onCompleteChapter}
-              ListFooterComponent={ChapterEndFooterComponent}
+              ListFooterComponent={() => <ChapterEndFooterComponent bookName={reader.currentRead.bookName} chapterNumber={reader.currentRead.chapterNumber} readerSetting={reader.readerSetting} />}
             />
           </Animated.View>
           <View
@@ -731,12 +627,6 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
                 : { backgroundColor: '#e2e2e2' },
             ]}
             {...horizontalPanResponder.panHandlers}>
-            {/* <TouchableOpacity style={styles.ellipsisButtonVertical} onPress={() => {
-                                    setIsViewChangeAlertVisible(true);
-                                }} >
-                                    <View style={styles.dragHandleVertical} />
-                                    <TermsIcon />
-                                </TouchableOpacity> */}
             <View style={styles.ellipsisButtonVertical}>
               <View style={styles.dragHandleVertical} />
             </View>
@@ -745,13 +635,18 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
             <FlatList
               ref={rightRef}
               data={verses}
-              extraData={{ activeVerseIndex, selectedVerse }}
-              keyExtractor={(item, index) => `right-${index}`}
+              extraData={{ activeVerseIndex, selectedVerse, readerSetting: reader.readerSetting }}
+              keyExtractor={(item) => `right-${item.id}`}
               renderItem={({ item, index }) => (
                 <VerseComponent
                   verse={item}
                   language={device.language}
                   index={index}
+                  activeVerseIndex={activeVerseIndex}
+                  selectedVerse={selectedVerse}
+                  readerSetting={reader.readerSetting}
+                  onVerseClick={onVerseClick}
+                  onLongPress={onLongPress}
                 />
               )}
               style={{ flex: 1 }}
@@ -774,7 +669,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
               onLayout={e =>
                 (rightHeights.current.layout = e.nativeEvent.layout.height)
               }
-              ListFooterComponent={ChapterEndFooterComponent}
+              ListFooterComponent={() => <ChapterEndFooterComponent bookName={reader.currentRead.bookName} chapterNumber={reader.currentRead.chapterNumber} readerSetting={reader.readerSetting} />}
             />
           </Animated.View>
         </>
@@ -866,49 +761,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#444',
     borderRadius: 2,
   },
-  verseContainer: {
-    // height: 60,
-    justifyContent: 'flex-start',
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    // borderBottomWidth: 1,
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    // gap: 10,
-    // zIndex: 1000,
-  },
-  verseNumber: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: AppColors.primaryTint,
-    marginTop: 2,
-  },
-  verseText: {
-    // fontSize: 16,
-    color: AppColors.appTextBlack,
-    lineHeight: 27,
-    paddingLeft: 5,
-    marginLeft: 5,
-    marginRight: 15,
-  },
   ellipsisButton: {
     width: '20%',
     height: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    verticalAlign: 'middle',
   },
   ellipsisButtonVertical: {
-    // width: 30,
     height: 80,
-    // position: 'absolute',
-    // top: '50%',
-    // transform: [{ translateY: '-50%' }],
     justifyContent: 'center',
     alignItems: 'center',
-    verticalAlign: 'middle',
-    // backgroundColor: AppColors.lightGrey,
-    // borderRadius: '50%'
   },
   dragHandleVertical: {
     width: 4,
@@ -943,36 +805,6 @@ const styles = StyleSheet.create({
   fabText: {
     color: '#fff',
     fontWeight: 'bold',
-  },
-  footerWrapper: {
-    paddingTop: 60,
-    paddingBottom: 80,
-    paddingHorizontal: 25,
-    // backgroundColor: '#F9F7F2', // Soft parchment color
-    alignItems: 'center',
-    // borderTopWidth: 1,
-    // borderTopColor: '#E8E4D9',
-  },
-  dividerRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  line: {
-    flex: 1,
-    height: 1,
-    backgroundColor: '#D1CDC0',
-  },
-  ornament: {
-    paddingHorizontal: 15,
-    fontSize: 20,
-    color: '#A6A295',
-  },
-  endOfText: {
-    fontSize: 16,
-    color: '#7C786A',
-    fontStyle: 'italic',
-    marginBottom: 40,
   },
 });
 
