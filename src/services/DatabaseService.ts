@@ -162,7 +162,7 @@ export default class DatabaseService {
                     audio_to TEXT,
                     master_verse_id INTEGER UNIQUE,
                     subtitle_hd TEXT,
-                    subtitle_my TEXT,
+                    subtitle_mm TEXT,
                     subtitle_en TEXT,
                     FOREIGN KEY(chapter_id) REFERENCES chapters(id)
                     );`

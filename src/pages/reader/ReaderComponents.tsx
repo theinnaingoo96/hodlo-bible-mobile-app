@@ -60,13 +60,17 @@ export const VerseComponent = React.memo(({
           }}
         />
       )}
-      <View style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'row',
-      }}>
-        <Text style={styles.subTitle}>{'verse.sub_title'}</Text></View>
+      {
+        verse['subtitle_' + language] &&
+        <View style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexDirection: 'row',
+        }}>
+          <Text style={styles.subTitle}>{verse['subtitle_' + language]}</Text>
+        </View>
+      }
       <TouchableOpacity
         style={styles.verseContainer}
         onLongPress={() => onLongPress(verse)}
