@@ -37,6 +37,7 @@ import { getAudioChapter } from '../../services/ApiService';
 import audioPlayer from '../../services/AudioPlayerService';
 import fileDownloadService from '../../services/FileDownloadService';
 import { setDownloadProgress } from '../../store/slices/deviceSlice';
+import CustomLoading from '../../components/CustomLoading';
 
 const Reader = ({ navigation, route }: any) => {
   const device = useSelector((state: any) => state.device);
@@ -125,6 +126,7 @@ const Reader = ({ navigation, route }: any) => {
   const [chapterMasterId, setChapterMasterId] = useState(0);
   const [isDownloading, setIsDownloading] = useState(false);
   const [downloadProgressValue, setDownloadProgressValue] = useState(0);
+  const [transitionLoading, setTransitionLoading] = useState(false);
 
   // Monitor currentTime updates
   // useEffect(() => {
@@ -147,20 +149,42 @@ const Reader = ({ navigation, route }: any) => {
     });
   }, [route.params, highlightModalVisible, bookmarkModalVisible]);
 
-  useEffect(() => {
-    console.log('verses from Reader 2', verses, route.params);
-    // fetchVerses();
-  }, []);
+  // useEffect(() => {
+  //   console.log('verses from Reader 2', verses, route.params);
+  //   // fetchVerses();
+  // }, []);
+
+  // useEffect(() => {
+  //   // console.log('progress', progress);
+  // }, [currentTime, duration]);
 
   useEffect(() => {
-    // console.log('progress', progress);
-  }, [currentTime, duration]);
+    if (params.autoPlay) {
+      fetchChapterMasterId();
+      console.log('[AUDIO] Auto-playing next chapter...', params);
+      const timer = setTimeout(() => {
+        handleAudioReaderPress();
+      }, 800);
+      return () => clearTimeout(timer);
+    }
+  }, [params.chapterId]);
+
+  useEffect(() => {
+    const unsubscribe = audioPlayer.addListener('end', () => {
+      console.log('[AUDIO] Audio finished. Transitioning to next chapter...');
+      handleNextChapter(true);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [verses]);
 
   const fetchChapterMasterId = () => {
     DatabaseService.getInstance()
       .getChapterMasterId(route.params.chapterId)
       .then((chapterMasterId: any) => {
-        console.log('chapterMasterId from fetchChapterMasterId', chapterMasterId);
+        console.log('chapterMasterId from fetchChapterMasterId', route.params.chapterId, chapterMasterId);
         setChapterMasterId(chapterMasterId);
       });
   };
@@ -364,9 +388,10 @@ const Reader = ({ navigation, route }: any) => {
   //     .activeOffsetX([-10, 10]) // Only activate for horizontal movement
   //     .failOffsetY([-10, 10]); // Fail if vertical movement exceeds threshold
 
-  const handleNextChapter = () => {
+  const handleNextChapter = (autoPlay = false) => {
     const currentReaderData = reader.currentRead;
     if (currentReaderData.maxChapter > currentReaderData.chapterNumber) {
+      setTransitionLoading(true);
       store.dispatch(
         setToast({
           show: true,
@@ -401,7 +426,11 @@ const Reader = ({ navigation, route }: any) => {
             chapter: currentReaderData.chapterNumber + 1,
             chapterId: nextChapterId,
             verse: 1,
+            autoPlay: autoPlay, // Pass the flag
           });
+        })
+        .finally(() => {
+          setTransitionLoading(false);
         });
     } else {
       store.dispatch(
@@ -620,13 +649,13 @@ const Reader = ({ navigation, route }: any) => {
   };
 
   const handleAudioReaderPress = async () => {
-    // console.log('handleAudioReaderPress', params, params.chapterId);
+    console.log('[AUDIO] handleAudioReaderPress', chapterMasterId);
 
     try {
       const audioReader = await DatabaseService.getInstance().getAudioReader(
         chapterMasterId
       );
-      console.log('audioReader', audioReader, params.bookId, params.chapter, chapterMasterId);
+      console.log('[AUDIO] audioReader', audioReader);
 
       let localFileExists = false;
       let finalPath = '';
@@ -636,69 +665,17 @@ const Reader = ({ navigation, route }: any) => {
         localFileExists = await fileDownloadService.fileExists(
           audioReader.audio_path,
         );
+        console.log('[AUDIO] localFileExists', localFileExists);
         if (localFileExists) {
+          console.log('[AUDIO] Audio file exists locally. Loading...');
           await audioPlayer.loadAudio(finalPath);
           setPlayerSheetVisible(true);
           handlePlayPause();
-          return;
         } else {
-          setIsDownloading(true);
-          setDownloadProgressValue(0);
-
-          store.dispatch(
-            setToast({
-              show: true,
-              message: 'Downloading Bible audio for offline use...',
-              type: 'change',
-              duration: 3000,
-            }),
-          );
-
-          const apiResult = await getAudioChapter(chapterMasterId);
-          console.log('apiResult', apiResult, chapterMasterId);
-          if (apiResult?.verses && apiResult.verses.length > 0) {
-            await DatabaseService.getInstance().updateVersesAudioData(apiResult.verses);
-            fetchVerses();
-          }
-
-          const downloadUrl = apiResult?.audioUrl || apiResult?.url;
-          if (!downloadUrl) {
-            throw new Error('Audio not available for this chapter');
-          }
-
-          let fullDownloadUrl = downloadUrl;
-          if (downloadUrl.startsWith('/')) {
-            fullDownloadUrl = `https://api.gathengpudlo.com/api${downloadUrl}`;
-          }
-
-          const downloadResult = await fileDownloadService.downloadFile(
-            fullDownloadUrl,
-            `${params.book}_${params.chapter}.m4a`,
-            progressData => {
-              setDownloadProgressValue(progressData.progress);
-              store.dispatch(setDownloadProgress(progressData.progress));
-            },
-          );
-          await DatabaseService.getInstance().updateChapterAudioPath(
-            chapterMasterId,
-            downloadResult.fileName,
-          );
-
-          setIsDownloading(false);
-
-          store.dispatch(
-            setToast({
-              show: true,
-              message: 'Download complete!',
-              type: 'success',
-              duration: 2000,
-            }),
-          );
-
-          await audioPlayer.loadAudio(downloadResult.path);
-          setPlayerSheetVisible(true);
-          handlePlayPause();
+          downloadAudio();
         }
+      } else {
+        downloadAudio();
       }
     } catch (err: any) {
       console.error('[AUDIO] Error in handleAudioReaderPress:', err);
@@ -714,7 +691,76 @@ const Reader = ({ navigation, route }: any) => {
     }
   };
 
+  const downloadAudio = async () => {
+    setIsDownloading(true);
+    setDownloadProgressValue(0);
 
+    store.dispatch(
+      setToast({
+        show: true,
+        message: 'Downloading Bible audio for offline use...',
+        type: 'change',
+        duration: 3000,
+      }),
+    );
+
+    const apiResult = await getAudioChapter(params.chapterId);
+    console.log('apiResult', apiResult, chapterMasterId);
+    if (apiResult.audioUrl) {
+      if (apiResult?.verses && apiResult.verses.length > 0) {
+        await DatabaseService.getInstance().updateVersesAudioData(apiResult.verses);
+        fetchVerses();
+      }
+
+      const downloadUrl = apiResult?.audioUrl || apiResult?.url;
+      if (!downloadUrl) {
+        throw new Error('Audio not available for this chapter');
+      }
+
+      let fullDownloadUrl = downloadUrl;
+      if (downloadUrl.startsWith('/')) {
+        fullDownloadUrl = `https://api.gathengpudlo.com/api${downloadUrl}`;
+      }
+
+      const downloadResult = await fileDownloadService.downloadFile(
+        fullDownloadUrl,
+        `${params.book}_${params.chapter}.m4a`,
+        progressData => {
+          setDownloadProgressValue(progressData.progress);
+          store.dispatch(setDownloadProgress(progressData.progress));
+        },
+      );
+      await DatabaseService.getInstance().updateChapterAudioPath(
+        chapterMasterId,
+        downloadResult.fileName,
+      );
+
+      setIsDownloading(false);
+
+      store.dispatch(
+        setToast({
+          show: true,
+          message: 'Download complete!',
+          type: 'success',
+          duration: 2000,
+        }),
+      );
+
+      await audioPlayer.loadAudio(downloadResult.path);
+      setPlayerSheetVisible(true);
+      handlePlayPause();
+    } else {
+      setIsDownloading(false);
+      store.dispatch(
+        setToast({
+          show: true,
+          message: 'Audio not available for this chapter',
+          type: 'error',
+          duration: 2000,
+        }),
+      );
+    }
+  }
 
   return (
     <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom }}>
@@ -1054,6 +1100,7 @@ const Reader = ({ navigation, route }: any) => {
             </View>
           </View>
         )}
+        <CustomLoading visible={transitionLoading} />
       </View>
     </View>
   );
