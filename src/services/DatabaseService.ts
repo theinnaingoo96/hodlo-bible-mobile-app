@@ -1,12 +1,12 @@
 // services/DatabaseService.ts
 import { Platform } from 'react-native';
+import { Dispatch } from '@reduxjs/toolkit';
 import SQLite from 'react-native-sqlite-storage';
 import DeviceInfo from "react-native-device-info";
 
-import { createUser, getBookDetail, getBooks, getChapters, getVerses } from './ApiService';
+import { createUser, getBookDetail, getBooks, getChapters, getLatestVersion, getVerses } from './ApiService';
 import { constants } from '../constants/Data';
-import { Dispatch } from '@reduxjs/toolkit';
-import { setDownloaded, setDownloadProgress, setStartDownload } from '../store/slices/deviceSlice';
+import { setDatabaseVersion, setDownloaded, setDownloadProgress, setStartDownload } from '../store/slices/deviceSlice';
 
 SQLite.enablePromise(true);
 
@@ -282,7 +282,6 @@ export default class DatabaseService {
                 let chaptersProcessed = 0;
                 const CONCURRENCY_LIMIT = 5; // Download 5 books at a time
 
-                // Process in chunks to avoid overwhelming the server
                 for (let i = 0; i < bookAllData.length; i += CONCURRENCY_LIMIT) {
                     const chunk = bookAllData.slice(i, i + CONCURRENCY_LIMIT);
 
@@ -326,20 +325,19 @@ export default class DatabaseService {
                             await (this.db as any).sqlBatch(batchQueries);
                             chaptersProcessed += chapterData.length;
 
-                            // Update progress
                             const progress = chaptersProcessed / constants.bibleTotalChapters;
                             dispatch(setDownloadProgress(progress > 1 ? 1 : progress));
                             console.log(`[DB] Seeded ${textEn} successfully.`);
 
                         } catch (bookError) {
                             console.error(`[DB] Failed to seed book ${bookId}:`, bookError);
-                            // We don't reject here so other books can continue, 
-                            // but you might want more robust retry logic in production.
                         }
                     }));
                 }
 
                 console.log('[DB] SEEDING COMPLETED SUCCESSFULLY.');
+                const latestVersion = await getLatestVersion('Database');
+                dispatch(setDatabaseVersion(latestVersion.code));
                 dispatch(setDownloaded(true));
                 resolve(true);
             } catch (error) {
@@ -550,13 +548,13 @@ export default class DatabaseService {
                 const [results] = await this.db.executeSql(`
                     SELECT 
                     v.id AS verse_id,
-                    v.number AS verse_number,
+                    v.number AS verse,
                     v.text_hd,
                     v.text_en,
                     v.text_mm,
 
                     c.id AS chapter_id,
-                    c.number AS chapter_number,
+                    c.number AS chapter,
                     c.title_hd,
                     c.title_en,
                     c.title_mm,
@@ -1185,13 +1183,13 @@ export default class DatabaseService {
                 const [results] = await this.db.executeSql(`
                     SELECT 
                     v.id AS verse_id,
-                    v.number AS verse_number,
+                    v.number AS verse,
                     v.text_hd,
                     v.text_en,
                     v.text_mm,
 
                     c.id AS chapter_id,
-                    c.number AS chapter_number,
+                    c.number AS chapter,
                     c.title_hd,
                     c.title_en,
                     c.title_mm,

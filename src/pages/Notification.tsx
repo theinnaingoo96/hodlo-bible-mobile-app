@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import SoundPlayer from 'react-native-sound-player';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { View, Text, StyleSheet, SafeAreaView, FlatList, Alert, TouchableOpacity } from 'react-native';
 
 import NormalHeader from '../components/NormalHeader';
 import DatabaseService from '../services/DatabaseService';
 import { AppColors } from '../constants/Color';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const Notification = () => {
 

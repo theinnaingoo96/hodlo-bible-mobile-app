@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
-import { View, StyleSheet, Image, Dimensions, Text, ScrollView, TouchableOpacity, Alert, Share } from 'react-native';
+import { View, StyleSheet, Image, Dimensions, Text, ScrollView, TouchableOpacity, Alert, Share, Modal } from 'react-native';
 
 import { ReadingProgressCard, VerseOfTheDayCard } from '../../components/HomeComponent';
 import DatabaseService from '../../services/DatabaseService';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AppColors } from '../../constants/Color';
+import ShareModal from '../../components/modals/ShareModal';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -25,35 +26,9 @@ const Home = () => {
     const reader = useSelector((state: any) => state.reader);
     const navigation = useNavigation<any>();
     const insets = useSafeAreaInsets();
-    // const [currentRead, setCurrentRead] = useState(reader.currentRead);
+    const [shareModalVisible, setShareModalVisible] = useState(false);
 
-    useEffect(() => {
-        // const db = DatabaseService.getInstance();
-        // db.getVersesById(100).then((data) => {
-        //     console.log('data', data);
-        // });
-        // db.getBooksById(2).then((b: any) => {
-        //     console.log('book from getBooksById', b);
-        // })
-        DatabaseService.getInstance().getTodayNotifications().then((result: any) => {
-            console.log('[HOME] getFutureNotifications', result);
-            if (result.length > 0) {
-                setTodayVerse(result[0]);
-            }
-        }).catch((error: any) => {
-            console.log('[HOME] getFutureNotifications error', error);
-        });
-        // DatabaseService.getInstance().seedAudioMilestone23().then((result: any) => {
-        //     // console.log('seedAudioMilestone23', result)
-        // })
-
-        // DatabaseService.getInstance().seedAudioMilestone24().then((result: any) => {
-        //     // console.log('seedAudioMilestone24', result)
-        // })
-        // console.log('[HOME]reader', reader.currentRead);
-    }, []);
-
-    const carouselItems: CarouselItem[] = [
+    const tempCarouselItems: CarouselItem[] = [
         {
             id: 1,
             title: 'Have I not commanded you? Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.',
@@ -74,32 +49,61 @@ const Home = () => {
         }
     ];
 
+    const [carouselItems, setCarouselItems] = useState<CarouselItem[]>(tempCarouselItems);
+
+    useEffect(() => {
+        DatabaseService.getInstance().getTodayNotifications().then((result: any) => {
+            if (result.length > 0) {
+                setTodayVerse(result[0]);
+                console.log('[HOME] getFutureNotifications', todayVerse);
+            }
+        }).catch((error: any) => {
+            console.error('[HOME] getFutureNotifications error', error);
+        });
+
+        DatabaseService.getInstance().getRandomVerse(3).then((result: any) => {
+            if (result.length > 0) {
+                const verses: CarouselItem[] = result.map((item: any, index: number) => {
+                    return {
+                        id: item.id,
+                        title: item.text_hd,
+                        image: tempCarouselItems[index]?.image || require('../../assets/images/1.jpg'),
+                        description: item.book_name + " " + item.chapter + " : " + item.verse
+                    };
+                });
+                setCarouselItems(verses);
+            }
+        }).catch((error: any) => {
+            console.error('[HOME] getRandomVerse error', error);
+        });
+    }, []);
+
     const handleScroll = (event: any) => {
         const contentOffset = event.nativeEvent.contentOffset.x;
         const index = Math.round(contentOffset / screenWidth);
         setActiveIndex(index);
     };
 
-    const handleShare = async () => {
-        try {
-            const result = await Share.share({
-                title: 'Daily Verse',
-                message:
-                    `${todayVerse?.text_hd || ''} \n\n ${todayVerse?.book_name + " " + todayVerse?.chapter_number + ":" + todayVerse?.verse_number}`,
-            });
-            if (result.action === Share.sharedAction) {
-                if (result.activityType) {
-                    // shared with activity type of result.activityType
-                } else {
-                    // shared
-                }
-            } else if (result.action === Share.dismissedAction) {
-                // dismissed
-            }
-        } catch (error: any) {
-            Alert.alert(error.message);
-        }
-    }
+    // const handleShare = async () => {
+    //     try {
+    //         const result = await Share.share({
+    //             title: 'Daily Verse',
+    //             message:
+    //                 `${todayVerse?.text_hd || ''} \n\n ${todayVerse?.book_name + " " + todayVerse?.chapter_number + ":" + todayVerse?.verse_number}`,
+    //         });
+    //         if (result.action === Share.sharedAction) {
+    //             if (result.activityType) {
+    //                 // shared with activity type of result.activityType
+    //             } else {
+    //                 // shared
+    //             }
+    //         } else if (result.action === Share.dismissedAction) {
+    //             // dismissed
+    //         }
+    //     } catch (error: any) {
+    //         Alert.alert(error.message);
+    //     }
+    // }
 
     return (
         <ScrollView
@@ -117,8 +121,8 @@ const Home = () => {
                     scrollEventThrottle={16}
                     style={styles.scrollView}
                 >
-                    {carouselItems.map((item) => (
-                        <View key={item.id} style={styles.slide}>
+                    {carouselItems.map((item, index) => (
+                        <View key={`carousel-image-${index}`} style={styles.slide}>
                             <Image
                                 source={item.image}
                                 style={styles.carouselImage}
@@ -134,7 +138,7 @@ const Home = () => {
                 <View style={styles.dotsContainer}>
                     {carouselItems.map((_, index) => (
                         <View
-                            key={index}
+                            key={`carousel-dot-${index}`}
                             style={[
                                 styles.dot,
                                 index === activeIndex && styles.activeDot
@@ -143,6 +147,8 @@ const Home = () => {
                     ))}
                 </View>
             </View>
+
+            <View style={{ height: 150 }} />
 
             <View style={styles.mainContent}>
                 {
@@ -168,8 +174,8 @@ const Home = () => {
                         todayVerse ? (
                             <VerseOfTheDayCard
                                 verse={todayVerse?.text_hd || ''}
-                                reference={todayVerse?.book_name + " " + todayVerse?.chapter_number + ":" + todayVerse?.verse_number}
-                                onShare={handleShare}
+                                reference={todayVerse?.book_name + " " + todayVerse?.chapter + ":" + todayVerse?.verse}
+                                onShare={() => setShareModalVisible(true)}
                             />
                         ) : (
                             <VerseOfTheDayCard
@@ -183,6 +189,19 @@ const Home = () => {
                     <ReadingProgressCard progress={reader.currentRead.progress || 0} />
                 </View>
             </View>
+            <Modal
+                transparent
+                visible={shareModalVisible}
+                animationType="fade"
+                statusBarTranslucent={true}>
+                <View style={{ height: insets.top }} />
+                <ShareModal
+                    setShareModalVisible={setShareModalVisible}
+                    selectedVerse={todayVerse}
+                    bookName={todayVerse?.book_name}
+                    chapterNumber={todayVerse?.chapter}
+                />
+            </Modal>
         </ScrollView>
     );
 };
@@ -237,7 +256,10 @@ const styles = StyleSheet.create({
     },
     carouselWrapper: {
         height: 200,
-        position: 'relative',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
     },
     mainContent: {
         marginTop: 16,

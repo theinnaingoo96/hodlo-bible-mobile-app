@@ -36,15 +36,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		028A47E1A6184479BE6E5DBA /* psalm00104.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = psalm00104.m4a; path = ../src/assets/audio/psalm00104.m4a; sourceTree = "<group>"; };
-		103DD09CD76E46BAB41C6D54 /* Psalm-00101.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00101.m4a"; path = "../src/assets/audio/Psalm-00101.m4a"; sourceTree = "<group>"; };
+		028A47E1A6184479BE6E5DBA /* psalm00104.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = psalm00104.m4a; path = ../src/assets/audio/psalm00104.m4a; sourceTree = "<group>"; };
+		103DD09CD76E46BAB41C6D54 /* Psalm-00101.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00101.m4a"; path = "../src/assets/audio/Psalm-00101.m4a"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* HoDloBibleMobileApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HoDloBibleMobileApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = HoDloBibleMobileApp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = HoDloBibleMobileApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = HoDloBibleMobileApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		1556B8DB160C4A41A6616A58 /* psalms2300.wav */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = psalms2300.wav; path = ../src/assets/audio/psalms2300.wav; sourceTree = "<group>"; };
+		1556B8DB160C4A41A6616A58 /* psalms2300.wav */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = psalms2300.wav; path = ../src/assets/audio/psalms2300.wav; sourceTree = "<group>"; };
 		15E8FD0B321A486C8B358F74 /* NotoSansMyanmar-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSansMyanmar-Regular.ttf"; path = "../src/assets/fonts/NotoSansMyanmar-Regular.ttf"; sourceTree = "<group>"; };
-		2725BF6F634845C4BA3E5310 /* psalms2400.mp3 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = psalms2400.mp3; path = ../src/assets/audio/psalms2400.mp3; sourceTree = "<group>"; };
+		2725BF6F634845C4BA3E5310 /* psalms2400.mp3 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = psalms2400.mp3; path = ../src/assets/audio/psalms2400.mp3; sourceTree = "<group>"; };
 		32D346570DC04D23917F6CE0 /* Pyidaungsu-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pyidaungsu-Bold.ttf"; path = "../src/assets/fonts/Pyidaungsu-Bold.ttf"; sourceTree = "<group>"; };
 		35F4C74D7ED4056A513B59A8 /* libPods-HoDloBibleMobileApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HoDloBibleMobileApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		637EDD2EFF8B43608C8E7F58 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-SemiBold.otf"; path = "../src/assets/fonts/Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
@@ -52,21 +52,21 @@
 		704680E3C79D333FB30C7952 /* Pods-HoDloBibleMobileApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HoDloBibleMobileApp.release.xcconfig"; path = "Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp.release.xcconfig"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = HoDloBibleMobileApp/AppDelegate.swift; sourceTree = "<group>"; };
 		7A5C8B6835294C538E2F6C83 /* Pyidaungsu-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pyidaungsu-Regular.ttf"; path = "../src/assets/fonts/Pyidaungsu-Regular.ttf"; sourceTree = "<group>"; };
-		7C71018D071E4B2FB05F902B /* Psalm-00103.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00103.m4a"; path = "../src/assets/audio/Psalm-00103.m4a"; sourceTree = "<group>"; };
-		8072991737CF4531A60B990C /* psalm00106.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = psalm00106.m4a; path = ../src/assets/audio/psalm00106.m4a; sourceTree = "<group>"; };
+		7C71018D071E4B2FB05F902B /* Psalm-00103.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00103.m4a"; path = "../src/assets/audio/Psalm-00103.m4a"; sourceTree = "<group>"; };
+		8072991737CF4531A60B990C /* psalm00106.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = psalm00106.m4a; path = ../src/assets/audio/psalm00106.m4a; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = HoDloBibleMobileApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		837A0BCE3F524E91B82B1706 /* NotoSansMyanmar-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSansMyanmar-SemiBold.ttf"; path = "../src/assets/fonts/NotoSansMyanmar-SemiBold.ttf"; sourceTree = "<group>"; };
 		8604BE6461AD47AC83BCCB75 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Bold.otf"; path = "../src/assets/fonts/Pretendard-Bold.otf"; sourceTree = "<group>"; };
-		8AE7D33706D94236860C02A2 /* psalm00105.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = psalm00105.m4a; path = ../src/assets/audio/psalm00105.m4a; sourceTree = "<group>"; };
+		8AE7D33706D94236860C02A2 /* psalm00105.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = psalm00105.m4a; path = ../src/assets/audio/psalm00105.m4a; sourceTree = "<group>"; };
 		B6AA74FDF41CFEE4DD463DB4 /* Pods-HoDloBibleMobileApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HoDloBibleMobileApp.debug.xcconfig"; path = "Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp.debug.xcconfig"; sourceTree = "<group>"; };
-		C1039B89D43C49E285DECA30 /* psalm00101.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = psalm00101.m4a; path = ../src/assets/audio/psalm00101.m4a; sourceTree = "<group>"; };
-		C7B795F0C4D4444FBBB354C9 /* psalm00102.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = psalm00102.m4a; path = ../src/assets/audio/psalm00102.m4a; sourceTree = "<group>"; };
-		CA45077CC70B41C69341C511 /* Psalm-00105.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00105.m4a"; path = "../src/assets/audio/Psalm-00105.m4a"; sourceTree = "<group>"; };
-		D2D13FDDACA143D8851FB0D5 /* Psalm-00104.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00104.m4a"; path = "../src/assets/audio/Psalm-00104.m4a"; sourceTree = "<group>"; };
-		D40443998E124196BE87AB34 /* Psalm-00102.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00102.m4a"; path = "../src/assets/audio/Psalm-00102.m4a"; sourceTree = "<group>"; };
-		D4F13035AD804E1FBD2A1C6B /* Psalm-00106.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00106.m4a"; path = "../src/assets/audio/Psalm-00106.m4a"; sourceTree = "<group>"; };
+		C1039B89D43C49E285DECA30 /* psalm00101.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = psalm00101.m4a; path = ../src/assets/audio/psalm00101.m4a; sourceTree = "<group>"; };
+		C7B795F0C4D4444FBBB354C9 /* psalm00102.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = psalm00102.m4a; path = ../src/assets/audio/psalm00102.m4a; sourceTree = "<group>"; };
+		CA45077CC70B41C69341C511 /* Psalm-00105.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00105.m4a"; path = "../src/assets/audio/Psalm-00105.m4a"; sourceTree = "<group>"; };
+		D2D13FDDACA143D8851FB0D5 /* Psalm-00104.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00104.m4a"; path = "../src/assets/audio/Psalm-00104.m4a"; sourceTree = "<group>"; };
+		D40443998E124196BE87AB34 /* Psalm-00102.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00102.m4a"; path = "../src/assets/audio/Psalm-00102.m4a"; sourceTree = "<group>"; };
+		D4F13035AD804E1FBD2A1C6B /* Psalm-00106.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00106.m4a"; path = "../src/assets/audio/Psalm-00106.m4a"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		EFA71F7E2DEF4113B2F1CD0C /* psalm00103.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = psalm00103.m4a; path = ../src/assets/audio/psalm00103.m4a; sourceTree = "<group>"; };
+		EFA71F7E2DEF4113B2F1CD0C /* psalm00103.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = psalm00103.m4a; path = ../src/assets/audio/psalm00103.m4a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,9 +309,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -326,9 +330,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -355,7 +363,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 10000;
 				DEVELOPMENT_TEAM = ZS6JN2GDR3;
 				ENABLE_BITCODE = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -387,7 +395,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 10000;
 				DEVELOPMENT_TEAM = ZS6JN2GDR3;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = HoDloBibleMobileApp/Info.plist;
@@ -482,10 +490,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -556,10 +561,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

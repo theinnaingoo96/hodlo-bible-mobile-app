@@ -28,7 +28,7 @@ export const getAudioChapter = async (chapterId: number) => {
 
 export type versionType = 'Database' | 'Application';
 
-export const getVersion = async (type: versionType) => {
+export const getLatestVersion = async (type: versionType) => {
   const response = await api.get(`/versions/latest?type=${type}`);
   return response.data;
 };

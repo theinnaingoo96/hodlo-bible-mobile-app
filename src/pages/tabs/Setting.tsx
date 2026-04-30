@@ -1,12 +1,10 @@
 import DeviceInfo from 'react-native-device-info';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from "@react-navigation/native";
-import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 
-import { setLoading, setTheme } from '../../store/slices/deviceSlice';
-// import { clearSearchHistory } from '../../services/DatabaseService';
+import { setDatabaseVersion, setLoading, setTheme } from '../../store/slices/deviceSlice';
 import UpdateIcon from '../../components/icons/setting/UpdateIcon';
 import RecentIcon from '../../components/icons/setting/RecentIcon';
 import TermsIcon from '../../components/icons/setting/TermsIcon';
@@ -16,24 +14,22 @@ import SunIcon from '../../components/icons/setting/SunIcon';
 import DatabaseService from '../../services/DatabaseService';
 import CustomAlert from '../../components/CustomAlert';
 import { AppColors } from '../../constants/Color';
+import { getLatestVersion } from '../../services/ApiService';
+import useInternetStatus from '../../hooks/useInternetStatus';
 
 const Setting = () => {
     const device = useSelector((state: any) => state.device);
     const dispatch = useDispatch();
     const [isAlertVisible, setIsAlertVisible] = useState(false);
     const navigation = useNavigation();
-
-    useEffect(() => {
-        // console.log('device', device);
-    }, [device]);
+    const internetAvailable = useInternetStatus()
 
     const clear = async () => {
         setIsAlertVisible(true);
     }
 
     const handleConfirm = async () => {
-        const res = await DatabaseService.getInstance().clearSearchHistoryAll();
-        // console.log('res', res);
+        await DatabaseService.getInstance().clearSearchHistoryAll();
         setIsAlertVisible(false);
     }
 
@@ -43,6 +39,16 @@ const Setting = () => {
             dispatch(setTheme(!device.theme));
             dispatch(setLoading(false));
         }, 1000);
+    }
+
+    const handleCheckUpdate = async () => {
+        dispatch(setLoading(true));
+        const latestDBVersion = await getLatestVersion('Database');
+        // dispatch(setDatabaseVersion(latestDBVersion.code + ''));
+        const latestAppVersion = await getLatestVersion('Application');
+        console.log('latestDBVersion', latestDBVersion, device.databaseVersion);
+        console.log('latestAppVersion', latestAppVersion);
+        dispatch(setLoading(false));
     }
 
     return (
@@ -69,24 +75,12 @@ const Setting = () => {
                     <InfoIcon name="info" color={device.theme ? AppColors.primary : AppColors.appTextWhite} />
                     <Text style={[styles.settingText, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>About Us</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.settingContainer}>
+                <TouchableOpacity style={styles.settingContainer} onPress={handleCheckUpdate}>
                     <UpdateIcon name="update" color={device.theme ? AppColors.primary : AppColors.appTextWhite} />
                     <Text style={[styles.settingText, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>Check for updates</Text>
                 </TouchableOpacity>
-                {/* <TouchableOpacity style={styles.settingContainer} onPress={() => navigation.navigate('DatabaseViewer' as never)}>
-                    <FontAwesome6 iconStyle="solid" name="database" size={18} style={{ paddingHorizontal: 5 }} color={device.theme ? AppColors.primary : AppColors.appTextWhite} />
-                    <Text style={[styles.settingText, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>Database Viewer</Text>
-                </TouchableOpacity> */}
             </View>
-            {/* <Text style={{ fontFamily: 'Pyidaungsu-Regular', fontSize: 18 }}>ပြည်ထောင်စုဖောင့် Pyidaungsu Regular</Text>
-            <Text style={{ fontFamily: 'Pyidaungsu-Bold', fontSize: 18 }}>ပြည်ထောင်စုဖောင့် Pyidaungsu Bold</Text>
-            <Text style={{ fontFamily: 'NotoSansMyanmar-Regular', fontSize: 18 }}>နိုတိုစန့်ဖောင့် NotoSansMyanmar Regular</Text>
-            <Text style={{ fontFamily: 'NotoSansMyanmar-SemiBold', fontSize: 18 }}>နိုတိုစန့်ဖောင့် NotoSansMyanmar SemiBold</Text>
-            <Text style={{ fontFamily: 'Pretendard-Regular', fontSize: 18 }}>ဇီဝဗေဒ Pretendard Regular</Text>
-            <Text style={{ fontFamily: 'Pretendard-SemiBold', fontSize: 18 }}>ဘောဂဗေဒ Pretendard SemiBold</Text>
-            <Text style={{ fontFamily: 'Pretendard-Bold', fontSize: 18 }}>ပထဝီ Pretendard Bold</Text>
-            <Text style={{ fontFamily: 'Pretendard', fontSize: 18 }}>လူမှုဆက်ဆံရေး Pretendard ExtraBold</Text> */}
-            <Text style={[styles.versionStyle, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>version {DeviceInfo.getVersion()}</Text>
+            <Text style={[styles.versionStyle, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>version {DeviceInfo.getBuildNumber()}</Text>
             <CustomAlert
                 visible={isAlertVisible}
                 title="Clear Search History"
@@ -101,8 +95,6 @@ const Setting = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // justifyContent: 'center',
-        // alignItems: 'center',
         padding: 16,
     },
     text: {

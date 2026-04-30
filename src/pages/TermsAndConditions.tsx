@@ -1,16 +1,16 @@
-import {useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
-import {View, StyleSheet, Text, ScrollView} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import NormalHeader from '../components/NormalHeader';
-import {AppColors} from '../constants/Color';
+import { AppColors } from '../constants/Color';
 
 const TermsAndConditions = () => {
   const device = useSelector((state: any) => state.device);
   const insets = useSafeAreaInsets();
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const Section = ({ title, children }: { title: string; children: any }) => (
     <View style={styles.section}>
@@ -39,7 +39,7 @@ const TermsAndConditions = () => {
         <Text style={styles.lastUpdated}>Last Updated: 10/02/2026</Text>
 
         <Text style={styles.intro}>
-          Welcome to <Text style={{fontWeight: 'bold'}}>Gathengpu Dlo</Text>. By
+          Welcome to <Text style={{ fontWeight: 'bold' }}>Gathengpu Dlo</Text>. By
           accessing or using our mobile application, you agree to be bound by
           these Terms and Conditions. If you do not agree, please do not use the
           app.
@@ -113,14 +113,10 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     flexDirection: 'column',
-    // justifyContent: 'space-between',
-    // alignItems: 'center',
     paddingVertical: 16,
-    // backgroundColor: "#fff",
     borderRadius: 12,
     padding: 16,
     marginVertical: 8,
-    // marginBottom: 16,
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowRadius: 6,
@@ -128,7 +124,6 @@ const styles = StyleSheet.create({
   },
   itemText: {
     fontSize: 16,
-    // fontWeight: 'bold',
   },
   referenceContainer: {
     flexDirection: 'row',

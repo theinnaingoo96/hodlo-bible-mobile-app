@@ -19,7 +19,6 @@ const DatabaseViewer = () => {
             setData(rows);
             setColumns(columns);
             setLoading(false);
-            // console.log(rows, columns);
         };
 
         fetchAllTables();

@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
 import React, { useEffect, useRef, useState } from 'react';
-import { useIsFocused, useNavigation } from '@react-navigation/native';
 import {
   View,
   Text,
@@ -18,9 +17,7 @@ import { StatusBar } from 'react-native';
 
 const Highlight = () => {
   const device = useSelector((state: any) => state.device);
-  const isFocused = useIsFocused();
   const [highlights, setHighlights] = useState([]);
-  const navigation = useNavigation();
   const [isAlertVisible, setIsAlertVisible] = useState(false);
   const [selectedHighlight, setSelectedHighlight] = useState<any>(null);
   const rowRefs = useRef(new Map());
@@ -34,9 +31,7 @@ const Highlight = () => {
     DatabaseService.getInstance()
       .getHighlights()
       .then((result: any) => {
-        // console.log(result);
         setHighlights(result.map((item: any) => ({ ...item, visible: false })));
-        // Alert.alert('result')
       });
   };
 
@@ -49,7 +44,6 @@ const Highlight = () => {
   };
 
   const showMenu = (item: any) => {
-    // console.log('showMenu', item);
     const temp: any = highlights.map((highlight: any) => ({
       ...highlight,
       visible: highlight.id === item.id ? true : highlight.visible,
@@ -67,13 +61,11 @@ const Highlight = () => {
   };
 
   const handleDeleteHighlight = (item: any) => {
-    // console.log('handleDeleteHighlight');
     DatabaseService.getInstance()
       .clearHighlightById(item.id)
       .then((result: any) => {
         setIsAlertVisible(false);
         getHighlight();
-        // console.log('result', result);
       });
   };
 
@@ -132,19 +124,6 @@ const Highlight = () => {
         onClose={() => setIsAlertVisible(false)}
         onConfirm={() => handleDeleteHighlight(selectedHighlight)}
       />
-      {/*
-      <Modal
-        transparent
-        visible={shareModalVisible}
-        animationType="fade"
-        navigationBarTranslucent={true}>
-        <ShareModal
-          setShareModalVisible={setShareModalVisible}
-          selectedVerse={shareBookmark}
-          bookName={shareBookmark?.book}
-          chapterNumber={shareBookmark?.chapter}
-        />
-      </Modal> */}
     </View>
   );
 };
@@ -170,7 +149,6 @@ const styles = StyleSheet.create({
   verseItem: {
     width: '100%',
     paddingVertical: 16,
-    // paddingLeft: 16,
     borderRadius: 10,
     marginBottom: 16,
     flexDirection: 'column',
@@ -209,7 +187,6 @@ const styles = StyleSheet.create({
     height: 24,
     alignItems: 'center',
     justifyContent: 'center',
-    // backgroundColor: 'pink'
   },
 });
 

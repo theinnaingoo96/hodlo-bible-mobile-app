@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useIsFocused } from '@react-navigation/native';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList } from 'react-native';
 
-// import { deleteSearchHistoryById, getSearchHistory, insertSearchHistory, searchVerses } from '../../services/DatabaseService';
 import RecentIcon from '../../components/icons/setting/RecentIcon';
 import SearchSnippet from '../../components/SearchSnippet';
 import CloseIcon from '../../components/icons/CloseIcon';
 import { AppColors } from '../../constants/Color';
-import { useDispatch, useSelector } from 'react-redux';
 import { setLoading } from '../../store/slices/deviceSlice';
 import DatabaseService from '../../services/DatabaseService';
 
@@ -21,7 +20,6 @@ const Search = ({ navigation }: any) => {
 
     useEffect(() => {
         const unsubscribe = navigation.addListener("focus", async (e: any) => {
-            // console.log('Search focused.........', e);
             getHistory();
         })
 
@@ -35,18 +33,13 @@ const Search = ({ navigation }: any) => {
     // );
 
     const getHistory = async () => {
-        // dispatch(setLoading(true));
         setSearchQuery('');
         setSearchResults([]);
         DatabaseService.getInstance().getSearchHistory().then((results: any) => {
-            // console.log('results Search History', results.length);
             setSearchHistory(results);
-            // dispatch(setLoading(false));
         }).catch((error) => {
             console.error('Error getting history:', error);
-            // dispatch(setLoading(false));
         });
-        // dispatch(setLoading(false));
     }
 
     const handleHistoryDelete = (id: number) => {
@@ -56,11 +49,9 @@ const Search = ({ navigation }: any) => {
     }
 
     const handleSearchSubmit = async () => {
-        // console.log('Searching for:', searchQuery.length > 0);
         if (searchQuery !== null && searchQuery !== undefined && searchQuery !== '') {
             dispatch(setLoading(true));
             DatabaseService.getInstance().getVersesByKeyword(searchQuery).then((results: any) => {
-                // console.log('Search results:', results);
                 if (results.length > 0) {
                     setSearchResults(results);
                 } else {
@@ -93,7 +84,6 @@ const Search = ({ navigation }: any) => {
     );
 
     const handleSearchResultPress = (item: any) => {
-        // console.log('Search result pressed:', item);
         if (searchQuery !== '' && searchQuery !== null && searchQuery !== undefined) {
             DatabaseService.getInstance().addSearchHistory(searchQuery, item.verse_id).then(() => {
                 navigation.navigate('Reader', { book: item.book, chapter: item.chapter, chapterId: item.chapter, verse: item.verse_id });
@@ -101,7 +91,6 @@ const Search = ({ navigation }: any) => {
                 console.error('Error inserting search history:', error);
             });
         }
-        // navigation.navigate('Reader', { verse: item });
     };
 
 
@@ -121,12 +110,11 @@ const Search = ({ navigation }: any) => {
                     value={searchQuery}
                     onChangeText={(text) => {
                         setSearchQuery(text);
-                        // console.log('searchQuery', searchQuery);
                         if (text.length === 0) {
                             setSearchResults([]);
                         }
                     }}
-                    onSubmitEditing={handleSearchSubmit} // Allows searching by pressing 'return'
+                    onSubmitEditing={handleSearchSubmit}
                     returnKeyType="search"
                 />
                 {
@@ -172,8 +160,6 @@ const Search = ({ navigation }: any) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // justifyContent: 'center',
-        // alignItems: 'center',
         backgroundColor: AppColors.appBackgroundGrey,
     },
     text: {
@@ -184,9 +170,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingHorizontal: 16,
         paddingTop: 16,
-        // backgroundColor: '#fff',
-        // borderBottomWidth: 1,
-        // borderBottomColor: '#ddd',
     },
     searchBar: {
         flex: 1,
@@ -234,7 +217,6 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        // marginLeft: 16,
     },
     historyItemTextContainer: {
         flexDirection: 'column',
@@ -262,9 +244,6 @@ const styles = StyleSheet.create({
         padding: 16,
     },
     searchResultContainer: {
-        // marginHorizontal: 16,
-        // marginVertical: 8,
-        // backgroundColor: 'red',
         marginBottom: 16,
     },
     searchResultText: {

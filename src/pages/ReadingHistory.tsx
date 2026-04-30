@@ -1,18 +1,16 @@
-import React, {useEffect, useState} from 'react';
-import {SectionList, View, Text, StyleSheet} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import React, { useEffect, useState } from 'react';
+import { SectionList, View, Text, StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import moment from 'moment';
+import { useSelector } from 'react-redux';
 
-import DatabaseService from '../services/DatabaseService';
-import {AppColors} from '../constants/Color';
+import { AppColors } from '../constants/Color';
 import NormalHeader from '../components/NormalHeader';
-import {useSelector} from 'react-redux';
-import {useNavigation} from '@react-navigation/native';
+import DatabaseService from '../services/DatabaseService';
 
 const ReadingHistory = () => {
   const [sections, setSections] = useState<any[]>([]);
   const device = useSelector((state: any) => state.device);
-  const navigation = useNavigation();
   const insets = useSafeAreaInsets();
 
   useEffect(() => {
@@ -21,7 +19,7 @@ const ReadingHistory = () => {
       .then((result: any) => {
         // console.log('result', result);
         if (result.length > 0) {
-        setSections(groupHistoryByDate(result));
+          setSections(groupHistoryByDate(result));
         }
       });
   }, []);
@@ -77,7 +75,7 @@ const ReadingHistory = () => {
             </Text>
           </View>
           <View style={styles.checkCircle}>
-            <Text style={{color: 'white', fontSize: 10}}>✓</Text>
+            <Text style={{ color: 'white', fontSize: 10 }}>✓</Text>
           </View>
         </View>
       </View>
@@ -100,11 +98,11 @@ const ReadingHistory = () => {
         sections={sections}
         keyExtractor={(item, index) => 'reading-history-' + index.toString()}
         renderItem={renderItem}
-        renderSectionHeader={({section: {title}}) => (
+        renderSectionHeader={({ section: { title } }) => (
           <Text style={styles.sectionHeader}>{title}</Text>
         )}
         stickySectionHeadersEnabled={false}
-        contentContainerStyle={{padding: 20}}
+        contentContainerStyle={{ padding: 20 }}
       />
     </View>
   );

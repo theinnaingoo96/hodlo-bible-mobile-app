@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CurrentRead, ReaderSetting } from '../../types/reader';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { CurrentRead, ReaderSetting } from '../../types/reader';
 import { AudioPlayerState } from '../../services/AudioPlayerService';
 
 interface ReaderState {
@@ -49,7 +50,7 @@ const readerSlice = createSlice({
     },
     setCurrentVerse: (state, action: PayloadAction<any>) => {
       // console.log('current reading set current verse => ', action.payload);
-      
+
       state.currentRead.verseId = action.payload.verseId;
       state.currentRead.verseNumber = action.payload.verseNumber
       AsyncStorage.setItem("ho-dlo-current-read", JSON.stringify(state.currentRead));
@@ -147,14 +148,14 @@ const readerSlice = createSlice({
   },
 });
 
-export const { 
-  setCurrent, 
+export const {
+  setCurrent,
   setCurrentVerse,
   setReadingProgress,
-  clearCurrent, 
-  setReaderSetting, 
-  setReaderFontSize, 
-  setReaderFontFamily, 
+  clearCurrent,
+  setReaderSetting,
+  setReaderFontSize,
+  setReaderFontFamily,
   setReaderTheme,
   setAudioPlayerState,
   setAudioPlayerPlaying,

@@ -1,8 +1,8 @@
-import {useSelector} from 'react-redux';
-import React, {useEffect, useState} from 'react';
+import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
-import {useIsFocused, useNavigation} from '@react-navigation/native';
-import {Menu, MenuItem, MenuDivider} from 'react-native-material-menu';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
+import { Menu, MenuItem, MenuDivider } from 'react-native-material-menu';
 import {
   View,
   Text,
@@ -15,7 +15,7 @@ import {
 
 import DatabaseService from '../../services/DatabaseService';
 import CustomAlert from '../../components/CustomAlert';
-import {AppColors} from '../../constants/Color';
+import { AppColors } from '../../constants/Color';
 import ShareModal from '../../components/modals/ShareModal';
 import BookmarkViewModal from '../../components/modals/BookmarkViewModal';
 
@@ -44,7 +44,7 @@ const Bookmark = () => {
       .getBookmarks()
       .then((result: any) => {
         // console.log(result);
-        setBookmarks(result.map((item: any) => ({...item, visible: false})));
+        setBookmarks(result.map((item: any) => ({ ...item, visible: false })));
         // Alert.alert('result')
       });
   };
@@ -85,8 +85,8 @@ const Bookmark = () => {
   const handleShareBookmark = (item: any) => {
     // console.log('handleShareBookmark', item);
     setShareBookmark({
-        number: item.verse,
-        ...item,
+      number: item.verse,
+      ...item,
     });
     hideMenu(item);
     setShareModalVisible(true);
@@ -99,7 +99,7 @@ const Bookmark = () => {
     setBookmarkViewModalVisible(true);
   };
 
-  const renderItem = ({item, index}: {item: any; index: number}) => {
+  const renderItem = ({ item, index }: { item: any; index: number }) => {
     return (
       <View
         style={[
@@ -124,7 +124,7 @@ const Bookmark = () => {
           </Text>
 
           <TouchableOpacity
-            style={[styles.optionsButton, {marginRight: 6}]}
+            style={[styles.optionsButton, { marginRight: 6 }]}
             onPress={() => {
               showMenu(item);
             }}>
@@ -198,7 +198,7 @@ const Bookmark = () => {
         }
         showsVerticalScrollIndicator={false}
         style={styles.listContainer}
-        contentContainerStyle={{paddingHorizontal: 16}}
+        contentContainerStyle={{ paddingHorizontal: 16 }}
       />
       <CustomAlert
         visible={isAlertVisible}
@@ -212,6 +212,7 @@ const Bookmark = () => {
         transparent
         visible={shareModalVisible}
         animationType="fade"
+        statusBarTranslucent={true}
         navigationBarTranslucent={true}>
         <ShareModal
           setShareModalVisible={setShareModalVisible}
@@ -224,6 +225,7 @@ const Bookmark = () => {
         transparent
         visible={bookmarkViewModalVisible}
         animationType="fade"
+        statusBarTranslucent={true}
         navigationBarTranslucent={true}>
         <BookmarkViewModal
           setBookmarkViewModalVisible={setBookmarkViewModalVisible}
@@ -264,7 +266,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     flexDirection: 'column',
     shadowColor: AppColors.appTextBlack,
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,

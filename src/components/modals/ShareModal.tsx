@@ -35,7 +35,6 @@ const ShareModal = ({
 }) => {
   const viewShotRef = useRef<any>(null);
 
-  // -- Editor States --
   const [editingMode, setEditingMode] = useState<'text' | 'font' | 'ratio' | 'background' | 'adjust'>('ratio');
   const [aspectRatio, setAspectRatio] = useState<'1:1' | '3:4'>('1:1');
   const [selectedColor, setSelectedColor] = useState({ name: 'White', hex: '#FFFFFF', code: '#FFFFFF' });
@@ -80,11 +79,8 @@ const ShareModal = ({
   };
 
   const handleImportImagePress = async () => {
-    const androidVersion = DeviceInfo.getSystemVersion();
     const apiLevel = Platform.Version as number;//parseInt(androidVersion.split('.')[0]) || 0;
     let hasPermission = false;
-    console.log('androidVersion', androidVersion);
-    console.log('apiLevel', apiLevel);
     if (Platform.OS === 'android') {
       if (apiLevel >= 33) {
         hasPermission = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES);
@@ -144,7 +140,6 @@ const ShareModal = ({
 
   return (
     <View style={styles.shareModalContainer}>
-      {/* Top Header */}
       <View style={styles.shareModalHeader}>
         <TouchableOpacity onPress={handleCancelPress} style={styles.iconBtn}>
           <FontAwesome6
@@ -153,11 +148,7 @@ const ShareModal = ({
             size={20}
             color={AppColors.primaryDark} />
         </TouchableOpacity>
-        {/* <Text style={styles.headerTitle}>Create Image</Text> */}
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 15 }}>
-          {/* <TouchableOpacity onPress={handleImportImagePress} style={styles.iconBtn}>
-            <FontAwesome6 name="image" iconStyle="solid" size={20} color="" />
-          </TouchableOpacity> */}
           <TouchableOpacity onPress={handleSharePress} style={styles.saveBtn}>
             <Text style={styles.saveBtnText}>Share</Text>
           </TouchableOpacity>
@@ -507,7 +498,9 @@ const styles = StyleSheet.create({
   fontModeWrapper: {
     // height: 450,
     justifyContent: 'center',
-    backgroundColor: 'red'
+    alignContent: 'center',
+    alignItems: 'center',
+    // backgroundColor: 'red'
   },
   fontScrollContent: {
     paddingHorizontal: 20,

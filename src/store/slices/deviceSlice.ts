@@ -13,6 +13,7 @@ interface DeviceState {
   downloaded: boolean;
   startDownload: boolean;
   downloadProgress: number;
+  databaseVersion: string;
 }
 
 const initialState: DeviceState = {
@@ -30,6 +31,7 @@ const initialState: DeviceState = {
   downloaded: false,
   startDownload: false,
   downloadProgress: 0,
+  databaseVersion: '0',
 };
 
 const deviceSlice = createSlice({
@@ -43,6 +45,11 @@ const deviceSlice = createSlice({
       console.log('setTheme', action.payload);
       state.theme = action.payload;
       AsyncStorage.setItem("ho-dlo-theme", action.payload.toString());
+    },
+    setDatabaseVersion: (state, action: PayloadAction<string>) => {
+      console.log('setDatabaseVersion', action.payload);
+      state.databaseVersion = action.payload;
+      AsyncStorage.setItem("ho-dlo-database-version", action.payload);
     },
     setLoginTime: (state, action: PayloadAction<string>) => {
       state.loginTime = action.payload;
@@ -62,6 +69,7 @@ const deviceSlice = createSlice({
       state.downloaded = false;
       state.startDownload = false;
       state.downloadProgress = 0;
+      state.databaseVersion = '0';
     },
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
@@ -83,8 +91,21 @@ const deviceSlice = createSlice({
     setDownloadProgress: (state, action: PayloadAction<number>) => {
       state.downloadProgress = action.payload;
     },
+
   },
 });
 
-export const { setDeviceId, setTheme, setLoginTime, clearDeviceInfo, setLoading, setLanguage, setToast, setDownloaded, setStartDownload, setDownloadProgress } = deviceSlice.actions;
-export default deviceSlice.reducer; 
+export const {
+  setDeviceId,
+  setTheme,
+  setLoginTime,
+  clearDeviceInfo,
+  setLoading,
+  setLanguage,
+  setToast,
+  setDownloaded,
+  setStartDownload,
+  setDownloadProgress,
+  setDatabaseVersion
+} = deviceSlice.actions;
+export default deviceSlice.reducer;
