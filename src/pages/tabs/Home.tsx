@@ -9,6 +9,7 @@ import DatabaseService from '../../services/DatabaseService';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AppColors } from '../../constants/Color';
 import ShareModal from '../../components/modals/ShareModal';
+import { getLatestVersion } from '../../services/ApiService';
 
 const { width: screenWidth } = Dimensions.get('window');
 

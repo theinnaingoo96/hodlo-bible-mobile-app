@@ -1,10 +1,10 @@
-import DeviceInfo from 'react-native-device-info';
+import DeviceInfo, { getBaseOs, getDeviceType } from 'react-native-device-info';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from "@react-navigation/native";
-import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Platform } from 'react-native';
 
-import { setDatabaseVersion, setLoading, setTheme } from '../../store/slices/deviceSlice';
+import { setDatabaseVersion, setLoading, setTheme, setToast } from '../../store/slices/deviceSlice';
 import UpdateIcon from '../../components/icons/setting/UpdateIcon';
 import RecentIcon from '../../components/icons/setting/RecentIcon';
 import TermsIcon from '../../components/icons/setting/TermsIcon';
@@ -16,13 +16,16 @@ import CustomAlert from '../../components/CustomAlert';
 import { AppColors } from '../../constants/Color';
 import { getLatestVersion } from '../../services/ApiService';
 import useInternetStatus from '../../hooks/useInternetStatus';
+import UpdateService, { UpdateInfo } from '../../services/UpdateService';
 
 const Setting = () => {
     const device = useSelector((state: any) => state.device);
     const dispatch = useDispatch();
     const [isAlertVisible, setIsAlertVisible] = useState(false);
+    const [isUpdateAlertVisible, setIsUpdateAlertVisible] = useState(false);
+    const [updateInfo, setUpdateInfo] = useState<UpdateInfo | null>(null);
     const navigation = useNavigation();
-    const internetAvailable = useInternetStatus()
+    const networkStatus = useInternetStatus();
 
     const clear = async () => {
         setIsAlertVisible(true);
@@ -42,13 +45,45 @@ const Setting = () => {
     }
 
     const handleCheckUpdate = async () => {
+        if (!networkStatus.isConnected) {
+            dispatch(setToast({
+                show: true,
+                message: 'No internet connection',
+                type: 'error',
+                duration: 3000,
+            }));
+            return;
+        }
+
         dispatch(setLoading(true));
-        const latestDBVersion = await getLatestVersion('Database');
-        // dispatch(setDatabaseVersion(latestDBVersion.code + ''));
-        const latestAppVersion = await getLatestVersion('Application');
-        console.log('latestDBVersion', latestDBVersion, device.databaseVersion);
-        console.log('latestAppVersion', latestAppVersion);
-        dispatch(setLoading(false));
+        try {
+            const info = await UpdateService.checkForUpdates();
+            if (info.isAvailable) {
+                setUpdateInfo(info);
+                setIsUpdateAlertVisible(true);
+            } else {
+                dispatch(setToast({
+                    show: true,
+                    message: 'No update available',
+                    type: 'info',
+                    duration: 3000,
+                }));
+            }
+        } catch (error) {
+            dispatch(setToast({
+                show: true,
+                message: 'Failed to check for updates',
+                type: 'error',
+                duration: 3000,
+            }));
+        } finally {
+            dispatch(setLoading(false));
+        }
+    }
+
+    const handleUpdateConfirm = () => {
+        setIsUpdateAlertVisible(false);
+        UpdateService.openStore(updateInfo?.storeUrl);
     }
 
     return (
@@ -80,13 +115,22 @@ const Setting = () => {
                     <Text style={[styles.settingText, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>Check for updates</Text>
                 </TouchableOpacity>
             </View>
-            <Text style={[styles.versionStyle, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>version {DeviceInfo.getBuildNumber()}</Text>
+            <Text style={[styles.versionStyle, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>version {DeviceInfo.getVersion()}</Text>
             <CustomAlert
                 visible={isAlertVisible}
                 title="Clear Search History"
                 message="Are you sure you want to delete all search history?"
                 onClose={() => setIsAlertVisible(false)}
                 onConfirm={handleConfirm}
+            />
+            <CustomAlert
+                visible={isUpdateAlertVisible}
+                title="New Update Available"
+                message={`A new version of the app is available. Please update to get the latest features and bug fixes.`}
+                confirmText="Update Now"
+                cancelText="Later"
+                onClose={() => setIsUpdateAlertVisible(false)}
+                onConfirm={handleUpdateConfirm}
             />
         </View>
     );

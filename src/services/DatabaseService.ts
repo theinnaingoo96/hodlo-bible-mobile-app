@@ -258,7 +258,11 @@ export default class DatabaseService {
         })
     }
 
-    private async seedData(dispatch: Dispatch): Promise<any> {
+    public async syncDatabase(dispatch: Dispatch): Promise<any> {
+        return this.seedData(dispatch, true);
+    }
+
+    private async seedData(dispatch: Dispatch, force: boolean = false): Promise<any> {
         return new Promise(async (resolve, reject) => {
             if (!this.db) throw new Error('DB not ready');
 
@@ -266,7 +270,7 @@ export default class DatabaseService {
                 const [result] = await this.db.executeSql(`SELECT COUNT(*) as count FROM verses`);
                 const count = result.rows.item(0).count;
 
-                if (count > 0) {
+                if (count > 0 && !force) {
                     console.log('[DB] Already seeded');
                     resolve(true);
                     return;

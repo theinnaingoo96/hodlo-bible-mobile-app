@@ -1,25 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated, StyleSheet, View, Text, Platform, PermissionsAndroid, Linking } from 'react-native';
 import DeviceInfo from "react-native-device-info";
-import { AppColors } from "./src/constants/Color";
 import { useDispatch, useSelector } from 'react-redux';
 import { setDeviceId, setLoginTime } from './src/store/slices/deviceSlice';
 import DatabaseService from "./src/services/DatabaseService";
 import DailyVerseService from "./src/services/DailyVerseService";
-import { Alert } from 'react-native';
 import permissionService from './src/services/PermissionService';
-import { createUser } from './src/services/ApiService';
 import ProgressBar from './src/components/ProgressBar';
+import UpdateService from './src/services/UpdateService';
 
 const SplashScreen = ({ navigation }: any) => {
-    // Animated values for the icon's horizontal position and the text's properties
     const [progress, setProgress] = useState(new Animated.Value(0));
     const iconTranslateX = useRef(new Animated.Value(0)).current;
     const textTranslateX = useRef(new Animated.Value(100)).current;
     const textOpacity = useRef(new Animated.Value(0)).current;
     const device = useSelector((state: any) => state.device);
     const [finish, setFinish] = useState(false);
-    const [isOnline, setIsOnline] = useState<any>(true);
 
     useEffect(() => {
         console.log('downloaded in splash screen...', device.downloaded);
@@ -33,41 +29,19 @@ const SplashScreen = ({ navigation }: any) => {
         }
     }, [device.downloaded, finish]);
 
-    // useEffect(()=> {
-    //     if (device.startDownload && !isOnline) {
-    //         // dispatch(setStartDownload(true));
-    //         Alert.alert('No internet connection', 'Please check your internet connection and try again',
-    //             [
-    //                 {
-    //                   text: 'OK',
-    //                   style: 'default',
-    //                   onPress: () => {
-
-    //                   },
-    //                 },
-    //               ]
-    //         );
-    //     }
-    // }, [device.startDownload, isOnline])
-
     useEffect(() => {
-        // Wait for 1 second before starting the transition
         const timer = setTimeout(() => {
-            // Run the animations in parallel for a smooth, synchronized effect
             Animated.parallel([
-                // Animate the icon to slide left
                 Animated.timing(iconTranslateX, {
-                    toValue: -100, // Adjust this value to control the final icon position
-                    duration: 700, // Duration of the animation in milliseconds
+                    toValue: -100,
+                    duration: 700,
                     useNativeDriver: true,
                 }),
-                // Animate the text to slide in from the right
                 Animated.timing(textTranslateX, {
                     toValue: 0,
                     duration: 700,
                     useNativeDriver: true,
                 }),
-                // Animate the text's opacity from 0 to 1 (fade-in)
                 Animated.timing(textOpacity, {
                     toValue: 1,
                     duration: 700,
@@ -135,14 +109,24 @@ const SplashScreen = ({ navigation }: any) => {
 
         const initDB = async () => {
             const db = DatabaseService.getInstance();
-            await db.init(dispatch).then(() => {
+            await db.init(dispatch).then(async () => {
+                // Check for database updates
+                try {
+                    const dbUpdateInfo = await UpdateService.checkForDatabaseUpdates(device.databaseVersion);
+                    if (dbUpdateInfo.isAvailable) {
+                        console.log('[Splash] Database update available. Starting sync...');
+                        await db.syncDatabase(dispatch);
+                        console.log('[Splash] Database sync completed.');
+                    }
+                } catch (updateError) {
+                    console.log('[Splash] Database update check/sync failed', updateError);
+                }
+
                 db.getRandomVerses(10).then(async (data) => {
                     console.log('random verse', data);
-                    
+
                     const notificationsGranted = await permissionService.checkPermission('notifications');
                     if (notificationsGranted) {
-                        // The automated check in App.tsx will handle this, 
-                        // but we can trigger an immediate check here if needed.
                         await DailyVerseService.checkAndScheduleNotifications();
                     }
                     const deviceId = await DeviceInfo.getUniqueId();
@@ -156,21 +140,6 @@ const SplashScreen = ({ navigation }: any) => {
                 Alert.alert('Error', 'Failed to initialize database');
                 console.log('[Splash] db error', error);
             });
-            // const verses = await db.getVersesByChapter(3).then((data) => {
-            //     console.log('verses', data);
-            //     if (data) {
-            //         navigation.reset({
-            //             index: 0,
-            //             routes: [{ name: 'M ain' }],
-            //         });
-            //     } else {
-            //         console.log('verses not found');
-            //         // seedDatabase()
-            //     }       
-            // }).catch((error) => {
-            //     console.log('verses error', error);
-            // });
-            // console.log(verses);
         };
 
         // Request permissions first, then initialize app
@@ -186,17 +155,6 @@ const SplashScreen = ({ navigation }: any) => {
         }).start();
     }, []);
 
-    // useEffect(() => {
-    //     const netInfoSubscription = NetInfo.addEventListener(handleNetWorkChange);
-    //     return () => {
-    //       netInfoSubscription && netInfoSubscription();
-    //     };
-    //   }, [isOnline]);
-
-    // const handleNetWorkChange = (state: any) => {
-    //     setIsOnline(state.isConnected);
-    // };
-
     return (
         <View style={styles.container}>
             <View style={styles.content}>
@@ -207,7 +165,6 @@ const SplashScreen = ({ navigation }: any) => {
                         { transform: [{ translateX: iconTranslateX }] },
                     ]}
                 />
-                {/* Animated text component */}
                 <Animated.Text
                     style={[
                         styles.text,
@@ -222,8 +179,8 @@ const SplashScreen = ({ navigation }: any) => {
             </View>
             <View style={styles.footer}>
                 {device.startDownload && <ProgressBar progress={device.downloadProgress} />}
-                <Text style={styles.version}>v.1.0</Text>
-                <Text style={styles.copyright}>Copyright © 2025 Gathengpu Dlo. All rights reserved.</Text>
+                <Text style={styles.version}>Version {DeviceInfo.getVersion()}</Text>
+                <Text style={styles.copyright}>Copyright © 2026 Gathengpu Dlo. All rights reserved.</Text>
             </View>
         </View>
     );

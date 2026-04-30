@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text, Platform } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
@@ -19,6 +19,8 @@ import Search from "./tabs/Search";
 import Bible from "./tabs/Bible";
 import Home from "./tabs/Home";
 import { useSelector } from "react-redux";
+import UpdateService, { UpdateInfo } from "../services/UpdateService";
+import CustomAlert from "../components/CustomAlert";
 
 const Tab = createBottomTabNavigator();
 
