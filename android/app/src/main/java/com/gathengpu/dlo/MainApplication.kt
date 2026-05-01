@@ -1,4 +1,4 @@
-package com.hodlobiblemobileapp
+package com.gathengpu.dlo
 
 import android.app.Application
 import com.facebook.react.PackageList

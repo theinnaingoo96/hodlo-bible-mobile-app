@@ -1,4 +1,4 @@
-package com.hodlobiblemobileapp
+package com.gathengpu.dlo
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
