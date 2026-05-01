@@ -6,3 +6,12 @@ export type Toast = {
 };
 
 export type ToastType = 'success' | 'error' | 'warning' | 'info' | 'change';
+
+// export type ReaderSetting = {
+//     id: number;
+//     name: string;
+//     fontSize: number;
+//     fontColor: string;
+//     fontFamily: number;
+//     backgroundColor: string;
+// };

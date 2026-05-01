@@ -3,7 +3,7 @@ import { Modal, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { AppColors } from '../constants/Color';
 
 const CustomAlert = ({ visible, title = "", message = "", onClose, onConfirm, confirmText = "OK", cancelText = "Cancel" }: any) => (
-    <Modal transparent visible={visible} animationType="fade">
+    <Modal transparent visible={visible} animationType="fade" statusBarTranslucent={true}>
         <View style={styles.container}>
             <View style={styles.alertContainer}>
                 <Text style={styles.title}>{title}</Text>

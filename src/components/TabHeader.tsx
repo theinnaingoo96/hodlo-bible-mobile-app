@@ -1,8 +1,11 @@
-import { View, Text, StyleSheet, Dimensions } from "react-native";
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image } from "react-native";
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import { AppColors } from "../constants/Color";
 import Logo from "./icons/Logo";
 import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import { useEffect } from "react";
+import DatabaseService from "../services/DatabaseService";
 
 interface TabHeaderProps {
     title: string;
@@ -14,13 +17,17 @@ interface TabHeaderProps {
 }
 const TabHeader: React.FC<TabHeaderProps> = ({ title, icon: Icon }) => {
 
+    const navigation = useNavigation();
     const device = useSelector((state: any) => state.device);
 
     return (
         <View style={styles.headerContainer}>
-            <Logo color={device.theme ? AppColors.primary : AppColors.appTextWhite} size={24} />
+            {/* <Logo color={device.theme ? AppColors.primary : AppColors.appTextWhite} size={24} /> */}
+            <Image source={require('../assets/images/icon.png')} style={{ width: 24, height: 24 }} />
             <Text style={[styles.headerTitle, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>{"Gathengpu Dlo"}</Text>
-            <FontAwesome6 name="bell" iconStyle="regular" color={device.theme ? AppColors.tabTextGrey : AppColors.appTextWhite} size={20} style={styles.notificationStyle} />
+            <TouchableOpacity style={styles.notificationStyle} onPress={() => navigation.navigate('Notification' as never)}>
+                <FontAwesome6 name="bell" iconStyle="regular" color={device.theme ? AppColors.tabTextGrey : AppColors.appTextWhite} size={20} />
+            </TouchableOpacity>
         </View>
     )
 };

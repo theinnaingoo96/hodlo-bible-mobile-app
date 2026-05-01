@@ -7,4 +7,11 @@ export interface CurrentRead {
     verseId: number;
     verseNumber: number;
     maxChapter: number;
+    progress: number;
+}
+
+export interface ReaderSetting {
+    fontSize: number;
+    fontFamily: number;
+    theme: number;
 }
