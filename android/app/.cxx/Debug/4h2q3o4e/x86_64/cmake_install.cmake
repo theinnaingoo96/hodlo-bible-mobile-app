@@ -45,6 +45,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/x86_64/rnasyncstorage_autolinked_build/cmake_install.cmake")
+  include("/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/x86_64/RNCSlider_autolinked_build/cmake_install.cmake")
   include("/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/x86_64/VectorIconsEvilIcons_autolinked_build/cmake_install.cmake")
   include("/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/x86_64/VectorIconsFontAwesome6_autolinked_build/cmake_install.cmake")
   include("/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/.cxx/Debug/4h2q3o4e/x86_64/rngesturehandler_codegen_autolinked_build/cmake_install.cmake")

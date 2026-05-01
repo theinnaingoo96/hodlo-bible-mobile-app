@@ -31,13 +31,14 @@ const CustomLoading = ({ visible = false }: { visible: boolean }) => {
     }));
 
     return (
-        <Modal transparent visible={visible} animationType="fade">
+        <Modal transparent visible={visible} animationType="fade" statusBarTranslucent={true}>
             <View style={styles.container}>
                 <View style={styles.overlay}>
                     <AnimatedView
                         style={[styles.image, animatedStyle]}
                     >
-                        <Logo color={AppColors.appTextWhite} size={24} />
+                        {/* <Logo color={AppColors.appTextWhite} size={24} /> */}
+                        <Image source={require('../assets/images/icon.png')} style={{ width: 24, height: 24 }} />
                         <Text style={styles.text}>Loading...</Text>
                     </AnimatedView>
                 </View>

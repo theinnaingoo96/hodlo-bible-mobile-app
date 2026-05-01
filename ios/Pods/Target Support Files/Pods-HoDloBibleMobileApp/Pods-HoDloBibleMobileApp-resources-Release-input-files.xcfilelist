@@ -1,5 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp-resources.sh
 ${PODS_CONFIGURATION_BUILD_DIR}/RCT-Folly/RCT-Folly_privacy.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage/RNCAsyncStorage_resources.bundle
 ${PODS_CONFIGURATION_BUILD_DIR}/RNDeviceInfo/RNDeviceInfoPrivacyInfo.bundle
 ${PODS_CONFIGURATION_BUILD_DIR}/RNSVG/RNSVGFilters.bundle
 ${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf
@@ -25,6 +26,8 @@ ${PODS_CONFIGURATION_BUILD_DIR}/React-Core/React-Core_privacy.bundle
 ${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact/React-cxxreact_privacy.bundle
 ${PODS_CONFIGURATION_BUILD_DIR}/boost/boost_privacy.bundle
 ${PODS_CONFIGURATION_BUILD_DIR}/glog/glog_privacy.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/react-native-cameraroll/RNCameraRollPrivacyInfo.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/react-native-image-picker/RNImagePickerPrivacyInfo.bundle
 ${PODS_ROOT}/../../node_modules/@react-native-vector-icons/evil-icons/fonts/EvilIcons.ttf
 ${PODS_ROOT}/../../node_modules/@react-native-vector-icons/fontawesome6/fonts/FontAwesome6_Brands.ttf
 ${PODS_ROOT}/../../node_modules/@react-native-vector-icons/fontawesome6/fonts/FontAwesome6_Regular.ttf

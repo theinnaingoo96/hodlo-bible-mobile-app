@@ -1,13 +1,16 @@
-import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, StyleSheet, Text, Platform } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
+import useKeyboardVisible from "../utils/hooks/useKeyboardVisible";
 import BookmarkIcon from "../components/icons/BookmarkIcon";
 import SettingIcon from "../components/icons/SettingIcon";
+import { useNavigation } from "@react-navigation/native";
 import SearchIcon from "../components/icons/SearchIcon";
 import BibleIcon from "../components/icons/BibleIcon";
 import HomeIcon from "../components/icons/HomeIcon";
 import TabHeader from "../components/TabHeader";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { AppColors } from "../constants/Color";
 
 import Bookmark from "./tabs/Bookmark";
@@ -16,6 +19,8 @@ import Search from "./tabs/Search";
 import Bible from "./tabs/Bible";
 import Home from "./tabs/Home";
 import { useSelector } from "react-redux";
+import UpdateService, { UpdateInfo } from "../services/UpdateService";
+import CustomAlert from "../components/CustomAlert";
 
 const Tab = createBottomTabNavigator();
 
@@ -30,6 +35,9 @@ interface CustomHeaderProps {
 
 const Main = () => {
     const device = useSelector((state: any) => state.device);
+    const isKeyboardVisible = useKeyboardVisible();
+    const insets = useSafeAreaInsets();
+
     return (
         <View style={styles.mainWrapper}>
             <Tab.Navigator
@@ -37,7 +45,14 @@ const Main = () => {
                     headerShown: true,
                     headerStyle: [styles.header, { backgroundColor: device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDark }],
                     headerTitleAlign: 'center',
-                    tabBarStyle: [styles.tabBar], //{ backgroundColor: device.theme ? AppColors.primary : AppColors.primaryNior }],
+                    tabBarStyle: [
+                        styles.tabBar,
+                        {
+                            display: isKeyboardVisible ? 'none' : 'flex',
+                            height: Platform.OS === 'ios' ? 75 : 60 + insets.bottom + 10,
+                            paddingBottom: insets.bottom > 0 ? insets.bottom + 10 : 10
+                        }
+                    ], //{ backgroundColor: device.theme ? AppColors.primary : AppColors.primaryNior }],
                     tabBarActiveTintColor: AppColors.appTextWhite,
                     tabBarInactiveTintColor: AppColors.appTextBlack,
                     tabBarLabelStyle: {
@@ -126,9 +141,10 @@ const styles = StyleSheet.create({
         // padding: 0
     },
     tabBar: {
-        height: 70,
+        // height: 70,
         paddingBottom: 8,
         paddingTop: 8,
+        // marginBottom: 20,
         backgroundColor: AppColors.primary,
         // borderTopWidth: 1,
         // borderTopColor: AppColors.appTextGrey,

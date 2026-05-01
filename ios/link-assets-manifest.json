@@ -1,0 +1,165 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
+      "sha1": "4e77868439280fb434d4697c7b911271406c81f3"
+    },
+    {
+      "path": "node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+      "sha1": "12b5670eb178138f77285d5f2c246d3cc5fa67d6"
+    },
+    {
+      "path": "node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+      "sha1": "91d377ea3cf47490b256c2ed081704a7dabdae0c"
+    },
+    {
+      "path": "node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+      "sha1": "e6604258b1ced5efd51360875d782fca65381d47"
+    },
+    {
+      "path": "node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+      "sha1": "13b1eab65a983c7a73bc7997c479d66943f7c6cb"
+    },
+    {
+      "path": "node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
+      "sha1": "3fa2d67cef22da5c3f3eb5730c6afbd6fecf0372"
+    },
+    {
+      "path": "node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
+      "sha1": "7d849a3981a716e2ba4a84634bc57d0b8054a6a3"
+    },
+    {
+      "path": "node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
+      "sha1": "c1b9fae262f42868c075ac865a8ab34920e20a2c"
+    },
+    {
+      "path": "node_modules/react-native-vector-icons/Fonts/FontAwesome6_Brands.ttf",
+      "sha1": "7ce89c71d5a51ac65b159c71422783dd86529c66"
+    },
+    {
+      "path": "node_modules/react-native-vector-icons/Fonts/FontAwesome6_Regular.ttf",
+      "sha1": "775e2ecfc18d22b177274453d4c014ca6be63208"
+    },
+    {
+      "path": "node_modules/react-native-vector-icons/Fonts/FontAwesome6_Solid.ttf",
+      "sha1": "2b8e11389d98122399667cf64941eb58497dc128"
+    },
+    {
+      "path": "node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
+      "sha1": "c090a3ec96a3f1bb9b615c2f3f204ce0dcdcdbc3"
+    },
+    {
+      "path": "node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+      "sha1": "4b2bce6c792493a4a5716b6fec2dbefe89492c3f"
+    },
+    {
+      "path": "node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+      "sha1": "86e07c3d974eb09099e6e5a9b3b8310303cf0feb"
+    },
+    {
+      "path": "node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+      "sha1": "4c2a838b00dbb5e8bb1b368fce0de534e8eb241c"
+    },
+    {
+      "path": "node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+      "sha1": "7e02c3f005532ff4d24148567c84089756a7848a"
+    },
+    {
+      "path": "node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+      "sha1": "56acefc0731f35ee23b195b1c8cb5fa94a0db97b"
+    },
+    {
+      "path": "node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+      "sha1": "9ffb81a5a11112e292f2cc323e98486bad597599"
+    },
+    {
+      "path": "node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+      "sha1": "6a48a962b06cc3acbdfd61df0d9a34744eea5e8d"
+    },
+    {
+      "path": "src/assets/audio/Psalm-00101.m4a",
+      "sha1": "5cf02ae44a0e3ecb621de531c2de23d5c9a05c53"
+    },
+    {
+      "path": "src/assets/audio/Psalm-00102.m4a",
+      "sha1": "06e4bb161ef0154b9e280e7a1cd466d520a9107b"
+    },
+    {
+      "path": "src/assets/audio/Psalm-00103.m4a",
+      "sha1": "dd98baa05d5eedc308bfecc5e797dee658a8aaa7"
+    },
+    {
+      "path": "src/assets/audio/Psalm-00104.m4a",
+      "sha1": "61a88d3f6a2ba7921561461742671ef7af09c738"
+    },
+    {
+      "path": "src/assets/audio/Psalm-00105.m4a",
+      "sha1": "23986e05e5190e4a5aa1be8e76bd062a0a9e24ab"
+    },
+    {
+      "path": "src/assets/audio/Psalm-00106.m4a",
+      "sha1": "6e6e59dfcf2bbaf45b8ab35649d0b87ae71e710c"
+    },
+    {
+      "path": "src/assets/audio/psalm00101.m4a",
+      "sha1": "5cf02ae44a0e3ecb621de531c2de23d5c9a05c53"
+    },
+    {
+      "path": "src/assets/audio/psalm00102.m4a",
+      "sha1": "06e4bb161ef0154b9e280e7a1cd466d520a9107b"
+    },
+    {
+      "path": "src/assets/audio/psalm00103.m4a",
+      "sha1": "dd98baa05d5eedc308bfecc5e797dee658a8aaa7"
+    },
+    {
+      "path": "src/assets/audio/psalm00104.m4a",
+      "sha1": "61a88d3f6a2ba7921561461742671ef7af09c738"
+    },
+    {
+      "path": "src/assets/audio/psalm00105.m4a",
+      "sha1": "23986e05e5190e4a5aa1be8e76bd062a0a9e24ab"
+    },
+    {
+      "path": "src/assets/audio/psalm00106.m4a",
+      "sha1": "6e6e59dfcf2bbaf45b8ab35649d0b87ae71e710c"
+    },
+    {
+      "path": "src/assets/audio/psalms2300.wav",
+      "sha1": "41e4f1411b25161580e25797df4800c32fca32a4"
+    },
+    {
+      "path": "src/assets/audio/psalms2400.mp3",
+      "sha1": "287223d76e134a6349ea0031a7a4651146df109b"
+    },
+    {
+      "path": "src/assets/fonts/NotoSansMyanmar-Regular.ttf",
+      "sha1": "2121c4c9fc767d672e3b6543e0e35e7e865fad43"
+    },
+    {
+      "path": "src/assets/fonts/NotoSansMyanmar-SemiBold.ttf",
+      "sha1": "9e10f02a97b9ab8b6117da794714570d0a26d96f"
+    },
+    {
+      "path": "src/assets/fonts/Pretendard-Bold.otf",
+      "sha1": "6a04b4fbeb9a1a5d96a5b25b7e7cfbdd123fbcd0"
+    },
+    {
+      "path": "src/assets/fonts/Pretendard-Regular.otf",
+      "sha1": "49c62f4738334d812f4407dbdc27a2108c7c2756"
+    },
+    {
+      "path": "src/assets/fonts/Pretendard-SemiBold.otf",
+      "sha1": "9bab4642eae558c9c7f308c8d1be33f9f412a2d4"
+    },
+    {
+      "path": "src/assets/fonts/Pyidaungsu-Bold.ttf",
+      "sha1": "b1d2d763372e5b5c2a44c4531bed6c9f0d068efd"
+    },
+    {
+      "path": "src/assets/fonts/Pyidaungsu-Regular.ttf",
+      "sha1": "5565eac0936f7d0740dce154d4c4ae6d3fa3c2ad"
+    }
+  ]
+}

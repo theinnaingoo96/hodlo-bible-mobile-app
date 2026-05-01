@@ -1,5 +1,7 @@
 {
   "buildFiles": [
+    "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/@react-native-async-storage/async-storage/android/build/generated/source/codegen/jni/CMakeLists.txt",
+    "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/@react-native-community/slider/android/src/main/jni/CMakeLists.txt",
     "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/@react-native-vector-icons/evil-icons/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/@react-native-vector-icons/fontawesome6/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/CMakeLists.txt",
@@ -25,6 +27,16 @@
     "{LIST_OF_TARGETS_TO_BUILD}"
   ],
   "libraries": {
+    "react_codegen_RNCSlider::@4898bc4726ecf1751b6a": {
+      "artifactName": "react_codegen_RNCSlider",
+      "abi": "arm64-v8a",
+      "output": "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/build/intermediates/cxx/Debug/4h2q3o4e/obj/arm64-v8a/libreact_codegen_RNCSlider.so",
+      "runtimeFiles": [
+        "/Users/bluestone/.gradle/caches/8.13/transforms/490740573f38e6ed55cd7cd0f0ce2cff/transformed/jetified-fbjni-0.7.0/prefab/modules/fbjni/libs/android.arm64-v8a/libfbjni.so",
+        "/Users/bluestone/.gradle/caches/8.13/transforms/f3d5096a21f09ffba54b9358be8babf3/transformed/jetified-react-android-0.79.2-debug/prefab/modules/jsi/libs/android.arm64-v8a/libjsi.so",
+        "/Users/bluestone/.gradle/caches/8.13/transforms/f3d5096a21f09ffba54b9358be8babf3/transformed/jetified-react-android-0.79.2-debug/prefab/modules/reactnative/libs/android.arm64-v8a/libreactnative.so"
+      ]
+    },
     "react_codegen_RNVectorIconsSpec::@479809fae146501fd34d": {
       "artifactName": "react_codegen_RNVectorIconsSpec",
       "abi": "arm64-v8a",
@@ -40,9 +52,9 @@
       "abi": "arm64-v8a",
       "output": "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/build/intermediates/cxx/Debug/4h2q3o4e/obj/arm64-v8a/libreact_codegen_safeareacontext.so",
       "runtimeFiles": [
-        "/Users/bluestone/.gradle/caches/8.13/transforms/72cde7dc85b5006383f56c98fcfedfa5/transformed/fbjni-0.7.0/prefab/modules/fbjni/libs/android.arm64-v8a/libfbjni.so",
-        "/Users/bluestone/.gradle/caches/8.13/transforms/8cb416b8178cb0e7f140959230f7f0bf/transformed/react-android-0.79.2-debug/prefab/modules/jsi/libs/android.arm64-v8a/libjsi.so",
-        "/Users/bluestone/.gradle/caches/8.13/transforms/8cb416b8178cb0e7f140959230f7f0bf/transformed/react-android-0.79.2-debug/prefab/modules/reactnative/libs/android.arm64-v8a/libreactnative.so"
+        "/Users/bluestone/.gradle/caches/8.13/transforms/490740573f38e6ed55cd7cd0f0ce2cff/transformed/jetified-fbjni-0.7.0/prefab/modules/fbjni/libs/android.arm64-v8a/libfbjni.so",
+        "/Users/bluestone/.gradle/caches/8.13/transforms/f3d5096a21f09ffba54b9358be8babf3/transformed/jetified-react-android-0.79.2-debug/prefab/modules/jsi/libs/android.arm64-v8a/libjsi.so",
+        "/Users/bluestone/.gradle/caches/8.13/transforms/f3d5096a21f09ffba54b9358be8babf3/transformed/jetified-react-android-0.79.2-debug/prefab/modules/reactnative/libs/android.arm64-v8a/libreactnative.so"
       ]
     },
     "react_codegen_VectorIconsEvilIcons::@cd02e201fea1713bb7cb": {
@@ -60,9 +72,9 @@
       "abi": "arm64-v8a",
       "output": "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/build/intermediates/cxx/Debug/4h2q3o4e/obj/arm64-v8a/libreact_codegen_rnscreens.so",
       "runtimeFiles": [
-        "/Users/bluestone/.gradle/caches/8.13/transforms/8cb416b8178cb0e7f140959230f7f0bf/transformed/react-android-0.79.2-debug/prefab/modules/reactnative/libs/android.arm64-v8a/libreactnative.so",
-        "/Users/bluestone/.gradle/caches/8.13/transforms/8cb416b8178cb0e7f140959230f7f0bf/transformed/react-android-0.79.2-debug/prefab/modules/jsi/libs/android.arm64-v8a/libjsi.so",
-        "/Users/bluestone/.gradle/caches/8.13/transforms/72cde7dc85b5006383f56c98fcfedfa5/transformed/fbjni-0.7.0/prefab/modules/fbjni/libs/android.arm64-v8a/libfbjni.so"
+        "/Users/bluestone/.gradle/caches/8.13/transforms/f3d5096a21f09ffba54b9358be8babf3/transformed/jetified-react-android-0.79.2-debug/prefab/modules/reactnative/libs/android.arm64-v8a/libreactnative.so",
+        "/Users/bluestone/.gradle/caches/8.13/transforms/f3d5096a21f09ffba54b9358be8babf3/transformed/jetified-react-android-0.79.2-debug/prefab/modules/jsi/libs/android.arm64-v8a/libjsi.so",
+        "/Users/bluestone/.gradle/caches/8.13/transforms/490740573f38e6ed55cd7cd0f0ce2cff/transformed/jetified-fbjni-0.7.0/prefab/modules/fbjni/libs/android.arm64-v8a/libfbjni.so"
       ]
     },
     "appmodules::@6890427a1f51a3e7e1df": {
@@ -70,9 +82,9 @@
       "abi": "arm64-v8a",
       "output": "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/build/intermediates/cxx/Debug/4h2q3o4e/obj/arm64-v8a/libappmodules.so",
       "runtimeFiles": [
-        "/Users/bluestone/.gradle/caches/8.13/transforms/72cde7dc85b5006383f56c98fcfedfa5/transformed/fbjni-0.7.0/prefab/modules/fbjni/libs/android.arm64-v8a/libfbjni.so",
-        "/Users/bluestone/.gradle/caches/8.13/transforms/8cb416b8178cb0e7f140959230f7f0bf/transformed/react-android-0.79.2-debug/prefab/modules/jsi/libs/android.arm64-v8a/libjsi.so",
-        "/Users/bluestone/.gradle/caches/8.13/transforms/8cb416b8178cb0e7f140959230f7f0bf/transformed/react-android-0.79.2-debug/prefab/modules/reactnative/libs/android.arm64-v8a/libreactnative.so"
+        "/Users/bluestone/.gradle/caches/8.13/transforms/490740573f38e6ed55cd7cd0f0ce2cff/transformed/jetified-fbjni-0.7.0/prefab/modules/fbjni/libs/android.arm64-v8a/libfbjni.so",
+        "/Users/bluestone/.gradle/caches/8.13/transforms/f3d5096a21f09ffba54b9358be8babf3/transformed/jetified-react-android-0.79.2-debug/prefab/modules/jsi/libs/android.arm64-v8a/libjsi.so",
+        "/Users/bluestone/.gradle/caches/8.13/transforms/f3d5096a21f09ffba54b9358be8babf3/transformed/jetified-react-android-0.79.2-debug/prefab/modules/reactnative/libs/android.arm64-v8a/libreactnative.so"
       ]
     },
     "react_codegen_rnsvg::@4f40eb209d0c0b4a3b65": {
@@ -80,10 +92,15 @@
       "abi": "arm64-v8a",
       "output": "/Users/bluestone/Documents/Development/Local Projects/HoDloBibleMobileApp/android/app/build/intermediates/cxx/Debug/4h2q3o4e/obj/arm64-v8a/libreact_codegen_rnsvg.so",
       "runtimeFiles": [
-        "/Users/bluestone/.gradle/caches/8.13/transforms/8cb416b8178cb0e7f140959230f7f0bf/transformed/react-android-0.79.2-debug/prefab/modules/reactnative/libs/android.arm64-v8a/libreactnative.so",
-        "/Users/bluestone/.gradle/caches/8.13/transforms/8cb416b8178cb0e7f140959230f7f0bf/transformed/react-android-0.79.2-debug/prefab/modules/jsi/libs/android.arm64-v8a/libjsi.so",
-        "/Users/bluestone/.gradle/caches/8.13/transforms/72cde7dc85b5006383f56c98fcfedfa5/transformed/fbjni-0.7.0/prefab/modules/fbjni/libs/android.arm64-v8a/libfbjni.so"
+        "/Users/bluestone/.gradle/caches/8.13/transforms/f3d5096a21f09ffba54b9358be8babf3/transformed/jetified-react-android-0.79.2-debug/prefab/modules/reactnative/libs/android.arm64-v8a/libreactnative.so",
+        "/Users/bluestone/.gradle/caches/8.13/transforms/f3d5096a21f09ffba54b9358be8babf3/transformed/jetified-react-android-0.79.2-debug/prefab/modules/jsi/libs/android.arm64-v8a/libjsi.so",
+        "/Users/bluestone/.gradle/caches/8.13/transforms/490740573f38e6ed55cd7cd0f0ce2cff/transformed/jetified-fbjni-0.7.0/prefab/modules/fbjni/libs/android.arm64-v8a/libfbjni.so"
       ]
+    },
+    "react_codegen_rnasyncstorage::@1596841e19ec5b9eeffe": {
+      "artifactName": "react_codegen_rnasyncstorage",
+      "abi": "arm64-v8a",
+      "runtimeFiles": []
     },
     "react_codegen_VectorIconsFontAwesome6::@593c2d0dc8ab80edeb45": {
       "artifactName": "react_codegen_VectorIconsFontAwesome6",

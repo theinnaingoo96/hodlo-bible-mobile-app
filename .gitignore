@@ -11,11 +11,13 @@
 /android/.gradle
 /android/app/build
 
-./android/.gradle/*
-./android/build/*
-./android/app/build/*
-./android/.idea/*
+/android/.gradle/*
+/android/build/*
+/android/app/build/*
+/android/.idea/*
 
-./ios/build/*
-./ios/Pods/*
+/ios/build/*
+/ios/Pods/*
 *.ipa
+*/.cxx/*
+/android/app/.cxx

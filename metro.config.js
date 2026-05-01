@@ -6,6 +6,15 @@ const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
  *
  * @type {import('@react-native/metro-config').MetroConfig}
  */
-const config = {};
+const config = {
+    debug: {
+    // Set the debugger type to React DevTools
+    type: 'chrome',
+    // Specify the name of the debugger
+    name: 'React DevTools',
+  },
+
+};
+
 
 module.exports = mergeConfig(getDefaultConfig(__dirname), config);

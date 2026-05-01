@@ -1,124 +1,108 @@
 import React, { useEffect, useRef } from 'react';
-import {
-  Modal,
-  Animated,
-  StyleSheet,
-  Dimensions,
-  Text,
-  View,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
+import { View, Text, StyleSheet, Animated, Modal, Dimensions } from 'react-native';
 
-interface CustomToastProps {
-  visible: boolean;
-  message: string;
-  onHide: () => void;
-  duration?: number;
-}
+import { setToast } from '../store/slices/deviceSlice';
+import { ToastType } from '../types/data';
+import { store } from '../store/store';
+import { constants } from '../constants/Data';
+import { useSelector } from 'react-redux';
 
 const { width } = Dimensions.get('window');
 
-const CustomToast: React.FC<CustomToastProps> = ({
-  visible,
-  message,
-  onHide,
-  duration = 2000,
+export const CustomToast = ({ visible, message, type, duration }: {
+  visible: boolean;
+  message: string;
+  type: ToastType;
+  duration: number;
 }) => {
+  const fadeAnim = new Animated.Value(0);
   const opacity = useRef(new Animated.Value(0)).current;
-  const translateY = useRef(new Animated.Value(30)).current;
+  const device = useSelector((state: any) => state.device);
 
   useEffect(() => {
     if (visible) {
-      // Animate in
-      Animated.parallel([
-        Animated.timing(opacity, {
-          toValue: 1,
-          duration: 200,
-          useNativeDriver: true,
-        }),
-        Animated.timing(translateY, {
-          toValue: 0,
-          duration: 200,
-          useNativeDriver: true,
-        }),
-      ]).start();
-
-      // Auto-hide
-      const timeout = setTimeout(() => hideToast(), duration);
-      return () => clearTimeout(timeout);
+      store.dispatch(setToast({ show: true, message: message, type: type || 'success', duration: duration || constants.toastDuration }));
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 200,
+        useNativeDriver: true,
+      }).start(() => {
+        setTimeout(() => {
+          Animated.timing(opacity, {
+            toValue: 0,
+            duration: 200,
+            useNativeDriver: true,
+          }).start(() => {
+            store.dispatch(setToast({ show: false, message: '', type: 'success', duration: constants.toastDuration }));
+          });
+        }, duration);
+      });
     }
   }, [visible]);
 
-  const hideToast = () => {
-    Animated.parallel([
-      Animated.timing(opacity, {
-        toValue: 0,
-        duration: 200,
-        useNativeDriver: true,
-      }),
-      Animated.timing(translateY, {
-        toValue: 30,
-        duration: 200,
-        useNativeDriver: true,
-      }),
-    ]).start(() => onHide());
-  };
+  if (!visible) return null;
 
   return (
-    <Modal
-      visible={visible}
-      transparent
-      animationType="none"
-      onRequestClose={onHide}
-    >
-      <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => hideToast()}>
-        <View style={styles.overlay}>
-          <Animated.View
-            style={[
-              styles.toastContainer,
-              {
-                opacity,
-                transform: [{ translateY }],
-              },
-            ]}
-          >
-            <View style={styles.glassBox}>
-              <Text style={styles.toastText}>{message}</Text>
-            </View>
-          </Animated.View>
+    // <Animated.View pointerEvents="none" style={[styles.toastContainer, { opacity }]}>
+    //   <View style={styles.toast}>
+    //     <Text style={styles.text}>{message}</Text>
+    //   </View>
+    // </Animated.View>
+    <Animated.View pointerEvents="none" style={[styles.container, { opacity }]}>
+      <View style={[styles.toast, { backgroundColor: device.theme ? 'rgba(0, 0, 0, 0.6)' : 'rgba(255, 255, 255, 0.6)' }]}>
+        {/* <Ionicons name={icon as any} size={20} color="#fff" style={{ marginRight: 8 }} /> */}
+        <FontAwesome6 iconStyle="solid" name={constants.toast[type].icon as any} size={20} color={constants.toast[type].color} style={{ marginRight: 8 }} />
+        <View>
+          {/* {title && <Text style={styles.title}>{title}</Text>} */}
+          <Text style={[styles.message, { color: device.theme ? '#fff' : '#000' }]}>{message}</Text>
         </View>
-      </TouchableWithoutFeedback>
-    </Modal>
+      </View>
+    </Animated.View>
   );
 };
 
-export default CustomToast;
-
 const styles = StyleSheet.create({
-  overlay: {
-    flex: 1,
-    backgroundColor: 'transparent',
-    justifyContent: 'flex-end',
+  // toastContainer: {
+  //   position: 'absolute',
+  //   bottom: 60,
+  //   width: width,
+  //   alignItems: 'center',
+  //   zIndex: 9999,
+  // },
+  // toast: {
+  //   backgroundColor: 'rgba(0,0,0,0.8)',
+  //   paddingVertical: 10,
+  //   paddingHorizontal: 20,
+  //   borderRadius: 10,
+  // },
+  // text: {
+  //   color: 'white',
+  //   fontSize: 14,
+  // },
+  container: {
+    position: 'absolute',
+    bottom: 60,
+    width: width,
     alignItems: 'center',
+    zIndex: 9999,
   },
-  toastContainer: {
-    borderRadius: 12,
-    overflow: 'hidden',
+  toast: {
+    flexDirection: 'row',
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    borderRadius: 10,
+    alignItems: 'center',
+    maxWidth: width * 0.9,
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
   },
-  glassBox: {
-    backgroundColor: 'rgba(255, 255, 255, 0.08)',
-    // filter: 'blur(5px)',
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.2)',
-    paddingVertical: 14,
-    paddingHorizontal: 22,
-    borderRadius: 12,
-    maxWidth: width * 0.8,
-    zIndex: 10000,
-  },
-  toastText: {
+  title: {
     color: '#fff',
-    fontSize: 16,
-    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
+  message: {
+    // color: '#fff',
+    fontSize: 13,
   },
 });

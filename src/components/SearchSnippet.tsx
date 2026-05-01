@@ -7,23 +7,16 @@ const SearchSnippet = ({ rawText = "", keyword = "", snippetRadius = 20, theme =
     const [parts, setParts] = useState<string[]>([]);
 
     useEffect(() => {
-        console.log('text', rawText);
-        console.log('keyword', keyword);
-
-        // Normalize text
-        const lowerText = rawText.toLowerCase();
-        const lowerKeyword = keyword.toLowerCase();
-        const index = lowerText.indexOf(lowerKeyword);
-        console.log('index', index);
-        // If keyword not found, show full text truncated
+        const lowerText = rawText && rawText.toLowerCase();
+        const lowerKeyword = keyword && keyword.toLowerCase();
+        const index = lowerText && lowerText.indexOf(lowerKeyword);
         if (index === -1) {
             setParts([rawText]);
             return;
         }
-        const keywordLength = keyword.length;
-        const textLength = rawText.length;
+        const keywordLength = keyword && keyword.length;
+        const textLength = rawText && rawText.length;
 
-        // Balanced middle-case: divide radius before/after keyword
         const halfRadius = Math.floor(snippetRadius / 2);
         const beforeKeyword = Math.max(0, index - halfRadius);
         const afterKeyword = index + keywordLength + halfRadius;
@@ -31,33 +24,28 @@ const SearchSnippet = ({ rawText = "", keyword = "", snippetRadius = 20, theme =
         let start, end;
 
         if (index <= snippetRadius) {
-            // Near start
             start = 0;
             end = Math.min(textLength, index + keywordLength + snippetRadius + 20);
         } else if (index + keywordLength + snippetRadius >= textLength) {
-            // Near end
             end = textLength;
             start = Math.max(0, textLength - (snippetRadius * 2 + keywordLength));
         } else {
-            // Middle
             start = beforeKeyword;
             end = afterKeyword;
         }
 
-        let snippet = rawText.substring(start, end);
+        let snippet = rawText && rawText.substring(start, end);
 
-        // Add ellipses if sliced
         if (start > 0) snippet = '...' + snippet;
         if (end < textLength) snippet = snippet + '...';
 
-        // Highlight keyword
-        const parts = snippet.split(new RegExp(`(${keyword})`, 'ig'));
+        const parts = snippet && snippet.split(new RegExp(`(${keyword})`, 'ig'));
         setParts(parts);
     }, []);
 
     return (
         <Text numberOfLines={1} ellipsizeMode="tail">
-            {parts.map((part: any, idx: number) =>
+            {parts && parts.map((part: any, idx: number) =>
                 part.toLowerCase() === keyword.toLowerCase() ? (
                     <Text key={idx} style={[styles.highlightedText, { color: theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>{part}</Text>
                 ) : (

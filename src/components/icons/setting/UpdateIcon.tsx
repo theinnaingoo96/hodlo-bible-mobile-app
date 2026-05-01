@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { AppColors } from '../../../constants/Color';
 
-const TermsIcon = ({ name, color = AppColors.primaryDark, style }: any) => {
+const UpdateIcon = ({ name, color = AppColors.primaryDark, style }: any) => {
 
     return (
         <View
@@ -15,4 +15,4 @@ const TermsIcon = ({ name, color = AppColors.primaryDark, style }: any) => {
     );
 };
 
-export default TermsIcon;
+export default UpdateIcon;
