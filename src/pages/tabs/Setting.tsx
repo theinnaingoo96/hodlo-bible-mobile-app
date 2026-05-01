@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from "@react-navigation/native";
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Platform } from 'react-native';
 
-import { setDatabaseVersion, setLoading, setTheme, setToast } from '../../store/slices/deviceSlice';
+import { setLoading, setTheme, setToast } from '../../store/slices/deviceSlice';
 import UpdateIcon from '../../components/icons/setting/UpdateIcon';
 import RecentIcon from '../../components/icons/setting/RecentIcon';
 import TermsIcon from '../../components/icons/setting/TermsIcon';
@@ -45,6 +45,8 @@ const Setting = () => {
     }
 
     const handleCheckUpdate = async () => {
+        console.log('[Setting] networkStatus', networkStatus);
+
         if (!networkStatus.isConnected) {
             dispatch(setToast({
                 show: true,

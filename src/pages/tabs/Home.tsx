@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import { View, StyleSheet, Image, Dimensions, Text, ScrollView, TouchableOpacity, Alert, Share, Modal } from 'react-native';
@@ -9,7 +9,10 @@ import DatabaseService from '../../services/DatabaseService';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AppColors } from '../../constants/Color';
 import ShareModal from '../../components/modals/ShareModal';
-import { getLatestVersion } from '../../services/ApiService';
+import { setDatabaseVersion, setLoading, setToast } from '../../store/slices/deviceSlice';
+import UpdateService from '../../services/UpdateService';
+import ProgressBar from '../../components/ProgressBar';
+import useInternetStatus from '../../hooks/useInternetStatus';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -27,7 +30,9 @@ const Home = () => {
     const reader = useSelector((state: any) => state.reader);
     const navigation = useNavigation<any>();
     const insets = useSafeAreaInsets();
+    const dispatch = useDispatch();
     const [shareModalVisible, setShareModalVisible] = useState(false);
+    const networkStatus = useInternetStatus()
 
     const tempCarouselItems: CarouselItem[] = [
         {
@@ -77,7 +82,34 @@ const Home = () => {
         }).catch((error: any) => {
             console.error('[HOME] getRandomVerse error', error);
         });
+        console.log('[Home] network', networkStatus.isConnected, networkStatus);
+        setTimeout(() => {
+            if (networkStatus.isConnected) {
+                checkDatabaseUpdate();
+            }
+        }, 10000);
     }, []);
+
+    const checkDatabaseUpdate = async () => {
+        const db = DatabaseService.getInstance();
+        try {
+            const dbUpdateInfo = await UpdateService.checkForDatabaseUpdates(device.databaseVersion);
+            if (dbUpdateInfo.isAvailable) {
+                // dispatch(setLoading(true));
+                console.log('[Splash] Database update available. Starting sync...');
+                await db.syncDatabase(dispatch);
+                console.log('[Splash] Database sync completed.');
+                // dispatch(setLoading(false));
+                dispatch(setDatabaseVersion(dbUpdateInfo.latestBuild + ''));
+                dispatch(setToast({ show: true, message: "Database update complete", type: "success", duration: 3000 }))
+            } else {
+                dispatch(setLoading(false));
+            }
+        } catch (updateError) {
+            console.log('[Splash] Database update check/sync failed', updateError);
+            dispatch(setToast({ show: true, message: "Update failed", type: "error", duration: 3000 }))
+        }
+    }
 
     const handleScroll = (event: any) => {
         const contentOffset = event.nativeEvent.contentOffset.x;
@@ -107,103 +139,113 @@ const Home = () => {
     // }
 
     return (
-        <ScrollView
-            style={[styles.container, { backgroundColor: device.theme ? AppColors.appBackgroundGrey : AppColors.appBackgroundDarkTint }]}
-            contentContainerStyle={{ paddingBottom: 24 }}
-            showsVerticalScrollIndicator={false}
-        >
-            <View style={{ height: insets.top }} />
-            <View style={styles.carouselWrapper}>
-                <ScrollView
-                    horizontal
-                    pagingEnabled
-                    showsHorizontalScrollIndicator={false}
-                    onScroll={handleScroll}
-                    scrollEventThrottle={16}
-                    style={styles.scrollView}
-                >
-                    {carouselItems.map((item, index) => (
-                        <View key={`carousel-image-${index}`} style={styles.slide}>
-                            <Image
-                                source={item.image}
-                                style={styles.carouselImage}
-                                resizeMode="cover"
+        <>
+            <ScrollView
+                style={[styles.container, { backgroundColor: device.theme ? AppColors.appBackgroundGrey : AppColors.appBackgroundDarkTint }]}
+                contentContainerStyle={{ paddingBottom: 24 }}
+                showsVerticalScrollIndicator={false}
+            >
+                <View style={{ height: insets.top }} />
+                <View style={styles.carouselWrapper}>
+                    <ScrollView
+                        horizontal
+                        pagingEnabled
+                        showsHorizontalScrollIndicator={false}
+                        onScroll={handleScroll}
+                        scrollEventThrottle={16}
+                        style={styles.scrollView}
+                    >
+                        {carouselItems.map((item, index) => (
+                            <View key={`carousel-image-${index}`} style={styles.slide}>
+                                <Image
+                                    source={item.image}
+                                    style={styles.carouselImage}
+                                    resizeMode="cover"
+                                />
+                                <View style={styles.carouselContent}>
+                                    <Text style={styles.carouselTitle}>{item.title}</Text>
+                                    <Text style={styles.carouselDescription}>{item.description}</Text>
+                                </View>
+                            </View>
+                        ))}
+                    </ScrollView>
+                    <View style={styles.dotsContainer}>
+                        {carouselItems.map((_, index) => (
+                            <View
+                                key={`carousel-dot-${index}`}
+                                style={[
+                                    styles.dot,
+                                    index === activeIndex && styles.activeDot
+                                ]}
                             />
-                            <View style={styles.carouselContent}>
-                                <Text style={styles.carouselTitle}>{item.title}</Text>
-                                <Text style={styles.carouselDescription}>{item.description}</Text>
-                            </View>
-                        </View>
-                    ))}
-                </ScrollView>
-                <View style={styles.dotsContainer}>
-                    {carouselItems.map((_, index) => (
-                        <View
-                            key={`carousel-dot-${index}`}
-                            style={[
-                                styles.dot,
-                                index === activeIndex && styles.activeDot
-                            ]}
-                        />
-                    ))}
+                        ))}
+                    </View>
                 </View>
-            </View>
 
-            <View style={{ height: 150 }} />
+                <View style={{ height: 150 }} />
 
-            <View style={styles.mainContent}>
                 {
-                    reader.currentRead.bookName && (
-                        <TouchableOpacity style={[styles.currentReadContent, { backgroundColor: device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDark }]}
-                            onPress={() => {
-                                navigation.navigate('Reader', { book: reader.currentRead.bookName, chapter: reader.currentRead.chapterNumber, chapterId: reader.currentRead.chapterId, verse: reader.currentRead.verseId });
-                            }}>
-                            <View style={styles.currentReadVerse}>
-                                <Image source={require('../../assets/images/continue.png')} style={styles.currentReadImage} />
-                                <Text style={[styles.currentReadTitle, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>Continue Reading</Text>
-                            </View>
-                            <View style={styles.currentReadVerse}>
-                                <Text style={[styles.currentReadVerseText, { color: AppColors.primaryDark }]}>{reader.currentRead.bookName + " " + reader.currentRead.chapterNumber + ":" + reader.currentRead.verseNumber}</Text>
-                                <FontAwesome6 name="arrow-right" iconStyle="solid" color={device.theme ? AppColors.primaryDark : AppColors.appTextWhite} size={20} />
-                            </View>
-                        </TouchableOpacity>
+                    !device.downloaded && (
+                        <View style={styles.downloadProgressContainer}>
+                            <ProgressBar progress={device.downloadProgress} color={AppColors.appTextRed} fullsize={true} />
+                        </View>
                     )
                 }
 
-                <View style={styles.homeContainer}>
+                <View style={styles.mainContent}>
                     {
-                        todayVerse ? (
-                            <VerseOfTheDayCard
-                                verse={todayVerse?.text_hd || ''}
-                                reference={todayVerse?.book_name + " " + todayVerse?.chapter + ":" + todayVerse?.verse}
-                                onShare={() => setShareModalVisible(true)}
-                            />
-                        ) : (
-                            <VerseOfTheDayCard
-                                verse={'No verse of the day available'}
-                                reference={''}
-                                onShare={() => { }}
-                            />
+                        reader.currentRead.bookName && (
+                            <TouchableOpacity style={[styles.currentReadContent, { backgroundColor: device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDark }]}
+                                onPress={() => {
+                                    navigation.navigate('Reader', { book: reader.currentRead.bookName, chapter: reader.currentRead.chapterNumber, chapterId: reader.currentRead.chapterId, verse: reader.currentRead.verseId });
+                                }}>
+                                <View style={styles.currentReadVerse}>
+                                    <Image source={require('../../assets/images/continue.png')} style={styles.currentReadImage} />
+                                    <Text style={[styles.currentReadTitle, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>Continue Reading</Text>
+                                </View>
+                                <View style={styles.currentReadVerse}>
+                                    <Text style={[styles.currentReadVerseText, { color: AppColors.primaryDark }]}>{reader.currentRead.bookName + " " + reader.currentRead.chapterNumber + ":" + reader.currentRead.verseNumber}</Text>
+                                    <FontAwesome6 name="arrow-right" iconStyle="solid" color={device.theme ? AppColors.primaryDark : AppColors.appTextWhite} size={20} />
+                                </View>
+                            </TouchableOpacity>
                         )
                     }
-                    <View style={{ height: 16 }} />
-                    <ReadingProgressCard progress={reader.currentRead.progress || 0} />
+
+                    <View style={styles.homeContainer}>
+                        {
+                            todayVerse ? (
+                                <VerseOfTheDayCard
+                                    verse={todayVerse?.text_hd || ''}
+                                    reference={todayVerse?.book_name + " " + todayVerse?.chapter + ":" + todayVerse?.verse}
+                                    onShare={() => setShareModalVisible(true)}
+                                />
+                            ) : (
+                                <VerseOfTheDayCard
+                                    verse={'No verse of the day available'}
+                                    reference={''}
+                                    onShare={() => { }}
+                                />
+                            )
+                        }
+                        <View style={{ height: 16 }} />
+                        <ReadingProgressCard progress={reader.currentRead.progress || 0} />
+                    </View>
                 </View>
-            </View>
-            <Modal
-                transparent
-                visible={shareModalVisible}
-                animationType="fade"
-                statusBarTranslucent={true}>
-                <View style={{ height: insets.top }} />
-                <ShareModal
-                    setShareModalVisible={setShareModalVisible}
-                    selectedVerse={todayVerse}
-                    bookName={todayVerse?.book_name}
-                    chapterNumber={todayVerse?.chapter}
-                />
-            </Modal>
-        </ScrollView>
+                <Modal
+                    transparent
+                    visible={shareModalVisible}
+                    animationType="fade"
+                    statusBarTranslucent={true}>
+                    <View style={{ height: insets.top }} />
+                    <ShareModal
+                        setShareModalVisible={setShareModalVisible}
+                        selectedVerse={todayVerse}
+                        bookName={todayVerse?.book_name}
+                        chapterNumber={todayVerse?.chapter}
+                    />
+                </Modal>
+            </ScrollView>
+        </>
     );
 };
 
@@ -331,7 +373,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginHorizontal: 16,
         marginBottom: 16,
-    }
+    },
+    downloadProgressContainer: {
+        position: 'absolute',
+        top: 185,
+        left: 0,
+        right: 0,
+    },
 });
 
 export default Home; 

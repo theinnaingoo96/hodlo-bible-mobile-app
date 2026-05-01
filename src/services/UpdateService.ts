@@ -54,8 +54,10 @@ const UpdateService = {
     checkForDatabaseUpdates: async (currentVersion: string): Promise<UpdateInfo> => {
         try {
             const latestDBVersion = await getLatestVersion('Database');
+            if (currentVersion === '') return { isAvailable: true, latestBuild: latestDBVersion.code };
+            console.log('latestDBVersion', latestDBVersion.code, currentVersion);
             const isAvailable = latestDBVersion.code > parseInt(currentVersion, 10);
-
+            console.log('isAvailable', isAvailable);
             return {
                 isAvailable,
                 latestBuild: latestDBVersion.code,

@@ -278,6 +278,7 @@ export default class DatabaseService {
 
                 dispatch(setStartDownload(true));
                 dispatch(setDownloadProgress(0));
+                dispatch(setDownloaded(false));
 
                 console.log('[DB] Fetching book list...');
                 const bookAllData = await getBooks();
@@ -300,7 +301,7 @@ export default class DatabaseService {
 
                             const batchQueries: any[] = [];
                             batchQueries.push([
-                                'INSERT INTO books (id, name, nameMy, nameHd, number, count, testament) VALUES (?, ?, ?, ?, ?, ?, ?)',
+                                'INSERT OR REPLACE INTO books (id, name, nameMy, nameHd, number, count, testament) VALUES (?, ?, ?, ?, ?, ?, ?)',
                                 [bookId, textEn, textMy, textHd, orderNumber, chapterData.length, testament]
                             ]);
 
@@ -319,7 +320,7 @@ export default class DatabaseService {
                                     batchQueries.push([
                                         `INSERT OR REPLACE INTO verses (
                                             id, chapter_id, number, text_hd, text_en, text_mm, audio_from, audio_to, master_verse_id,
-                                            subtitle_hd, subtitle_my, subtitle_en
+                                            subtitle_hd, subtitle_mm, subtitle_en
                                         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                                         [vId, masterChapterId, vNum, vHd, vEn, vMy, "", "", vId, subtitleHd, subtitleMy, subtitleEn]
                                     ]);
@@ -336,12 +337,14 @@ export default class DatabaseService {
                         } catch (bookError) {
                             console.error(`[DB] Failed to seed book ${bookId}:`, bookError);
                         }
-                    }));
+                    })).finally(async () => {
+                        const latestVersion = await getLatestVersion('Database');
+                        dispatch(setDatabaseVersion(latestVersion.code + ''));
+
+                    })
                 }
 
                 console.log('[DB] SEEDING COMPLETED SUCCESSFULLY.');
-                const latestVersion = await getLatestVersion('Database');
-                dispatch(setDatabaseVersion(latestVersion.code));
                 dispatch(setDownloaded(true));
                 resolve(true);
             } catch (error) {

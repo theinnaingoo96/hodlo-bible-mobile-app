@@ -16,7 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import permissionService from './src/services/PermissionService';
 import DailyVerseService from './src/services/DailyVerseService';
 
-import { setDownloaded, setLanguage, setTheme } from './src/store/slices/deviceSlice';
+import { setDatabaseVersion, setDownloaded, setLanguage, setTheme } from './src/store/slices/deviceSlice';
 import { setCurrent, setReaderSetting } from './src/store/slices/readerSlice';
 import PsalmAudioExample from './src/components/PsalmAudioExample';
 import { CurrentRead, ReaderSetting } from './src/types/reader';
@@ -54,6 +54,11 @@ function App(): React.JSX.Element {
     AsyncStorage.getItem("ho-dlo-theme").then((value: any) => {
       if (value) {
         store.dispatch(setTheme(value == "true" ? true : false));
+      }
+    });
+    AsyncStorage.getItem("ho-dlo-database-version").then((value: any) => {
+      if (value) {
+        store.dispatch(setDatabaseVersion(value));
       }
     });
     AsyncStorage.getItem("ho-dlo-language").then((value: any) => {

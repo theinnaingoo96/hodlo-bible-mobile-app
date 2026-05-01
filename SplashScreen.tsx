@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Animated, StyleSheet, View, Text, Platform, PermissionsAndroid, Linking } from 'react-native';
+import { Animated, StyleSheet, View, Text, Platform, PermissionsAndroid, Linking, Alert } from 'react-native';
 import DeviceInfo from "react-native-device-info";
 import { useDispatch, useSelector } from 'react-redux';
 import { setDeviceId, setLoginTime } from './src/store/slices/deviceSlice';
@@ -7,7 +7,7 @@ import DatabaseService from "./src/services/DatabaseService";
 import DailyVerseService from "./src/services/DailyVerseService";
 import permissionService from './src/services/PermissionService';
 import ProgressBar from './src/components/ProgressBar';
-import UpdateService from './src/services/UpdateService';
+import useInternetStatus from './src/hooks/useInternetStatus';
 
 const SplashScreen = ({ navigation }: any) => {
     const [progress, setProgress] = useState(new Animated.Value(0));
@@ -16,6 +16,7 @@ const SplashScreen = ({ navigation }: any) => {
     const textOpacity = useRef(new Animated.Value(0)).current;
     const device = useSelector((state: any) => state.device);
     const [finish, setFinish] = useState(false);
+    const networkStatus = useInternetStatus();
 
     useEffect(() => {
         console.log('downloaded in splash screen...', device.downloaded);
@@ -56,7 +57,6 @@ const SplashScreen = ({ navigation }: any) => {
         return () => clearTimeout(timer);
     }, []);
 
-    const currentYear = new Date().getFullYear();
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -70,61 +70,15 @@ const SplashScreen = ({ navigation }: any) => {
             }
         };
 
-        const requestPermissions = async () => {
-            return new Promise(async (resolve, reject) => {
-                try {
-                    const notificationsGranted = await permissionService.checkPermission('notifications');
-                    const mediaAudioGranted = await permissionService.checkPermission('media_audio');
-
-                    console.log('Permission status - Notifications:', notificationsGranted, 'Audio:', mediaAudioGranted);
-
-                    if (!notificationsGranted) {
-                        const results = await permissionService.requestEssentialPermissions();
-
-                        Object.entries(results).forEach(([permission, result]) => {
-                            if (!result.granted) {
-                                console.warn(`Permission ${permission} was not granted:`, result.message);
-                            } else {
-                                console.log(`Permission ${permission} granted`);
-                            }
-                        });
-
-                        if (!results.notifications.granted) {
-                            console.warn('Notification permission is required for daily verses');
-                        }
-                        if (!results.media_audio.granted) {
-                            console.warn('Audio permission is required for audio playback');
-                        }
-                        resolve(false);
-                    } else {
-                        console.log('All essential permissions already granted');
-                        resolve(true);
-                    }
-                } catch (error) {
-                    console.error('Error requesting permissions:', error);
-                    reject(error);
-                }
-            });
-        };
-
         const initDB = async () => {
+            console.log('inside initDB');
+
             const db = DatabaseService.getInstance();
             await db.init(dispatch).then(async () => {
-                // Check for database updates
-                try {
-                    const dbUpdateInfo = await UpdateService.checkForDatabaseUpdates(device.databaseVersion);
-                    if (dbUpdateInfo.isAvailable) {
-                        console.log('[Splash] Database update available. Starting sync...');
-                        await db.syncDatabase(dispatch);
-                        console.log('[Splash] Database sync completed.');
-                    }
-                } catch (updateError) {
-                    console.log('[Splash] Database update check/sync failed', updateError);
-                }
-
+                console.log('inside db.init');
                 db.getRandomVerses(10).then(async (data) => {
                     console.log('random verse', data);
-
+                    // await checkDatabaseUpdate();
                     const notificationsGranted = await permissionService.checkPermission('notifications');
                     if (notificationsGranted) {
                         await DailyVerseService.checkAndScheduleNotifications();

@@ -58,13 +58,15 @@ class DailyVerseService {
             const dayOffset = i + startOffset;
             const verse = verses[i];
             const triggerDate = this.getScheduledDate(dayOffset);
-            console.log('[Notification Service] Scheduling:', verse);
+            // console.log('[Notification Service] Scheduling:', verse);
 
-            const title = `${verse.book_name} ${verse.chapter_number}:${verse.number}`;
-            let message = verse.text_hd;
+            const title = `${verse.book_name || 'Bible'} ${verse.chapter_number || ''}:${verse.number || ''}`;
+            let message = verse.text_hd || '';
 
             if (language === 'mm' && verse.text_mm) message = verse.text_mm;
             if (language === 'en' && verse.text_en) message = verse.text_en;
+
+            message = String(message || '');
 
             try {
                 const trigger: TimestampTrigger = {
@@ -91,7 +93,7 @@ class DailyVerseService {
             }
             await DatabaseService.getInstance().addNotification(verse.id, triggerDate.toISOString());
 
-            console.log(`[Notification Service] Scheduled day ${dayOffset}: ${title} at ${triggerDate.toISOString()}`);
+            // console.log(`[Notification Service] Scheduled day ${dayOffset}: ${title} at ${triggerDate.toISOString()}`);
         }
     }
 
@@ -105,7 +107,7 @@ class DailyVerseService {
     public async clearAll(): Promise<void> {
         await notifee.cancelAllNotifications();
         await DatabaseService.getInstance().clearNotificationAll();
-        console.log('[Notification Service] All notifications cleared');
+        // console.log('[Notification Service] All notifications cleared');
     }
 }
 
