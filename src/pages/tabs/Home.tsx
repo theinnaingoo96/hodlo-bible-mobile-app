@@ -61,7 +61,7 @@ const Home = () => {
         DatabaseService.getInstance().getTodayNotifications().then((result: any) => {
             if (result.length > 0) {
                 setTodayVerse(result[0]);
-                console.log('[HOME] getFutureNotifications', todayVerse);
+                // console.log('[HOME] getFutureNotifications', result[0]);
             }
         }).catch((error: any) => {
             console.error('[HOME] getFutureNotifications error', error);
@@ -79,16 +79,15 @@ const Home = () => {
                 });
                 setCarouselItems(verses);
             }
-        }).catch((error: any) => {
-            console.error('[HOME] getRandomVerse error', error);
         });
-        console.log('[Home] network', networkStatus.isConnected, networkStatus);
-        setTimeout(() => {
-            if (networkStatus.isConnected) {
-                checkDatabaseUpdate();
-            }
-        }, 10000);
     }, []);
+
+    useEffect(() => {
+        // console.log('[Home] network', networkStatus.isConnected, networkStatus);
+        if (networkStatus.isConnected) {
+            checkDatabaseUpdate();
+        }
+    }, [networkStatus.isConnected]);
 
     const checkDatabaseUpdate = async () => {
         const db = DatabaseService.getInstance();
@@ -96,9 +95,9 @@ const Home = () => {
             const dbUpdateInfo = await UpdateService.checkForDatabaseUpdates(device.databaseVersion);
             if (dbUpdateInfo.isAvailable) {
                 // dispatch(setLoading(true));
-                console.log('[Splash] Database update available. Starting sync...');
+                // console.log('[Splash] Database update available. Starting sync...');
                 await db.syncDatabase(dispatch);
-                console.log('[Splash] Database sync completed.');
+                // console.log('[Splash] Database sync completed.');
                 // dispatch(setLoading(false));
                 dispatch(setDatabaseVersion(dbUpdateInfo.latestBuild + ''));
                 dispatch(setToast({ show: true, message: "Database update complete", type: "success", duration: 3000 }))
@@ -106,7 +105,7 @@ const Home = () => {
                 dispatch(setLoading(false));
             }
         } catch (updateError) {
-            console.log('[Splash] Database update check/sync failed', updateError);
+            // console.log('[Splash] Database update check/sync failed', updateError);
             dispatch(setToast({ show: true, message: "Update failed", type: "error", duration: 3000 }))
         }
     }
@@ -116,27 +115,6 @@ const Home = () => {
         const index = Math.round(contentOffset / screenWidth);
         setActiveIndex(index);
     };
-
-    // const handleShare = async () => {
-    //     try {
-    //         const result = await Share.share({
-    //             title: 'Daily Verse',
-    //             message:
-    //                 `${todayVerse?.text_hd || ''} \n\n ${todayVerse?.book_name + " " + todayVerse?.chapter_number + ":" + todayVerse?.verse_number}`,
-    //         });
-    //         if (result.action === Share.sharedAction) {
-    //             if (result.activityType) {
-    //                 // shared with activity type of result.activityType
-    //             } else {
-    //                 // shared
-    //             }
-    //         } else if (result.action === Share.dismissedAction) {
-    //             // dismissed
-    //         }
-    //     } catch (error: any) {
-    //         Alert.alert(error.message);
-    //     }
-    // }
 
     return (
         <>
@@ -253,7 +231,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column'
-        // backgroundColor: AppColors.appBackgroundGrey,
     },
     scrollView: {
         flex: 1,
@@ -356,11 +333,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
-        // position: 'absolute',
-        // top: -50,
-        // left: 0,
-        // right: 0,
-        // zIndex: 1000,
     },
     currentReadVerse: {
         flexDirection: 'row',

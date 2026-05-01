@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import NetInfo, { NetInfoState } from '@react-native-community/netinfo';
 
 export const useInternetStatus = () => {
-  const [isConnected, setIsConnected] = useState<boolean | null>(true);
-  const [isInternetReachable, setIsInternetReachable] = useState<boolean | null>(true);
+  const [isConnected, setIsConnected] = useState<boolean | null>(false);
+  const [isInternetReachable, setIsInternetReachable] = useState<boolean | null>(false);
 
   useEffect(() => {
     NetInfo.fetch().then((state: NetInfoState) => {
