@@ -195,7 +195,10 @@ const Home = () => {
                                 <VerseOfTheDayCard
                                     verse={todayVerse?.text_hd || ''}
                                     reference={todayVerse?.book_name + " " + todayVerse?.chapter + ":" + todayVerse?.verse}
-                                    onShare={() => setShareModalVisible(true)}
+                                    onShare={() => {
+                                        console.log('[Share] todayVerse', todayVerse);
+                                        setShareModalVisible(true)
+                                    }}
                                 />
                             ) : (
                                 <VerseOfTheDayCard

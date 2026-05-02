@@ -11,6 +11,8 @@ import {
   FlatList,
   TouchableOpacity,
   Modal,
+  ActionSheetIOS,
+  Platform,
 } from 'react-native';
 
 import DatabaseService from '../../services/DatabaseService';
@@ -50,20 +52,37 @@ const Bookmark = () => {
   };
 
   const hideMenu = (item: any) => {
-    const temp: any = bookmarks.map((bookmark: any) => ({
-      ...bookmark,
-      visible: bookmark.id === item.id ? false : bookmark.visible,
-    }));
-    setBookmarks(temp);
+    // Delay closing to ensure iOS press events are registered
+    setTimeout(() => {
+      const temp: any = bookmarks.map((bookmark: any) => ({
+        ...bookmark,
+        visible: bookmark.id === item.id ? false : bookmark.visible,
+      }));
+      setBookmarks(temp);
+    }, 100);
   };
 
   const showMenu = (item: any) => {
-    // console.log('showMenu', item);
-    const temp: any = bookmarks.map((bookmark: any) => ({
-      ...bookmark,
-      visible: bookmark.id === item.id ? true : bookmark.visible,
-    }));
-    setBookmarks(temp);
+    if (Platform.OS === 'ios') {
+      ActionSheetIOS.showActionSheetWithOptions(
+        {
+          options: ['Cancel', 'View', 'Share', 'Delete'],
+          cancelButtonIndex: 0,
+          destructiveButtonIndex: 3,
+        },
+        buttonIndex => {
+          if (buttonIndex === 1) handleViewBookmark(item);
+          else if (buttonIndex === 2) handleShareBookmark(item);
+          else if (buttonIndex === 3) deleteBookmark(item);
+        },
+      );
+    } else {
+      const temp: any = bookmarks.map((bookmark: any) => ({
+        ...bookmark,
+        visible: bookmark.id === item.id ? true : bookmark.visible,
+      }));
+      setBookmarks(temp);
+    }
   };
 
   const deleteBookmark = (item: any) => {
@@ -123,23 +142,24 @@ const Bookmark = () => {
             {item.text_hd}
           </Text>
 
-          <TouchableOpacity
-            style={[styles.optionsButton, { marginRight: 6 }]}
-            onPress={() => {
-              showMenu(item);
-            }}>
-            <FontAwesome6
-              name="ellipsis-vertical"
-              iconStyle="solid"
-              color={
-                device.theme ? AppColors.primaryDark : AppColors.appTextWhite
-              }
-              size={20}
-            />
-          </TouchableOpacity>
           <Menu
             visible={item.visible}
-            // anchor={<Text onPress={() => showMenu(index)}>Show menu</Text>}
+            anchor={
+              <TouchableOpacity
+                style={[styles.optionsButton, { marginRight: 6 }]}
+                onPress={() => {
+                  showMenu(item);
+                }}>
+                <FontAwesome6
+                  name="ellipsis-vertical"
+                  iconStyle="solid"
+                  color={
+                    device.theme ? AppColors.primaryDark : AppColors.appTextWhite
+                  }
+                  size={20}
+                />
+              </TouchableOpacity>
+            }
             onRequestClose={() => hideMenu(item)}>
             <MenuItem onPress={() => handleViewBookmark(item)}>View</MenuItem>
             <MenuItem onPress={() => handleShareBookmark(item)}>Share</MenuItem>

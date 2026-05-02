@@ -184,7 +184,7 @@ const Reader = ({ navigation, route }: any) => {
     DatabaseService.getInstance()
       .getChapterMasterId(route.params.chapterId)
       .then((chapterMasterId: any) => {
-        console.log('chapterMasterId from fetchChapterMasterId', route.params.chapterId, chapterMasterId);
+        // console.log('chapterMasterId from fetchChapterMasterId', route.params.chapterId, chapterMasterId);
         setChapterMasterId(chapterMasterId);
       });
   };
@@ -254,7 +254,7 @@ const Reader = ({ navigation, route }: any) => {
             DatabaseService.getInstance()
               .clearBookmarkById(id)
               .then((result: any) => {
-                console.log('result', result);
+                // console.log('result', result);
                 setBookmarkModalVisible(false);
                 setBottomSheetVisible(false);
                 setOptionSheetVisible(false);
@@ -562,7 +562,7 @@ const Reader = ({ navigation, route }: any) => {
   };
 
   const handleSeek = (value: number) => {
-    console.log('handleSeek', value, duration);
+    // console.log('handleSeek', value, duration);
     const newTime = value * duration;
     seekTo(newTime);
   };
@@ -571,7 +571,7 @@ const Reader = ({ navigation, route }: any) => {
     if (selectedVerse?.id === verse?.id) {
       setSelectedVerse(null);
     } else {
-      setSelectedVerse(verse);
+      setSelectedVerse({ ...verse, chapter: params.chapter, book_name: params.book, });
     }
     if (verse.audio_from) {
       if (!playerSheetVisible) {
@@ -640,6 +640,7 @@ const Reader = ({ navigation, route }: any) => {
   };
 
   const handleSharePress = () => {
+    // console.log('[SHARE] selectedVerse', selectedVerse);
     setShareModalVisible(true);
   };
 
@@ -649,13 +650,13 @@ const Reader = ({ navigation, route }: any) => {
   };
 
   const handleAudioReaderPress = async () => {
-    console.log('[AUDIO] handleAudioReaderPress', chapterMasterId);
+    // console.log('[AUDIO] handleAudioReaderPress', chapterMasterId);
 
     try {
       const audioReader = await DatabaseService.getInstance().getAudioReader(
         chapterMasterId
       );
-      console.log('[AUDIO] audioReader', audioReader);
+      // console.log('[AUDIO] audioReader', audioReader);
 
       let localFileExists = false;
       let finalPath = '';
@@ -665,9 +666,9 @@ const Reader = ({ navigation, route }: any) => {
         localFileExists = await fileDownloadService.fileExists(
           audioReader.audio_path,
         );
-        console.log('[AUDIO] localFileExists', localFileExists);
+        // console.log('[AUDIO] localFileExists', localFileExists);
         if (localFileExists) {
-          console.log('[AUDIO] Audio file exists locally. Loading...');
+          // console.log('[AUDIO] Audio file exists locally. Loading...');
           await audioPlayer.loadAudio(finalPath);
           setPlayerSheetVisible(true);
           handlePlayPause();
@@ -678,7 +679,7 @@ const Reader = ({ navigation, route }: any) => {
         downloadAudio();
       }
     } catch (err: any) {
-      console.error('[AUDIO] Error in handleAudioReaderPress:', err);
+      // console.error('[AUDIO] Error in handleAudioReaderPress:', err);
       setIsDownloading(false);
       store.dispatch(
         setToast({
@@ -705,7 +706,7 @@ const Reader = ({ navigation, route }: any) => {
     );
 
     const apiResult = await getAudioChapter(params.chapterId);
-    console.log('apiResult', apiResult, chapterMasterId);
+    // console.log('apiResult', apiResult, chapterMasterId);
     if (apiResult.audioUrl) {
       if (apiResult?.verses && apiResult.verses.length > 0) {
         await DatabaseService.getInstance().updateVersesAudioData(apiResult.verses);
@@ -763,16 +764,20 @@ const Reader = ({ navigation, route }: any) => {
   }
 
   return (
-    <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom }}>
+    <View style={{
+      flex: 1,
+      paddingTop: insets.top - 10,
+      paddingBottom: insets.bottom,
+      backgroundColor: constants.theme[reader.readerSetting.theme - 1].backgroundColor
+    }}>
       <StatusBar
         backgroundColor={
           constants.theme[reader.readerSetting.theme - 1].backgroundColor
         }
         barStyle={
-          constants.theme[reader.readerSetting.theme - 1].fontColor ===
-            '#000000'
-            ? 'dark-content'
-            : 'light-content'
+          reader.readerSetting.theme === 2
+            ? 'light-content'
+            : 'dark-content'
         }
         showHideTransition="fade"
         animated={true}
@@ -820,7 +825,11 @@ const Reader = ({ navigation, route }: any) => {
             }
           }}
           onCopytoClickboard={(index: number) => handleCopytoClickboard(index)}
-          onSharePress={() => handleSharePress()}
+          onSharePress={() => {
+            // console.log('[Reader Share]onSharePress');
+            setSelectedVerse({ ...selectedVerse, book_name: params.book, chapter: params.chapter, });
+            handleSharePress()
+          }}
         />
 
         <View style={[styles.contentContainer]}>
@@ -1052,12 +1061,15 @@ const Reader = ({ navigation, route }: any) => {
           animationType="fade"
           statusBarTranslucent={true}
           onRequestClose={() => setShareModalVisible(false)}>
-          <ShareModal
-            setShareModalVisible={setShareModalVisible}
-            selectedVerse={selectedVerse}
-            bookName={params.book}
-            chapterNumber={params.chapter}
-          />
+          <View style={{ flex: 1, backgroundColor: AppColors.appBackgroundGrey }}>
+            <View style={{ height: insets.top }} />
+            <ShareModal
+              setShareModalVisible={setShareModalVisible}
+              selectedVerse={selectedVerse}
+              bookName={params.book}
+              chapterNumber={params.chapter}
+            />
+          </View>
         </Modal>
         <Modal
           transparent

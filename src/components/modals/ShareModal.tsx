@@ -61,6 +61,8 @@ const ShareModal = ({
   const previewHeight = targetHeight * scale;
   const finalPreviewWidth = previewWidth * scale;
 
+  console.log('[ShareModal]selectedVerse', selectedVerse);
+
   const handleSharePress = async () => {
     try {
       if (viewShotRef.current) {
@@ -156,8 +158,9 @@ const ShareModal = ({
       </View>
 
       {/* Preview Area */}
-      <View style={styles.previewContainer}>
-        <ViewShot ref={viewShotRef} options={{ format: 'png', quality: 1.0 }}>
+      <View style={[styles.previewContainer, { width: '100%' }]}>
+        <ViewShot ref={viewShotRef}
+          options={{ format: 'png', quality: 1.0 }}>
           <View style={[styles.cardContainer, { width: finalPreviewWidth, height: previewHeight }]}>
             <Image
               source={{ uri: imageUri }}
@@ -175,7 +178,7 @@ const ShareModal = ({
                   width: '90%'
                 }
               ]}>
-                {selectedVerse[`text_${textVersion}`]}
+                {selectedVerse ? selectedVerse[`text_${textVersion}`] : ''}
               </Text>
               <Text style={[
                 styles.verseTitle,
@@ -186,7 +189,7 @@ const ShareModal = ({
                   marginTop: 15 * scale,
                 }
               ]}>
-                {bookName} {chapterNumber}:{selectedVerse.number}
+                {bookName} {chapterNumber}:{selectedVerse ? selectedVerse.number : ''}
               </Text>
             </View>
           </View>
@@ -384,14 +387,15 @@ const styles = StyleSheet.create({
   shareModalContainer: {
     flex: 1,
     backgroundColor: AppColors.appBackgroundGrey,
+    flexDirection: 'column',
   },
   shareModalHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    paddingTop: Platform.OS === 'ios' ? 60 : 20,
-    paddingBottom: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   headerTitle: {
     color: 'white',
@@ -440,7 +444,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   controlCenter: {
-    height: 160,
+    height: 200,
     justifyContent: 'center',
   },
   modeControlsContainer: {

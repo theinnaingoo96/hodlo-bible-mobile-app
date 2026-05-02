@@ -117,18 +117,20 @@ const Search = ({ navigation }: any) => {
                     onSubmitEditing={handleSearchSubmit}
                     returnKeyType="search"
                 />
-                {
-                    searchQuery.length > 0 && (
-                        <TouchableOpacity style={styles.clearButton} onPress={() => {
-                            getHistory();
-                        }}>
-                            <CloseIcon name="cross" color={AppColors.appTextBlack} />
-                        </TouchableOpacity>
-                    )
-                }
-                <TouchableOpacity style={styles.searchButton} onPress={handleSearchSubmit}>
-                    <Text style={styles.searchButtonText}>Search</Text>
-                </TouchableOpacity>
+                <View style={styles.clearButtonContainer}>
+                    {
+                        searchQuery.length > 0 && (
+                            <TouchableOpacity style={styles.clearButton} onPress={() => {
+                                getHistory();
+                            }}>
+                                <CloseIcon name="cross" color={AppColors.appTextBlack} />
+                            </TouchableOpacity>
+                        )
+                    }
+                    <TouchableOpacity style={styles.searchButton} onPress={handleSearchSubmit}>
+                        <Text style={styles.searchButtonText}>Search</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
             {
                 searchResults.length > 0 ? (
@@ -170,16 +172,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingHorizontal: 16,
         paddingTop: 16,
+        backgroundColor: 'white',
     },
     searchBar: {
         flex: 1,
         height: 40,
         paddingHorizontal: 16,
         backgroundColor: AppColors.appTextWhite,
-        borderTopLeftRadius: 14,
-        borderBottomLeftRadius: 14,
-        borderTopRightRadius: 0,
-        borderBottomRightRadius: 0,
+        // borderTopLeftRadius: 14,
+        // borderBottomLeftRadius: 14,
+        // borderTopRightRadius: 0,
+        // borderBottomRightRadius: 0,
+        borderRadius: 14,
         borderWidth: 0.5,
         borderColor: AppColors.primary,
     },
@@ -192,6 +196,7 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 0,
         borderTopRightRadius: 14,
         borderBottomRightRadius: 14,
+        height: 40,
     },
     searchButtonText: {
         color: '#fff',
@@ -270,19 +275,32 @@ const styles = StyleSheet.create({
         color: AppColors.appTextBlack,
     },
     clearButton: {
-        marginTop: 6,
-        position: 'absolute',
-        right: 95,
-        top: 10,
-        height: "100%",
+        // marginTop: 6,
+        // position: 'absolute',
+        // right: 95,
+        // top: 10,
+        // height: "100%",
         justifyContent: 'center',
         alignItems: 'center',
+        height: 40,
+        // backgroundColor: 'white',
     },
     historyItemDeleteButton: {
         // position: 'absolute',
         // right: 16,
         // top: 16,
     },
+    clearButtonContainer: {
+        zIndex: 1000,
+        height: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        right: 16,
+        top: 16,
+        flexDirection: 'row',
+        gap: 5,
+    }
 });
 
 export default Search; 

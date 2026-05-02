@@ -1,6 +1,6 @@
-import {useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
-import {useNavigation} from '@react-navigation/native';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import {
   View,
@@ -9,14 +9,16 @@ import {
   Dimensions,
   TouchableOpacity,
   Share,
+  ActionSheetIOS,
+  Platform,
 } from 'react-native';
 
-import {AppColors} from '../constants/Color';
-import {constants} from '../constants/Data';
+import { AppColors } from '../constants/Color';
+import { constants } from '../constants/Data';
 import SplitVerticalIcon from './icons/SplitVerticalIcon';
 import SplitHorizontalIcon from './icons/SplitHorizontalIcon';
-import {Menu, MenuItem} from 'react-native-material-menu';
-import {useAudioPlayer} from '../hooks/useAudioPlayer';
+import { Menu, MenuItem } from 'react-native-material-menu';
+import { useAudioPlayer } from '../hooks/useAudioPlayer';
 
 interface ReaderHeaderProps {
   title: string;
@@ -55,13 +57,19 @@ const ReaderHeader = ({
   const reader = useSelector((state: any) => state.reader);
   const navigation = useNavigation();
   const [isOpen, setIsOpen] = useState(false);
-  const {stop} = useAudioPlayer();
+  const { stop } = useAudioPlayer();
   const handleTitlePress = () => {
     // console.log('handleTitlePress');
   };
-  
+
   const hideMenu = (type: number) => {
-    setIsOpen(false);
+    // console.log('[Menu] hideMenu', type, selectedVerse);
+
+    // Give some time for the press to be processed on iOS before closing
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 100);
+
     switch (type) {
       case 0:
         navigation.navigate('ChangeLanguage' as never);
@@ -106,29 +114,83 @@ const ReaderHeader = ({
 
   const handleSharePress = () => {
 
-      // try {
-      //     const result = await Share.share({
-      //         title: 'Daily Verse',
-      //         message:
-      //             `${todayVerse?.text_hd || ''} \n\n ${todayVerse?.book_name + " " + todayVerse?.chapter_number + ":" + todayVerse?.verse_number}`,
-      //     });
-      //     if (result.action === Share.sharedAction) {
-      //         if (result.activityType) {
-      //             // shared with activity type of result.activityType
-      //         } else {
-      //             // shared
-      //         }
-      //     } else if (result.action === Share.dismissedAction) {
-      //         // dismissed
-      //     }
-      // } catch (error: any) {
-      //     Alert.alert(error.message);
-      // }
-  
+    // try {
+    //     const result = await Share.share({
+    //         title: 'Daily Verse',
+    //         message:
+    //             `${todayVerse?.text_hd || ''} \n\n ${todayVerse?.book_name + " " + todayVerse?.chapter_number + ":" + todayVerse?.verse_number}`,
+    //     });
+    //     if (result.action === Share.sharedAction) {
+    //         if (result.activityType) {
+    //             // shared with activity type of result.activityType
+    //         } else {
+    //             // shared
+    //         }
+    //     } else if (result.action === Share.dismissedAction) {
+    //         // dismissed
+    //     }
+    // } catch (error: any) {
+    //     Alert.alert(error.message);
+    // }
+
   }
 
   const showMenu = () => {
-    setIsOpen(true);
+    if (Platform.OS === 'ios') {
+      const options = ['Cancel', 'Language', 'Reader Setting', 'Audio Reader'];
+      const actions = [-1, 0, 1, 2];
+
+      if (selectedVerse) {
+        options.push('Copy Ho Dlo version');
+        actions.push(3);
+
+        if (device.language == 'en') {
+          options.push('Copy English version');
+          actions.push(4);
+        }
+        if (device.language == 'mm') {
+          options.push('Copy Myanmar version');
+          actions.push(5);
+        }
+        if (device.language == 'en' || device.language == 'mm') {
+          options.push('Copy Both versions');
+          actions.push(6);
+        }
+
+        if (selectedVerse && selectedVerse.highlight) {
+          options.push('Remove Highlight');
+          actions.push(8);
+        } else {
+          options.push('Add Highlight');
+          actions.push(7);
+        }
+
+        if (selectedVerse && selectedVerse.bookmark) {
+          options.push('Remove Bookmark');
+          actions.push(10);
+        } else {
+          options.push('Add Bookmark');
+          actions.push(9);
+        }
+
+        options.push('Share Verse');
+        actions.push(11);
+      }
+
+      ActionSheetIOS.showActionSheetWithOptions(
+        {
+          options,
+          cancelButtonIndex: 0,
+        },
+        buttonIndex => {
+          if (buttonIndex !== 0) {
+            hideMenu(actions[buttonIndex]);
+          }
+        },
+      );
+    } else {
+      setIsOpen(true);
+    }
   };
 
   return (
@@ -144,6 +206,8 @@ const ReaderHeader = ({
         <TouchableOpacity
           style={styles.backButton}
           onPress={() => {
+            // console.log('[Reader] go back');
+
             navigation.goBack();
             stop();
           }}>
@@ -161,7 +225,7 @@ const ReaderHeader = ({
         <Text
           style={[
             styles.headerTitle,
-            {color: constants.theme[reader.readerSetting.theme - 1].fontColor},
+            { color: constants.theme[reader.readerSetting.theme - 1].fontColor },
           ]}>
           {title}
         </Text>
@@ -200,22 +264,20 @@ const ReaderHeader = ({
         ) : (
           <></>
         )}
-        {/* <TouchableOpacity style={styles.optionsButton} onPress={() => navigation.navigate('ChangeLanguage' as never)}>
-                    <FontAwesome6 name="globe" iconStyle="solid" color={constants.theme[reader.readerSetting.theme - 1].fontColor} size={20} />
-                </TouchableOpacity> */}
-        <TouchableOpacity
-          style={[styles.optionsButton, {marginRight: 6}]}
-          onPress={showMenu}>
-          <FontAwesome6
-            name="ellipsis-vertical"
-            iconStyle="solid"
-            color={constants.theme[reader.readerSetting.theme - 1].fontColor}
-            size={20}
-          />
-        </TouchableOpacity>
         <Menu
           visible={isOpen}
-          // anchor={<Text onPress={() => showMenu(index)}>Show menu</Text>}
+          anchor={
+            <TouchableOpacity
+              style={[styles.optionsButton, { marginRight: 6 }]}
+              onPress={showMenu}>
+              <FontAwesome6
+                name="ellipsis-vertical"
+                iconStyle="solid"
+                color={constants.theme[reader.readerSetting.theme - 1].fontColor}
+                size={20}
+              />
+            </TouchableOpacity>
+          }
           onRequestClose={() => hideMenu(-1)}>
           <MenuItem
             onPress={() => hideMenu(0)}>
@@ -224,7 +286,7 @@ const ReaderHeader = ({
           <MenuItem onPress={() => hideMenu(1)}>Reader Setting</MenuItem>
           <MenuItem onPress={() => hideMenu(2)}>Audio Reader</MenuItem>
           {selectedVerse && (
-            <View>
+            <>
               <MenuItem onPress={() => hideMenu(3)}>Copy Ho Dlo version</MenuItem>
               {
                 device.language == 'en' && (
@@ -257,7 +319,7 @@ const ReaderHeader = ({
                 )
               }
               <MenuItem onPress={() => hideMenu(11)}>Share Verse</MenuItem>
-            </View>
+            </>
           )}
         </Menu>
       </View>
@@ -282,7 +344,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     position: 'absolute',
     justifyContent: 'center',
-    transform: [{translateX: '-50%'}],
+    transform: [{ translateX: '-50%' }],
   },
   headerTitle: {
     fontSize: 16,
