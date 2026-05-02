@@ -21,7 +21,9 @@
   ],
   "source_files": "platforms/ios/*.{h,m}",
   "dependencies": {
-    "React-Core": []
+    "React-Core": [
+
+    ]
   },
   "libraries": "sqlite3"
 }

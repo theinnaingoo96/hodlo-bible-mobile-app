@@ -30,10 +30,25 @@ target 'HoDloBibleMobileApp' do
       :mac_catalyst_enabled => false,
     )
     
-    # Disable User Script Sandboxing for all targets to fix rsync permission errors
+    # Disable User Script Sandboxing and allow non-modular includes
     installer.pods_project.targets.each do |target|
       target.build_configurations.each do |config|
         config.build_settings['ENABLE_USER_SCRIPT_SANDBOXING'] = 'NO'
+        config.build_settings['CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'] = 'YES'
+        config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)', 'FMT_ENFORCE_COMPILE_STRING=0']
+        
+        # Force C++17 for fmt to avoid C++20 consteval issues
+        if target.name == 'fmt'
+          config.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'c++17'
+        end
+
+        # Force Library Search Paths for core libraries
+        config.build_settings['LIBRARY_SEARCH_PATHS'] = [
+          '$(inherited)',
+          '"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion"',
+          '"${PODS_CONFIGURATION_BUILD_DIR}/RCT-Folly"',
+          '"${PODS_CONFIGURATION_BUILD_DIR}/glog"',
+        ]
       end
     end
   end

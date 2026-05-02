@@ -18,7 +18,6 @@
 		543242E343744F88AE262578 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 637EDD2EFF8B43608C8E7F58 /* Pretendard-SemiBold.otf */; };
 		637145CD1030458182CF54E2 /* Psalm-00105.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA45077CC70B41C69341C511 /* Psalm-00105.m4a */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
-		77553F91CE724CD78AB6FD4F /* libPods-HoDloBibleMobileApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F4C74D7ED4056A513B59A8 /* libPods-HoDloBibleMobileApp.a */; };
 		77890BD979464ED9A8D24ADD /* psalms2400.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2725BF6F634845C4BA3E5310 /* psalms2400.mp3 */; };
 		79D11F63FB7F4C0F99AB9111 /* Psalm-00104.m4a in Resources */ = {isa = PBXBuildFile; fileRef = D2D13FDDACA143D8851FB0D5 /* Psalm-00104.m4a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -26,6 +25,7 @@
 		8872E96CBC4A46C1A29BC99B /* psalm00103.m4a in Resources */ = {isa = PBXBuildFile; fileRef = EFA71F7E2DEF4113B2F1CD0C /* psalm00103.m4a */; };
 		929EEA67B74B4EF1B4F8499F /* psalms2300.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1556B8DB160C4A41A6616A58 /* psalms2300.wav */; };
 		A5C05F6FF1574C589A913E50 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6A646A4816244CBEB4CE3123 /* Pretendard-Regular.otf */; };
+		AA53757E4C09479A26FE82E7 /* libPods-HoDloBibleMobileApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C848F31A8ADFAA77336E4918 /* libPods-HoDloBibleMobileApp.a */; };
 		AC3940EABD0D48B39A0577EC /* NotoSansMyanmar-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15E8FD0B321A486C8B358F74 /* NotoSansMyanmar-Regular.ttf */; };
 		C029C15BC1A14B93AE29D3ED /* psalm00104.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 028A47E1A6184479BE6E5DBA /* psalm00104.m4a */; };
 		DDE26561400245CFA7F66AFA /* psalm00102.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C7B795F0C4D4444FBBB354C9 /* psalm00102.m4a */; };
@@ -46,10 +46,9 @@
 		15E8FD0B321A486C8B358F74 /* NotoSansMyanmar-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSansMyanmar-Regular.ttf"; path = "../src/assets/fonts/NotoSansMyanmar-Regular.ttf"; sourceTree = "<group>"; };
 		2725BF6F634845C4BA3E5310 /* psalms2400.mp3 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = psalms2400.mp3; path = ../src/assets/audio/psalms2400.mp3; sourceTree = "<group>"; };
 		32D346570DC04D23917F6CE0 /* Pyidaungsu-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pyidaungsu-Bold.ttf"; path = "../src/assets/fonts/Pyidaungsu-Bold.ttf"; sourceTree = "<group>"; };
-		35F4C74D7ED4056A513B59A8 /* libPods-HoDloBibleMobileApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HoDloBibleMobileApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		637EDD2EFF8B43608C8E7F58 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-SemiBold.otf"; path = "../src/assets/fonts/Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		6A646A4816244CBEB4CE3123 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Regular.otf"; path = "../src/assets/fonts/Pretendard-Regular.otf"; sourceTree = "<group>"; };
-		704680E3C79D333FB30C7952 /* Pods-HoDloBibleMobileApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HoDloBibleMobileApp.release.xcconfig"; path = "Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp.release.xcconfig"; sourceTree = "<group>"; };
+		750B2536E83DAF51925C1C06 /* Pods-HoDloBibleMobileApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HoDloBibleMobileApp.debug.xcconfig"; path = "Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp.debug.xcconfig"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = HoDloBibleMobileApp/AppDelegate.swift; sourceTree = "<group>"; };
 		7A5C8B6835294C538E2F6C83 /* Pyidaungsu-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pyidaungsu-Regular.ttf"; path = "../src/assets/fonts/Pyidaungsu-Regular.ttf"; sourceTree = "<group>"; };
 		7C71018D071E4B2FB05F902B /* Psalm-00103.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00103.m4a"; path = "../src/assets/audio/Psalm-00103.m4a"; sourceTree = "<group>"; };
@@ -58,12 +57,13 @@
 		837A0BCE3F524E91B82B1706 /* NotoSansMyanmar-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSansMyanmar-SemiBold.ttf"; path = "../src/assets/fonts/NotoSansMyanmar-SemiBold.ttf"; sourceTree = "<group>"; };
 		8604BE6461AD47AC83BCCB75 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Bold.otf"; path = "../src/assets/fonts/Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		8AE7D33706D94236860C02A2 /* psalm00105.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = psalm00105.m4a; path = ../src/assets/audio/psalm00105.m4a; sourceTree = "<group>"; };
-		B6AA74FDF41CFEE4DD463DB4 /* Pods-HoDloBibleMobileApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HoDloBibleMobileApp.debug.xcconfig"; path = "Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp.debug.xcconfig"; sourceTree = "<group>"; };
 		C1039B89D43C49E285DECA30 /* psalm00101.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = psalm00101.m4a; path = ../src/assets/audio/psalm00101.m4a; sourceTree = "<group>"; };
 		C7B795F0C4D4444FBBB354C9 /* psalm00102.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = psalm00102.m4a; path = ../src/assets/audio/psalm00102.m4a; sourceTree = "<group>"; };
+		C848F31A8ADFAA77336E4918 /* libPods-HoDloBibleMobileApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HoDloBibleMobileApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA45077CC70B41C69341C511 /* Psalm-00105.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00105.m4a"; path = "../src/assets/audio/Psalm-00105.m4a"; sourceTree = "<group>"; };
 		D2D13FDDACA143D8851FB0D5 /* Psalm-00104.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00104.m4a"; path = "../src/assets/audio/Psalm-00104.m4a"; sourceTree = "<group>"; };
 		D40443998E124196BE87AB34 /* Psalm-00102.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00102.m4a"; path = "../src/assets/audio/Psalm-00102.m4a"; sourceTree = "<group>"; };
+		D434F429C297C72EBE598E39 /* Pods-HoDloBibleMobileApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HoDloBibleMobileApp.release.xcconfig"; path = "Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp.release.xcconfig"; sourceTree = "<group>"; };
 		D4F13035AD804E1FBD2A1C6B /* Psalm-00106.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00106.m4a"; path = "../src/assets/audio/Psalm-00106.m4a"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		EFA71F7E2DEF4113B2F1CD0C /* psalm00103.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = psalm00103.m4a; path = ../src/assets/audio/psalm00103.m4a; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77553F91CE724CD78AB6FD4F /* libPods-HoDloBibleMobileApp.a in Frameworks */,
+				AA53757E4C09479A26FE82E7 /* libPods-HoDloBibleMobileApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,7 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				35F4C74D7ED4056A513B59A8 /* libPods-HoDloBibleMobileApp.a */,
+				C848F31A8ADFAA77336E4918 /* libPods-HoDloBibleMobileApp.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -163,8 +163,8 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B6AA74FDF41CFEE4DD463DB4 /* Pods-HoDloBibleMobileApp.debug.xcconfig */,
-				704680E3C79D333FB30C7952 /* Pods-HoDloBibleMobileApp.release.xcconfig */,
+				750B2536E83DAF51925C1C06 /* Pods-HoDloBibleMobileApp.debug.xcconfig */,
+				D434F429C297C72EBE598E39 /* Pods-HoDloBibleMobileApp.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -176,13 +176,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "HoDloBibleMobileApp" */;
 			buildPhases = (
-				3B2CD44B23BCF8AC57F505F0 /* [CP] Check Pods Manifest.lock */,
+				8E7BE0F25EAF6A40856CDC68 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				491242C81A698AF65BCA01B4 /* [CP] Embed Pods Frameworks */,
-				D408E3998F27E757ED9B9465 /* [CP] Copy Pods Resources */,
+				15E28E0CD021B3F9B466D16C /* [CP] Embed Pods Frameworks */,
+				2528F3AC49FD569189B02942 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -279,7 +279,41 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		3B2CD44B23BCF8AC57F505F0 /* [CP] Check Pods Manifest.lock */ = {
+		15E28E0CD021B3F9B466D16C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2528F3AC49FD569189B02942 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8E7BE0F25EAF6A40856CDC68 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -301,48 +335,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		491242C81A698AF65BCA01B4 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D408E3998F27E757ED9B9465 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -359,11 +351,13 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B6AA74FDF41CFEE4DD463DB4 /* Pods-HoDloBibleMobileApp.debug.xcconfig */;
+			baseConfigurationReference = 750B2536E83DAF51925C1C06 /* Pods-HoDloBibleMobileApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 10000;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = ZS6JN2GDR3;
 				ENABLE_BITCODE = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -374,6 +368,89 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCT-Folly\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTDeprecation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCClipboard\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNDeviceInfo\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFS\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNNotifee\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNShare\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSoundPlayer\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNVectorIcons\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-FabricComponents\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-FabricImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-ImageManager\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Mapbuffer\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAppDelegate\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTFBReactNativeSpec\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTFabric\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTRuntime\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RuntimeApple\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RuntimeCore\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RuntimeHermes\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-debug\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-defaultsnativemodule\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-domnativemodule\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-featureflags\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-featureflagsnativemodule\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-hermes\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-idlecallbacksnativemodule\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jserrorhandler\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspectortracing\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsitooling\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-logger\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-microtasksnativemodule\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-oscompat\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-perflogger\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-performancetimeline\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-rendererconsistency\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-renderercss\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-rendererdebug\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-runtimescheduler\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-utils\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactAppDependencyProvider\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCodegen\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SocketRocket\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/fmt\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-cameraroll\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-image-picker\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-netinfo\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-slider\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-sqlite-storage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-view-shot\"/**",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/DoubleConversion\"",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
@@ -391,11 +468,13 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 704680E3C79D333FB30C7952 /* Pods-HoDloBibleMobileApp.release.xcconfig */;
+			baseConfigurationReference = D434F429C297C72EBE598E39 /* Pods-HoDloBibleMobileApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 10000;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = ZS6JN2GDR3;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = HoDloBibleMobileApp/Info.plist;
@@ -490,7 +569,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -561,7 +643,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
