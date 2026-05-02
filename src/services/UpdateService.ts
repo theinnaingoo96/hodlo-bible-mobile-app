@@ -4,7 +4,7 @@ import { getLatestVersion } from './ApiService';
 
 const STORE_URLS = {
     android: 'https://play.google.com/store/apps/details?id=com.gathengpu.dlo',
-    ios: 'https://apps.apple.com/app/id6476569111', // Placeholder or real ID if found
+    ios: 'https://apps.apple.com/app/id6762751562',
 };
 
 export interface UpdateInfo {

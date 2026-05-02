@@ -1285,21 +1285,21 @@ const styles = StyleSheet.create({
     fontFamily: 'Pretendard-Regular',
   },
   progressContainer: {
+    flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    // marginBottom: 20,
+    marginLeft: 10,
   },
   progressBar: {
-    flex: 1,
-    marginHorizontal: 10,
-    width: 300,
+    width: '100%',
+    height: 40,
   },
   timeContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: 300,
-    paddingHorizontal: 10,
+    width: '100%',
+    paddingHorizontal: 5,
   },
   timeText: {
     color: AppColors.appTextBlack,

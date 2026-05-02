@@ -1,97 +1,86 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Gathengpu Dlo (HoDlo Bible Mobile App)
 
-# Getting Started
+Gathengpu Dlo is a modern, high-performance Bible application built with React Native. It provides a seamless experience for reading, searching, and listening to the Bible in multiple languages.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## ✨ Features
 
-## Step 1: Start Metro
+- **Multi-language Support**: Read the Bible in English (EN), Myanmar (MM), and HoDlo (HD).
+- **Offline First**: All Bible data is stored locally in a high-performance SQLite database.
+- **Audio Playback**: Listen to Bible chapters with built-in audio player support.
+- **Daily Verses**: Receive inspiring daily bible verses via local push notifications.
+- **Search & History**: Quickly find verses and track your reading history.
+- **Personalization**: Customizable themes (Dark/Light mode) and reader settings (font size, font family).
+- **Smart Updates**: Automatic database and app version checking to ensure you always have the latest content.
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## 🚀 Getting Started
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+### Prerequisites
+- Node.js > 18
+- React Native Environment Setup ([Follow official guide](https://reactnative.dev/docs/set-up-your-environment))
+- Android Studio / Xcode
+
+### Installation
+
+1. **Clone the repository**
+   ```sh
+   git clone <repository-url>
+   cd HoDloBibleMobileApp
+   ```
+
+2. **Install dependencies**
+   ```sh
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **iOS Setup**
+   ```sh
+   cd ios && pod install && cd ..
+   ```
+
+### Running the App
+
+- **Android**
+  ```sh
+  npm run android
+  ```
+- **iOS**
+  ```sh
+  npm run ios
+  ```
+
+## 🛠 Tech Stack
+
+- **Framework**: React Native
+- **State Management**: Redux Toolkit
+- **Database**: SQLite (react-native-sqlite-storage)
+- **Notifications**: Notifee
+- **Icons**: FontAwesome 6
+- **Device Info**: React Native Device Info
+
+## 📦 Production Build
+
+To build the app for production (Play Store/App Store):
+
+### Android (AAB for Play Store)
+We use APK splitting and Proguard to keep the app size optimized (~15-20MB per architecture).
 
 ```sh
-# Using npm
-npm start
-
-# OR using Yarn
-yarn start
+cd android
+./gradlew bundleRelease
 ```
+The output will be at `android/app/build/outputs/bundle/release/app-release.aab`.
 
-## Step 2: Build and run your app
+### Optimization Notes
+- **Hermes**: Enabled for high-performance JS execution.
+- **Proguard**: Enabled to shrink and obfuscate the code.
+- **APK Splitting**: Enabled to reduce download size for end-users.
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+## 📚 Documentation
 
-### Android
+- [Audio Player Guide](AUDIO_PLAYER_README.md) - Technical details about the audio playback system.
 
-```sh
-# Using npm
-npm run android
+## 📄 License
 
-# OR using Yarn
-yarn android
-```
-
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Copyright © 2026 Gathengpu Dlo. All rights reserved.
