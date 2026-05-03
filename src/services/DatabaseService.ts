@@ -1085,7 +1085,7 @@ export default class DatabaseService {
             if (!this.db) throw new Error('Database not initialized');
 
             try {
-                const [results] = await this.db.executeSql(`INSERT INTO ${TABLE_HIGHLIGHTS} (verse_id, color) VALUES (?, ?);`, [verseId, color]);
+                const [results] = await this.db.executeSql(`INSERT OR REPLACE INTO ${TABLE_HIGHLIGHTS} (verse_id, color) VALUES (?, ?);`, [verseId, color]);
                 console.log(`[DB] Highlight inserted: ${verseId}, ID: ${results.insertId}`);
                 resolve(results);
             } catch (error) {

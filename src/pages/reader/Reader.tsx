@@ -12,6 +12,7 @@ import {
   Alert,
   TextInput,
 } from 'react-native';
+import RNFS from 'react-native-fs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Clipboard from '@react-native-clipboard/clipboard';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
@@ -330,6 +331,7 @@ const Reader = ({ navigation, route }: any) => {
   };
 
   const handleConfirmHighlight = () => {
+    console.log('selectedColor', selectedColor);
     DatabaseService.getInstance()
       .addHighlight(highlightedVerse.verse_id, selectedColor.code)
       .then(() => {
@@ -388,7 +390,8 @@ const Reader = ({ navigation, route }: any) => {
   //     .activeOffsetX([-10, 10]) // Only activate for horizontal movement
   //     .failOffsetY([-10, 10]); // Fail if vertical movement exceeds threshold
 
-  const handleNextChapter = (autoPlay = false) => {
+  const handleNextChapter = (autoPlay: any = false) => {
+    const isAutoPlay = autoPlay === true;
     const currentReaderData = reader.currentRead;
     if (currentReaderData.maxChapter > currentReaderData.chapterNumber) {
       setTransitionLoading(true);
@@ -426,7 +429,7 @@ const Reader = ({ navigation, route }: any) => {
             chapter: currentReaderData.chapterNumber + 1,
             chapterId: nextChapterId,
             verse: 1,
-            autoPlay: autoPlay, // Pass the flag
+            autoPlay: isAutoPlay, // Pass the flag
           });
         })
         .finally(() => {
@@ -573,10 +576,7 @@ const Reader = ({ navigation, route }: any) => {
     } else {
       setSelectedVerse({ ...verse, chapter: params.chapter, book_name: params.book, });
     }
-    if (verse.audio_from) {
-      if (!playerSheetVisible) {
-        await handleAudioReaderPress();
-      }
+    if (verse.audio_from && playerSheetVisible) {
       let seekValue = 0;
       const rawFrom = verse.audio_from;
 
@@ -650,13 +650,13 @@ const Reader = ({ navigation, route }: any) => {
   };
 
   const handleAudioReaderPress = async () => {
-    // console.log('[AUDIO] handleAudioReaderPress', chapterMasterId);
+    console.log('[AUDIO] handleAudioReaderPress', chapterMasterId);
 
     try {
       const audioReader = await DatabaseService.getInstance().getAudioReader(
         chapterMasterId
       );
-      // console.log('[AUDIO] audioReader', audioReader);
+      console.log('[AUDIO] audioReader', audioReader);
 
       let localFileExists = false;
       let finalPath = '';
@@ -666,9 +666,9 @@ const Reader = ({ navigation, route }: any) => {
         localFileExists = await fileDownloadService.fileExists(
           audioReader.audio_path,
         );
-        // console.log('[AUDIO] localFileExists', localFileExists);
+        console.log('[AUDIO] localFileExists', localFileExists, 'audioReader', audioReader, 'finalPath', finalPath);
         if (localFileExists) {
-          // console.log('[AUDIO] Audio file exists locally. Loading...');
+          console.log('[AUDIO] Audio file exists locally. Loading...');
           await audioPlayer.loadAudio(finalPath);
           setPlayerSheetVisible(true);
           handlePlayPause();
@@ -723,9 +723,11 @@ const Reader = ({ navigation, route }: any) => {
         fullDownloadUrl = `https://api.gathengpudlo.com/api${downloadUrl}`;
       }
 
+      const fileExtension = fullDownloadUrl.split('.').pop()?.split('?')[0] || 'm4a';
+
       const downloadResult = await fileDownloadService.downloadFile(
         fullDownloadUrl,
-        `${params.book}_${params.chapter}.m4a`,
+        `${params.book}_${params.chapter}.${fileExtension}`,
         progressData => {
           setDownloadProgressValue(progressData.progress);
           store.dispatch(setDownloadProgress(progressData.progress));

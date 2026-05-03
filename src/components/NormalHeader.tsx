@@ -21,6 +21,7 @@ const NormalHeader = ({ title, backButton }: NormalHeaderProps) => {
                 <FontAwesome6 name="arrow-left" iconStyle="solid" color={device.theme ? AppColors.primaryDark : AppColors.appTextWhite} size={20} />
             </TouchableOpacity>}
             <Text style={[styles.headerTitle, { color: device.theme ? AppColors.primaryDark : AppColors.appTextWhite }]}>{title}</Text>
+            <View style={{ width: 65 }} />
         </View>
     );
 };
@@ -50,9 +51,9 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         color: AppColors.primary,
         textAlign: 'center',
-        position: 'absolute',
-        right: '50%',
-        transform: [{ translateX: '50%' }],
+        // position: 'absolute',
+        // right: '50%',
+        // transform: [{ translateX: '50%' }],
     },
     backButton: {
         width: 65,

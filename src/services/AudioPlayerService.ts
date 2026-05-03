@@ -88,12 +88,13 @@ class AudioPlayerService {
     );
 
     this.subscriptions.push(
-      SoundPlayer.addEventListener('OnSetupError', (data) => {
+      SoundPlayer.addEventListener('OnSetupError', (data: any) => {
+        console.error('[AUDIO] Native Setup Error:', data);
         store.dispatch(setAudioPlayerState({
-          error: 'Setup error occurred',
+          error: data && data.error ? data.error : 'Setup error occurred',
           isLoading: false
         }));
-        this.emit('error', 'Setup error occurred');
+        this.emit('error', data && data.error ? data.error : 'Setup error occurred');
       })
     );
   }
@@ -143,14 +144,14 @@ class AudioPlayerService {
             console.log('[AUDIO] Loading URL:', soundSource);
             SoundPlayer.loadUrl(soundSource);
           } else if (soundSource.startsWith('/') || soundSource.startsWith('file://')) {
-            // Local file path - CRITICAL: Must be encoded for iOS
-            let localPath = soundSource.startsWith('file://') ? soundSource : `file://${soundSource}`;
-
-            // Encode the URI to handle spaces/special characters in folder names or filenames
-            // We ignore 'file://' prefix during encoding then put it back
+            let localPath = soundSource;
+            
             if (Platform.OS === 'ios') {
-              const pathPart = localPath.replace('file://', '');
-              localPath = 'file://' + encodeURI(pathPart);
+              // iOS strictly requires file:// prefix for AVPlayer URLWithString
+              localPath = soundSource.startsWith('file://') ? soundSource : `file://${soundSource}`;
+            } else {
+              // Android handles raw paths or file:// paths
+              localPath = soundSource.startsWith('file://') ? soundSource : `file://${soundSource}`;
             }
 
             console.log('[AUDIO] Loading local file:', localPath);
