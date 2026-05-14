@@ -113,7 +113,7 @@ const Bible = ({ navigation }: any) => {
                         }}
                     >
                         <Text style={device.theme ? activeTab === 'old' ? styles.activeTabText : styles.tabText : activeTab === 'old' ? styles.activeTabTextDark : styles.tabTextDark}>
-                            Old Testament
+                            {"Old\tTestament"}
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -125,7 +125,7 @@ const Bible = ({ navigation }: any) => {
                         }}
                     >
                         <Text style={device.theme ? activeTab === 'new' ? styles.activeTabText : styles.tabText : activeTab === 'new' ? styles.activeTabTextDark : styles.tabTextDark}>
-                            New Testament
+                            {"New\tTestament"}
                         </Text>
                     </TouchableOpacity>
                 </View>

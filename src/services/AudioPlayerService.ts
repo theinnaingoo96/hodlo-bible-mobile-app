@@ -33,16 +33,16 @@ class AudioPlayerService {
   private eventListeners: Map<PlayerEventType, Set<(...args: any[]) => void>> = new Map();
 
   // Centralized mapping for Psalm audio resources
-  private psalmResources: { [key: number]: any } = {
-    101: require('../assets/audio/Psalm-00101.m4a'),
-    102: require('../assets/audio/Psalm-00102.m4a'),
-    103: require('../assets/audio/Psalm-00103.m4a'),
-    104: require('../assets/audio/Psalm-00104.m4a'),
-    105: require('../assets/audio/Psalm-00105.m4a'),
-    106: require('../assets/audio/Psalm-00106.m4a'),
-    23: require('../assets/audio/psalms2300.wav'),
-    24: require('../assets/audio/psalms2400.mp3'),
-  };
+  // private psalmResources: { [key: number]: any } = {
+  //   101: require('../assets/audio/Psalm-00101.m4a'),
+  //   102: require('../assets/audio/Psalm-00102.m4a'),
+  //   103: require('../assets/audio/Psalm-00103.m4a'),
+  //   104: require('../assets/audio/Psalm-00104.m4a'),
+  //   105: require('../assets/audio/Psalm-00105.m4a'),
+  //   106: require('../assets/audio/Psalm-00106.m4a'),
+  //   23: require('../assets/audio/psalms2300.wav'),
+  //   24: require('../assets/audio/psalms2400.mp3'),
+  // };
 
   constructor() {
     this.initializeSoundPlayer();
@@ -145,7 +145,7 @@ class AudioPlayerService {
             SoundPlayer.loadUrl(soundSource);
           } else if (soundSource.startsWith('/') || soundSource.startsWith('file://')) {
             let localPath = soundSource;
-            
+
             if (Platform.OS === 'ios') {
               // iOS strictly requires file:// prefix for AVPlayer URLWithString
               localPath = soundSource.startsWith('file://') ? soundSource : `file://${soundSource}`;
@@ -290,26 +290,26 @@ class AudioPlayerService {
   /**
    * Generic playback method
    */
-  public async playResource(resourceId: number): Promise<void> {
-    const asset = this.psalmResources[resourceId];
-    if (!asset) {
-      const msg = `Audio resource for ID ${resourceId} not found`;
-      this.emit('error', msg);
-      return;
-    }
-    await this.loadAudio(asset);
-    await this.play();
-  }
+  // public async playResource(resourceId: number): Promise<void> {
+  //   const asset = this.psalmResources[resourceId];
+  //   if (!asset) {
+  //     const msg = `Audio resource for ID ${resourceId} not found`;
+  //     this.emit('error', msg);
+  //     return;
+  //   }
+  //   await this.loadAudio(asset);
+  //   await this.play();
+  // }
 
   // Simplified convenience methods mapping to playResource
-  public async playPsalm23() { return this.playResource(23); }
-  public async playPsalm24() { return this.playResource(24); }
-  public async playPsalm101() { return this.playResource(101); }
-  public async playPsalm102() { return this.playResource(102); }
-  public async playPsalm103() { return this.playResource(103); }
-  public async playPsalm104() { return this.playResource(104); }
-  public async playPsalm105() { return this.playResource(105); }
-  public async playPsalm106() { return this.playResource(106); }
+  // public async playPsalm23() { return this.playResource(23); }
+  // public async playPsalm24() { return this.playResource(24); }
+  // public async playPsalm101() { return this.playResource(101); }
+  // public async playPsalm102() { return this.playResource(102); }
+  // public async playPsalm103() { return this.playResource(103); }
+  // public async playPsalm104() { return this.playResource(104); }
+  // public async playPsalm105() { return this.playResource(105); }
+  // public async playPsalm106() { return this.playResource(106); }
 }
 
 export const audioPlayer = new AudioPlayerService();

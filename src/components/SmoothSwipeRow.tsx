@@ -44,7 +44,7 @@ const SmoothSwipeRow = forwardRef(({ item, onDelete, onOpen }: { item: any, onDe
         tension: isDeleting ? 80 : 40,
         friction: 8,
       }),
-      isDeleting 
+      isDeleting
         ? Animated.timing(opacity, { toValue: 0, duration: 200, useNativeDriver: true })
         : Animated.delay(0)
     ]).start();
@@ -84,7 +84,7 @@ const SmoothSwipeRow = forwardRef(({ item, onDelete, onOpen }: { item: any, onDe
   const handleDeletePress = () => {
     // 1. Close the row visually first with a "delete" feel
     animateClose(true);
-    
+
     // 2. Delay the actual data removal so the animation can finish
     setTimeout(() => {
       onDelete(item.id);
@@ -95,8 +95,8 @@ const SmoothSwipeRow = forwardRef(({ item, onDelete, onOpen }: { item: any, onDe
     <View style={styles.container}>
       {/* BACKGROUND ACTIONS */}
       <View style={styles.deleteBackground}>
-        <TouchableOpacity 
-          style={styles.deleteButton} 
+        <TouchableOpacity
+          style={styles.deleteButton}
           onPress={handleDeletePress}
           activeOpacity={0.8}
         >
@@ -107,7 +107,7 @@ const SmoothSwipeRow = forwardRef(({ item, onDelete, onOpen }: { item: any, onDe
       {/* FOREGROUND CONTENT */}
       <Animated.View
         style={[
-          styles.mainContent, 
+          styles.mainContent,
           { transform: [{ translateX }], opacity }
         ]}
         {...panResponder.panHandlers}
@@ -157,6 +157,7 @@ const styles = StyleSheet.create({
   deleteText: {
     color: 'white',
     fontWeight: '700',
+    fontSize: 10,
   },
   mainContent: {
     width: SCREEN_WIDTH,

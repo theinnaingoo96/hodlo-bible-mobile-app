@@ -222,7 +222,7 @@ const Reader = ({ navigation, route }: any) => {
                   }
                 });
                 if (temp_verses.length > 0) {
-                  setVerses(temp_verses);
+                  setVerses(temp_verses.sort((a: any, b: any) => a.number - b.number));
                 }
               });
           });
@@ -1106,7 +1106,7 @@ const Reader = ({ navigation, route }: any) => {
                 />
               </View>
               <Text style={styles.progressPercent}>
-                {Math.round(downloadProgressValue * 100)}%
+                {Math.round(downloadProgressValue * 100) + '%'}
               </Text>
               <Text style={styles.downloadSubtext}>
                 Saving for offline playback...

@@ -206,9 +206,11 @@ const ReaderHeader = ({
         <TouchableOpacity
           style={styles.backButton}
           onPress={() => {
-            // console.log('[Reader] go back');
-
-            navigation.goBack();
+            if (navigation.canGoBack()) {
+              navigation.goBack();
+            } else {
+              navigation.navigate('Bible' as never);
+            }
             stop();
           }}>
           <FontAwesome6
