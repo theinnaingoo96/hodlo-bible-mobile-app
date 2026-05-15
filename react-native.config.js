@@ -6,7 +6,6 @@ module.exports = {
     },
     assets: [
         './src/assets/fonts/',
-        './src/assets/audio/',
         './node_modules/react-native-vector-icons/Fonts'
     ],
     dependencies: {

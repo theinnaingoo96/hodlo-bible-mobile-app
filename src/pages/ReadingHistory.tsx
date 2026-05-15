@@ -110,12 +110,12 @@ const ReadingHistory = () => {
 
 const styles = StyleSheet.create({
   sectionHeader: {
-    fontSize: 14,
-    fontWeight: '700',
+    fontSize: 12,
+    // fontWeight: '700',
     color: '#8E8E93',
     marginBottom: 15,
     marginTop: 10,
-    textTransform: 'uppercase',
+    // textTransform: 'uppercase',
     letterSpacing: 1,
   },
   container: {
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   bookTitle: {
-    fontSize: 17,
+    fontSize: 16,
     fontWeight: '600',
     color: '#1C1C1E',
   },

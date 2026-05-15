@@ -7,66 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05D59C713C4948EBBA7A75FC /* Psalm-00103.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7C71018D071E4B2FB05F902B /* Psalm-00103.m4a */; };
-		0877AFC373C2441AB479D6AF /* Psalm-00106.m4a in Resources */ = {isa = PBXBuildFile; fileRef = D4F13035AD804E1FBD2A1C6B /* Psalm-00106.m4a */; };
-		10753B2E6F0E42B0AA614A3A /* psalm00101.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C1039B89D43C49E285DECA30 /* psalm00101.m4a */; };
 		120A144108AE46C6A089C9F6 /* Pyidaungsu-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A5C8B6835294C538E2F6C83 /* Pyidaungsu-Regular.ttf */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		1E49D799E2F14251830D67E1 /* Psalm-00102.m4a in Resources */ = {isa = PBXBuildFile; fileRef = D40443998E124196BE87AB34 /* Psalm-00102.m4a */; };
-		4EA8200738B247F39EE69D15 /* psalm00106.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 8072991737CF4531A60B990C /* psalm00106.m4a */; };
 		51560E16913CB5EB166B4A21 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 		543242E343744F88AE262578 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 637EDD2EFF8B43608C8E7F58 /* Pretendard-SemiBold.otf */; };
-		637145CD1030458182CF54E2 /* Psalm-00105.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA45077CC70B41C69341C511 /* Psalm-00105.m4a */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
-		77890BD979464ED9A8D24ADD /* psalms2400.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2725BF6F634845C4BA3E5310 /* psalms2400.mp3 */; };
-		79D11F63FB7F4C0F99AB9111 /* Psalm-00104.m4a in Resources */ = {isa = PBXBuildFile; fileRef = D2D13FDDACA143D8851FB0D5 /* Psalm-00104.m4a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		842A420589774895878E8D8A /* Pyidaungsu-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32D346570DC04D23917F6CE0 /* Pyidaungsu-Bold.ttf */; };
-		8872E96CBC4A46C1A29BC99B /* psalm00103.m4a in Resources */ = {isa = PBXBuildFile; fileRef = EFA71F7E2DEF4113B2F1CD0C /* psalm00103.m4a */; };
-		929EEA67B74B4EF1B4F8499F /* psalms2300.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1556B8DB160C4A41A6616A58 /* psalms2300.wav */; };
 		A5C05F6FF1574C589A913E50 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6A646A4816244CBEB4CE3123 /* Pretendard-Regular.otf */; };
 		AA53757E4C09479A26FE82E7 /* libPods-HoDloBibleMobileApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C848F31A8ADFAA77336E4918 /* libPods-HoDloBibleMobileApp.a */; };
 		AC3940EABD0D48B39A0577EC /* NotoSansMyanmar-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15E8FD0B321A486C8B358F74 /* NotoSansMyanmar-Regular.ttf */; };
-		C029C15BC1A14B93AE29D3ED /* psalm00104.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 028A47E1A6184479BE6E5DBA /* psalm00104.m4a */; };
-		DDE26561400245CFA7F66AFA /* psalm00102.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C7B795F0C4D4444FBBB354C9 /* psalm00102.m4a */; };
-		E2AD1DF521C547AE8E930720 /* psalm00105.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 8AE7D33706D94236860C02A2 /* psalm00105.m4a */; };
 		E4385E34EFCD4C43B3D85765 /* NotoSansMyanmar-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 837A0BCE3F524E91B82B1706 /* NotoSansMyanmar-SemiBold.ttf */; };
-		E56874BC0DE1494DBFFFC1A3 /* Psalm-00101.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 103DD09CD76E46BAB41C6D54 /* Psalm-00101.m4a */; };
 		FDC29AF52A1442A78F8210E7 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8604BE6461AD47AC83BCCB75 /* Pretendard-Bold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		028A47E1A6184479BE6E5DBA /* psalm00104.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = psalm00104.m4a; path = ../src/assets/audio/psalm00104.m4a; sourceTree = "<group>"; };
-		103DD09CD76E46BAB41C6D54 /* Psalm-00101.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00101.m4a"; path = "../src/assets/audio/Psalm-00101.m4a"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* HoDloBibleMobileApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HoDloBibleMobileApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = HoDloBibleMobileApp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = HoDloBibleMobileApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = HoDloBibleMobileApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		1556B8DB160C4A41A6616A58 /* psalms2300.wav */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = psalms2300.wav; path = ../src/assets/audio/psalms2300.wav; sourceTree = "<group>"; };
 		15E8FD0B321A486C8B358F74 /* NotoSansMyanmar-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSansMyanmar-Regular.ttf"; path = "../src/assets/fonts/NotoSansMyanmar-Regular.ttf"; sourceTree = "<group>"; };
-		2725BF6F634845C4BA3E5310 /* psalms2400.mp3 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = psalms2400.mp3; path = ../src/assets/audio/psalms2400.mp3; sourceTree = "<group>"; };
 		32D346570DC04D23917F6CE0 /* Pyidaungsu-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pyidaungsu-Bold.ttf"; path = "../src/assets/fonts/Pyidaungsu-Bold.ttf"; sourceTree = "<group>"; };
 		637EDD2EFF8B43608C8E7F58 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-SemiBold.otf"; path = "../src/assets/fonts/Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		6A646A4816244CBEB4CE3123 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Regular.otf"; path = "../src/assets/fonts/Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		750B2536E83DAF51925C1C06 /* Pods-HoDloBibleMobileApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HoDloBibleMobileApp.debug.xcconfig"; path = "Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp.debug.xcconfig"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = HoDloBibleMobileApp/AppDelegate.swift; sourceTree = "<group>"; };
 		7A5C8B6835294C538E2F6C83 /* Pyidaungsu-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pyidaungsu-Regular.ttf"; path = "../src/assets/fonts/Pyidaungsu-Regular.ttf"; sourceTree = "<group>"; };
-		7C71018D071E4B2FB05F902B /* Psalm-00103.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00103.m4a"; path = "../src/assets/audio/Psalm-00103.m4a"; sourceTree = "<group>"; };
-		8072991737CF4531A60B990C /* psalm00106.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = psalm00106.m4a; path = ../src/assets/audio/psalm00106.m4a; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = HoDloBibleMobileApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		837A0BCE3F524E91B82B1706 /* NotoSansMyanmar-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSansMyanmar-SemiBold.ttf"; path = "../src/assets/fonts/NotoSansMyanmar-SemiBold.ttf"; sourceTree = "<group>"; };
 		8604BE6461AD47AC83BCCB75 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Bold.otf"; path = "../src/assets/fonts/Pretendard-Bold.otf"; sourceTree = "<group>"; };
-		8AE7D33706D94236860C02A2 /* psalm00105.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = psalm00105.m4a; path = ../src/assets/audio/psalm00105.m4a; sourceTree = "<group>"; };
-		C1039B89D43C49E285DECA30 /* psalm00101.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = psalm00101.m4a; path = ../src/assets/audio/psalm00101.m4a; sourceTree = "<group>"; };
-		C7B795F0C4D4444FBBB354C9 /* psalm00102.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = psalm00102.m4a; path = ../src/assets/audio/psalm00102.m4a; sourceTree = "<group>"; };
 		C848F31A8ADFAA77336E4918 /* libPods-HoDloBibleMobileApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HoDloBibleMobileApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA45077CC70B41C69341C511 /* Psalm-00105.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00105.m4a"; path = "../src/assets/audio/Psalm-00105.m4a"; sourceTree = "<group>"; };
-		D2D13FDDACA143D8851FB0D5 /* Psalm-00104.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00104.m4a"; path = "../src/assets/audio/Psalm-00104.m4a"; sourceTree = "<group>"; };
-		D40443998E124196BE87AB34 /* Psalm-00102.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00102.m4a"; path = "../src/assets/audio/Psalm-00102.m4a"; sourceTree = "<group>"; };
 		D434F429C297C72EBE598E39 /* Pods-HoDloBibleMobileApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HoDloBibleMobileApp.release.xcconfig"; path = "Target Support Files/Pods-HoDloBibleMobileApp/Pods-HoDloBibleMobileApp.release.xcconfig"; sourceTree = "<group>"; };
-		D4F13035AD804E1FBD2A1C6B /* Psalm-00106.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Psalm-00106.m4a"; path = "../src/assets/audio/Psalm-00106.m4a"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		EFA71F7E2DEF4113B2F1CD0C /* psalm00103.m4a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = psalm00103.m4a; path = ../src/assets/audio/psalm00103.m4a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,20 +84,6 @@
 				837A0BCE3F524E91B82B1706 /* NotoSansMyanmar-SemiBold.ttf */,
 				32D346570DC04D23917F6CE0 /* Pyidaungsu-Bold.ttf */,
 				7A5C8B6835294C538E2F6C83 /* Pyidaungsu-Regular.ttf */,
-				2725BF6F634845C4BA3E5310 /* psalms2400.mp3 */,
-				8072991737CF4531A60B990C /* psalm00106.m4a */,
-				028A47E1A6184479BE6E5DBA /* psalm00104.m4a */,
-				8AE7D33706D94236860C02A2 /* psalm00105.m4a */,
-				C1039B89D43C49E285DECA30 /* psalm00101.m4a */,
-				C7B795F0C4D4444FBBB354C9 /* psalm00102.m4a */,
-				EFA71F7E2DEF4113B2F1CD0C /* psalm00103.m4a */,
-				CA45077CC70B41C69341C511 /* Psalm-00105.m4a */,
-				D2D13FDDACA143D8851FB0D5 /* Psalm-00104.m4a */,
-				D4F13035AD804E1FBD2A1C6B /* Psalm-00106.m4a */,
-				7C71018D071E4B2FB05F902B /* Psalm-00103.m4a */,
-				D40443998E124196BE87AB34 /* Psalm-00102.m4a */,
-				103DD09CD76E46BAB41C6D54 /* Psalm-00101.m4a */,
-				1556B8DB160C4A41A6616A58 /* psalms2300.wav */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -243,20 +201,6 @@
 				E4385E34EFCD4C43B3D85765 /* NotoSansMyanmar-SemiBold.ttf in Resources */,
 				842A420589774895878E8D8A /* Pyidaungsu-Bold.ttf in Resources */,
 				120A144108AE46C6A089C9F6 /* Pyidaungsu-Regular.ttf in Resources */,
-				77890BD979464ED9A8D24ADD /* psalms2400.mp3 in Resources */,
-				4EA8200738B247F39EE69D15 /* psalm00106.m4a in Resources */,
-				C029C15BC1A14B93AE29D3ED /* psalm00104.m4a in Resources */,
-				E2AD1DF521C547AE8E930720 /* psalm00105.m4a in Resources */,
-				10753B2E6F0E42B0AA614A3A /* psalm00101.m4a in Resources */,
-				DDE26561400245CFA7F66AFA /* psalm00102.m4a in Resources */,
-				8872E96CBC4A46C1A29BC99B /* psalm00103.m4a in Resources */,
-				637145CD1030458182CF54E2 /* Psalm-00105.m4a in Resources */,
-				79D11F63FB7F4C0F99AB9111 /* Psalm-00104.m4a in Resources */,
-				0877AFC373C2441AB479D6AF /* Psalm-00106.m4a in Resources */,
-				05D59C713C4948EBBA7A75FC /* Psalm-00103.m4a in Resources */,
-				1E49D799E2F14251830D67E1 /* Psalm-00102.m4a in Resources */,
-				E56874BC0DE1494DBFFFC1A3 /* Psalm-00101.m4a in Resources */,
-				929EEA67B74B4EF1B4F8499F /* psalms2300.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
