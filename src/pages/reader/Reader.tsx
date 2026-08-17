@@ -11,6 +11,10 @@ import {
   Dimensions,
   Alert,
   TextInput,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import RNFS from 'react-native-fs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -964,98 +968,110 @@ const Reader = ({ navigation, route }: any) => {
           visible={highlightModalVisible}
           animationType="fade"
           statusBarTranslucent={true}>
-          <View style={styles.highlightModalContainer}>
-            <View style={styles.highlightModalContentContainer}>
-              <View style={styles.highlightModalHeader}>
-                <TouchableOpacity
-                  onPress={() => sethighlightModalVisible(false)}>
-                  <CloseIcon name="cross" color={AppColors.appTextBlack} />
-                </TouchableOpacity>
+          <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            style={{ flex: 1 }}>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+              <View style={styles.highlightModalContainer}>
+                <View style={styles.highlightModalContentContainer}>
+                  <View style={styles.highlightModalHeader}>
+                    <TouchableOpacity
+                      onPress={() => sethighlightModalVisible(false)}>
+                      <CloseIcon name="cross" color={AppColors.appTextBlack} />
+                    </TouchableOpacity>
+                  </View>
+                  <View style={styles.highlightModalContent}>
+                    <Text style={styles.highlightModalContentTitle}>
+                      {highlightedVerse.book_name +
+                        ' ' +
+                        highlightedVerse.chapter_no +
+                        ':' +
+                        highlightedVerse.verse_number}
+                    </Text>
+                    <Text style={styles.highlightModalContentItemText}>
+                      {highlightedVerse.text_hd}
+                    </Text>
+                    <ColorPicker
+                      selectedColor={selectedColor.hex}
+                      style={styles.colorPicker}
+                      onSelect={color => setSelectedColor(color)}
+                    />
+                  </View>
+                  <View style={styles.highlightModalFooter}>
+                    <TouchableOpacity
+                      style={styles.highlightModalCancelButton}
+                      onPress={() => sethighlightModalVisible(false)}>
+                      <Text style={styles.highlightModalFooterButtonText}>
+                        Cancel
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.highlightModalOKButton}
+                      onPress={handleConfirmHighlight}>
+                      <Text style={styles.highlightModalFooterButtonText}>OK</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
               </View>
-              <View style={styles.highlightModalContent}>
-                <Text style={styles.highlightModalContentTitle}>
-                  {highlightedVerse.book_name +
-                    ' ' +
-                    highlightedVerse.chapter_no +
-                    ':' +
-                    highlightedVerse.verse_number}
-                </Text>
-                <Text style={styles.highlightModalContentItemText}>
-                  {highlightedVerse.text_hd}
-                </Text>
-                <ColorPicker
-                  selectedColor={selectedColor.hex}
-                  style={styles.colorPicker}
-                  onSelect={color => setSelectedColor(color)}
-                />
-              </View>
-              <View style={styles.highlightModalFooter}>
-                <TouchableOpacity
-                  style={styles.highlightModalCancelButton}
-                  onPress={() => sethighlightModalVisible(false)}>
-                  <Text style={styles.highlightModalFooterButtonText}>
-                    Cancel
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.highlightModalOKButton}
-                  onPress={handleConfirmHighlight}>
-                  <Text style={styles.highlightModalFooterButtonText}>OK</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
+            </TouchableWithoutFeedback>
+          </KeyboardAvoidingView>
         </Modal>
         <Modal
           transparent
           visible={bookmarkModalVisible}
           animationType="fade"
           statusBarTranslucent={true}>
-          <View style={styles.highlightModalContainer}>
-            <View style={styles.highlightModalContentContainer}>
-              <View style={styles.highlightModalHeader}>
-                <TouchableOpacity
-                  onPress={() => setBookmarkModalVisible(false)}>
-                  <CloseIcon name="cross" color={AppColors.appTextBlack} />
-                </TouchableOpacity>
+          <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            style={{ flex: 1 }}>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+              <View style={styles.highlightModalContainer}>
+                <View style={styles.highlightModalContentContainer}>
+                  <View style={styles.highlightModalHeader}>
+                    <TouchableOpacity
+                      onPress={() => setBookmarkModalVisible(false)}>
+                      <CloseIcon name="cross" color={AppColors.appTextBlack} />
+                    </TouchableOpacity>
+                  </View>
+                  <View style={styles.highlightModalContent}>
+                    <Text style={styles.highlightModalContentTitle}>
+                      {bookmarkedVerse.book_name +
+                        ' ' +
+                        bookmarkedVerse.chapter_no +
+                        ':' +
+                        bookmarkedVerse.verse_number}
+                    </Text>
+                    <Text style={styles.highlightModalContentItemText}>
+                      {bookmarkedVerse.text_hd}
+                    </Text>
+                    <Text style={styles.bookmarkNoteTitle}>Note</Text>
+                    <TextInput
+                      placeholder="Enter bookmark note"
+                      value={bookmarkNote}
+                      onChangeText={setBookmarkNote}
+                      numberOfLines={4}
+                      multiline={true}
+                      style={styles.bookmarkNoteInput}
+                    />
+                  </View>
+                  <View style={styles.highlightModalFooter}>
+                    <TouchableOpacity
+                      style={styles.highlightModalCancelButton}
+                      onPress={() => setBookmarkModalVisible(false)}>
+                      <Text style={styles.highlightModalFooterButtonText}>
+                        Cancel
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.highlightModalOKButton}
+                      onPress={handleConfirmBookmark}>
+                      <Text style={styles.highlightModalFooterButtonText}>OK</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
               </View>
-              <View style={styles.highlightModalContent}>
-                <Text style={styles.highlightModalContentTitle}>
-                  {bookmarkedVerse.book_name +
-                    ' ' +
-                    bookmarkedVerse.chapter_no +
-                    ':' +
-                    bookmarkedVerse.verse_number}
-                </Text>
-                <Text style={styles.highlightModalContentItemText}>
-                  {bookmarkedVerse.text_hd}
-                </Text>
-                <Text style={styles.bookmarkNoteTitle}>Note</Text>
-                <TextInput
-                  placeholder="Enter bookmark note"
-                  value={bookmarkNote}
-                  onChangeText={setBookmarkNote}
-                  numberOfLines={4}
-                  multiline={true}
-                  style={styles.bookmarkNoteInput}
-                />
-              </View>
-              <View style={styles.highlightModalFooter}>
-                <TouchableOpacity
-                  style={styles.highlightModalCancelButton}
-                  onPress={() => setBookmarkModalVisible(false)}>
-                  <Text style={styles.highlightModalFooterButtonText}>
-                    Cancel
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.highlightModalOKButton}
-                  onPress={handleConfirmBookmark}>
-                  <Text style={styles.highlightModalFooterButtonText}>OK</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
+            </TouchableWithoutFeedback>
+          </KeyboardAvoidingView>
         </Modal>
         <Modal
           transparent

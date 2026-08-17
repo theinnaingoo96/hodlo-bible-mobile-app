@@ -9,19 +9,36 @@ import { AppColors } from "../constants/Color";
 interface NormalHeaderProps {
     title: string;
     backButton: boolean;
+    rightAction?: () => void;
+    rightIcon?: any;
+    rightText?: string;
 }
 
-const NormalHeader = ({ title, backButton }: NormalHeaderProps) => {
+const NormalHeader = ({ title, backButton, rightAction, rightIcon, rightText }: NormalHeaderProps) => {
     const device = useSelector((state: any) => state.device);
     const navigation = useNavigation();
 
     return (
         <View style={[styles.headerContainer, { backgroundColor: device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDark }]}>
-            {backButton && <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-                <FontAwesome6 name="arrow-left" iconStyle="solid" color={device.theme ? AppColors.primaryDark : AppColors.appTextWhite} size={20} />
-            </TouchableOpacity>}
+            {backButton ? (
+                <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+                    <FontAwesome6 name="arrow-left" iconStyle="solid" color={device.theme ? AppColors.primaryDark : AppColors.appTextWhite} size={20} />
+                </TouchableOpacity>
+            ) : (
+                <View style={{ width: 65 }} />
+            )}
             <Text style={[styles.headerTitle, { color: device.theme ? AppColors.primaryDark : AppColors.appTextWhite }]}>{title}</Text>
-            <View style={{ width: 65 }} />
+            {rightAction ? (
+                <TouchableOpacity style={styles.rightActionButton} onPress={rightAction}>
+                    {rightIcon ? (
+                        <FontAwesome6 name={rightIcon} iconStyle="solid" color={device.theme ? AppColors.primaryDark : AppColors.appTextWhite} size={20} />
+                    ) : (
+                        <Text style={[styles.rightActionText, { color: device.theme ? AppColors.primaryDark : AppColors.appTextWhite }]}>{rightText}</Text>
+                    )}
+                </TouchableOpacity>
+            ) : (
+                <View style={{ width: 65 }} />
+            )}
         </View>
     );
 };
@@ -75,6 +92,18 @@ const styles = StyleSheet.create({
         height: 40,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    rightActionButton: {
+        width: 65,
+        height: 40,
+        padding: 10,
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    rightActionText: {
+        fontSize: 14,
+        fontWeight: 'bold',
     }
 });
 
