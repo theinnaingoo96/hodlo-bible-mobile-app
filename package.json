@@ -11,6 +11,7 @@
     "build": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
     "restart": "npx react-native start --reset-cache",
     "build-android": "cd android && ./gradlew clean && rm -rf app/src/main/res/drawable-* && ./gradlew assembleRelease",
+    "bundle-android": "cd android && ./gradlew clean && rm -rf app/src/main/res/drawable-* && ./gradlew bundleRelease",
     "assets": "npx react-native-asset",
     "icon": "npx react-native set-icon --path ./assets/icon.png --platform android"
   },
