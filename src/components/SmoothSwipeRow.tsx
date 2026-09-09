@@ -8,6 +8,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
+import DatabaseService from '../services/DatabaseService';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const TRASH_THRESHOLD = -80;
@@ -17,12 +18,11 @@ const SmoothSwipeRow = forwardRef(({ item, onDelete, onOpen }: { item: any, onDe
   const opacity = useRef(new Animated.Value(1)).current;
   const rowOpened = useRef(false);
 
-  // EXPOSE METHODS TO PARENT
   useImperativeHandle(ref, () => ({
     close: (isDeleting = false) => {
       animateClose(isDeleting);
     },
-    itemId: item.id // To help parent track which is open
+    itemId: item.id
   }));
 
   const animateOpen = () => {
@@ -44,7 +44,7 @@ const SmoothSwipeRow = forwardRef(({ item, onDelete, onOpen }: { item: any, onDe
         tension: isDeleting ? 80 : 40,
         friction: 8,
       }),
-      isDeleting 
+      isDeleting
         ? Animated.timing(opacity, { toValue: 0, duration: 200, useNativeDriver: true })
         : Animated.delay(0)
     ]).start();
@@ -53,25 +53,20 @@ const SmoothSwipeRow = forwardRef(({ item, onDelete, onOpen }: { item: any, onDe
   const panResponder = useRef(
     PanResponder.create({
       onMoveShouldSetPanResponder: (_, gestureState) => {
-        // Capture horizontal movement only
         return Math.abs(gestureState.dx) > Math.abs(gestureState.dy) && Math.abs(gestureState.dx) > 10;
       },
       onPanResponderGrant: () => {
-        // If the user starts touching a row, tell parent to close others
         onOpen && onOpen(item.id);
       },
       onPanResponderMove: (_, gestureState) => {
-        // Drag logic: don't allow swiping right
         if (gestureState.dx > 0 && !rowOpened.current) {
           translateX.setValue(0);
         } else {
-          // Calculate new X based on current state
           const newX = rowOpened.current ? TRASH_THRESHOLD + gestureState.dx : gestureState.dx;
           translateX.setValue(newX > 0 ? 0 : newX);
         }
       },
       onPanResponderRelease: (_, gestureState) => {
-        // If swiped far enough or moving fast to the left
         if (gestureState.dx < -40 || gestureState.vx < -0.5) {
           animateOpen();
         } else {
@@ -82,21 +77,26 @@ const SmoothSwipeRow = forwardRef(({ item, onDelete, onOpen }: { item: any, onDe
   ).current;
 
   const handleDeletePress = () => {
-    // 1. Close the row visually first with a "delete" feel
     animateClose(true);
-    
-    // 2. Delay the actual data removal so the animation can finish
+
     setTimeout(() => {
       onDelete(item.id);
     }, 250);
   };
 
+  const handleOnPress = () => {
+    console.log('Detail', item);
+    DatabaseService.getInstance().getVersesById(item.verse_id).then((result: any) => {
+      console.log('Verse', result);
+    });
+  }
+
   return (
     <View style={styles.container}>
       {/* BACKGROUND ACTIONS */}
       <View style={styles.deleteBackground}>
-        <TouchableOpacity 
-          style={styles.deleteButton} 
+        <TouchableOpacity
+          style={styles.deleteButton}
           onPress={handleDeletePress}
           activeOpacity={0.8}
         >
@@ -107,18 +107,18 @@ const SmoothSwipeRow = forwardRef(({ item, onDelete, onOpen }: { item: any, onDe
       {/* FOREGROUND CONTENT */}
       <Animated.View
         style={[
-          styles.mainContent, 
+          styles.mainContent,
           { transform: [{ translateX }], opacity }
         ]}
         {...panResponder.panHandlers}
       >
-        <View style={styles.itemRow}>
+        <TouchableOpacity style={styles.itemRow} onPress={handleOnPress}>
           <View style={[styles.dot, { backgroundColor: item.color }]} />
           <View style={styles.textContainer}>
             <Text style={styles.bookTitle}>{item.book} {item.chapter}:{item.verse}</Text>
             <Text style={styles.timeText}>{item.created_at}</Text>
           </View>
-        </View>
+        </TouchableOpacity>
       </Animated.View>
     </View>
   );
@@ -157,6 +157,7 @@ const styles = StyleSheet.create({
   deleteText: {
     color: 'white',
     fontWeight: '700',
+    fontSize: 10,
   },
   mainContent: {
     width: SCREEN_WIDTH,

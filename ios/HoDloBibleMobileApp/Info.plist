@@ -34,7 +34,7 @@
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>This app needs permission to save images to your photos.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app needs access to your gallery to save Bible verses.</string>
+	<string>This app accesses your photo library to allow you to select background images for creating custom scripture graphics and to save shared verses.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
@@ -63,10 +63,6 @@
 		<string>NotoSansMyanmar-SemiBold.ttf</string>
 		<string>Pyidaungsu-Bold.ttf</string>
 		<string>Pyidaungsu-Regular.ttf</string>
-	</array>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>audio</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string></string>

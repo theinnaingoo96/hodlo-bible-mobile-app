@@ -726,23 +726,40 @@ export default class DatabaseService {
 
     public async getReadingHistory(): Promise<any> {
         return new Promise(async (resolve, reject) => {
+            if (this.db) {
+                try {
+                    const [results] = await this.db.executeSql(
+                        `SELECT chapters.*, books.name as book_name 
+                         FROM ${TABLE_CHAPTERS} as chapters
+                         JOIN ${TABLE_BOOKS} as books ON chapters.book_id = books.id
+                         WHERE chapters.is_completed = 1
+                         ORDER BY chapters.completed_at DESC;`
+                    );
+                    const readingHistory = [];
+                    for (let i = 0; i < results.rows.length; i++) {
+                        readingHistory.push(results.rows.item(i));
+                    }
+                    resolve(readingHistory);
+                } catch (error) {
+                    console.error('[DB] getReadingHistory error:', error);
+                    reject(error);
+                }
+            } else {
+                reject('Database not initialized');
+            }
+        });
+    }
+
+    public async clearReadingHistory(): Promise<any> {
+        return new Promise(async (resolve, reject) => {
             if (!this.db) throw new Error('Database not initialized');
             try {
-                // const [results] = await this.db.executeSql(`SELECT * FROM ${TABLE_CHAPTERS} WHERE is_completed = 1 ORDER BY completed_at DESC;`);
-                const [results] = await this.db.executeSql(
-                    `SELECT chapters.*, books.name as book_name 
-                     FROM ${TABLE_CHAPTERS} as chapters
-                     JOIN ${TABLE_BOOKS} as books ON chapters.book_id = books.id
-                     WHERE chapters.is_completed = 1
-                     ORDER BY chapters.completed_at DESC;`
+                const results: any = await this.db.executeSql(
+                    `UPDATE ${TABLE_CHAPTERS} SET is_completed = 0, completed_at = NULL WHERE is_completed = 1`
                 );
-                const readingHistory = [];
-                for (let i = 0; i < results.rows.length; i++) {
-                    readingHistory.push(results.rows.item(i));
-                }
-                resolve(readingHistory);
+                resolve(results[0].rowsAffected > 0);
             } catch (error) {
-                console.error('[DB] getReadingHistory error:', error);
+                console.error('[DB] clearReadingHistory error:', error);
                 reject(error);
             }
         });
@@ -1085,7 +1102,7 @@ export default class DatabaseService {
             if (!this.db) throw new Error('Database not initialized');
 
             try {
-                const [results] = await this.db.executeSql(`INSERT INTO ${TABLE_HIGHLIGHTS} (verse_id, color) VALUES (?, ?);`, [verseId, color]);
+                const [results] = await this.db.executeSql(`INSERT OR REPLACE INTO ${TABLE_HIGHLIGHTS} (verse_id, color) VALUES (?, ?);`, [verseId, color]);
                 console.log(`[DB] Highlight inserted: ${verseId}, ID: ${results.insertId}`);
                 resolve(results);
             } catch (error) {

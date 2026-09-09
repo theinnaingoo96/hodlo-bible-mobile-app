@@ -182,7 +182,7 @@ const Home = () => {
                                     <Text style={[styles.currentReadTitle, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>Continue Reading</Text>
                                 </View>
                                 <View style={styles.currentReadVerse}>
-                                    <Text style={[styles.currentReadVerseText, { color: AppColors.primaryDark }]}>{reader.currentRead.bookName + " " + reader.currentRead.chapterNumber + ":" + reader.currentRead.verseNumber}</Text>
+                                    <Text style={[styles.currentReadVerseText, { color: AppColors.primaryDark }]}>{reader.currentRead.bookName + " " + reader.currentRead.chapterNumber}</Text>
                                     <FontAwesome6 name="arrow-right" iconStyle="solid" color={device.theme ? AppColors.primaryDark : AppColors.appTextWhite} size={20} />
                                 </View>
                             </TouchableOpacity>
@@ -195,7 +195,9 @@ const Home = () => {
                                 <VerseOfTheDayCard
                                     verse={todayVerse?.text_hd || ''}
                                     reference={todayVerse?.book_name + " " + todayVerse?.chapter + ":" + todayVerse?.verse}
-                                    onShare={() => setShareModalVisible(true)}
+                                    onShare={() => {
+                                        setShareModalVisible(true)
+                                    }}
                                 />
                             ) : (
                                 <VerseOfTheDayCard

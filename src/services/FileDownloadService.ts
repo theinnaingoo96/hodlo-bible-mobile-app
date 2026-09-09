@@ -58,7 +58,8 @@ class FileDownloadService {
     await this.ensureDirectoryPromise;
   }
 
-  public getDownloadPath(fileName: string): string {
+  public getDownloadPath(fileNameOrPath: string): string {
+    const fileName = fileNameOrPath.split('/').pop() || fileNameOrPath;
     return `${this.baseDirectory}/${fileName}`;
   }
 

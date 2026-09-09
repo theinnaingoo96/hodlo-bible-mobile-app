@@ -102,7 +102,7 @@ export const VerseComponent = React.memo(({
               styles.verseText,
               {
                 fontSize: readerSetting.fontSize,
-                lineHeight: readerSetting.fontSize * 1.5,
+                lineHeight: language == 'mm' ? 33 : readerSetting.fontFamily == 1 ? 25 : readerSetting.fontSize * 1.5,
                 fontFamily:
                   constants.fontFamily[readerSetting.fontFamily - 1]
                     .regular,

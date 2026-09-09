@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
     shareText: {
         color: "#fff",
         fontWeight: "bold",
+        fontSize: 12
     },
     progressBar: {
         height: 8,

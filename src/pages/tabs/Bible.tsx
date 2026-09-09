@@ -31,7 +31,7 @@ const Bible = ({ navigation }: any) => {
     const loadBooks = async () => {
         try {
             DatabaseService.getInstance().getAllBooks().then((result: any) => {
-                console.log('result getAllBooks', result);
+                // console.log('result getAllBooks', result);
                 setBookList(result || []);
                 setOldTestamentBooks(result.filter((book: any) => book.testament === 'OT'));
                 setNewTestamentBooks(result.filter((book: any) => book.testament === 'NT'));
@@ -41,10 +41,10 @@ const Bible = ({ navigation }: any) => {
         }
     };
 
-    const handleChapterPress = (book: any, chapter: any) => {  
+    const handleChapterPress = (book: any, chapter: any) => {
         // console.log('handleChapterPress', book, chapter);
         const currentReaderData = reader.currentRead;
-        const readerData: CurrentRead = {       
+        const readerData: CurrentRead = {
             bookName: book.name,
             bookId: book.id,
             chapterId: chapter.id,
@@ -61,7 +61,7 @@ const Bible = ({ navigation }: any) => {
 
     const loadChapters = async (book: any, bookId: any) => {
         // console.log('loadChapters', book, bookId, selectedBookObj?.id);
-        if ( selectedBook === book.name) {
+        if (selectedBook === book.name) {
             setChapterList([]);
             setSelectedBook('');
             setSelectedBookObj(null);
@@ -71,7 +71,7 @@ const Bible = ({ navigation }: any) => {
         setSelectedBookObj(book);
         try {
             DatabaseService.getInstance().getChaptersByBookId(book.id).then((result: any) => {
-                console.log('result getChaptersByBookId', book.id, ' => ', result);
+                // console.log('result getChaptersByBookId', book.id, ' => ', result);
                 setChapterList(result || []);
             });
         } catch (error) {
@@ -113,7 +113,7 @@ const Bible = ({ navigation }: any) => {
                         }}
                     >
                         <Text style={device.theme ? activeTab === 'old' ? styles.activeTabText : styles.tabText : activeTab === 'old' ? styles.activeTabTextDark : styles.tabTextDark}>
-                            Old Testament
+                            {"Old\tTestament"}
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -125,7 +125,7 @@ const Bible = ({ navigation }: any) => {
                         }}
                     >
                         <Text style={device.theme ? activeTab === 'new' ? styles.activeTabText : styles.tabText : activeTab === 'new' ? styles.activeTabTextDark : styles.tabTextDark}>
-                            New Testament
+                            {"New\tTestament"}
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -140,9 +140,9 @@ const Bible = ({ navigation }: any) => {
                                 <Text style={[styles.bookText, selectedBook === book && styles.selectedBookText, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>
                                     {book.name}
                                 </Text>
-                                <Text style={[styles.countText, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>
-                                    {book.count}
-                                </Text>
+                                <View style={[styles.countContainer]}>
+                                    <Text style={[styles.countText, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>{book.count}</Text>
+                                </View>
                                 {
                                     selectedBook === book.name ? (
                                         <ChevonUpIcon name="down" color={device.theme ? AppColors.tabTextGrey : AppColors.appTextWhite} style={styles.downIconStyle} />
@@ -233,14 +233,18 @@ const styles = StyleSheet.create({
         color: AppColors.appTextBlack,
         fontSize: 14,
     },
-    countText: {
-        fontSize: 12,
-        color: AppColors.appTextBlack,
+    countContainer: {
+        //fontSize: 12,
+        // color: AppColors.appTextBlack,
         position: 'absolute',
         right: 50,
         bottom: 0,
         height: "100%",
         verticalAlign: 'middle',
+        justifyContent: 'center',
+    },
+    countText: {
+        fontSize: 14,
     },
     selectedBookText: {
         color: AppColors.appBackgroundGrey,

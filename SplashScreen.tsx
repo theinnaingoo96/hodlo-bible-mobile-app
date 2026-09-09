@@ -77,7 +77,7 @@ const SplashScreen = ({ navigation }: any) => {
             await db.init(dispatch).then(async () => {
                 console.log('inside db.init');
                 db.getRandomVerses(10).then(async (data) => {
-                    console.log('random verse', data);
+                    // console.log('random verse', data);
                     // await checkDatabaseUpdate();
                     const notificationsGranted = await permissionService.checkPermission('notifications');
                     if (notificationsGranted) {

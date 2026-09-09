@@ -1,28 +1,63 @@
 import React, { useEffect, useState } from 'react';
-import { SectionList, View, Text, StyleSheet } from 'react-native';
+import { SectionList, View, Text, StyleSheet, Alert } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import moment from 'moment';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { AppColors } from '../constants/Color';
 import NormalHeader from '../components/NormalHeader';
 import DatabaseService from '../services/DatabaseService';
+import { setReadingProgress } from '../store/slices/readerSlice';
+import { setLoading } from '../store/slices/deviceSlice';
 
 const ReadingHistory = () => {
   const [sections, setSections] = useState<any[]>([]);
   const device = useSelector((state: any) => state.device);
   const insets = useSafeAreaInsets();
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    loadHistory();
+  }, []);
+
+  const loadHistory = () => {
     DatabaseService.getInstance()
       .getReadingHistory()
       .then((result: any) => {
-        // console.log('result', result);
         if (result.length > 0) {
           setSections(groupHistoryByDate(result));
+        } else {
+          setSections([]);
         }
       });
-  }, []);
+  };
+
+  const handleDeleteAll = () => {
+    Alert.alert(
+      'Clear History',
+      'Are you sure you want to delete all reading history? This cannot be undone.',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Delete All',
+          style: 'destructive',
+          onPress: async () => {
+            dispatch(setLoading(true));
+            try {
+              await DatabaseService.getInstance().clearReadingHistory();
+              setSections([]);
+              dispatch(setReadingProgress(0));
+              dispatch(setLoading(false));
+              Alert.alert('Success', 'Reading history cleared.');
+            } catch (error) {
+              console.error('Error clearing history:', error);
+              Alert.alert('Error', 'Failed to clear reading history.');
+            }
+          },
+        },
+      ]
+    );
+  };
 
   const groupHistoryByDate = (rawData: any) => {
     const groups = rawData.reduce((sections: any, item: any) => {
@@ -67,7 +102,7 @@ const ReadingHistory = () => {
 
         <View style={styles.contentCard}>
           <View>
-            <Text style={styles.bookTitle}>
+            <Text style={[styles.bookTitle, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>
               {item.book_name} - {item.number}
             </Text>
             <Text style={styles.timestamp}>
@@ -93,29 +128,40 @@ const ReadingHistory = () => {
             : AppColors.appBackgroundDarkTint,
         },
       ]}>
-      <NormalHeader title="Reading History" backButton={true} />
-      <SectionList
-        sections={sections}
-        keyExtractor={(item, index) => 'reading-history-' + index.toString()}
-        renderItem={renderItem}
-        renderSectionHeader={({ section: { title } }) => (
-          <Text style={styles.sectionHeader}>{title}</Text>
-        )}
-        stickySectionHeadersEnabled={false}
-        contentContainerStyle={{ padding: 20 }}
+      <NormalHeader
+        title="Reading History"
+        backButton={true}
+        rightAction={sections.length > 0 ? handleDeleteAll : undefined}
+        rightIcon="trash-can"
       />
+      {sections.length > 0 ? (
+        <SectionList
+          sections={sections}
+          keyExtractor={(item, index) => 'reading-history-' + index.toString()}
+          renderItem={renderItem}
+          renderSectionHeader={({ section: { title } }) => (
+            <Text style={styles.sectionHeader}>{title}</Text>
+          )}
+          stickySectionHeadersEnabled={false}
+          contentContainerStyle={{ padding: 20 }}
+        />
+      ) : (
+        <View style={styles.emptyContainer}>
+          <Text style={[styles.emptyText, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>No reading history found.</Text>
+        </View>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   sectionHeader: {
-    fontSize: 14,
-    fontWeight: '700',
+    fontSize: 12,
+    // fontWeight: '700',
     color: '#8E8E93',
     marginBottom: 15,
     marginTop: 10,
-    textTransform: 'uppercase',
+    // textTransform: 'uppercase',
     letterSpacing: 1,
   },
   container: {
@@ -150,7 +196,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   bookTitle: {
-    fontSize: 17,
+    fontSize: 16,
     fontWeight: '600',
     color: '#1C1C1E',
   },
@@ -166,6 +212,15 @@ const styles = StyleSheet.create({
     backgroundColor: AppColors.primaryDark,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  emptyText: {
+    fontSize: 16,
+    color: '#8E8E93',
   },
 });
 

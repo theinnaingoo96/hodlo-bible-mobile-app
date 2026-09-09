@@ -81,14 +81,14 @@ export function useAudioPlayer(): UseAudioPlayerReturn {
   }, []);
 
   // Convenience methods
-  const playPsalm23 = useCallback(async () => audioPlayer.playPsalm23(), []);
-  const playPsalm24 = useCallback(async () => audioPlayer.playPsalm24(), []);
-  const playPsalm101 = useCallback(async () => audioPlayer.playPsalm101(), []);
-  const playPsalm102 = useCallback(async () => audioPlayer.playPsalm102(), []);
-  const playPsalm103 = useCallback(async () => audioPlayer.playPsalm103(), []);
-  const playPsalm104 = useCallback(async () => audioPlayer.playPsalm104(), []);
-  const playPsalm105 = useCallback(async () => audioPlayer.playPsalm105(), []);
-  const playPsalm106 = useCallback(async () => audioPlayer.playPsalm106(), []);
+  // const playPsalm23 = useCallback(async () => audioPlayer.playPsalm23(), []);
+  // const playPsalm24 = useCallback(async () => audioPlayer.playPsalm24(), []);
+  // const playPsalm101 = useCallback(async () => audioPlayer.playPsalm101(), []);
+  // const playPsalm102 = useCallback(async () => audioPlayer.playPsalm102(), []);
+  // const playPsalm103 = useCallback(async () => audioPlayer.playPsalm103(), []);
+  // const playPsalm104 = useCallback(async () => audioPlayer.playPsalm104(), []);
+  // const playPsalm105 = useCallback(async () => audioPlayer.playPsalm105(), []);
+  // const playPsalm106 = useCallback(async () => audioPlayer.playPsalm106(), []);
 
   // Helper functions
   const progress = audioState.duration > 0 ? audioState.currentTime / audioState.duration : 0;
@@ -112,14 +112,14 @@ export function useAudioPlayer(): UseAudioPlayerReturn {
     seekTo,
     setVolume,
     loadAudio,
-    playPsalm23,
-    playPsalm24,
-    playPsalm101,
-    playPsalm102,
-    playPsalm103,
-    playPsalm104,
-    playPsalm105,
-    playPsalm106,
+    // playPsalm23,
+    // playPsalm24,
+    // playPsalm101,
+    // playPsalm102,
+    // playPsalm103,
+    // playPsalm104,
+    // playPsalm105,
+    // playPsalm106,
     progress,
     formattedTime,
     formattedDuration,
