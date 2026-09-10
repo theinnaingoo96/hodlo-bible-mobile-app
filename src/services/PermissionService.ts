@@ -58,43 +58,19 @@ class PermissionService {
     const apiLevel = Platform.OS === 'android' ? (Platform.Version as number) : 0;
 
     switch (permission) {
+      case 'notifications':
+        if (apiLevel < 33) {
+          return true;
+        }
+        return await PermissionsAndroid.check(
+          PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS
+        );
+
       case 'storage':
-        if (apiLevel >= 33) {
-          return (
-            await PermissionsAndroid.check(
-              PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES
-            ) &&
-            await PermissionsAndroid.check(
-              PermissionsAndroid.PERMISSIONS.READ_MEDIA_AUDIO
-            )
-          );
-        } else {
-          return await PermissionsAndroid.check(
-            PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE
-          );
-        }
-
       case 'media_images':
-        if (apiLevel >= 33) {
-          return await PermissionsAndroid.check(
-            PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES
-          );
-        } else {
-          return await PermissionsAndroid.check(
-            PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE
-          );
-        }
-
       case 'media_audio':
-        if (apiLevel >= 33) {
-          return await PermissionsAndroid.check(
-            PermissionsAndroid.PERMISSIONS.READ_MEDIA_AUDIO
-          );
-        } else {
-          return await PermissionsAndroid.check(
-            PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE
-          );
-        }
+        // System photo picker and internal sandboxed storage do not require runtime permissions
+        return true;
 
       default:
         return false;
@@ -152,93 +128,51 @@ class PermissionService {
   private async requestAndroidPermission(permission: PermissionType): Promise<PermissionResult> {
     const apiLevel = Platform.OS === 'android' ? (Platform.Version as number) : 0;
 
-    let permissionString: (typeof PermissionsAndroid.PERMISSIONS)[keyof typeof PermissionsAndroid.PERMISSIONS];
-    let title: string;
-    let message: string;
-
     switch (permission) {
-      case 'notifications':
+      case 'notifications': {
         if (apiLevel < 33) {
           return { granted: true }; // Not required for Android < 13
         }
-        permissionString = PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS;
-        title = 'Notification Permission';
-        message = 'This app needs notification permission to send you daily verses and reminders.';
-        break;
 
-      case 'storage':
-        if (apiLevel >= 33) {
-          // Request both media permissions for Android 13+
-          const imagesResult = await this.requestPermission('media_images');
-          const audioResult = await this.requestPermission('media_audio');
+        const isGranted = await this.checkPermission(permission);
+        if (isGranted) {
+          return { granted: true };
+        }
+
+        const result = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
+          {
+            title: 'Notification Permission',
+            message: 'This app needs notification permission to send you daily verses and reminders.',
+            buttonNeutral: 'Ask Me Later',
+            buttonNegative: 'Cancel',
+            buttonPositive: 'OK',
+          }
+        );
+
+        if (result === PermissionsAndroid.RESULTS.GRANTED) {
+          return { granted: true };
+        } else if (result === PermissionsAndroid.RESULTS.NEVER_ASK_AGAIN) {
           return {
-            granted: imagesResult.granted && audioResult.granted,
-            message: imagesResult.granted && audioResult.granted
-              ? undefined
-              : 'Storage permissions are required to access media files.'
+            granted: false,
+            message: 'Notification permission was denied. Please enable it in app settings.',
           };
         } else {
-          permissionString = PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE;
-          title = 'Storage Permission';
-          message = 'This app needs storage permission to access audio files and download content.';
+          return {
+            granted: false,
+            message: 'Notification permission was denied.',
+          };
         }
-        break;
+      }
 
+      case 'storage':
       case 'media_images':
-        if (apiLevel >= 33) {
-          permissionString = PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES;
-          title = 'Photo Permission';
-          message = 'This app needs access to your photos to display images.';
-        } else {
-          permissionString = PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE;
-          title = 'Storage Permission';
-          message = 'This app needs storage permission to access images.';
-        }
-        break;
-
       case 'media_audio':
-        if (apiLevel >= 33) {
-          permissionString = PermissionsAndroid.PERMISSIONS.READ_MEDIA_AUDIO;
-          title = 'Audio Permission';
-          message = 'This app needs access to audio files to play Bible audio.';
-        } else {
-          permissionString = PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE;
-          title = 'Storage Permission';
-          message = 'This app needs storage permission to access audio files.';
-        }
-        break;
+        // System photo picker and internal sandboxed storage do not require runtime permissions
+        return { granted: true };
 
       default:
         return { granted: false, message: 'Unknown permission type' };
-    }
-
-    // Check if already granted
-    const isGranted = await this.checkPermission(permission);
-    if (isGranted) {
-      return { granted: true };
-    }
-
-    // Request permission
-    const result = await PermissionsAndroid.request(permissionString, {
-      title,
-      message,
-      buttonNeutral: 'Ask Me Later',
-      buttonNegative: 'Cancel',
-      buttonPositive: 'OK',
-    });
-
-    if (result === PermissionsAndroid.RESULTS.GRANTED) {
-      return { granted: true };
-    } else if (result === PermissionsAndroid.RESULTS.NEVER_ASK_AGAIN) {
-      return {
-        granted: false,
-        message: `${title} was denied. Please enable it in app settings.`,
-      };
-    } else {
-      return {
-        granted: false,
-        message: `${title} was denied.`,
-      };
     }
   }
 
@@ -263,9 +197,6 @@ class PermissionService {
   async requestEssentialPermissions(): Promise<Record<PermissionType, PermissionResult>> {
     const permissions: PermissionType[] = [
       'notifications',
-      'storage',
-      'media_audio',
-      'media_images',
     ];
 
     return await this.requestMultiplePermissions(permissions);

@@ -81,45 +81,13 @@ const ShareModal = ({
   };
 
   const handleImportImagePress = async () => {
-    const apiLevel = Platform.Version as number;//parseInt(androidVersion.split('.')[0]) || 0;
-    let hasPermission = false;
-    if (Platform.OS === 'android') {
-      if (apiLevel >= 33) {
-        hasPermission = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES);
-        if (!hasPermission) {
-          const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES, {
-            title: 'Permission to access photos',
-            message: 'We need your permission to access your photo library to import an image.',
-            buttonNegative: 'Cancel',
-            buttonPositive: 'OK',
-          });
-          hasPermission = granted === PermissionsAndroid.RESULTS.GRANTED;
-        }
-      } else {
-        hasPermission = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE);
-        if (!hasPermission) {
-          const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE, {
-            title: 'Permission to access photos',
-            message: 'We need your permission to access your photo library to import an image.',
-            buttonNegative: 'Cancel',
-            buttonPositive: 'OK',
-          });
-          hasPermission = granted === PermissionsAndroid.RESULTS.GRANTED;
-        }
+    try {
+      const result = await launchImageLibrary({ mediaType: 'photo' });
+      if (result.assets && result.assets.length > 0 && result.assets[0].uri) {
+        setImageUri(result.assets[0].uri);
       }
-    } else {
-      hasPermission = true;
-    }
-    if (!hasPermission) {
-      Alert.alert(
-        'Permission required',
-        'Please allow photo access to import an image.'
-      );
-      return;
-    }
-    const result = await launchImageLibrary({ mediaType: 'photo' });
-    if (result.assets) {
-      setImageUri(result.assets[0].uri);
+    } catch (error) {
+      console.error('Error picking image:', error);
     }
   };
 

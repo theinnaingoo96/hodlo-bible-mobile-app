@@ -102,8 +102,7 @@ function App(): React.JSX.Element {
   }, []);
 
   const initialPermissionSetup = async () => {
-    const results = await permissionService.requestEssentialPermissions();
-    await DailyVerseService.checkAndScheduleNotifications();
+    await permissionService.requestEssentialPermissions();
   }
 
   useEffect(() => {

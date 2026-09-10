@@ -34,7 +34,7 @@ export default class DatabaseService {
 
     public async init(dispatch: Dispatch): Promise<any> {
         return new Promise(async (resolve, reject) => {
-            if (this.db) return;
+            if (this.db) return resolve(true);
 
             try {
                 this.db = await SQLite.openDatabase({
@@ -42,39 +42,28 @@ export default class DatabaseService {
                     location: 'default',
                 });
                 console.log('[DB] Opened successfully');
-                await this.shouldCreateAndSeed().then((data) => {
-                    const shouldCreate = data
-                    console.log('[DB] shouldCreate', data);
-                    if (shouldCreate) {
-                        this.createTables().then(() => {
-                            console.log('[DB] Tables created');
-                            console.log('[DB] Seeding data...');
-                            this.seedData(dispatch).then(async () => {
-                                console.log('[DB] Data seeded');
+                await this.createTables();
+                console.log('[DB] Tables created or verified');
 
-                                const deviceId = await DeviceInfo.getUniqueId();
-                                const deviceName = await DeviceInfo.getDeviceName();
-                                const deviceType = Platform.OS;
-                                const result = await createUser(deviceId, deviceName, deviceType);
-                                console.log('[DB] create user result', result);
-                                // this.seedAudioMilestone23().then(() => {
-                                //     console.log('[DB] Audio milestone 23 seeded');
-                                // });
-                                // this.seedAudioMilestone24().then(() => {
-                                //     console.log('[DB] Audio milestone 24 seeded');
-                                // });
-                                resolve(true);
-                            });
-                        });
-                    } else resolve(true);
-                }).catch((error) => {
-                    console.log('[DB] shouldCreate error', error);
-                });
+                const shouldCreate = await this.shouldCreateAndSeed();
+                console.log('[DB] shouldCreate', shouldCreate);
+                if (shouldCreate) {
+                    console.log('[DB] Seeding data...');
+                    await this.seedData(dispatch);
+                    console.log('[DB] Data seeded');
+                    const randomId = `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
+                    // const deviceId = await DeviceInfo.getUniqueId();
+                    const deviceName = await DeviceInfo.getDeviceName();
+                    const deviceType = Platform.OS;
+                    const result = await createUser(randomId, deviceName, deviceType);
+                    console.log('[DB] create user result', result);
+                }
+                resolve(true);
             } catch (error) {
-                console.error('[DB] Failed to open:', error);
+                console.error('[DB] Failed to open/init database:', error);
                 reject(error);
             }
-        })
+        });
     }
 
     public async createTables(): Promise<any> {
@@ -1339,7 +1328,7 @@ export default class DatabaseService {
     }
 
     public async getFutureNotificationCount(): Promise<number> {
-        return new Promise(async (resolve, reject) => {
+        return new Promise(async (resolve) => {
             if (!this.db) {
                 try {
                     this.db = await SQLite.openDatabase({
@@ -1348,18 +1337,19 @@ export default class DatabaseService {
                     });
                 } catch (error) {
                     console.error('[DB] Error initializing database:', error);
-                    reject(error);
+                    resolve(0);
                     return;
                 }
             }
             try {
+                await this.createTables();
                 const [results] = await this.db.executeSql(
                     `SELECT COUNT(*) as count FROM ${TABLE_NOTIFICATIONS} WHERE planned_at > CURRENT_TIMESTAMP`
                 );
                 resolve(results.rows.item(0).count || 0);
             } catch (error) {
                 console.error('[DB] getFutureNotificationCount error:', error);
-                reject(error);
+                resolve(0);
             }
         });
     }

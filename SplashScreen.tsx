@@ -62,8 +62,9 @@ const SplashScreen = ({ navigation }: any) => {
     useEffect(() => {
         const initializeApp = async () => {
             try {
-                const deviceId = await DeviceInfo.getUniqueId();
-                dispatch(setDeviceId(deviceId));
+                const randomId = `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
+                // const deviceId = await DeviceInfo.getUniqueId();
+                dispatch(setDeviceId(randomId));
                 dispatch(setLoginTime(new Date().toISOString()));
             } catch (error) {
                 console.error('Error getting device info:', error);
@@ -83,10 +84,12 @@ const SplashScreen = ({ navigation }: any) => {
                     if (notificationsGranted) {
                         await DailyVerseService.checkAndScheduleNotifications();
                     }
-                    const deviceId = await DeviceInfo.getUniqueId();
-                    const deviceName = await DeviceInfo.getDeviceName();
-                    const deviceType = Platform.OS;
-                    console.log('[Splash] deviceId', deviceId, 'deviceName', deviceName, 'deviceType', deviceType);
+                    // const randomId = `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
+
+                    // // const deviceId = await DeviceInfo.getUniqueId();
+                    // const deviceName = await DeviceInfo.getDeviceName();
+                    // const deviceType = Platform.OS;
+                    // console.log('[Splash] deviceId', deviceId, 'deviceName', deviceName, 'deviceType', deviceType);
                 }).catch((error) => {
                     console.log('[Splash] random verse error', error);
                 });
