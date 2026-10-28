@@ -101,12 +101,13 @@ export const VerseComponent = React.memo(({
             style={[
               styles.verseText,
               {
-                fontSize: readerSetting.fontSize,
+                fontSize: isActive ?readerSetting.fontSize + 2 : readerSetting.fontSize,
                 lineHeight: language == 'mm' ? 33 : readerSetting.fontFamily == 1 ? 25 : readerSetting.fontSize * 1.5,
-                fontFamily:
+                fontFamily: isActive ? constants.fontFamily[readerSetting.fontFamily - 1]
+                  .bold :
                   constants.fontFamily[readerSetting.fontFamily - 1]
                     .regular,
-                color:
+                color: isActive ? AppColors.appTextBlack :
                   constants.theme[readerSetting.theme - 1].fontColor,
                 backgroundColor: verse.highlight
                   ? verse.highlight_color
