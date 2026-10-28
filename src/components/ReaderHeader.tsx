@@ -336,7 +336,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomWidth: 1,
     justifyContent: 'space-between',
-    width: Dimensions.get('window').width,
+    width: '100%',
     borderBottomColor: AppColors.primaryTint,
   },
   headerTitleContainer: {

@@ -772,8 +772,11 @@ const Reader = ({ navigation, route }: any) => {
   return (
     <View style={{
       flex: 1,
+      width: '100%',
       paddingTop: insets.top - 10,
       paddingBottom: insets.bottom,
+      paddingLeft: insets.left,
+      paddingRight: insets.right,
       backgroundColor: constants.theme[reader.readerSetting.theme - 1].backgroundColor
     }}>
       <StatusBar
@@ -840,7 +843,7 @@ const Reader = ({ navigation, route }: any) => {
 
         <View style={[styles.contentContainer]}>
           {verses && (
-            <View style={{ flex: 1, zIndex: 1 }}>
+            <View style={{ flex: 1, zIndex: 1, width: '100%' }}>
               <SplitReaderView
                 verses={verses}
                 // onStartBookmark={() => {}}
@@ -1147,20 +1150,16 @@ const Reader = ({ navigation, route }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: 'white',
+    width: '100%',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    alignItems: 'center',
-    // paddingTop: 55,
+    alignItems: 'stretch',
   },
   contentContainer: {
     flex: 1,
-    // backgroundColor: 'blue',
     width: '100%',
     zIndex: 1,
-    // height: '100%',
-    // paddingVertical: 16,
-    alignItems: 'center',
+    alignItems: 'stretch',
     justifyContent: 'center',
     flexDirection: 'column',
   },

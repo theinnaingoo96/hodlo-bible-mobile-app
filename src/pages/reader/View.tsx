@@ -5,6 +5,7 @@ import {
   StyleSheet,
   View,
   Dimensions,
+  useWindowDimensions,
   PanResponder,
   Animated,
   CursorValue,
@@ -54,8 +55,15 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
   selectedVerse,
 }) => {
   const device = useSelector((state: any) => state.device);
-  const deviceHeight = Dimensions.get('window').height;
-  const deviceWidth = Dimensions.get('window').width;
+  const { width: windowWidth, height: windowHeight } = useWindowDimensions();
+  const windowWidthRef = useRef(windowWidth);
+  const windowHeightRef = useRef(windowHeight);
+
+  useEffect(() => {
+    windowWidthRef.current = windowWidth;
+    windowHeightRef.current = windowHeight;
+  }, [windowWidth, windowHeight]);
+
   const reader = useSelector((state: any) => state.reader);
   const dispatch = useDispatch();
   const insets = useSafeAreaInsets();
@@ -103,15 +111,15 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
 
   useEffect(() => {
     showFAB();
-    setTopHeight(deviceHeight / 2);
-    setBottomHeight(deviceHeight / 2);
-    setLeftWidth(deviceWidth / 2);
-    setRightWidth(deviceWidth / 2);
+    setTopHeight(windowHeight / 2);
+    setBottomHeight(windowHeight / 2);
+    setLeftWidth(windowWidth / 2);
+    setRightWidth(windowWidth / 2);
 
     const currentVerse = reader.currentRead.verseId;
     const targetIndex = verses.findIndex(x => x.id === currentVerse);
     // console.log(reader.currentRead, targetIndex);
-  }, []);
+  }, [windowWidth, windowHeight]);
 
   // Helper to convert MM:SS or milliseconds to seconds
   const timeToSeconds = (timeStr: any): number => {
@@ -189,10 +197,11 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
       },
 
       onPanResponderMove: (e, gestureState) => {
+        const curHeight = windowHeightRef.current;
         const newBottomHeight =
-          gestureState.moveY > deviceHeight - 40
+          gestureState.moveY > curHeight - 40
             ? 40
-            : deviceHeight - gestureState.moveY;
+            : curHeight - gestureState.moveY;
         setBottomHeight(newBottomHeight);
         setOffset(e.nativeEvent.pageY);
       },
@@ -214,10 +223,11 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
       },
 
       onPanResponderMove: (e, gestureState) => {
+        const curWidth = windowWidthRef.current;
         const newLeftWidth =
-          gestureState.moveX > deviceWidth - 40
+          gestureState.moveX > curWidth - 40
             ? 40
-            : deviceWidth - gestureState.moveX;
+            : curWidth - gestureState.moveX;
         setLeftWidth(newLeftWidth);
         setOffset(e.nativeEvent.pageX);
       },
@@ -461,7 +471,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
             showFAB();
           }}
           onScroll={onSingleScroll}
-          style={{ height: topHeight }}
+          style={{ flex: 1, width: '100%' }}
           scrollEventThrottle={16}
           onEndReached={onCompleteChapter}
           ListFooterComponent={() => <ChapterEndFooterComponent bookName={reader.currentRead.bookName} chapterNumber={reader.currentRead.chapterNumber} readerSetting={reader.readerSetting} />}
@@ -471,7 +481,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
           <Animated.View
             style={[
               { minHeight: 40, flex: 1 },
-              { height: topHeight, width: Dimensions.get('window').width },
+              { height: topHeight, width: '100%' },
             ]}>
             <FlatList
               ref={topRef}
@@ -531,7 +541,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
               <View style={styles.dragHandle} />
             </View>
           </View>
-          <Animated.View style={[{ minHeight: 40 }, { height: bottomHeight }]}>
+          <Animated.View style={[{ minHeight: 40, width: '100%' }, { height: bottomHeight }]}>
             <FlatList
               ref={bottomRef}
               data={verses}
@@ -736,7 +746,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
 const styles = StyleSheet.create({
   content: {
     flex: 1,
-    width: Dimensions.get('window').width,
+    width: '100%',
     height: '100%',
   },
   divider: {
