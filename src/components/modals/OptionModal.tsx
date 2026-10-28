@@ -9,10 +9,14 @@ const OptionModal = ({
   setOptionModalVisible,
   onHighlightPress,
   onBookmarkPress,
+  onCopyPress,
+  onSharePress,
 }: {
   setOptionModalVisible: (visible: boolean) => void;
   onHighlightPress: () => void;
   onBookmarkPress: () => void;
+  onCopyPress: () => void;
+  onSharePress: () => void;
 }) => {
   useEffect(() => {}, []);
 
@@ -29,7 +33,7 @@ const OptionModal = ({
             <CloseIcon name="cross" color={AppColors.appTextBlack} />
           </TouchableOpacity>
         </View>
-        <View style={styles.optionModalButtonContainer}>
+        <View style={[styles.optionModalButtonContainer, {paddingBottom: 0}]}>
           <TouchableOpacity style={styles.optionModalButton} onPress={onHighlightPress}>
             <FontAwesome6
               name="highlighter"
@@ -49,6 +53,29 @@ const OptionModal = ({
               style={styles.optionModalButtonIcon}
             />
             <Text style={styles.optionModalButtonText}>Bookmark</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.optionModalButtonContainer}>
+          <TouchableOpacity style={styles.optionModalButton} onPress={onCopyPress}>
+            <FontAwesome6
+              name="copy"
+              iconStyle="solid"
+              size={15}
+              color={AppColors.primaryDark}
+              style={styles.optionModalButtonIcon}
+            />
+            <Text style={styles.optionModalButtonText}>Copy</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.optionModalButton} onPress={onSharePress}>
+            <FontAwesome6
+              name="share"
+              iconStyle="solid"
+              color={AppColors.primaryDark}
+              size={15}
+              style={styles.optionModalButtonIcon}
+            />
+            <Text style={styles.optionModalButtonText}>Share</Text>
           </TouchableOpacity>
         </View>
         {/* <View style={styles.optionModalFooter}>
@@ -102,7 +129,7 @@ const styles = StyleSheet.create({
     width: '45%',
     height: 60,
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     paddingHorizontal: 20,
     shadowColor: '#000',
     shadowOpacity: 0.1,
@@ -126,6 +153,7 @@ const styles = StyleSheet.create({
   },
   optionModalButtonIcon: {
     // backgroundColor: 'red',
+    marginRight: 10,
   }
 });
 

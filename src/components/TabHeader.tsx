@@ -13,6 +13,8 @@ interface TabHeaderProps {
         name: string;
         color: string;
         size: number;
+        width: number;
+        height: number;
     }>;
 }
 const TabHeader: React.FC<TabHeaderProps> = ({ title, icon: Icon }) => {

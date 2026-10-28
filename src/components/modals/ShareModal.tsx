@@ -36,7 +36,7 @@ const ShareModal = ({
   const viewShotRef = useRef<any>(null);
 
   const [editingMode, setEditingMode] = useState<'text' | 'font' | 'ratio' | 'background' | 'adjust'>('ratio');
-  const [aspectRatio, setAspectRatio] = useState<'1:1' | '3:4'>('1:1');
+  const [aspectRatio, setAspectRatio] = useState<'1:1' | '3:4'| '4:3'>('1:1');
   const [selectedColor, setSelectedColor] = useState({ name: 'White', hex: '#FFFFFF', code: '#FFFFFF' });
   const [blurRadius, setBlurRadius] = useState(5);
   const [fontSize, setFontSize] = useState(20);
@@ -54,7 +54,7 @@ const ShareModal = ({
 
   const availableHeight = screenHeight - headerHeight - navHeight - controlHeight - 40;
   const previewWidth = screenWidth * 0.95;
-  const targetHeight = aspectRatio === '1:1' ? previewWidth : previewWidth * (4 / 3);
+  const targetHeight = aspectRatio === '1:1' ? previewWidth : aspectRatio === '3:4' ? previewWidth * (3 / 4) : previewWidth * (4 / 3);
 
   // Scale down if target height exceeds available height
   const scale = targetHeight > availableHeight ? availableHeight / targetHeight : 1;
@@ -180,6 +180,11 @@ const ShareModal = ({
                 style={[styles.ratioOption, aspectRatio === '3:4' && styles.activeRatio]}
                 onPress={() => setAspectRatio('3:4')}>
                 <Text style={styles.ratioText}>3:4</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.ratioOption, aspectRatio === '4:3' && styles.activeRatio]}
+                onPress={() => setAspectRatio('4:3')}>
+                <Text style={styles.ratioText}>4:3</Text>
               </TouchableOpacity>
             </View>
           )}

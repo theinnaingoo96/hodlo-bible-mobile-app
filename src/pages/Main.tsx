@@ -67,7 +67,7 @@ const Main = () => {
                     options={{
                         headerTitle: () => <TabHeader title="Home" icon={HomeIcon} />,
                         tabBarIcon: ({ focused, color }) => (
-                            <HomeIcon name="home" color={color} size={24} />
+                            <HomeIcon name="home" color={color} width={focused ? 26 : 21} height={focused ? 29 : 22} />
                             // <FontAwesome6 name="house" iconStyle="solid" color={color} size={20} style={styles.tabBarIcon} />
                         ),
                         tabBarLabel: '',
@@ -78,8 +78,8 @@ const Main = () => {
                     component={Bible}
                     options={{
                         headerTitle: () => <TabHeader title="Bible" icon={BibleIcon} />,
-                        tabBarIcon: ({ color }) => (
-                            <BibleIcon name="bible" color={color} size={24} />
+                        tabBarIcon: ({ focused, color }) => (
+                            <BibleIcon name="bible" color={color} width={focused ? 26 : 23} height={focused ? 29 : 20} />
                             // <FontAwesome6 name="book" iconStyle="solid" color={color} size={20} style={styles.tabBarIcon} />
                         ),
                         tabBarLabel: '',
@@ -90,8 +90,8 @@ const Main = () => {
                     component={Search}
                     options={{
                         headerTitle: () => <TabHeader title="Search" icon={SearchIcon} />,
-                        tabBarIcon: ({ color }) => (
-                            <SearchIcon name="search" color={color} size={24} />
+                        tabBarIcon: ({ focused, color }) => (
+                            <SearchIcon name="search" color={color} size={focused ? 25 : 20} />
                             // <FontAwesome6 name="magnifying-glass" iconStyle="solid" color={color} size={20} style={styles.tabBarIcon} />
                         ),
                         tabBarLabel: '',
@@ -102,8 +102,8 @@ const Main = () => {
                     component={Bookmark}
                     options={{
                         headerTitle: () => <TabHeader title="Bookmarks" icon={BookmarkIcon} />,
-                        tabBarIcon: ({ color }) => (
-                            <BookmarkIcon name="bookmark" color={color} size={24} />
+                        tabBarIcon: ({ focused, color }) => (
+                            <BookmarkIcon name="bookmark" color={color} width={focused ? 22 : 20} height={focused ? 24 : 21} />
                             // <FontAwesome6 name="bookmark" iconStyle="solid" color={color} size={20} style={styles.tabBarIcon} />
                         ),
                         tabBarLabel: '',

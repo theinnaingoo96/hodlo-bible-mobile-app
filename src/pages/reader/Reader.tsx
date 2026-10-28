@@ -1104,6 +1104,14 @@ const Reader = ({ navigation, route }: any) => {
               setOptionModalVisible(false);
               handleCreateBookmark(selectedVerse);
             }}
+            onCopyPress={() => {
+              setOptionModalVisible(false);
+              handleCopytoClickboard(3);
+            }}
+            onSharePress={() => {
+              setOptionModalVisible(false);
+              handleSharePress();
+            }}
             setOptionModalVisible={setOptionModalVisible}
           />
         </Modal>

@@ -1,16 +1,16 @@
-import {useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
-import {View, StyleSheet, Text, Image} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { View, StyleSheet, Text, Image } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import NormalHeader from '../components/NormalHeader';
-import {AppColors} from '../constants/Color';
+import { AppColors } from '../constants/Color';
 
 const AboutUs = () => {
   const device = useSelector((state: any) => state.device);
   const insets = useSafeAreaInsets();
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   return (
     <View
@@ -31,10 +31,11 @@ const AboutUs = () => {
             style={styles.logo}
           />
           <Text style={styles.contentText}>
-            Gathengpu Dlo Mobile Bible App makes God's Word accessible in Ho
+            {/* Gathengpu Dlo Mobile Bible App makes God's Word accessible in Ho
             dlo, Burmese, and English (KJV). Built for clarity and unity, it
             equips believers to read, study, apply, and share Scripture across
-            languages - anytime, anywhere.
+            languages - anytime, anywhere. */}
+            {`The Gathengpu Dlo Mobile Bible App makes God's Word accessible in Tangkhul Dlo (Rev, Thei Bung), Burmese(Judson), and English (KJV). Built for clarity and unity, it equips believers to read, study, apply, and share Scripture across languages- anytime, anywhere.`}
           </Text>
         </View>
       </View>
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOpacity: 0.12,
     shadowRadius: 8,
-    shadowOffset: {width: 0, height: 4},
+    shadowOffset: { width: 0, height: 4 },
     elevation: 5,
   },
   contentText: {
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOpacity: 0.12,
     shadowRadius: 10,
-    shadowOffset: {width: 0, height: 4},
+    shadowOffset: { width: 0, height: 4 },
     elevation: 5,
     paddingTop: 80,
     paddingBottom: 60,
