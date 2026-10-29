@@ -21,8 +21,6 @@
     ]
   },
   "dependencies": {
-    "React-Core": [
-
-    ]
+    "React-Core": []
   }
 }

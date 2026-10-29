@@ -9,6 +9,7 @@ interface DeviceState {
   loginTime: string | null;
   loading: boolean;
   language: string;
+  selectedLanguages: string[];
   toast: Toast;
   downloaded: boolean;
   startDownload: boolean;
@@ -21,7 +22,8 @@ const initialState: DeviceState = {
   theme: true,  // true: light, false: dark
   loginTime: null,
   loading: false,
-  language: 'hodlo',
+  language: 'hd',
+  selectedLanguages: ['hd'],
   toast: {
     show: false,
     message: '',
@@ -59,7 +61,8 @@ const deviceSlice = createSlice({
       state.theme = true;
       state.loginTime = null;
       state.loading = false;
-      state.language = 'hodlo';
+      state.language = 'hd';
+      state.selectedLanguages = ['hd'];
       state.toast = {
         show: false,
         message: '',
@@ -76,7 +79,16 @@ const deviceSlice = createSlice({
     },
     setLanguage: (state, action: PayloadAction<string>) => {
       state.language = action.payload;
+      state.selectedLanguages = [action.payload];
       AsyncStorage.setItem("ho-dlo-language", action.payload);
+      AsyncStorage.setItem("ho-dlo-selected-languages", JSON.stringify([action.payload]));
+    },
+    setSelectedLanguages: (state, action: PayloadAction<string[]>) => {
+      const langs = action.payload && action.payload.length > 0 ? action.payload : ['hd'];
+      state.selectedLanguages = langs;
+      state.language = langs[0];
+      AsyncStorage.setItem("ho-dlo-selected-languages", JSON.stringify(langs));
+      AsyncStorage.setItem("ho-dlo-language", langs[0]);
     },
     setToast: (state, action: PayloadAction<Toast>) => {
       state.toast = action.payload;
@@ -102,6 +114,7 @@ export const {
   clearDeviceInfo,
   setLoading,
   setLanguage,
+  setSelectedLanguages,
   setToast,
   setDownloaded,
   setStartDownload,

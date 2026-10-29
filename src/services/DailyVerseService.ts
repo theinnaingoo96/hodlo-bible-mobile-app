@@ -45,7 +45,7 @@ class DailyVerseService {
 
     private async scheduleNewBatch(verses: any[], existingCount: number): Promise<void> {
         const state = store.getState();
-        const language = state.device.language || 'hd';
+        const language = state.device.selectedLanguages?.[0] || state.device.language || 'hd';
 
         let startOffset = existingCount;
 

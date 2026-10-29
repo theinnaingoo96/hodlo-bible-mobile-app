@@ -1,0 +1,12 @@
+diff --git a/android/src/main/java/com/stroketext/StrokeTextView.java b/android/src/main/java/com/stroketext/StrokeTextView.java
+index 1234567..abcdefg 100644
+--- a/android/src/main/java/com/stroketext/StrokeTextView.java
++++ b/android/src/main/java/com/stroketext/StrokeTextView.java
+@@ -89,6 +89,7 @@ public class StrokeTextView extends View {
+         int style = (bold ? Typeface.BOLD : Typeface.NORMAL) |
+             (italic ? Typeface.ITALIC : Typeface.NORMAL);
+ 
++        Typeface base = getFont(fontFamily);
+         Typeface tf = Typeface.create(base, style);
+ 
+         /* text paint */

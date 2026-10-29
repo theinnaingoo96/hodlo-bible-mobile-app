@@ -54,6 +54,11 @@ const ReaderHeader = ({
   onSharePress
 }: ReaderHeaderProps) => {
   const device = useSelector((state: any) => state.device);
+  const selectedLanguages: string[] = device.selectedLanguages && device.selectedLanguages.length > 0
+    ? device.selectedLanguages
+    : (device.language && device.language !== 'hodlo' && device.language !== 'hd'
+      ? ['hd', device.language]
+      : ['hd']);
   const reader = useSelector((state: any) => state.reader);
   const navigation = useNavigation();
   const [isOpen, setIsOpen] = useState(false);
@@ -141,18 +146,19 @@ const ReaderHeader = ({
       const actions = [-1, 0, 1, 2];
 
       if (selectedVerse) {
-        options.push('Copy Ho Dlo version');
-        actions.push(3);
-
-        if (device.language == 'en') {
+        if (selectedLanguages.includes('hd')) {
+          options.push('Copy Ho Dlo version');
+          actions.push(3);
+        }
+        if (selectedLanguages.includes('en')) {
           options.push('Copy English version');
           actions.push(4);
         }
-        if (device.language == 'mm') {
+        if (selectedLanguages.includes('mm')) {
           options.push('Copy Myanmar version');
           actions.push(5);
         }
-        if (device.language == 'en' || device.language == 'mm') {
+        if (selectedLanguages.length === 2) {
           options.push('Copy Both versions');
           actions.push(6);
         }
@@ -239,7 +245,7 @@ const ReaderHeader = ({
         /> */}
       </TouchableOpacity>
       <View style={styles.optionsContainer}>
-        {device.language == 'en' || device.language == 'mm' ? (
+        {selectedLanguages.length === 2 ? (
           <TouchableOpacity
             style={styles.optionsButton}
             onPress={() =>
@@ -266,6 +272,18 @@ const ReaderHeader = ({
         ) : (
           <></>
         )}
+        <TouchableOpacity
+          style={styles.optionsButton}
+          onPress={() =>
+            navigation.navigate('ChangeLanguage' as never)
+          }>
+          <FontAwesome6
+            name="globe"
+            iconStyle="solid"
+            color={constants.theme[reader.readerSetting.theme - 1].fontColor}
+            size={20}
+          />
+        </TouchableOpacity>
         <Menu
           visible={isOpen}
           anchor={
@@ -289,22 +307,18 @@ const ReaderHeader = ({
           <MenuItem onPress={() => hideMenu(2)}>Audio Reader</MenuItem>
           {selectedVerse && (
             <>
-              <MenuItem onPress={() => hideMenu(3)}>Copy Ho Dlo version</MenuItem>
-              {
-                device.language == 'en' && (
-                  <MenuItem onPress={() => hideMenu(4)}>Copy English version</MenuItem>
-                )
-              }
-              {
-                device.language == 'mm' && (
-                  <MenuItem onPress={() => hideMenu(5)}>Copy Myanmar version</MenuItem>
-                )
-              }
-              {
-                (device.language == 'en' || device.language == 'mm') && (
-                  <MenuItem onPress={() => hideMenu(6)}>Copy Both versions</MenuItem>
-                )
-              }
+              {selectedLanguages.includes('hd') && (
+                <MenuItem onPress={() => hideMenu(3)}>Copy Ho Dlo version</MenuItem>
+              )}
+              {selectedLanguages.includes('en') && (
+                <MenuItem onPress={() => hideMenu(4)}>Copy English version</MenuItem>
+              )}
+              {selectedLanguages.includes('mm') && (
+                <MenuItem onPress={() => hideMenu(5)}>Copy Myanmar version</MenuItem>
+              )}
+              {selectedLanguages.length === 2 && (
+                <MenuItem onPress={() => hideMenu(6)}>Copy Both versions</MenuItem>
+              )}
               {/* <MenuItem onPress={() => hideMenu(4)}>Share Verse</MenuItem> */}
               {
                 selectedVerse && selectedVerse.highlight ? (

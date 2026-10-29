@@ -55,6 +55,15 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
   selectedVerse,
 }) => {
   const device = useSelector((state: any) => state.device);
+  const selectedLanguages: string[] = device.selectedLanguages && device.selectedLanguages.length > 0
+    ? device.selectedLanguages
+    : (device.language && device.language !== 'hodlo' && device.language !== 'hd'
+      ? ['hd', device.language]
+      : ['hd']);
+  const isSingleMode = selectedLanguages.length === 1;
+  const primaryLang = selectedLanguages[0] || 'hd';
+  const secondaryLang = selectedLanguages[1] || 'en';
+
   const { width: windowWidth, height: windowHeight } = useWindowDimensions();
   const windowWidthRef = useRef(windowWidth);
   const windowHeightRef = useRef(windowHeight);
@@ -283,7 +292,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
 
     // Add a small delay to ensure layout is complete
     setTimeout(() => {
-      if (device.language !== 'en' && device.language !== 'mm') {
+      if (isSingleMode) {
         // Single view mode
         singleRef.current?.scrollToIndex({ index, animated });
       } else if (dividerMode === 'horizontal') {
@@ -455,7 +464,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
         styles.content,
         { flexDirection: dividerMode === 'horizontal' ? 'column' : 'row' },
       ]}>
-      {device.language !== 'en' && device.language !== 'mm' ? (
+      {isSingleMode ? (
         <FlatList
           ref={singleRef}
           data={verses}
@@ -464,7 +473,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
           renderItem={({ item, index }) => (
             <VerseComponent
               verse={item}
-              language={'hd'}
+              language={primaryLang}
               index={index}
               activeVerseIndex={activeVerseIndex}
               selectedVerse={selectedVerse}
@@ -506,7 +515,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
               renderItem={({ item, index }) => (
                 <VerseComponent
                   verse={item}
-                  language={'hd'}
+                  language={primaryLang}
                   index={index}
                   activeVerseIndex={activeVerseIndex}
                   selectedVerse={selectedVerse}
@@ -566,7 +575,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
               renderItem={({ item, index }) => (
                 <VerseComponent
                   verse={item}
-                  language={device.language}
+                  language={secondaryLang}
                   index={index}
                   activeVerseIndex={activeVerseIndex}
                   selectedVerse={selectedVerse}
@@ -612,7 +621,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
               renderItem={({ item, index }) => (
                 <VerseComponent
                   verse={item}
-                  language={'hd'}
+                  language={primaryLang}
                   index={index}
                   activeVerseIndex={activeVerseIndex}
                   selectedVerse={selectedVerse}
@@ -667,7 +676,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
               renderItem={({ item, index }) => (
                 <VerseComponent
                   verse={item}
-                  language={device.language}
+                  language={secondaryLang}
                   index={index}
                   activeVerseIndex={activeVerseIndex}
                   selectedVerse={selectedVerse}

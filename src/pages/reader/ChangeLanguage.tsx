@@ -1,49 +1,68 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import React from 'react';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 import AppHeader from '../../components/AppHeader';
 import { AppColors } from '../../constants/Color';
 import { languages } from '../../constants/Data';
-import { setLanguage } from '../../store/slices/deviceSlice';
+import { setLoading, setSelectedLanguages, setToast } from '../../store/slices/deviceSlice';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const ChangeLanguage = () => {
     const dispatch = useDispatch();
     const device = useSelector((state: any) => state.device);
-    const [languageList, setLanguageList] = useState(languages);
-    const [toastVisible, setToastVisible] = useState(false);
     const insets = useSafeAreaInsets();
 
-    useEffect(() => {
-        setLanguageList(languages.map((language) => {
-            return {
-                ...language,
-                selected: language.code === device.language || language.code === "hd"
-            }
-        }));
-    }, []);
+    const selectedCodes: string[] = device.selectedLanguages && device.selectedLanguages.length > 0
+        ? device.selectedLanguages
+        : (device.language && device.language !== 'hodlo' && device.language !== 'hd'
+            ? ['hd', device.language]
+            : ['hd']);
 
     const handleLanguagePress = (code: string) => {
-        setToastVisible(true);
-        if (code === "hd") {
-            setLanguageList(languages.map((language) => {
-                return {
-                    ...language,
-                    selected: language.code === "hd" ? true : false
-                }
+        const isSelected = selectedCodes.includes(code);
+        // dispatch(setLoading(true));
+        if (isSelected) {
+            // Cannot deselect the only selected language
+            if (selectedCodes.length === 1) {
+                dispatch(setToast({
+                    show: true,
+                    message: 'At least one language must be selected',
+                    type: 'warning',
+                    duration: 2000,
+                }));
+                return;
+            }
+            const updated = selectedCodes.filter(c => c !== code);
+            dispatch(setSelectedLanguages(updated));
+            // dispatch(setLoading(false));
+            dispatch(setToast({
+                show: true,
+                message: 'Language updated',
+                type: 'success',
+                duration: 1500,
             }));
-            dispatch(setLanguage("hd"));
-            return;
         } else {
-            setLanguageList(languageList.map((lang: any) => {
-                return {
-                    ...lang,
-                    selected: lang.code === "hd" ? true : lang.code === code ? true : false
-                }
+            // Check max 2 languages
+            if (selectedCodes.length >= 2) {
+                dispatch(setToast({
+                    show: true,
+                    message: 'You can select at most 2 languages. Please unselect one first.',
+                    type: 'warning',
+                    duration: 2500,
+                }));
+                return;
+            }
+            const updated = [...selectedCodes, code];
+            dispatch(setSelectedLanguages(updated));
+            // dispatch(setLoading(false));
+            dispatch(setToast({
+                show: true,
+                message: 'Language updated',
+                type: 'success',
+                duration: 1500,
             }));
-            dispatch(setLanguage(code));
         }
     };
 
@@ -51,19 +70,35 @@ const ChangeLanguage = () => {
         <View style={[styles.container, { paddingTop: insets.top }]}>
             <AppHeader title="Change Language" backButton={true} />
             <View style={[styles.contentContainer, { backgroundColor: device.theme ? AppColors.appBackgroundGrey : AppColors.appBackgroundDarkTint }]}>
-                {languageList.map((language: any, index: number) => (
-                    <TouchableOpacity key={'language-' + index} style={[styles.languageButton, { backgroundColor: language.selected ? AppColors.primaryTint : 'transparent' }]}
-                        onPress={() => handleLanguagePress(language.code)}>
-                        <Text style={[styles.languageButtonText, { color: device.theme ? AppColors.primaryDark : AppColors.appTextWhite }]}>{language.name}</Text>
-                        {
-                            language.selected && (
-                                <FontAwesome6 name="check" iconStyle="solid" color={device.theme ? AppColors.primaryDark : AppColors.appTextWhite} size={20} />
-                            )
-                        }
-                    </TouchableOpacity>
-                ))}
+                <Text style={[styles.subtitle, { color: device.theme ? AppColors.darkGrey : AppColors.lightGrey }]}>
+                    Select 1 or 2 languages ({selectedCodes.length}/2 selected)
+                </Text>
+                {languages.map((language: any, index: number) => {
+                    const isSelected = selectedCodes.includes(language.code);
+                    return (
+                        <TouchableOpacity
+                            key={'language-' + index}
+                            style={[
+                                styles.languageButton,
+                                { backgroundColor: isSelected ? AppColors.primaryTint : 'transparent' }
+                            ]}
+                            onPress={() => handleLanguagePress(language.code)}
+                        >
+                            <Text style={[styles.languageButtonText, { color: device.theme ? AppColors.primaryDark : AppColors.appTextWhite }]}>
+                                {language.name}
+                            </Text>
+                            {isSelected && (
+                                <FontAwesome6
+                                    name="check"
+                                    iconStyle="solid"
+                                    color={device.theme ? AppColors.primaryDark : AppColors.appTextWhite}
+                                    size={20}
+                                />
+                            )}
+                        </TouchableOpacity>
+                    );
+                })}
             </View>
-            {/* <CustomToast message="Language changed successfully" visible={toastVisible} onHide={() => { setToastVisible(false) }} /> */}
         </View>
     );
 };
@@ -76,7 +111,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        // paddingTop: 55,
         backgroundColor: 'white',
     },
     contentContainer: {
@@ -84,7 +118,12 @@ const styles = StyleSheet.create({
         width: '100%',
         padding: 16,
         flexDirection: 'column',
-        gap: 6,
+        gap: 8,
+    },
+    subtitle: {
+        fontSize: 14,
+        marginBottom: 8,
+        fontWeight: '500',
     },
     languageButton: {
         padding: 16,

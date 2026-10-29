@@ -16,7 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import permissionService from './src/services/PermissionService';
 import DailyVerseService from './src/services/DailyVerseService';
 
-import { setDatabaseVersion, setDownloaded, setLanguage, setTheme } from './src/store/slices/deviceSlice';
+import { setDatabaseVersion, setDownloaded, setLanguage, setSelectedLanguages, setTheme } from './src/store/slices/deviceSlice';
 import { setCurrent, setReaderSetting } from './src/store/slices/readerSlice';
 import PsalmAudioExample from './src/components/PsalmAudioExample';
 import { CurrentRead, ReaderSetting } from './src/types/reader';
@@ -61,10 +61,31 @@ function App(): React.JSX.Element {
         store.dispatch(setDatabaseVersion(value));
       }
     });
-    AsyncStorage.getItem("ho-dlo-language").then((value: any) => {
+    AsyncStorage.getItem("ho-dlo-selected-languages").then((value: any) => {
       if (value) {
-        store.dispatch(setLanguage(value));
+        try {
+          const parsed = JSON.parse(value);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            store.dispatch(setSelectedLanguages(parsed));
+            return;
+          }
+        } catch (e) {
+          console.error("Error parsing ho-dlo-selected-languages:", e);
+        }
       }
+      AsyncStorage.getItem("ho-dlo-language").then((legacyValue: any) => {
+        if (legacyValue) {
+          if (legacyValue === 'en') {
+            store.dispatch(setSelectedLanguages(['hd', 'en']));
+          } else if (legacyValue === 'mm') {
+            store.dispatch(setSelectedLanguages(['hd', 'mm']));
+          } else {
+            store.dispatch(setSelectedLanguages([legacyValue === 'hodlo' ? 'hd' : legacyValue]));
+          }
+        } else {
+          store.dispatch(setSelectedLanguages(['hd']));
+        }
+      });
     });
     AsyncStorage.getItem("ho-dlo-reader-setting").then((readerSetting: any) => {
       // console.log('reader setting', readerSetting);

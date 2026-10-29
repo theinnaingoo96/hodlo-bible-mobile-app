@@ -43,6 +43,7 @@ import audioPlayer from '../../services/AudioPlayerService';
 import fileDownloadService from '../../services/FileDownloadService';
 import { setDownloadProgress } from '../../store/slices/deviceSlice';
 import CustomLoading from '../../components/CustomLoading';
+import PlayerConsole from './components/PlayerConsole';
 
 const Reader = ({ navigation, route }: any) => {
   const device = useSelector((state: any) => state.device);
@@ -451,9 +452,11 @@ const Reader = ({ navigation, route }: any) => {
     }
   };
 
-  const handlePreviousChapter = () => {
+  const handlePreviousChapter = (autoPlay: any = false) => {
+    const isAutoPlay = autoPlay === true;
     const currentReaderData = reader.currentRead;
     if (currentReaderData.chapterNumber > 1) {
+      setTransitionLoading(true);
       store.dispatch(
         setToast({
           show: true,
@@ -488,7 +491,11 @@ const Reader = ({ navigation, route }: any) => {
             chapter: currentReaderData.chapterNumber - 1,
             chapterId: previousChapterId,
             verse: 1,
+            autoPlay: isAutoPlay,
           });
+        })
+        .finally(() => {
+          setTransitionLoading(false);
         });
     }
   };
@@ -574,6 +581,16 @@ const Reader = ({ navigation, route }: any) => {
     seekTo(newTime);
   };
 
+  const handleSkipBack = () => {
+    const newTime = Math.max(0, currentTime - 10);
+    seekTo(newTime);
+  };
+
+  const handleSkipForward = () => {
+    const newTime = Math.min(duration, currentTime + 10);
+    seekTo(newTime);
+  };
+
   const handleVerseClick = async (verse: any) => {
     if (selectedVerse?.id === verse?.id) {
       setSelectedVerse(null);
@@ -608,6 +625,12 @@ const Reader = ({ navigation, route }: any) => {
   };
 
   const handleCopytoClickboard = (index: number) => {
+    const selectedLanguages: string[] = device.selectedLanguages && device.selectedLanguages.length > 0
+      ? device.selectedLanguages
+      : (device.language && device.language !== 'hodlo' && device.language !== 'hd'
+        ? ['hd', device.language]
+        : ['hd']);
+
     if (selectedVerse) {
       let text = '';
       if (index == 0) {
@@ -617,12 +640,15 @@ const Reader = ({ navigation, route }: any) => {
       } else if (index == 2) {
         text = selectedVerse.text_mm;
       } else if (index == 3) {
+        const lang1 = selectedLanguages[0] || 'hd';
+        const lang2 = selectedLanguages[1] || 'en';
         text =
-          selectedVerse.text_hd +
+          (selectedVerse['text_' + lang1] || '') +
           '\n\n' +
-          selectedVerse['text_' + (device.language === 'hodlo' ? 'hd' : device.language)];
+          (selectedVerse['text_' + lang2] || '');
       } else {
-        text = selectedVerse['text_' + (device.language === 'hodlo' ? 'hd' : device.language)];
+        const lang1 = selectedLanguages[0] || 'hd';
+        text = selectedVerse['text_' + lang1];
       }
       Clipboard.setString(text || '');
     }
@@ -859,72 +885,97 @@ const Reader = ({ navigation, route }: any) => {
           )}
         </View>
         {playerSheetVisible && (
-          <View style={styles.playerSheetContainer} pointerEvents="box-none">
-            <View style={styles.playerSheetContent} pointerEvents="box-none">
-              <View style={styles.highlightModalHeader} pointerEvents="auto">
-                <TouchableOpacity
-                  onPress={() => {
-                    setPlayerSheetVisible(false);
-                    handleStop();
-                  }}>
-                  <CloseIcon name="cross" color={AppColors.appTextBlack} />
-                </TouchableOpacity>
-              </View>
+          <PlayerConsole
+            isPlaying={isPlaying}
+            isLoading={isLoading}
+            progress={progress}
+            formattedTime={formattedTime}
+            formattedDuration={formattedDuration}
+            handlePlayPause={handlePlayPause}
+            handleSeek={handleSeek}
+            handleStop={handleStop}
+            handleSkipBack={handleSkipBack}
+            handleSkipForward={handleSkipForward}
+            handlePreviousChapter={() => {
+              pause();
+              handlePreviousChapter(true)
+            }}
+            handleNextChapter={() => {
+              pause();
+              handleNextChapter(true)
+            }}
+            error={error}
+            onClose={() => {
+              setPlayerSheetVisible(false);
+              handleStop();
+            }}
+          />
+          // <View style={styles.playerSheetContainer} pointerEvents="box-none">
+          //   <View style={styles.playerSheetContent} pointerEvents="box-none">
+          //     <View style={styles.highlightModalHeader} pointerEvents="auto">
+          //       <TouchableOpacity
+          //         onPress={() => {
+          //           setPlayerSheetVisible(false);
+          //           handleStop();
+          //         }}>
+          //         <CloseIcon name="cross" color={AppColors.appTextBlack} />
+          //       </TouchableOpacity>
+          //     </View>
 
-              <View style={styles.playerContainer} pointerEvents="auto">
-                <View style={styles.playerControls}>
-                  <TouchableOpacity
-                    style={[
-                      styles.playButton,
-                      isPlaying && styles.playingButton,
-                    ]}
-                    onPress={handlePlayPause}
-                    disabled={isLoading}>
-                    {isLoading ? (
-                      <FontAwesome6
-                        name="spinner"
-                        iconStyle="solid"
-                        color={AppColors.appTextWhite}
-                        size={18}
-                      />
-                    ) : (
-                      <FontAwesome6
-                        name={isPlaying ? 'pause' : 'play'}
-                        iconStyle="solid"
-                        color={AppColors.appTextWhite}
-                        size={18}
-                      />
-                    )}
-                  </TouchableOpacity>
+          //     <View style={styles.playerContainer} pointerEvents="auto">
+          //       <View style={styles.playerControls}>
+          //         <TouchableOpacity
+          //           style={[
+          //             styles.playButton,
+          //             isPlaying && styles.playingButton,
+          //           ]}
+          //           onPress={handlePlayPause}
+          //           disabled={isLoading}>
+          //           {isLoading ? (
+          //             <FontAwesome6
+          //               name="spinner"
+          //               iconStyle="solid"
+          //               color={AppColors.appTextWhite}
+          //               size={18}
+          //             />
+          //           ) : (
+          //             <FontAwesome6
+          //               name={isPlaying ? 'pause' : 'play'}
+          //               iconStyle="solid"
+          //               color={AppColors.appTextWhite}
+          //               size={18}
+          //             />
+          //           )}
+          //         </TouchableOpacity>
 
-                  <View style={styles.progressContainer}>
-                    <Slider
-                      style={styles.progressBar}
-                      minimumValue={0}
-                      maximumValue={1}
-                      value={progress}
-                      onValueChange={handleSeek}
-                      minimumTrackTintColor={AppColors.primary}
-                      maximumTrackTintColor={AppColors.appTextGrey}
-                      thumbTintColor={AppColors.primary}
-                    />
-                    <View style={styles.timeContainer}>
-                      <Text style={styles.timeText}>{formattedTime}</Text>
-                      <Text style={styles.timeText}>{formattedDuration}</Text>
-                    </View>
-                  </View>
-                </View>
+          //         <View style={styles.progressContainer}>
+          //           <Slider
+          //             style={styles.progressBar}
+          //             minimumValue={0}
+          //             maximumValue={1}
+          //             value={progress}
+          //             onValueChange={handleSeek}
+          //             minimumTrackTintColor={AppColors.primary}
+          //             maximumTrackTintColor={AppColors.appTextGrey}
+          //             thumbTintColor={AppColors.primary}
+          //           />
+          //           <View style={styles.timeContainer}>
+          //             <Text style={styles.timeText}>{formattedTime}</Text>
+          //             <Text style={styles.timeText}>{formattedDuration}</Text>
+          //           </View>
+          //         </View>
+          //       </View>
 
-                {error && (
-                  <Text style={styles.errorText}>
-                    {error.includes('not available')
-                      ? 'Audio player not available'
-                      : `Audio Error: ${error}`}
-                  </Text>
-                )}
-              </View>
-            </View>
-          </View>
+          //       {error && (
+          //         <Text style={styles.errorText}>
+          //           {error.includes('not available')
+          //             ? 'Audio player not available'
+          //             : `Audio Error: ${error}`}
+          //         </Text>
+          //       )}
+          //     </View>
+          //   </View>
+          // </View>
         )}
         <BottomSheet
           visible={optionSheetVisible}
@@ -1329,7 +1380,7 @@ const styles = StyleSheet.create({
   },
   progressBar: {
     width: '100%',
-    height: 40,
+    height: 20,
   },
   timeContainer: {
     flexDirection: 'row',
@@ -1381,7 +1432,7 @@ const styles = StyleSheet.create({
   },
   playerSheetContainer: {
     position: 'absolute',
-    bottom: 0,
+    bottom: -20,
     left: 0,
     right: 0,
     maxHeight: 120,
