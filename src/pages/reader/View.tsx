@@ -188,7 +188,9 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
 
   const verticalPanResponder = useRef(
     PanResponder.create({
-      //   onMoveShouldSetResponderCapture: () => true,
+      onStartShouldSetPanResponder: () => true,
+      onStartShouldSetPanResponderCapture: () => true,
+      onMoveShouldSetPanResponder: () => true,
       onMoveShouldSetPanResponderCapture: () => true,
 
       onPanResponderGrant: (e, gestureState) => {
@@ -198,11 +200,12 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
 
       onPanResponderMove: (e, gestureState) => {
         const curHeight = windowHeightRef.current;
-        const newBottomHeight =
-          gestureState.moveY > curHeight - 40
-            ? 40
-            : curHeight - gestureState.moveY;
+        const newBottomHeight = Math.max(
+          40,
+          Math.min(curHeight - 60, curHeight - gestureState.moveY)
+        );
         setBottomHeight(newBottomHeight);
+        setTopHeight(curHeight - 20 - newBottomHeight);
         setOffset(e.nativeEvent.pageY);
       },
 
@@ -210,11 +213,18 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
         setOffset(e.nativeEvent.pageY);
         setIsDividerClicked(false);
       },
+
+      onPanResponderTerminate: () => {
+        setIsDividerClicked(false);
+      },
     }),
   ).current;
 
   const horizontalPanResponder = useRef(
     PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onStartShouldSetPanResponderCapture: () => true,
+      onMoveShouldSetPanResponder: () => true,
       onMoveShouldSetPanResponderCapture: () => true,
 
       onPanResponderGrant: (e, gestureState) => {
@@ -224,16 +234,21 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
 
       onPanResponderMove: (e, gestureState) => {
         const curWidth = windowWidthRef.current;
-        const newLeftWidth =
-          gestureState.moveX > curWidth - 40
-            ? 40
-            : curWidth - gestureState.moveX;
-        setLeftWidth(newLeftWidth);
+        const newRightWidth = Math.max(
+          40,
+          Math.min(curWidth - 60, curWidth - gestureState.moveX)
+        );
+        setRightWidth(newRightWidth);
+        setLeftWidth(curWidth - 20 - newRightWidth);
         setOffset(e.nativeEvent.pageX);
       },
 
       onPanResponderRelease: (e, gestureState) => {
         setOffset(e.nativeEvent.pageX);
+        setIsDividerClicked(false);
+      },
+
+      onPanResponderTerminate: () => {
         setIsDividerClicked(false);
       },
     }),
@@ -536,6 +551,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
                 ? { backgroundColor: '#666' }
                 : { backgroundColor: '#e2e2e2' },
             ]}
+            hitSlop={{ top: 10, bottom: 10, left: 0, right: 0 }}
             {...verticalPanResponder.panHandlers}>
             <View style={styles.ellipsisButton}>
               <View style={styles.dragHandle} />
@@ -587,7 +603,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
         </>
       ) : (
         <>
-          <Animated.View style={[{ minWidth: 40, flex: 1 }, { width: leftWidth }]}>
+          <Animated.View style={[{ minWidth: 40, flex: 1 }]}>
             <FlatList
               ref={leftRef}
               data={verses}
@@ -636,6 +652,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
                 ? { backgroundColor: '#666' }
                 : { backgroundColor: '#e2e2e2' },
             ]}
+            hitSlop={{ left: 10, right: 10, top: 0, bottom: 0 }}
             {...horizontalPanResponder.panHandlers}>
             <View style={styles.ellipsisButtonVertical}>
               <View style={styles.dragHandleVertical} />
@@ -763,7 +780,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#aaa',
     justifyContent: 'center',
     alignItems: 'center',
-    cursor: 'row-resize' as CursorValue,
+    cursor: 'col-resize' as CursorValue,
   },
   dragHandle: {
     width: '50%',
