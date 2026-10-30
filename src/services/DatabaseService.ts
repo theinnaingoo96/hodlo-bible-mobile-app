@@ -892,6 +892,40 @@ export default class DatabaseService {
      * @function clearSearchHistoryAll
      */
 
+    // public async getSearchHistoryOld(): Promise<any> {
+    //     return new Promise(async (resolve, reject) => {
+    //         if (!this.db) throw new Error('Database not initialized');
+
+    //         try {
+    //             const [results] = await this.db.executeSql(`
+    //                 SELECT 
+    //                     sh.id,
+    //                     sh.search_query,
+    //                     sh.created_at,
+    //                     b.name as book,
+    //                     c.number as chapter,
+    //                     v.number as verse,
+    //                     v.text_hd,
+    //                     v.text_en,
+    //                     v.text_mm,
+    //                     v.id as verse_id
+    //                 FROM ${TABLE_SEARCH_HISTORY} sh
+    //                 JOIN ${TABLE_VERSES} v ON sh.verse_id = v.id
+    //                 JOIN ${TABLE_CHAPTERS} c ON v.chapter_id = c.id
+    //                 JOIN ${TABLE_BOOKS} b ON c.book_id = b.id
+    //                 ORDER BY sh.created_at DESC;
+    //             `);
+    //             const verses = [];
+    //             for (let i = 0; i < results.rows.length; i++) {
+    //                 verses.push(results.rows.item(i));
+    //             }
+    //             resolve(verses);
+    //         } catch (error) {
+    //             console.error('[DB] Error getting search history:', error);
+    //             reject(error);
+    //         }
+    //     });
+    // }
     public async getSearchHistory(): Promise<any> {
         return new Promise(async (resolve, reject) => {
             if (!this.db) throw new Error('Database not initialized');

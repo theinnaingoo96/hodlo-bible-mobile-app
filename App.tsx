@@ -29,6 +29,7 @@ import DatabaseViewer from './src/pages/DatabaseViewer';
 import Notification from './src/pages/Notification';
 import { AppColors } from './src/constants/Color';
 import Reader from './src/pages/reader/Reader';
+import ReaderSearch from './src/pages/reader/ReaderSearch';
 import { store } from './src/store/store';
 import SplashScreen from './SplashScreen';
 import Main from './src/pages/Main';
@@ -207,6 +208,11 @@ function App(): React.JSX.Element {
             <Stack.Screen
               name="ChangeLanguage"
               component={ChangeLanguage}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="ReaderSearch"
+              component={ReaderSearch}
               options={{ headerShown: false }}
             />
             <Stack.Screen

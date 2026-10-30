@@ -28,6 +28,7 @@ interface ReaderHeaderProps {
   onTitlePress: () => void;
   onSettingsPress: () => void;
   onAudioReaderPress: () => void;
+  onSearchPress?: () => void;
   setDividerMode: (mode: string) => void;
   onAddHighlightPress: () => void;
   onRemoveHighlightPress: () => void;
@@ -45,6 +46,7 @@ const ReaderHeader = ({
   onTitlePress,
   onSettingsPress,
   onAudioReaderPress,
+  onSearchPress,
   setDividerMode,
   onAddHighlightPress,
   onRemoveHighlightPress,
@@ -84,6 +86,9 @@ const ReaderHeader = ({
         break;
       case 2:
         onAudioReaderPress();
+        break;
+      case 12:
+        navigation.navigate('ReaderSearch' as never);
         break;
       case 3:
         onCopytoClickboard(0);
@@ -142,8 +147,8 @@ const ReaderHeader = ({
 
   const showMenu = () => {
     if (Platform.OS === 'ios') {
-      const options = ['Cancel', 'Language', 'Reader Setting', 'Audio Reader'];
-      const actions = [-1, 0, 1, 2];
+      const options = ['Cancel', 'Search', 'Language', 'Reader Setting', 'Audio Reader'];
+      const actions = [-1, 12, 0, 1, 2];
 
       if (selectedVerse) {
         if (selectedLanguages.includes('hd')) {
@@ -274,6 +279,16 @@ const ReaderHeader = ({
         )}
         <TouchableOpacity
           style={styles.optionsButton}
+          onPress={() => navigation.navigate('ReaderSearch' as never)}>
+          <FontAwesome6
+            name="magnifying-glass"
+            iconStyle="solid"
+            color={constants.theme[reader.readerSetting.theme - 1].fontColor}
+            size={20}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.optionsButton}
           onPress={() =>
             navigation.navigate('ChangeLanguage' as never)
           }>
@@ -299,6 +314,10 @@ const ReaderHeader = ({
             </TouchableOpacity>
           }
           onRequestClose={() => hideMenu(-1)}>
+          <MenuItem
+            onPress={() => hideMenu(12)}>
+            Search
+          </MenuItem>
           <MenuItem
             onPress={() => hideMenu(0)}>
             Language
