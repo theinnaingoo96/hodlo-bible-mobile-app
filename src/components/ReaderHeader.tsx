@@ -263,14 +263,14 @@ const ReaderHeader = ({
                 color={
                   constants.theme[reader.readerSetting.theme - 1].fontColor
                 }
-                size={20}
+                size={22}
               />
             ) : (
               <SplitHorizontalIcon
                 color={
                   constants.theme[reader.readerSetting.theme - 1].fontColor
                 }
-                size={20}
+                size={22}
               />
             )}
           </TouchableOpacity>
@@ -303,7 +303,7 @@ const ReaderHeader = ({
           visible={isOpen}
           anchor={
             <TouchableOpacity
-              style={[styles.optionsButton, { marginRight: 6 }]}
+              style={[styles.optionsButton, { paddingRight: 10 }]}
               onPress={showMenu}>
               <FontAwesome6
                 name="ellipsis-vertical"
@@ -316,7 +316,14 @@ const ReaderHeader = ({
           onRequestClose={() => hideMenu(-1)}>
           <MenuItem
             onPress={() => hideMenu(12)}>
-            Search
+            {/* <FontAwesome6
+              name="magnifying-glass"
+              iconStyle="solid"
+              color={constants.theme[reader.readerSetting.theme - 1].fontColor}
+              style={{ paddingLeft: 10 }}
+              size={18}
+            /> */}
+             Search
           </MenuItem>
           <MenuItem
             onPress={() => hideMenu(0)}>
@@ -382,10 +389,13 @@ const styles = StyleSheet.create({
     transform: [{ translateX: '-50%' }],
   },
   headerTitle: {
-    fontSize: 16,
+    fontSize: 14,
     marginLeft: 10,
     fontWeight: '600',
     color: AppColors.primary,
+    maxWidth: 120,
+    // backgroundColor: 'red',
+    textAlign: 'center',
   },
   backButton: {
     width: 65,
@@ -400,13 +410,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 10,
     justifyContent: 'center',
-    gap: 10,
+    gap: 3,
   },
   optionsButton: {
-    padding: 10,
-    height: 40,
+    // paddingLeft: 10,
+    height: 32,
+    width: 32,
     alignItems: 'center',
     justifyContent: 'center',
+    // backgroundColor: 'red',
   },
 });
 
