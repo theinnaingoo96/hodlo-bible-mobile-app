@@ -10,27 +10,36 @@ import { AppColors } from '../../constants/Color';
 import { setLoading } from '../../store/slices/deviceSlice';
 import DatabaseService from '../../services/DatabaseService';
 
+const LANGUAGE_OPTIONS = [
+    { code: 'hd', name: 'Ho Dlo' },
+    { code: 'en', name: 'English' },
+    { code: 'mm', name: 'Myanmar' },
+];
+
 const Search = ({ navigation }: any) => {
     const device = useSelector((state: any) => state.device);
     const isFocused = useIsFocused();
     const dispatch = useDispatch();
+
+    const initialLang =
+        (device.selectedLanguages && device.selectedLanguages[0]) ||
+        device.language ||
+        'hd';
+    const [selectedLanguage, setSelectedLanguage] = useState<string>(
+        ['hd', 'en', 'mm'].includes(initialLang) ? initialLang : 'hd',
+    );
+
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [searchHistory, setSearchHistory] = useState([]);
 
     useEffect(() => {
-        const unsubscribe = navigation.addListener("focus", async (e: any) => {
+        const unsubscribe = navigation.addListener("focus", async (_e: any) => {
             getHistory();
-        })
+        });
 
         return () => unsubscribe();
-    }, [isFocused])
-
-    // useFocusEffect(
-    //     useCallback(() => {
-    //         getHistory();
-    //     }, [])
-    // );
+    }, [isFocused]);
 
     const getHistory = async () => {
         setSearchQuery('');
@@ -40,18 +49,18 @@ const Search = ({ navigation }: any) => {
         }).catch((error) => {
             console.error('Error getting history:', error);
         });
-    }
+    };
 
     const handleHistoryDelete = (id: number) => {
         DatabaseService.getInstance().clearSearchHistoryById(id).then(() => {
             getHistory();
         });
-    }
+    };
 
-    const handleSearchSubmit = async () => {
-        if (searchQuery !== null && searchQuery !== undefined && searchQuery !== '') {
+    const performSearch = (query: string, lang: string) => {
+        if (query !== null && query !== undefined && query.trim() !== '') {
             dispatch(setLoading(true));
-            DatabaseService.getInstance().getVersesByKeyword(searchQuery).then((results: any) => {
+            DatabaseService.getInstance().getVersesByKeyword(query.trim(), lang).then((results: any) => {
                 if (results.length > 0) {
                     setSearchResults(results);
                 } else {
@@ -61,11 +70,38 @@ const Search = ({ navigation }: any) => {
             }).catch((error) => {
                 dispatch(setLoading(false));
                 console.error('Error searching:', error);
-            })
+            });
         }
     };
+
+    const handleSearchSubmit = () => {
+        performSearch(searchQuery, selectedLanguage);
+    };
+
+    const handleLanguageChange = (langCode: string) => {
+        setSelectedLanguage(langCode);
+        if (searchQuery && searchQuery.trim() !== '') {
+            performSearch(searchQuery, langCode);
+        }
+    };
+
     const handleHistoryPress = (item: any) => {
         setSearchQuery(item.search_query);
+        performSearch(item.search_query, selectedLanguage);
+    };
+
+    const textColor = device.theme ? AppColors.appTextBlack : AppColors.appTextWhite;
+
+    const getVerseText = (item: any) => {
+        if (selectedLanguage === 'en') return item.text_en || item.text_hd;
+        if (selectedLanguage === 'mm') return item.text_mm || item.text_hd;
+        return item.text_hd;
+    };
+
+    const getBookDisplay = (item: any) => {
+        if (selectedLanguage === 'mm' && item.book_mm) return item.book_mm;
+        if (selectedLanguage === 'hd' && item.book_hd) return item.book_hd;
+        return item.book;
     };
 
     const renderHistoryItem = (item: any) => (
@@ -73,12 +109,12 @@ const Search = ({ navigation }: any) => {
             <TouchableOpacity style={styles.historyItemContentContainer} onPress={() => handleHistoryPress(item)}>
                 <RecentIcon name="recent" color={AppColors.iconGrey} style={styles.historyItemIcon} />
                 <View style={styles.historyItemTextContainer}>
-                    <Text style={[styles.historyItemText, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>{item.search_query}</Text>
-                    <Text style={[styles.historyItemLocation, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>{item.book + " " + item.chapter + ":" + item.verse}</Text>
+                    <Text style={[styles.historyItemText, { color: textColor }]}>{item.search_query}</Text>
+                    <Text style={[styles.historyItemLocation, { color: textColor }]}>{item.book + " " + item.chapter + ":" + item.verse}</Text>
                 </View>
             </TouchableOpacity>
             <TouchableOpacity style={styles.historyItemDeleteButton} onPress={() => handleHistoryDelete(item.id)}>
-                <CloseIcon name="cross" color={device.theme ? AppColors.appTextBlack : AppColors.appTextWhite} />
+                <CloseIcon name="cross" color={textColor} />
             </TouchableOpacity>
         </View>
     );
@@ -93,20 +129,31 @@ const Search = ({ navigation }: any) => {
         }
     };
 
-
     const renderSearchResult = (item: any) => (
         <TouchableOpacity style={styles.searchResultContainer} onPress={() => handleSearchResultPress(item)}>
-            <SearchSnippet rawText={item.text_hd} keyword={searchQuery} theme={device.theme} />
-            <Text style={[styles.searchResultLocationText, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>{item.book + " " + item.chapter + ":" + item.verse}</Text>
+            <SearchSnippet rawText={getVerseText(item)} keyword={searchQuery} theme={device.theme} />
+            <Text style={[styles.searchResultLocationText, { color: textColor }]}>
+                {getBookDisplay(item) + " " + item.chapter + ":" + item.verse}
+            </Text>
         </TouchableOpacity>
     );
 
+    const currentLangLabel =
+        LANGUAGE_OPTIONS.find(l => l.code === selectedLanguage)?.name || 'Ho Dlo';
+
     return (
         <View style={[styles.container, { backgroundColor: device.theme ? AppColors.appBackgroundGrey : AppColors.appBackgroundDarkTint }]}>
-            <View style={styles.searchContainer}>
+            <View style={[styles.searchContainer, { backgroundColor: device.theme ? 'white' : AppColors.appBackgroundDark }]}>
                 <TextInput
-                    style={styles.searchBar}
-                    placeholder="Please type any keywords to search"
+                    style={[
+                        styles.searchBar,
+                        {
+                            color: textColor,
+                            backgroundColor: device.theme ? AppColors.appTextWhite : AppColors.appBackgroundDarkTint,
+                        },
+                    ]}
+                    placeholder={`Search ${currentLangLabel} verses…`}
+                    placeholderTextColor={AppColors.appTextGrey}
                     value={searchQuery}
                     onChangeText={(text) => {
                         setSearchQuery(text);
@@ -132,13 +179,61 @@ const Search = ({ navigation }: any) => {
                     </TouchableOpacity>
                 </View>
             </View>
+
+            {/* Language filter row */}
+            <View
+                style={[
+                    styles.filterRow,
+                    {
+                        backgroundColor: device.theme ? '#fff' : AppColors.appBackgroundDark,
+                        borderBottomColor: device.theme ? AppColors.lightGrey : '#333',
+                    },
+                ]}>
+                <Text style={[styles.filterLabel, { color: AppColors.appTextGrey }]}>Language:</Text>
+                {LANGUAGE_OPTIONS.map(lang => {
+                    const isSelected = selectedLanguage === lang.code;
+                    return (
+                        <TouchableOpacity
+                            key={lang.code}
+                            style={[
+                                styles.filterChip,
+                                {
+                                    backgroundColor: isSelected
+                                        ? AppColors.primary
+                                        : device.theme
+                                        ? '#F2F2F4'
+                                        : AppColors.appBackgroundDarkTint,
+                                    borderColor: isSelected
+                                        ? AppColors.primary
+                                        : device.theme
+                                        ? AppColors.lightGrey
+                                        : '#444',
+                                },
+                            ]}
+                            onPress={() => handleLanguageChange(lang.code)}>
+                            <Text
+                                style={[
+                                    styles.filterChipText,
+                                    {
+                                        color: isSelected ? '#fff' : textColor,
+                                        fontWeight: isSelected ? '700' : '500',
+                                    },
+                                ]}>
+                                {lang.name}
+                            </Text>
+                        </TouchableOpacity>
+                    );
+                })}
+            </View>
+
             {
                 searchResults.length > 0 ? (
                     <FlatList
                         data={searchResults}
                         contentContainerStyle={styles.searchResultsContainer}
                         renderItem={({ item }: any) => renderSearchResult(item)}
-                        keyExtractor={(item: any, index: number) => "search-result-" + index.toString()}
+                        keyExtractor={(_item: any, index: number) => "search-result-" + index.toString()}
+                        keyboardShouldPersistTaps="handled"
                         ListEmptyComponent={() => (
                             <View style={styles.emptySearchResultsContainer}>
                                 <Text style={styles.emptySearchResultsText}>No results found</Text>
@@ -146,11 +241,12 @@ const Search = ({ navigation }: any) => {
                         )}
                     />) : (
                     <View style={styles.historyContainer}>
-                        <Text style={[styles.historyTitle, { color: device.theme ? AppColors.appTextBlack : AppColors.appTextWhite }]}>Recent</Text>
+                        <Text style={[styles.historyTitle, { color: textColor }]}>Recent</Text>
                         <FlatList
                             data={searchHistory}
                             renderItem={({ item }: any) => renderHistoryItem(item)}
-                            keyExtractor={(item: any, index: number) => "search-history-" + index.toString()}
+                            keyExtractor={(_item: any, index: number) => "search-history-" + index.toString()}
+                            keyboardShouldPersistTaps="handled"
                         />
                     </View>
                 )
@@ -172,17 +268,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingHorizontal: 16,
         paddingTop: 16,
+        paddingBottom: 8,
         backgroundColor: 'white',
     },
     searchBar: {
         flex: 1,
         height: 40,
         paddingHorizontal: 16,
+        paddingRight: 100,
         backgroundColor: AppColors.appTextWhite,
-        // borderTopLeftRadius: 14,
-        // borderBottomLeftRadius: 14,
-        // borderTopRightRadius: 0,
-        // borderBottomRightRadius: 0,
         borderRadius: 14,
         borderWidth: 0.5,
         borderColor: AppColors.primary,
@@ -192,8 +286,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: AppColors.primary,
         paddingHorizontal: 16,
-        borderTopLeftRadius: 0,
-        borderBottomLeftRadius: 0,
         borderTopRightRadius: 14,
         borderBottomRightRadius: 14,
         height: 40,
@@ -201,6 +293,28 @@ const styles = StyleSheet.create({
     searchButtonText: {
         color: '#fff',
         fontWeight: 'bold',
+    },
+    filterRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        gap: 8,
+        borderBottomWidth: 1,
+    },
+    filterLabel: {
+        fontSize: 13,
+        fontWeight: '600',
+        marginRight: 4,
+    },
+    filterChip: {
+        paddingVertical: 6,
+        paddingHorizontal: 14,
+        borderRadius: 16,
+        borderWidth: 1,
+    },
+    filterChipText: {
+        fontSize: 13,
     },
     historyContainer: {
         flex: 1,
@@ -275,21 +389,11 @@ const styles = StyleSheet.create({
         color: AppColors.appTextBlack,
     },
     clearButton: {
-        // marginTop: 6,
-        // position: 'absolute',
-        // right: 95,
-        // top: 10,
-        // height: "100%",
         justifyContent: 'center',
         alignItems: 'center',
         height: 40,
-        // backgroundColor: 'white',
     },
-    historyItemDeleteButton: {
-        // position: 'absolute',
-        // right: 16,
-        // top: 16,
-    },
+    historyItemDeleteButton: {},
     clearButtonContainer: {
         zIndex: 1000,
         height: 40,
@@ -300,7 +404,7 @@ const styles = StyleSheet.create({
         top: 16,
         flexDirection: 'row',
         gap: 5,
-    }
+    },
 });
 
-export default Search; 
+export default Search;

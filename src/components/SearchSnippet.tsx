@@ -39,9 +39,10 @@ const SearchSnippet = ({ rawText = "", keyword = "", snippetRadius = 20, theme =
         if (start > 0) snippet = '...' + snippet;
         if (end < textLength) snippet = snippet + '...';
 
-        const parts = snippet && snippet.split(new RegExp(`(${keyword})`, 'ig'));
+        const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const parts = snippet ? snippet.split(new RegExp(`(${escapedKeyword})`, 'ig')) : [];
         setParts(parts);
-    }, []);
+    }, [rawText, keyword, snippetRadius]);
 
     return (
         <Text numberOfLines={1} ellipsizeMode="tail">

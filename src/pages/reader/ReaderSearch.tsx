@@ -22,10 +22,24 @@ import CloseIcon from '../../components/icons/CloseIcon';
 import DatabaseService from '../../services/DatabaseService';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const ReaderSearch = () => {
+const LANGUAGE_OPTIONS = [
+  { code: 'hd', name: 'Ho Dlo' },
+  { code: 'en', name: 'English' },
+  { code: 'mm', name: 'Myanmar' },
+];
+
+const ReaderSearch = ({ }) => {
   const device = useSelector((state: any) => state.device);
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const inputRef = useRef<TextInput>(null);
+
+  const initialLang =
+    (device.selectedLanguages && device.selectedLanguages[0]) ||
+    device.language ||
+    'hd';
+  const [selectedLanguage, setSelectedLanguage] = useState<string>(
+    ['hd', 'en', 'mm'].includes(initialLang) ? initialLang : 'hd',
+  );
 
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<any[]>([]);
@@ -53,11 +67,11 @@ const ReaderSearch = () => {
       .then(() => getHistory());
   };
 
-  const handleSearchSubmit = async () => {
-    if (!searchQuery || searchQuery.trim() === '') return;
+  const performSearch = (query: string, lang: string) => {
+    if (!query || query.trim() === '') return;
     setIsLoading(true);
     DatabaseService.getInstance()
-      .getVersesByKeyword(searchQuery)
+      .getVersesByKeyword(query.trim(), lang)
       .then((results: any) => {
         setSearchResults(results.length > 0 ? results : []);
         setIsLoading(false);
@@ -68,8 +82,20 @@ const ReaderSearch = () => {
       });
   };
 
+  const handleSearchSubmit = () => {
+    performSearch(searchQuery, selectedLanguage);
+  };
+
+  const handleLanguageChange = (langCode: string) => {
+    setSelectedLanguage(langCode);
+    if (searchQuery && searchQuery.trim() !== '') {
+      performSearch(searchQuery, langCode);
+    }
+  };
+
   const handleHistoryPress = (item: any) => {
     setSearchQuery(item.search_query);
+    performSearch(item.search_query, selectedLanguage);
   };
 
   const handleResultPress = (item: any) => {
@@ -77,21 +103,33 @@ const ReaderSearch = () => {
     DatabaseService.getInstance()
       .addSearchHistory(searchQuery, item.verse_id)
       .then(() => {
-        // navigation.navigate(
-        //   'Reader' as never,
-        //   {
-        //     book: item.book,
-        //     chapter: item.chapter,
-        //     chapterId: item.chapter,
-        //     verse: item.verse_id,
-        //   } as never,
-        // );
+        navigation.navigate(
+          'Reader' as never,
+          {
+            book: item.book,
+            chapter: item.chapter,
+            chapterId: item.chapter,
+            verse: item.verse_id,
+          } as never,
+        );
       })
       .catch((err: any) => console.error('Add history error:', err));
   };
 
   const textColor = device.theme ? AppColors.appTextBlack : AppColors.appTextWhite;
   const bgColor = device.theme ? AppColors.appBackgroundGrey : AppColors.appBackgroundDarkTint;
+
+  const getVerseText = (item: any) => {
+    if (selectedLanguage === 'en') return item.text_en || item.text_hd;
+    if (selectedLanguage === 'mm') return item.text_mm || item.text_hd;
+    return item.text_hd;
+  };
+
+  const getBookDisplay = (item: any) => {
+    if (selectedLanguage === 'mm' && item.book_mm) return item.book_mm;
+    if (selectedLanguage === 'hd' && item.book_hd) return item.book_hd;
+    return item.book;
+  };
 
   // ── Render helpers ────────────────────────────────────────────────────────
 
@@ -120,12 +158,19 @@ const ReaderSearch = () => {
     <TouchableOpacity
       style={styles.resultContainer}
       onPress={() => handleResultPress(item)}>
-      <SearchSnippet rawText={item.text_hd} keyword={searchQuery} theme={device.theme} />
+      <SearchSnippet
+        rawText={getVerseText(item)}
+        keyword={searchQuery}
+        theme={device.theme}
+      />
       <Text style={[styles.resultLocation, { color: textColor }]}>
-        {item.book + ' ' + item.chapter + ':' + item.verse}
+        {getBookDisplay(item) + ' ' + item.chapter + ':' + item.verse}
       </Text>
     </TouchableOpacity>
   );
+
+  const currentLangLabel =
+    LANGUAGE_OPTIONS.find(l => l.code === selectedLanguage)?.name || 'Ho Dlo';
 
   return (
     <SafeAreaView style={[styles.safeArea, { backgroundColor: bgColor, paddingTop: insets.top }]}>
@@ -156,7 +201,7 @@ const ReaderSearch = () => {
                 backgroundColor: device.theme ? AppColors.appBackgroundGrey : AppColors.appBackgroundDarkTint,
               },
             ]}
-            placeholder="Search keywords…"
+            placeholder={`Search ${currentLangLabel} verses…`}
             placeholderTextColor={AppColors.appTextGrey}
             value={searchQuery}
             onChangeText={text => {
@@ -184,6 +229,54 @@ const ReaderSearch = () => {
             onPress={handleSearchSubmit}>
             <Text style={styles.searchBtnText}>Search</Text>
           </TouchableOpacity>
+        </View>
+
+        {/* ── Language Filter Row ────────────────────────────────────── */}
+        <View
+          style={[
+            styles.filterRow,
+            {
+              backgroundColor: device.theme ? '#fff' : AppColors.appBackgroundDark,
+              borderBottomColor: device.theme ? AppColors.lightGrey : '#333',
+            },
+          ]}>
+          <Text style={[styles.filterLabel, { color: AppColors.appTextGrey }]}>Language:</Text>
+          {LANGUAGE_OPTIONS.map(lang => {
+            const isSelected = selectedLanguage === lang.code;
+            return (
+              <TouchableOpacity
+                key={lang.code}
+                style={[
+                  styles.filterChip,
+                  {
+                    backgroundColor: isSelected
+                      ? AppColors.primary
+                      : device.theme
+                        ? '#F2F2F4'
+                        : AppColors.appBackgroundDarkTint,
+                    borderColor: isSelected
+                      ? AppColors.primary
+                      : device.theme
+                        ? AppColors.lightGrey
+                        : '#444',
+                  },
+                ]}
+                onPress={() => handleLanguageChange(lang.code)}>
+                <Text
+                  style={[
+                    styles.filterChipText,
+                    {
+                      color: isSelected
+                        ? '#fff'
+                        : textColor,
+                      fontWeight: isSelected ? '700' : '500',
+                    },
+                  ]}>
+                  {lang.name}
+                </Text>
+              </TouchableOpacity>
+            );
+          })}
         </View>
 
         {/* ── Body ───────────────────────────────────────────────────── */}
@@ -232,8 +325,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 10,
     gap: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: AppColors.lightGrey,
     elevation: 2,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
@@ -260,6 +351,30 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: '600',
     fontSize: 14,
+  },
+
+  // ── Language filter ───────────────────────────────────────────────────────
+  filterRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    gap: 8,
+    borderBottomWidth: 1,
+  },
+  filterLabel: {
+    fontSize: 13,
+    fontWeight: '600',
+    marginRight: 4,
+  },
+  filterChip: {
+    paddingVertical: 6,
+    paddingHorizontal: 14,
+    borderRadius: 16,
+    borderWidth: 1,
+  },
+  filterChipText: {
+    fontSize: 13,
   },
 
   // ── History ───────────────────────────────────────────────────────────────

@@ -378,27 +378,71 @@ export default class DatabaseService {
         });
     }
 
-    public async getVersesByKeyword(searchQuery: string): Promise<any> {
+    // public async getVersesByKeyword(searchQuery: string): Promise<any> {
+    //     return new Promise(async (resolve, reject) => {
+    //         if (!this.db) throw new Error('Database not initialized');
+
+    //         try {
+    //             const [results] = await this.db.executeSql(`
+    //                 SELECT DISTINCT b.name as book, c.number as chapter, c.title_hd as chapter_title,
+    //                        v.number as verse, v.text_hd, v.text_en, v.text_mm, v.id as verse_id
+    //                 FROM ${TABLE_VERSES} v
+    //                 JOIN ${TABLE_CHAPTERS} c ON v.chapter_id = c.id
+    //                 JOIN ${TABLE_BOOKS} b ON c.book_id = b.id
+    //                 WHERE v.text_hd LIKE ? OR v.text_en LIKE ? OR v.text_mm LIKE ?
+    //                 ORDER BY b.name, c.number, v.number
+    //                 LIMIT 100;
+    //             `, [`%${searchQuery}%`, `%${searchQuery}%`, `%${searchQuery}%`]);
+    //             // console.log('[DB]results', results.rows.length);
+    //             const verses = [];
+    //             for (let i = 0; i < results.rows.length; i++) {
+    //                 verses.push(results.rows.item(i));
+    //             }
+    //             console.log(`Retrieved ${verses.length} verses for search query: ${searchQuery}`);
+    //             resolve(verses);
+    //         } catch (error) {
+    //             console.error('[DB]Error searching verses:', error);
+    //             reject(error);
+    //         }
+    //     });
+    // }
+
+    public async getVersesByKeyword(searchQuery: string, language?: string): Promise<any> {
         return new Promise(async (resolve, reject) => {
             if (!this.db) throw new Error('Database not initialized');
 
             try {
+                let whereClause = 'v.text_hd LIKE ? OR v.text_en LIKE ? OR v.text_mm LIKE ?';
+                let params = [`%${searchQuery}%`, `%${searchQuery}%`, `%${searchQuery}%`];
+
+                if (language === 'hd') {
+                    whereClause = 'v.text_hd LIKE ?';
+                    params = [`%${searchQuery}%`];
+                } else if (language === 'en') {
+                    whereClause = 'v.text_en LIKE ?';
+                    params = [`%${searchQuery}%`];
+                } else if (language === 'mm') {
+                    whereClause = 'v.text_mm LIKE ?';
+                    params = [`%${searchQuery}%`];
+                }
+
                 const [results] = await this.db.executeSql(`
-                    SELECT DISTINCT b.name as book, c.number as chapter, c.title_hd as chapter_title,
+                    SELECT DISTINCT b.name as book, b.nameHd as book_hd, b.nameMy as book_mm,
+                           c.number as chapter, c.title_hd as chapter_title,
                            v.number as verse, v.text_hd, v.text_en, v.text_mm, v.id as verse_id
                     FROM ${TABLE_VERSES} v
                     JOIN ${TABLE_CHAPTERS} c ON v.chapter_id = c.id
                     JOIN ${TABLE_BOOKS} b ON c.book_id = b.id
-                    WHERE v.text_hd LIKE ? OR v.text_en LIKE ? OR v.text_mm LIKE ?
-                    ORDER BY b.name, c.number, v.number
+                    WHERE ${whereClause}
+                    ORDER BY b.number, c.number, v.number
                     LIMIT 100;
-                `, [`%${searchQuery}%`, `%${searchQuery}%`, `%${searchQuery}%`]);
+                `, params);
                 // console.log('[DB]results', results.rows.length);
                 const verses = [];
                 for (let i = 0; i < results.rows.length; i++) {
                     verses.push(results.rows.item(i));
                 }
-                console.log(`Retrieved ${verses.length} verses for search query: ${searchQuery}`);
+                console.log(`Retrieved ${verses.length} verses for search query: ${searchQuery} (lang: ${language || 'all'})`);
                 resolve(verses);
             } catch (error) {
                 console.error('[DB]Error searching verses:', error);
