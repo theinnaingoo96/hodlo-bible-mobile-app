@@ -56,6 +56,8 @@ const Reader = ({ navigation, route }: any) => {
   const [fontSize, setFontSize] = useState(0.5);
   const [verses, setVerses] = useState();
   const [selectedVerse, setSelectedVerse] = useState<any>(null);
+  const [isMultiSelectMode, setIsMultiSelectMode] = useState(false);
+  const [selectedVerses, setSelectedVerses] = useState<any[]>([]);
 
   // Audio player state from Redux
   const audioPlayerState = reader.audioPlayer;
@@ -592,6 +594,18 @@ const Reader = ({ navigation, route }: any) => {
   };
 
   const handleVerseClick = async (verse: any) => {
+    if (isMultiSelectMode) {
+      // Toggle verse in selectedVerses
+      setSelectedVerses(prev => {
+        const exists = prev.some(v => v.id === verse.id);
+        if (exists) {
+          return prev.filter(v => v.id !== verse.id);
+        } else {
+          return [...prev, { ...verse, chapter: params.chapter, book_name: params.book }];
+        }
+      });
+      return;
+    }
     if (selectedVerse?.id === verse?.id) {
       setSelectedVerse(null);
     } else {
@@ -672,6 +686,103 @@ const Reader = ({ navigation, route }: any) => {
   const handleSharePress = () => {
     // console.log('[SHARE] selectedVerse', selectedVerse);
     setShareModalVisible(true);
+  };
+
+  const handleToggleMultiSelect = () => {
+    if (isMultiSelectMode) {
+      setIsMultiSelectMode(false);
+      setSelectedVerses([]);
+    } else {
+      setIsMultiSelectMode(true);
+      setSelectedVerse(null);
+      setSelectedVerses([]);
+    }
+  };
+
+  const handleBatchCopy = (index: number) => {
+    const selectedLanguagesList: string[] = device.selectedLanguages && device.selectedLanguages.length > 0
+      ? device.selectedLanguages
+      : (device.language && device.language !== 'hodlo' && device.language !== 'hd'
+        ? ['hd', device.language]
+        : ['hd']);
+
+    if (selectedVerses.length === 0) return;
+    const sorted = [...selectedVerses].sort((a: any, b: any) => a.number - b.number);
+    let text = '';
+    if (index === 0) {
+      text = sorted.map((v: any) => `${v.number}. ${v.text_hd}`).join('\n');
+    } else if (index === 1) {
+      text = sorted.map((v: any) => `${v.number}. ${v.text_en}`).join('\n');
+    } else if (index === 2) {
+      text = sorted.map((v: any) => `${v.number}. ${v.text_mm}`).join('\n');
+    } else {
+      const lang1 = selectedLanguagesList[0] || 'hd';
+      const lang2 = selectedLanguagesList[1] || 'en';
+      text = sorted.map((v: any) => `${v.number}. ${v['text_' + lang1]}\n${v['text_' + lang2]}`).join('\n\n');
+    }
+    Clipboard.setString(text);
+    store.dispatch(
+      setToast({
+        show: true,
+        message: `${selectedVerses.length} verse${selectedVerses.length > 1 ? 's' : ''} copied to clipboard`,
+        type: 'success',
+        duration: constants.toastDuration,
+      }),
+    );
+  };
+
+  const handleBatchHighlight = async (remove: boolean) => {
+    if (selectedVerses.length === 0) return;
+    const sorted = [...selectedVerses].sort((a: any, b: any) => a.number - b.number);
+    try {
+      for (const verse of sorted) {
+        if (remove) {
+          await DatabaseService.getInstance().clearHighlightById(verse.id);
+        } else {
+          await DatabaseService.getInstance().addHighlight(verse.id, selectedColor.code);
+        }
+      }
+      fetchVerses();
+      store.dispatch(
+        setToast({
+          show: true,
+          message: remove
+            ? `Highlight removed from ${sorted.length} verse${sorted.length > 1 ? 's' : ''}`
+            : `${sorted.length} verse${sorted.length > 1 ? 's' : ''} highlighted`,
+          type: 'success',
+          duration: constants.toastDuration,
+        }),
+      );
+    } catch (err) {
+      console.error('Batch highlight error:', err);
+    }
+  };
+
+  const handleBatchBookmark = async (remove: boolean) => {
+    if (selectedVerses.length === 0) return;
+    const sorted = [...selectedVerses].sort((a: any, b: any) => a.number - b.number);
+    try {
+      for (const verse of sorted) {
+        if (remove) {
+          await DatabaseService.getInstance().clearBookmarkById(verse.id);
+        } else {
+          await DatabaseService.getInstance().addBookmark(verse.id, '');
+        }
+      }
+      fetchVerses();
+      store.dispatch(
+        setToast({
+          show: true,
+          message: remove
+            ? `Bookmark removed from ${sorted.length} verse${sorted.length > 1 ? 's' : ''}`
+            : `${sorted.length} verse${sorted.length > 1 ? 's' : ''} bookmarked`,
+          type: 'success',
+          duration: constants.toastDuration,
+        }),
+      );
+    } catch (err) {
+      console.error('Batch bookmark error:', err);
+    }
   };
 
   const handleLongPress = (verse: any) => {
@@ -832,6 +943,9 @@ const Reader = ({ navigation, route }: any) => {
           onTitlePress={() => { }}
           dividerMode={dividerMode}
           selectedVerse={selectedVerse}
+          isMultiSelectMode={isMultiSelectMode}
+          selectedVerses={selectedVerses}
+          onToggleMultiSelect={handleToggleMultiSelect}
           setDividerMode={onChangeDividerMode}
           onSettingsPress={() => {
             setBottomSheetVisible(true);
@@ -840,26 +954,40 @@ const Reader = ({ navigation, route }: any) => {
             handleAudioReaderPress();
           }}
           onAddHighlightPress={() => {
-            if (selectedVerse) {
+            if (isMultiSelectMode) {
+              handleBatchHighlight(false);
+            } else if (selectedVerse) {
               handleCreateHighlight(selectedVerse);
             }
           }}
           onRemoveHighlightPress={() => {
-            if (selectedVerse) {
+            if (isMultiSelectMode) {
+              handleBatchHighlight(true);
+            } else if (selectedVerse) {
               handleRemoveHighlight(selectedVerse.id);
             }
           }}
           onAddBookmarkPress={() => {
-            if (selectedVerse) {
+            if (isMultiSelectMode) {
+              handleBatchBookmark(false);
+            } else if (selectedVerse) {
               handleCreateBookmark(selectedVerse);
             }
           }}
           onRemoveBookmarkPress={() => {
-            if (selectedVerse) {
+            if (isMultiSelectMode) {
+              handleBatchBookmark(true);
+            } else if (selectedVerse) {
               handleRemoveBookmark(selectedVerse.id);
             }
           }}
-          onCopytoClickboard={(index: number) => handleCopytoClickboard(index)}
+          onCopytoClickboard={(index: number) => {
+            if (isMultiSelectMode) {
+              handleBatchCopy(index);
+            } else {
+              handleCopytoClickboard(index);
+            }
+          }}
           onSharePress={() => {
             // console.log('[Reader Share]onSharePress');
             setSelectedVerse({ ...selectedVerse, book_name: params.book, chapter: params.chapter, });
@@ -879,6 +1007,8 @@ const Reader = ({ navigation, route }: any) => {
                 dividerMode={dividerMode}
                 onVerseClick={handleVerseClick}
                 selectedVerse={selectedVerse}
+                isMultiSelectMode={isMultiSelectMode}
+                selectedVerses={selectedVerses}
                 onLongPress={handleLongPress}
               />
             </View>

@@ -10,6 +10,8 @@ interface VerseComponentProps {
   index: number;
   activeVerseIndex: number;
   selectedVerse: any;
+  isMultiSelectMode?: boolean;
+  isSelected?: boolean;
   readerSetting: any;
   onVerseClick: (verse: any) => void;
   onLongPress: (verse: any) => void;
@@ -21,12 +23,16 @@ export const VerseComponent = React.memo(({
   index,
   activeVerseIndex,
   selectedVerse,
+  isMultiSelectMode = false,
+  isSelected: isSelectedProp,
   readerSetting,
   onVerseClick,
   onLongPress
 }: VerseComponentProps) => {
   const isActive = activeVerseIndex === index;
-  const isSelected = selectedVerse?.id === verse.id;
+  const isSelected = isSelectedProp !== undefined
+    ? isSelectedProp
+    : selectedVerse?.id === verse.id;
 
   return (
     <View
@@ -75,7 +81,16 @@ export const VerseComponent = React.memo(({
         style={styles.verseContainer}
         onLongPress={() => onLongPress(verse)}
         onPress={() => onVerseClick(verse)}>
-        <View>
+        <View style={styles.verseNumberContainer}>
+          {isMultiSelectMode && (
+            <FontAwesome6
+              name={isSelected ? 'circle-check' : 'circle'}
+              iconStyle={isSelected ? 'solid' : 'regular'}
+              color={isSelected ? AppColors.primary : '#999'}
+              size={15}
+              style={{ marginRight: 4, marginTop: 4 }}
+            />
+          )}
           <Text
             style={[
               styles.verseNumber,
@@ -161,6 +176,11 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     flexDirection: 'row',
     alignItems: 'flex-start',
+  },
+  verseNumberContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
   },
   verseNumber: {
     fontSize: 16,

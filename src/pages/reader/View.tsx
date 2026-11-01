@@ -41,6 +41,8 @@ interface SplitReaderViewProps {
   dividerMode: string;
   onVerseClick: (verse: any) => void;
   selectedVerse: any;
+  isMultiSelectMode?: boolean;
+  selectedVerses?: any[];
 }
 
 const SplitReaderView: React.FC<SplitReaderViewProps> = ({
@@ -53,6 +55,8 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
   dividerMode,
   onVerseClick,
   selectedVerse,
+  isMultiSelectMode = false,
+  selectedVerses = [],
 }) => {
   const device = useSelector((state: any) => state.device);
   const selectedLanguages: string[] = device.selectedLanguages && device.selectedLanguages.length > 0
@@ -468,7 +472,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
         <FlatList
           ref={singleRef}
           data={verses}
-          extraData={{ activeVerseIndex, selectedVerse, readerSetting: reader.readerSetting }}
+          extraData={{ activeVerseIndex, selectedVerse, selectedVerses, isMultiSelectMode, readerSetting: reader.readerSetting }}
           keyExtractor={(item) => `single-view-${item.id}`}
           renderItem={({ item, index }) => (
             <VerseComponent
@@ -477,6 +481,12 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
               index={index}
               activeVerseIndex={activeVerseIndex}
               selectedVerse={selectedVerse}
+              isMultiSelectMode={isMultiSelectMode}
+              isSelected={
+                isMultiSelectMode
+                  ? selectedVerses.some((v: any) => v.id === item.id)
+                  : selectedVerse?.id === item.id
+              }
               readerSetting={reader.readerSetting}
               onVerseClick={onVerseClick}
               onLongPress={onLongPress}
@@ -510,7 +520,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
             <FlatList
               ref={topRef}
               data={verses}
-              extraData={{ activeVerseIndex, selectedVerse, readerSetting: reader.readerSetting }}
+              extraData={{ activeVerseIndex, selectedVerse, selectedVerses, isMultiSelectMode, readerSetting: reader.readerSetting }}
               keyExtractor={(item) => `top-${item.id}`}
               renderItem={({ item, index }) => (
                 <VerseComponent
@@ -519,6 +529,12 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
                   index={index}
                   activeVerseIndex={activeVerseIndex}
                   selectedVerse={selectedVerse}
+                  isMultiSelectMode={isMultiSelectMode}
+                  isSelected={
+                    isMultiSelectMode
+                      ? selectedVerses.some((v: any) => v.id === item.id)
+                      : selectedVerse?.id === item.id
+                  }
                   readerSetting={reader.readerSetting}
                   onVerseClick={onVerseClick}
                   onLongPress={onLongPress}
@@ -570,7 +586,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
             <FlatList
               ref={bottomRef}
               data={verses}
-              extraData={{ activeVerseIndex, selectedVerse, readerSetting: reader.readerSetting }}
+              extraData={{ activeVerseIndex, selectedVerse, selectedVerses, isMultiSelectMode, readerSetting: reader.readerSetting }}
               keyExtractor={(item) => `bottom-${item.id}`}
               renderItem={({ item, index }) => (
                 <VerseComponent
@@ -579,6 +595,12 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
                   index={index}
                   activeVerseIndex={activeVerseIndex}
                   selectedVerse={selectedVerse}
+                  isMultiSelectMode={isMultiSelectMode}
+                  isSelected={
+                    isMultiSelectMode
+                      ? selectedVerses.some((v: any) => v.id === item.id)
+                      : selectedVerse?.id === item.id
+                  }
                   readerSetting={reader.readerSetting}
                   onVerseClick={onVerseClick}
                   onLongPress={onLongPress}
@@ -616,7 +638,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
             <FlatList
               ref={leftRef}
               data={verses}
-              extraData={{ activeVerseIndex, selectedVerse, readerSetting: reader.readerSetting }}
+              extraData={{ activeVerseIndex, selectedVerse, selectedVerses, isMultiSelectMode, readerSetting: reader.readerSetting }}
               keyExtractor={(item) => `left-${item.id}`}
               renderItem={({ item, index }) => (
                 <VerseComponent
@@ -625,6 +647,12 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
                   index={index}
                   activeVerseIndex={activeVerseIndex}
                   selectedVerse={selectedVerse}
+                  isMultiSelectMode={isMultiSelectMode}
+                  isSelected={
+                    isMultiSelectMode
+                      ? selectedVerses.some((v: any) => v.id === item.id)
+                      : selectedVerse?.id === item.id
+                  }
                   readerSetting={reader.readerSetting}
                   onVerseClick={onVerseClick}
                   onLongPress={onLongPress}
@@ -671,7 +699,7 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
             <FlatList
               ref={rightRef}
               data={verses}
-              extraData={{ activeVerseIndex, selectedVerse, readerSetting: reader.readerSetting }}
+              extraData={{ activeVerseIndex, selectedVerse, selectedVerses, isMultiSelectMode, readerSetting: reader.readerSetting }}
               keyExtractor={(item) => `right-${item.id}`}
               renderItem={({ item, index }) => (
                 <VerseComponent
@@ -680,6 +708,12 @@ const SplitReaderView: React.FC<SplitReaderViewProps> = ({
                   index={index}
                   activeVerseIndex={activeVerseIndex}
                   selectedVerse={selectedVerse}
+                  isMultiSelectMode={isMultiSelectMode}
+                  isSelected={
+                    isMultiSelectMode
+                      ? selectedVerses.some((v: any) => v.id === item.id)
+                      : selectedVerse?.id === item.id
+                  }
                   readerSetting={reader.readerSetting}
                   onVerseClick={onVerseClick}
                   onLongPress={onLongPress}

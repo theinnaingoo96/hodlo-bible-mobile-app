@@ -25,6 +25,9 @@ interface ReaderHeaderProps {
   backButton: boolean;
   dividerMode: string;
   selectedVerse: any;
+  isMultiSelectMode?: boolean;
+  selectedVerses?: any[];
+  onToggleMultiSelect?: () => void;
   onTitlePress: () => void;
   onSettingsPress: () => void;
   onAudioReaderPress: () => void;
@@ -43,6 +46,9 @@ const ReaderHeader = ({
   backButton,
   dividerMode,
   selectedVerse,
+  isMultiSelectMode = false,
+  selectedVerses = [],
+  onToggleMultiSelect,
   onTitlePress,
   onSettingsPress,
   onAudioReaderPress,
@@ -150,7 +156,43 @@ const ReaderHeader = ({
       const options = ['Cancel', 'Search', 'Language', 'Reader Setting', 'Audio Reader'];
       const actions = [-1, 12, 0, 1, 2];
 
-      if (selectedVerse) {
+      if (isMultiSelectMode) {
+        if (selectedVerses && selectedVerses.length > 0) {
+          if (selectedLanguages.includes('hd')) {
+            options.push('Copy Ho Dlo version');
+            actions.push(3);
+          }
+          if (selectedLanguages.includes('en')) {
+            options.push('Copy English version');
+            actions.push(4);
+          }
+          if (selectedLanguages.includes('mm')) {
+            options.push('Copy Myanmar version');
+            actions.push(5);
+          }
+          if (selectedLanguages.length === 2) {
+            options.push('Copy Both versions');
+            actions.push(6);
+          }
+
+          options.push('Add Highlight');
+          actions.push(7);
+
+          if (selectedVerses.some((v: any) => v.highlight)) {
+            options.push('Remove Highlight');
+            actions.push(8);
+          }
+
+          options.push('Add Bookmark');
+          actions.push(9);
+
+          if (selectedVerses.some((v: any) => v.bookmark)) {
+            options.push('Remove Bookmark');
+            actions.push(10);
+          }
+          // Note: Share Verse is intentionally omitted in multi-select mode
+        }
+      } else if (selectedVerse) {
         if (selectedLanguages.includes('hd')) {
           options.push('Copy Ho Dlo version');
           actions.push(3);
@@ -213,26 +255,39 @@ const ReaderHeader = ({
             constants.theme[reader.readerSetting.theme - 1].toolbarColor,
         },
       ]}>
-      {backButton && (
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => {
-            if (navigation.canGoBack()) {
-              navigation.goBack();
-            } else {
-              navigation.navigate('Bible' as never);
-            }
-            stop();
-          }}>
-          <FontAwesome6
-            name="arrow-left"
-            iconStyle="solid"
-            color={constants.theme[reader.readerSetting.theme - 1].buttonColor}
-            size={20}
-          />
-        </TouchableOpacity>
-      )}
-      <TouchableOpacity
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        {backButton && (
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={() => {
+              if (isMultiSelectMode && onToggleMultiSelect) {
+                onToggleMultiSelect();
+                return;
+              }
+              if (navigation.canGoBack()) {
+                navigation.goBack();
+              } else {
+                navigation.navigate('Bible' as never);
+              }
+              stop();
+            }}>
+            <FontAwesome6
+              name="arrow-left"
+              iconStyle="solid"
+              color={constants.theme[reader.readerSetting.theme - 1].buttonColor}
+              size={20}
+            />
+          </TouchableOpacity>
+        )}
+        <Text
+          style={[
+            styles.headerTitle,
+            { color: constants.theme[reader.readerSetting.theme - 1].fontColor },
+          ]}>
+          {title}
+        </Text>
+      </View>
+      {/* <TouchableOpacity
         style={styles.headerTitleContainer}
         onPress={onTitlePress}>
         <Text
@@ -242,15 +297,9 @@ const ReaderHeader = ({
           ]}>
           {title}
         </Text>
-        {/* <FontAwesome6
-          name="caret-down"
-          iconStyle="solid"
-          color={constants.theme[reader.readerSetting.theme - 1].fontColor}
-          size={20}
-        /> */}
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <View style={styles.optionsContainer}>
-        {selectedLanguages.length === 2 ? (
+        {!isMultiSelectMode && selectedLanguages.length === 2 && (
           <TouchableOpacity
             style={styles.optionsButton}
             onPress={() =>
@@ -274,36 +323,56 @@ const ReaderHeader = ({
               />
             )}
           </TouchableOpacity>
-        ) : (
-          <></>
+        )}
+        {!isMultiSelectMode && (
+          <TouchableOpacity
+            style={styles.optionsButton}
+            onPress={() => navigation.navigate('ReaderSearch' as never)}>
+            <FontAwesome6
+              name="magnifying-glass"
+              iconStyle="solid"
+              color={constants.theme[reader.readerSetting.theme - 1].fontColor}
+              size={18}
+            />
+          </TouchableOpacity>
+        )}
+        {!isMultiSelectMode && (
+          <TouchableOpacity
+            style={styles.optionsButton}
+            onPress={() =>
+              navigation.navigate('ChangeLanguage' as never)
+            }>
+            <FontAwesome6
+              name="globe"
+              iconStyle="solid"
+              color={constants.theme[reader.readerSetting.theme - 1].fontColor}
+              size={18}
+            />
+          </TouchableOpacity>
         )}
         <TouchableOpacity
-          style={styles.optionsButton}
-          onPress={() => navigation.navigate('ReaderSearch' as never)}>
-          <FontAwesome6
-            name="magnifying-glass"
-            iconStyle="solid"
-            color={constants.theme[reader.readerSetting.theme - 1].fontColor}
-            size={20}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.optionsButton}
-          onPress={() =>
-            navigation.navigate('ChangeLanguage' as never)
-          }>
-          <FontAwesome6
-            name="globe"
-            iconStyle="solid"
-            color={constants.theme[reader.readerSetting.theme - 1].fontColor}
-            size={20}
-          />
+          style={[
+            styles.selectButton,
+            isMultiSelectMode && styles.cancelButtonActive,
+          ]}
+          onPress={onToggleMultiSelect}>
+          <Text
+            style={[
+              styles.selectButtonText,
+              {
+                color: isMultiSelectMode
+                  ? AppColors.primary
+                  : constants.theme[reader.readerSetting.theme - 1].fontColor,
+              },
+            ]}>
+            {isMultiSelectMode ? 'Cancel' : 'Select'}
+          </Text>
         </TouchableOpacity>
         <Menu
           visible={isOpen}
           anchor={
             <TouchableOpacity
-              style={[styles.optionsButton, { paddingRight: 10 }]}
+              style={[styles.optionsButton, { paddingRight: 6 }]}
               onPress={showMenu}>
               <FontAwesome6
                 name="ellipsis-vertical"
@@ -316,14 +385,7 @@ const ReaderHeader = ({
           onRequestClose={() => hideMenu(-1)}>
           <MenuItem
             onPress={() => hideMenu(12)}>
-            {/* <FontAwesome6
-              name="magnifying-glass"
-              iconStyle="solid"
-              color={constants.theme[reader.readerSetting.theme - 1].fontColor}
-              style={{ paddingLeft: 10 }}
-              size={18}
-            /> */}
-             Search
+            Search
           </MenuItem>
           <MenuItem
             onPress={() => hideMenu(0)}>
@@ -331,37 +393,59 @@ const ReaderHeader = ({
           </MenuItem>
           <MenuItem onPress={() => hideMenu(1)}>Reader Setting</MenuItem>
           <MenuItem onPress={() => hideMenu(2)}>Audio Reader</MenuItem>
-          {selectedVerse && (
-            <>
-              {selectedLanguages.includes('hd') && (
-                <MenuItem onPress={() => hideMenu(3)}>Copy Ho Dlo version</MenuItem>
-              )}
-              {selectedLanguages.includes('en') && (
-                <MenuItem onPress={() => hideMenu(4)}>Copy English version</MenuItem>
-              )}
-              {selectedLanguages.includes('mm') && (
-                <MenuItem onPress={() => hideMenu(5)}>Copy Myanmar version</MenuItem>
-              )}
-              {selectedLanguages.length === 2 && (
-                <MenuItem onPress={() => hideMenu(6)}>Copy Both versions</MenuItem>
-              )}
-              {/* <MenuItem onPress={() => hideMenu(4)}>Share Verse</MenuItem> */}
-              {
-                selectedVerse && selectedVerse.highlight ? (
+          {isMultiSelectMode ? (
+            selectedVerses && selectedVerses.length > 0 ? (
+              <>
+                {selectedLanguages.includes('hd') && (
+                  <MenuItem onPress={() => hideMenu(3)}>Copy Ho Dlo version</MenuItem>
+                )}
+                {selectedLanguages.includes('en') && (
+                  <MenuItem onPress={() => hideMenu(4)}>Copy English version</MenuItem>
+                )}
+                {selectedLanguages.includes('mm') && (
+                  <MenuItem onPress={() => hideMenu(5)}>Copy Myanmar version</MenuItem>
+                )}
+                {selectedLanguages.length === 2 && (
+                  <MenuItem onPress={() => hideMenu(6)}>Copy Both versions</MenuItem>
+                )}
+                <MenuItem onPress={() => hideMenu(7)}>Add Highlight</MenuItem>
+                {selectedVerses.some((v: any) => v.highlight) && (
+                  <MenuItem onPress={() => hideMenu(8)}>Remove Highlight</MenuItem>
+                )}
+                <MenuItem onPress={() => hideMenu(9)}>Add Bookmark</MenuItem>
+                {selectedVerses.some((v: any) => v.bookmark) && (
+                  <MenuItem onPress={() => hideMenu(10)}>Remove Bookmark</MenuItem>
+                )}
+              </>
+            ) : null
+          ) : (
+            selectedVerse && (
+              <>
+                {selectedLanguages.includes('hd') && (
+                  <MenuItem onPress={() => hideMenu(3)}>Copy Ho Dlo version</MenuItem>
+                )}
+                {selectedLanguages.includes('en') && (
+                  <MenuItem onPress={() => hideMenu(4)}>Copy English version</MenuItem>
+                )}
+                {selectedLanguages.includes('mm') && (
+                  <MenuItem onPress={() => hideMenu(5)}>Copy Myanmar version</MenuItem>
+                )}
+                {selectedLanguages.length === 2 && (
+                  <MenuItem onPress={() => hideMenu(6)}>Copy Both versions</MenuItem>
+                )}
+                {selectedVerse && selectedVerse.highlight ? (
                   <MenuItem onPress={() => hideMenu(8)}>Remove Highlight</MenuItem>
                 ) : (
                   <MenuItem onPress={() => hideMenu(7)}>Add Highlight</MenuItem>
-                )
-              }
-              {
-                selectedVerse && selectedVerse.bookmark ? (
+                )}
+                {selectedVerse && selectedVerse.bookmark ? (
                   <MenuItem onPress={() => hideMenu(10)}>Remove Bookmark</MenuItem>
                 ) : (
                   <MenuItem onPress={() => hideMenu(9)}>Add Bookmark</MenuItem>
-                )
-              }
-              <MenuItem onPress={() => hideMenu(11)}>Share Verse</MenuItem>
-            </>
+                )}
+                <MenuItem onPress={() => hideMenu(11)}>Share Verse</MenuItem>
+              </>
+            )
           )}
         </Menu>
       </View>
@@ -380,13 +464,14 @@ const styles = StyleSheet.create({
     borderBottomColor: AppColors.primaryTint,
   },
   headerTitleContainer: {
-    gap: 6,
-    left: '50%',
-    alignItems: 'center',
-    flexDirection: 'row',
-    position: 'absolute',
-    justifyContent: 'center',
-    transform: [{ translateX: '-50%' }],
+    backgroundColor: 'red',
+    // gap: 6,
+    // left: '50%',
+    // alignItems: 'center',
+    // flexDirection: 'row',
+    // position: 'absolute',
+    // justifyContent: 'center',
+    // transform: [{ translateX: '-50%' }],
   },
   headerTitle: {
     fontSize: 14,
@@ -419,6 +504,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     // backgroundColor: 'red',
+  },
+  selectButton: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 6,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  cancelButtonActive: {
+    backgroundColor: 'rgba(230, 0, 0, 0.08)',
+  },
+  selectButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
   },
 });
 
