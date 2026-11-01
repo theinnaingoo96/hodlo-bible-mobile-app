@@ -233,7 +233,8 @@ const Bookmark = () => {
         visible={shareModalVisible}
         animationType="fade"
         statusBarTranslucent={true}
-        navigationBarTranslucent={true}>
+        navigationBarTranslucent={true}
+        onRequestClose={() => setShareModalVisible(false)}>
         <ShareModal
           setShareModalVisible={setShareModalVisible}
           selectedVerse={shareBookmark}

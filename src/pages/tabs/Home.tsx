@@ -215,8 +215,8 @@ const Home = () => {
                     transparent
                     visible={shareModalVisible}
                     animationType="fade"
-                    statusBarTranslucent={true}>
-                    <View style={{ height: insets.top }} />
+                    statusBarTranslucent={true}
+                    onRequestClose={() => setShareModalVisible(false)}>
                     <ShareModal
                         setShareModalVisible={setShareModalVisible}
                         selectedVerse={todayVerse}

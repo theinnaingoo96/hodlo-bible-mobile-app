@@ -1067,15 +1067,12 @@ const Reader = ({ navigation, route }: any) => {
           animationType="fade"
           statusBarTranslucent={true}
           onRequestClose={() => setShareModalVisible(false)}>
-          <View style={{ flex: 1, backgroundColor: AppColors.appBackgroundGrey }}>
-            <View style={{ height: insets.top }} />
-            <ShareModal
-              setShareModalVisible={setShareModalVisible}
-              selectedVerse={selectedVerse}
-              bookName={params.book}
-              chapterNumber={params.chapter}
-            />
-          </View>
+          <ShareModal
+            setShareModalVisible={setShareModalVisible}
+            selectedVerse={selectedVerse}
+            bookName={params.book}
+            chapterNumber={params.chapter}
+          />
         </Modal>
         <Modal
           transparent

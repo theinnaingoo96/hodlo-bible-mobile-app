@@ -10,3 +10,75 @@ index 1234567..abcdefg 100644
          Typeface tf = Typeface.create(base, style);
  
          /* text paint */
+@@ -204,6 +205,14 @@ public class StrokeTextView extends View {
+         }
+     }
+ 
++    public void setTextColor(int color) {
++        if (textColor != color) {
++            textColor = color;
++            layoutDirty = true;
++            invalidate();
++        }
++    }
++
+     public void setTextColor(String color) {
+         int parsed = parseColor(color);
+         if (textColor != parsed) {
+@@ -213,6 +222,14 @@ public class StrokeTextView extends View {
+         }
+     }
+ 
++    public void setStrokeColor(int color) {
++        if (strokeColor != color) {
++            strokeColor = color;
++            layoutDirty = true;
++            invalidate();
++        }
++    }
++
+     public void setStrokeColor(String color) {
+         int parsed = parseColor(color);
+         if (strokeColor != parsed) {
+diff --git a/android/src/main/java/com/stroketext/StrokeTextViewManager.java b/android/src/main/java/com/stroketext/StrokeTextViewManager.java
+index 1234567..abcdefg 100644
+--- a/android/src/main/java/com/stroketext/StrokeTextViewManager.java
++++ b/android/src/main/java/com/stroketext/StrokeTextViewManager.java
+@@ -1,5 +1,7 @@
+ package com.stroketext;
+ 
++import com.facebook.react.bridge.Dynamic;
++import com.facebook.react.bridge.ReadableType;
+ import com.facebook.react.uimanager.SimpleViewManager;
+ import com.facebook.react.uimanager.ThemedReactContext;
+ import com.facebook.react.uimanager.annotations.ReactProp;
+@@ -52,12 +54,24 @@ public class StrokeTextViewManager extends SimpleViewManager<StrokeTextView> {
+     /* -------- Colour & stroke -------- */
+ 
+     @ReactProp(name = "color")
+-    public void setColor(StrokeTextView view, String value) {
+-        view.setTextColor(value);
++    public void setColor(StrokeTextView view, Dynamic value) {
++        if (value != null && !value.isNull()) {
++            if (value.getType() == ReadableType.Number) {
++                view.setTextColor((int) value.asDouble());
++            } else if (value.getType() == ReadableType.String) {
++                view.setTextColor(value.asString());
++            }
++        }
+     }
+ 
+     @ReactProp(name = "strokeColor")
+-    public void setStrokeColor(StrokeTextView view, String value) {
+-        view.setStrokeColor(value);
++    public void setStrokeColor(StrokeTextView view, Dynamic value) {
++        if (value != null && !value.isNull()) {
++            if (value.getType() == ReadableType.Number) {
++                view.setStrokeColor((int) value.asDouble());
++            } else if (value.getType() == ReadableType.String) {
++                view.setStrokeColor(value.asString());
++            }
++        }
+     }
+ 
+     @ReactProp(name = "strokeWidth")
